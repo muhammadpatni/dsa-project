@@ -9,7 +9,7 @@ public class StaffList{
     int StaffIds;
     Scanner sc= new Scanner(System.in);
     Staff head,tail;
-    String Filename="C:\\Users\\HP\\Desktop\\lab 1\\muhmmad.java\\sms temp\\Staff.txt";
+    String Filename="C:\\Users\\HP\\Desktop\\lab 1\\DSA project\\Staff.txt";
     StaffList()
     {
         head = null;
