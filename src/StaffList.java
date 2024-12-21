@@ -5,7 +5,7 @@ import java.io.*;
 import java.time.format.DateTimeParseException;
 import java.util.Scanner;
 
-public class StaffList{
+public  class StaffList{
     int StaffIds;
     Scanner sc= new Scanner(System.in);
     Staff head,tail;
@@ -88,7 +88,7 @@ public class StaffList{
     {
         if(isEmpty())
         {
-            System.out.println("no staff ..");
+            System.out.println("no staff available ..");
             return;
         }
         Staff temp=head;
@@ -123,7 +123,7 @@ public class StaffList{
     }
     public void searchStaff(int StaffId) {
         if (isEmpty()) {
-            System.out.println("no staff ..");
+            System.out.println("no staff available ..");
             return;
         }
         Staff temp = head;
@@ -173,7 +173,7 @@ public class StaffList{
 
     public void updateStudent(int StaffId) {
         if (isEmpty()) {
-            System.out.println("no staff ..");
+            System.out.println("no staff available ..");
             return;
         }
         Staff temp = head;
@@ -203,7 +203,7 @@ public class StaffList{
             System.out.println("5. Dob");
             System.out.println("6. Salary");
             System.out.println("7. Designation");
-            System.out.println("0. Back");
+            System.out.println("0. Save");
             System.out.print("Select option which you want to update : ");
             int choice = sc.nextInt();
             switch (choice) {
@@ -278,6 +278,7 @@ public class StaffList{
                     break;
 
                 case 0:
+                    System.out.println("Staff updated successfully . . . ");
                     saveToFile();
                     return;
 

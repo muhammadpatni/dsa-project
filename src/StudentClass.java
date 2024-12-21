@@ -203,7 +203,7 @@ import java.util.Scanner;
             } else if (count <= 200) {
                 return 'D';
             } else {
-                return '-'; // Default for invalid case
+                return '-';
             }
         }
 
