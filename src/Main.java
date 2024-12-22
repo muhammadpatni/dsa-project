@@ -274,7 +274,7 @@ public class Main {
                     return false;
                 default:
                     System.out.println("Invalid choice. Try again.");
-            }
+             }
         }
     }
 }

@@ -10,7 +10,7 @@ import java.util.Scanner;
 
     public class StudentClass {
         private int totalNumberOfStudents;
-        private StudentNode head, tail;
+        StudentNode head, tail;
         Scanner sc = new Scanner(System.in);
 
         public StudentClass() {

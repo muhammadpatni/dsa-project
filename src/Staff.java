@@ -1,4 +1,4 @@
-public class Staff {
+  public class Staff {
     String Name,Gender , DateOfBirth,Contact,Address,Designation, DateOfJoining;
     int StaffId;
     double Salary;
