@@ -14,7 +14,8 @@ public class Main {
                     {"principal", "principal123"},
                     {"teacher", "teacher123"},
                     {"accountant", "accountant123"},
-                    {"examination", "exam123"}
+                    {"examination", "exam123"},
+                    {"coordinator", "coordinator123"}
             };
 
             System.out.println("1. Admin");
@@ -22,18 +23,19 @@ public class Main {
             System.out.println("3. Teacher");
             System.out.println("4. Accountant");
             System.out.println("5. Examination Department");
-            System.out.println("6. Exit");
+            System.out.println("6. Coordinator");
+            System.out.println("7. Exit");
 
             System.out.print("Enter the number corresponding to your role: ");
             int choice = scanner.nextInt();
             scanner.nextLine(); // Consume newline
 
-            if (choice == 6) {
+            if (choice == 7) {
                 System.out.println("Exiting the application. Goodbye!");
                 break;
             }
 
-            if (choice < 1 || choice > 5) {
+            if (choice < 1 || choice > 6) {
                 System.out.println("Invalid choice. Please try again.");
                 continue;
             }
@@ -58,7 +60,7 @@ public class Main {
                     System.out.println("\nLogin successful! Welcome " + role + ".");
                     loggedIn = true;
 
-                    // Now, proceed to the respective menu
+                    // Proceed to the respective menu
                     boolean isLoggedIn = true;
                     while (isLoggedIn) {
                         switch (choice) {
@@ -76,6 +78,9 @@ public class Main {
                                 break;
                             case 5:
                                 isLoggedIn = examinationMenu(scanner);
+                                break;
+                            case 6:
+                                isLoggedIn = coordinatorMenu(scanner);
                                 break;
                         }
                     }
@@ -100,6 +105,7 @@ public class Main {
             case 3: return "Teacher";
             case 4: return "Accountant";
             case 5: return "Examination Department";
+            case 6: return "Coordinator";
             default: return "Unknown";
         }
     }
@@ -117,49 +123,16 @@ public class Main {
 
             switch (choice) {
                 case 1:
-                    manageEntity(scanner, "Teacher");
+                    System.out.println("Managing Teachers...");
                     break;
                 case 2:
-                    manageEntity(scanner, "Student");
+                    System.out.println("Managing Students...");
                     break;
                 case 3:
-                    manageEntity(scanner, "Staff");
+                    System.out.println("Managing Staff...");
                     break;
                 case 4:
                     return false; // Back to login menu
-                default:
-                    System.out.println("Invalid choice. Try again.");
-            }
-        }
-    }
-
-    private static void manageEntity(Scanner scanner, String entity) {
-        while (true) {
-            System.out.println("\n" + entity + " Management:");
-            System.out.println("1. Add " + entity);
-            System.out.println("2. Delete " + entity);
-            System.out.println("3. Update " + entity);
-            System.out.println("4. Search " + entity);
-            System.out.println("5. Back");
-            System.out.print("Enter your choice: ");
-            int choice = scanner.nextInt();
-            scanner.nextLine();
-
-            switch (choice) {
-                case 1:
-                    System.out.println("Adding a " + entity + "...");
-                    break;
-                case 2:
-                    System.out.println("Deleting a " + entity + "...");
-                    break;
-                case 3:
-                    System.out.println("Updating " + entity + " details...");
-                    break;
-                case 4:
-                    System.out.println("Searching for a " + entity + "...");
-                    break;
-                case 5:
-                    return; // Back to admin menu
                 default:
                     System.out.println("Invalid choice. Try again.");
             }
@@ -274,8 +247,40 @@ public class Main {
                     return false;
                 default:
                     System.out.println("Invalid choice. Try again.");
-             }
+            }
+        }
+    }
+
+    private static boolean coordinatorMenu(Scanner scanner) {
+        while (true) {
+            System.out.println("\nCoordinator Menu:");
+            System.out.println("1. Assign Course to Teacher");
+            System.out.println("2. Unassign Course from Teacher");
+            System.out.println("3. View Teachers Teaching Classes");
+            System.out.println("4. View Teachers for a Specific Class");
+            System.out.println("5. Back to Login");
+            System.out.print("Enter your choice: ");
+            int choice = scanner.nextInt();
+            scanner.nextLine();
+
+            switch (choice) {
+                case 1:
+                    System.out.println("Assigning Course to Teacher...");
+                    break;
+                case 2:
+                    System.out.println("Unassigning Course from Teacher...");
+                    break;
+                case 3:
+                    System.out.println("Viewing Teachers Teaching Classes...");
+                    break;
+                case 4:
+                    System.out.println("Viewing Teachers for a Specific Class...");
+                    break;
+                case 5:
+                    return false; // Back to login menu
+                default:
+                    System.out.println("Invalid choice. Try again.");
+            }
         }
     }
 }
-
