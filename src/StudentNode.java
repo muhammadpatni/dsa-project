@@ -3,5 +3,6 @@ public class StudentNode {
     int StudentId, CurrentClass;
     char Section;
     PreviousAcademicBackground Previous;
+
     StudentNode prev,next;
 }

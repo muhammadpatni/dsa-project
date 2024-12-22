@@ -6,6 +6,7 @@ import java.util.Scanner;
 public  class Main {
 
     static StaffList staff =new StaffList();
+    static  StudentClass student=new StudentClass();
     public static void main(String[] args) {
         login();
 
@@ -158,67 +159,108 @@ public static void login()
                 case 1:
                     System.out.println("Adding a " + entity + "...");
                     if (entity.equals("Staff"))
+                {
+                    String dob = "";
+                    DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy");
+                    System.out.print("Enter Staff Name: ");
+                    String name = scanner.nextLine();
+                    System.out.println("Select Gender: ");
+                    System.out.println("1. Male");
+                    System.out.println("2. Female");
+                    String gender = "";
+                    int GenderChoice= scanner.nextInt();
+                    if (GenderChoice==1)
                     {
+                        gender="Male";
+                    }
+                    else if(GenderChoice==2)
+                    {
+                        gender="Female";
+                    }
+                    while (true) {
+                        scanner.nextLine();
+                        System.out.print("Enter your Date of Birth (dd-MM-yyyy): ");
+                        String input = scanner.nextLine();
+
+                        try {
+                            // Validate the input by parsing it into a LocalDate
+                            LocalDate birthDate = LocalDate.parse(input, formatter);
+
+                            // If parsing succeeds, store it in the dob variable
+                            dob = input;
+                            break; // Exit the loop
+                        } catch (DateTimeParseException e) {
+                            System.out.println("Invalid date format. Please enter again in 'dd-MM-yyyy' format.");
+                        }
+                    }
+                    System.out.print("Enter Contact Number: ");
+                    String contact = scanner.nextLine();
+                    System.out.print("Enter Address: ");
+                    String address = scanner.nextLine();
+                    System.out.print("Enter Designation: ");
+                    String designation = scanner.nextLine();
+                    System.out.print("Enter Salary: ");
+                    double salary = scanner.nextDouble();
+                    scanner.nextLine(); // Consume the newline
+                    System.out.print("Enter Skills: ");
+                    String skills = scanner.nextLine();
+                    System.out.print("Enter Experience : ");
+                    String experience = scanner.nextLine();
+                    System.out.print("Enter number of Certifications: ");
+                    int certCount = scanner.nextInt();
+                    scanner.nextLine(); // Consume newline
+
+                    // Array to store certifications
+                    String[] certifications = new String[certCount];
+                    for (int i = 0; i < certCount; i++) {
+                        System.out.print("Enter Certification " + (i + 1) + ": ");
+                        certifications[i] = scanner.nextLine();
+                    }
+
+                    staff.addStaff(name, gender, dob, contact, address, designation, salary, skills, experience, certifications, LocalDate.now().toString());
+                    staff.saveToFile();
+                    System.out.println("Staff added successfully.");
+                }
+                    if(entity.equals("Student"))
+                    { System.out.print("Enter Class For Admission: ");
+                        int currentClass = scanner.nextInt();
+                        scanner.nextLine(); // Consume newline
+                        if (student.countStudentsInClass(currentClass) >= 200) {
+                            System.out.println("Student capacity is full for this class.");
+                            break;
+                        }
+
+                        System.out.print("Enter Student Name: ");
+                        String name = scanner.nextLine();
+                        System.out.print("Enter Father Name: ");
+                        String fatherName = scanner.nextLine();
+                        System.out.print("Enter Gender: ");
+                        String gender = scanner.nextLine();
+
                         String dob = "";
                         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy");
-                        System.out.print("Enter Staff Name: ");
-                        String name = scanner.nextLine();
-                        System.out.println("Select Gender: ");
-                        System.out.println("1. Male");
-                        System.out.println("2. Female");
-                        String gender = "";
-                        int GenderChoice= scanner.nextInt();
-                        if (GenderChoice==1)
-                        {
-                            gender="Male";
-                        }
-                        else if(GenderChoice==2)
-                        {
-                             gender="Female";
-                        }
                         while (true) {
-                            scanner.nextLine();
                             System.out.print("Enter your Date of Birth (dd-MM-yyyy): ");
                             String input = scanner.nextLine();
 
                             try {
-                                // Validate the input by parsing it into a LocalDate
-                                LocalDate birthDate = LocalDate.parse(input, formatter);
-
-                                // If parsing succeeds, store it in the dob variable
+                                LocalDate.parse(input, formatter); // Validate format
                                 dob = input;
-                                break; // Exit the loop
+                                break;
                             } catch (DateTimeParseException e) {
                                 System.out.println("Invalid date format. Please enter again in 'dd-MM-yyyy' format.");
                             }
                         }
+
                         System.out.print("Enter Contact Number: ");
                         String contact = scanner.nextLine();
                         System.out.print("Enter Address: ");
                         String address = scanner.nextLine();
-                        System.out.print("Enter Designation: ");
-                        String designation = scanner.nextLine();
-                        System.out.print("Enter Salary: ");
-                        double salary = scanner.nextDouble();
-                        scanner.nextLine(); // Consume the newline
-                        System.out.print("Enter Skills: ");
-                        String skills = scanner.nextLine();
-                        System.out.print("Enter Experience : ");
-                        String experience = scanner.nextLine();
-                        System.out.print("Enter number of Certifications: ");
-                        int certCount = scanner.nextInt();
-                        scanner.nextLine(); // Consume newline
 
-                        // Array to store certifications
-                        String[] certifications = new String[certCount];
-                        for (int i = 0; i < certCount; i++) {
-                            System.out.print("Enter Certification " + (i + 1) + ": ");
-                            certifications[i] = scanner.nextLine();
-                        }
+                        student.addStudent(currentClass, name, fatherName, gender, dob, contact, address);
+                        System.out.println("Student added successfully.");
+//                        student.saveToFile();
 
-                        staff.addStaff(name, gender, dob, contact, address, designation, salary, skills, experience, certifications, LocalDate.now().toString());
-                        staff.saveToFile();
-                        System.out.println("Staff added successfully.");
                     }
                     break;
                 case 2:
