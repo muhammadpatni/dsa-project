@@ -85,7 +85,5 @@ public class Array {
             }
         }
         return find;
-
-
     }
 }

@@ -413,6 +413,14 @@ public  class Main {
             switch (choice) {
                 case 1:
                     System.out.println("Assigning Course to Teacher...");
+                    if(staff.isEmpty())
+                    {
+                        System.out.println("No Teacher Available");
+                        break;
+                    }
+                    System.out.print("enter teacher id : ");
+                    int id = scanner.nextInt();
+
                     break;
                 case 2:
                     System.out.println("Unassigning Course from Teacher...");
