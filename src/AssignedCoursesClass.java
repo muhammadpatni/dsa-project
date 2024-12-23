@@ -75,7 +75,60 @@ public class AssignedCoursesClass {
         return assigned;
         }
 
-        public void displayForSpecificTeacher() {
+    public void displaySpecificTeacherById(int TeacherId) {
+        boolean found = false;
+        ClassNode temp = head;
+        System.out.println("                             * * * SPECIFIC TEACHER DETAILS * * *                                 ");
+        System.out.println("|====================|====================|=============|========================================|");
+        System.out.println("|     TEACHER ID     |    TEACHER NAME    |    CLASS    |                  COURSE                |");
+        System.out.println("|====================|====================|=============|========================================|");
+        if (isEmpty()) {
+
+            System.out.println("|       - - - -      |       - - - -      |   - - - -   |               - - - -                  |");
+            System.out.println("|--------------------|--------------------|-------------|----------------------------------------|");
+
+            return;
+        }
+        while (temp != null) {
+            if (temp.Teacher_ID == TeacherId)
+            {found = true;
+                System.out.printf("|%-20s|%-20s|%-13s|%-40s|\n", temp.Teacher_ID, temp.Teacher_Name, temp.CLASS, temp.Course);
+                System.out.println("|--------------------|--------------------|-------------|----------------------------------------|");}
+            temp = temp.next;
+        }
+        if (!found) {
+            System.out.println("|       - - - -      |       - - - -      |   - - - -   |               - - - -                  |");
+            System.out.println("|--------------------|--------------------|-------------|----------------------------------------|");
+        }
+    }
+    public void displaySpecificClassById(int ClassId) {
+        boolean found = false;
+        ClassNode temp = head;
+        System.out.println("                             * * * SPECIFIC CLASS DETAILS * * *                                 ");
+        System.out.println("|====================|====================|=============|========================================|");
+        System.out.println("|     TEACHER ID     |    TEACHER NAME    |    CLASS    |                  COURSE                |");
+        System.out.println("|====================|====================|=============|========================================|");
+        if (isEmpty()) {
+
+            System.out.println("|       - - - -      |       - - - -      |   - - - -   |               - - - -                  |");
+            System.out.println("|--------------------|--------------------|-------------|----------------------------------------|");
+
+            return;
+        }
+        while (temp != null) {
+            if (temp.CLASS == ClassId)
+            {found = true;
+                System.out.printf("|%-20s|%-20s|%-13s|%-40s|\n", temp.Teacher_ID, temp.Teacher_Name, temp.CLASS, temp.Course);
+                System.out.println("|--------------------|--------------------|-------------|----------------------------------------|");}
+            temp = temp.next;
+        }
+        if (!found) {
+            System.out.println("|       - - - -      |       - - - -      |   - - - -   |               - - - -                  |");
+            System.out.println("|--------------------|--------------------|-------------|----------------------------------------|");
+        }
+    }
+
+         public void displayForSpecificTeacher() {
             ClassNode current = head;
             while (current != null) {
                 System.out.println("Teacher ID: " + current.Teacher_ID + ", Class: " + current.CLASS + ", Course: " + current.Course + ", Teacher Name: " + current.Teacher_Name);
