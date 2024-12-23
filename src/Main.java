@@ -393,7 +393,9 @@ public  class Main {
             System.out.println("2. Unassign Course from Teacher");
             System.out.println("3. View Teachers Teaching Specific Classes");
             System.out.println("4. View Which Teacher is Teaching Which Course in a Specific Class");
-            System.out.println("5. Back to Login");
+            System.out.println("5. Add Courses");
+            System.out.println("6. Remove Courses");
+            System.out.println("7. Back to Login");
             System.out.print("Enter your choice: ");
             int choice = scanner.nextInt();
             scanner.nextLine();
@@ -412,6 +414,12 @@ public  class Main {
                     System.out.println("Viewing Which Teacher is Teaching Which Course in a Specific Class...");
                     break;
                 case 5:
+                    System.out.println("Add Course");
+                    break;
+                case 6:
+                    System.out.println("remove Course");
+                    break;
+                case 7:
                     return false; // Back to login menu
                 default:
                     System.out.println("Invalid choice. Try again.");
