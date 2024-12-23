@@ -539,7 +539,7 @@ public  class Main {
                             break;
                         }}
                     else if(Class==7)
-                    { if (Class1.search(course))
+                    { if (Class7.search(course))
                         {
                             if (!assignedCourses.checkCourseIsAlreadyAssigned(id,course,Class))
                             {
@@ -556,7 +556,7 @@ public  class Main {
                         }}
                     else if(Class==8)
                     {
-                        if (Class1.search(course))
+                        if (Class8.search(course))
                         {
                             if (!assignedCourses.checkCourseIsAlreadyAssigned(id,course,Class))
                             {
@@ -573,7 +573,7 @@ public  class Main {
                         }}
                     else if(Class==9)
                     {
-                        if (Class1.search(course))
+                        if (Class9.search(course))
                         {
                             if (!assignedCourses.checkCourseIsAlreadyAssigned(id,course,Class))
                             {
@@ -590,7 +590,7 @@ public  class Main {
                         }}
                     else
                     {
-                        if (Class1.search(course))
+                        if (Class10.search(course))
                     {
                             if (!assignedCourses.checkCourseIsAlreadyAssigned(id,course,Class))
                             {
