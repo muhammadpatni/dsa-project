@@ -14,7 +14,7 @@ public  class Main {
     static Array Class8 = new Array();
     static Array Class9 = new Array();
     static Array Class10 = new Array();
-
+     static TeacherList teacher=new TeacherList();
     static StaffList staff =new StaffList();
     static  StudentClass student=new StudentClass();
     public static void main(String[] args) {
@@ -415,14 +415,121 @@ public  class Main {
 
             switch (choice) {
                 case 1:
+                    Teacher temp;
                     System.out.println("Assigning Course to Teacher...");
-                    if(staff.isEmpty())
+                    if(teacher.isEmpty())
                     {
                         System.out.println("No Teacher Available");
                         break;
                     }
                     System.out.print("enter teacher id : ");
                     int id = scanner.nextInt();
+                    if (teacher.validTeacherId(id)==null)
+                    {
+                        System.out.println("Invalid teacher Id");
+                        break;
+                    }
+                    else{
+                         temp =teacher.validTeacherId(id);
+                    }
+                    System.out.print("enter class :");
+                    int Class=scanner.nextInt();
+                    System.out.print("enter course :");
+                    String course= scanner.nextLine();
+                    if(Class==1)
+                    {
+                        if (Class1.search(course))
+                        {
+
+                        }
+                        else{
+                            System.out.println(course+" is not available in class "+Class);
+                            break;
+                        }
+                    }
+                    else if(Class==2)
+                    {
+                        if (Class1.search(course))
+                        {
+
+                        }
+                        else{
+                            System.out.println(course+" is not available in class "+Class);
+                            break;
+                        }
+                    }
+                   else if(Class==3)
+                    { if (Class1.search(course))
+                    {
+
+                    }
+                    else{
+                        System.out.println(course+" is not available in class "+Class);
+                        break;
+                    }}
+                    else if(Class==4)
+                    { if (Class1.search(course))
+                    {
+
+                    }
+                    else{
+                        System.out.println(course+" is not available in class "+Class);
+                        break;
+                    }}
+                    else if(Class==5)
+                    { if (Class1.search(course))
+                        {
+
+                        }
+                        else{
+                            System.out.println(course+" is not available in class "+Class);
+                            break;
+                        }}
+                    else if(Class==6)
+                    { if (Class1.search(course))
+                        {
+
+                        }
+                        else{
+                            System.out.println(course+" is not available in class "+Class);
+                            break;
+                        }}
+                    else if(Class==7)
+                    { if (Class1.search(course))
+                        {
+
+                        }
+                        else{
+                            System.out.println(course+" is not available in class "+Class);
+                            break;
+                        }}
+                    else if(Class==8)
+                    { if (Class1.search(course))
+                        {
+
+                        }
+                        else{
+                            System.out.println(course+" is not available in class "+Class);
+                            break;
+                        }}
+                    else if(Class==9)
+                    { if (Class1.search(course))
+                        {
+
+                        }
+                        else{
+                            System.out.println(course+" is not available in class "+Class);
+                            break;
+                        }}
+                    else
+                    { if (Class1.search(course))
+                    {
+
+                    }
+                    else{
+                        System.out.println(course+" is not available in class "+Class);
+                        break;
+                    }}
 
                     break;
                 case 2:
