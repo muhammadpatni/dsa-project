@@ -63,12 +63,15 @@ public class AssignedCoursesClass {
         }
         public boolean checkCourseIsAlreadyAssigned(int id,String course,int Class)
         { boolean assigned=false;
-
-
-
-
-
-
+            ClassNode temp = head;
+            while (temp != null) {
+                if (temp.Teacher_ID == id&&temp.Course.equals(course)&&temp.CLASS==Class)
+                {
+                    assigned=true;
+                    break;
+                }
+                temp = temp.next;
+            }
         return assigned;
         }
 

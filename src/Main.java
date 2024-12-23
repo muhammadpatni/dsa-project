@@ -16,6 +16,7 @@ public  class Main {
     static Array Class10 = new Array();
      static TeacherList teacher=new TeacherList();
     static StaffList staff =new StaffList();
+    static AssignedCoursesClass assignedCourses = new AssignedCoursesClass();
     static  StudentClass student=new StudentClass();
     public static void main(String[] args) {
         login();
@@ -440,6 +441,14 @@ public  class Main {
                     {
                         if (Class1.search(course))
                         {
+                            if (!assignedCourses.checkCourseIsAlreadyAssigned(id,course,Class))
+                            {
+                                assignedCourses.add(id,Class,course,temp.Name);
+                            }
+                            else {
+                                System.out.println(course+" is already assigned !!! ");
+                                break;
+                            }
 
                         }
                         else{
@@ -449,9 +458,16 @@ public  class Main {
                     }
                     else if(Class==2)
                     {
-                        if (Class1.search(course))
+                        if (Class2.search(course))
                         {
-
+                            if (!assignedCourses.checkCourseIsAlreadyAssigned(id,course,Class))
+                            {
+                                assignedCourses.add(id,Class,course,temp.Name);
+                            }
+                            else {
+                                System.out.println(course+" is already assigned !!! ");
+                                break;
+                            }
                         }
                         else{
                             System.out.println(course+" is not available in class "+Class);
@@ -459,36 +475,64 @@ public  class Main {
                         }
                     }
                    else if(Class==3)
-                    { if (Class1.search(course))
+                    { if (Class3.search(course))
                     {
-
+                        if (!assignedCourses.checkCourseIsAlreadyAssigned(id,course,Class))
+                        {
+                            assignedCourses.add(id,Class,course,temp.Name);
+                        }
+                        else {
+                            System.out.println(course+" is already assigned !!! ");
+                            break;
+                        }
                     }
                     else{
                         System.out.println(course+" is not available in class "+Class);
                         break;
                     }}
                     else if(Class==4)
-                    { if (Class1.search(course))
+                    { if (Class4.search(course))
                     {
-
+                        if (!assignedCourses.checkCourseIsAlreadyAssigned(id,course,Class))
+                        {
+                            assignedCourses.add(id,Class,course,temp.Name);
+                        }
+                        else {
+                            System.out.println(course+" is already assigned !!! ");
+                            break;
+                        }
                     }
                     else{
                         System.out.println(course+" is not available in class "+Class);
                         break;
                     }}
                     else if(Class==5)
-                    { if (Class1.search(course))
+                    { if (Class5.search(course))
                         {
-
+                            if (!assignedCourses.checkCourseIsAlreadyAssigned(id,course,Class))
+                            {
+                                assignedCourses.add(id,Class,course,temp.Name);
+                            }
+                            else {
+                                System.out.println(course+" is already assigned !!! ");
+                                break;
+                            }
                         }
                         else{
                             System.out.println(course+" is not available in class "+Class);
                             break;
                         }}
                     else if(Class==6)
-                    { if (Class1.search(course))
+                    { if (Class6.search(course))
                         {
-
+                            if (!assignedCourses.checkCourseIsAlreadyAssigned(id,course,Class))
+                            {
+                                assignedCourses.add(id,Class,course,temp.Name);
+                            }
+                            else {
+                                System.out.println(course+" is already assigned !!! ");
+                                break;
+                            }
                         }
                         else{
                             System.out.println(course+" is not available in class "+Class);
@@ -497,34 +541,65 @@ public  class Main {
                     else if(Class==7)
                     { if (Class1.search(course))
                         {
-
+                            if (!assignedCourses.checkCourseIsAlreadyAssigned(id,course,Class))
+                            {
+                                assignedCourses.add(id,Class,course,temp.Name);
+                            }
+                            else {
+                                System.out.println(course+" is already assigned !!! ");
+                                break;
+                            }
                         }
                         else{
                             System.out.println(course+" is not available in class "+Class);
                             break;
                         }}
                     else if(Class==8)
-                    { if (Class1.search(course))
+                    {
+                        if (Class1.search(course))
                         {
-
+                            if (!assignedCourses.checkCourseIsAlreadyAssigned(id,course,Class))
+                            {
+                                assignedCourses.add(id,Class,course,temp.Name);
+                            }
+                            else {
+                                System.out.println(course+" is already assigned !!! ");
+                                break;
+                            }
                         }
                         else{
                             System.out.println(course+" is not available in class "+Class);
                             break;
                         }}
                     else if(Class==9)
-                    { if (Class1.search(course))
+                    {
+                        if (Class1.search(course))
                         {
-
+                            if (!assignedCourses.checkCourseIsAlreadyAssigned(id,course,Class))
+                            {
+                                assignedCourses.add(id,Class,course,temp.Name);
+                            }
+                            else {
+                                System.out.println(course+" is already assigned !!! ");
+                                break;
+                            }
                         }
                         else{
                             System.out.println(course+" is not available in class "+Class);
                             break;
                         }}
                     else
-                    { if (Class1.search(course))
                     {
-
+                        if (Class1.search(course))
+                    {
+                            if (!assignedCourses.checkCourseIsAlreadyAssigned(id,course,Class))
+                            {
+                                assignedCourses.add(id,Class,course,temp.Name);
+                            }
+                            else {
+                                System.out.println(course+" is already assigned !!! ");
+                                break;
+                            }
                     }
                     else{
                         System.out.println(course+" is not available in class "+Class);
