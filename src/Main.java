@@ -397,6 +397,9 @@ public  class Main {
         }
     }
      private static boolean coordinatorMenu(Scanner scanner) {
+         int studentClass=0;
+         String Course;
+         boolean isValid = false;
         while (true) {
             System.out.println("\nCoordinator Menu:");
             System.out.println("1. Assign Course to Teacher");
@@ -424,9 +427,6 @@ public  class Main {
                     System.out.println("Viewing Which Teacher is Teaching Which Course in a Specific Class...");
                     break;
                 case 5:
-                    int studentClass=0;
-                    String Course;
-                    boolean isValid = false; // Flag to control the loop termination
                     while (!isValid) {
                         System.out.println("Enter Class (1-10):");
 
@@ -528,6 +528,100 @@ public  class Main {
 
                 case 6:
                     System.out.println("remove Course");
+                    while (!isValid) {
+                        System.out.println("Enter Class (1-10):");
+                        studentClass = scanner.nextInt();
+
+                        if (studentClass >= 1 && studentClass <= 10) {
+                            isValid = true;
+                        } else {
+                            System.out.println("Invalid Class! Please enter a value between 0 and 10.");
+                        }
+                    }
+                    System.out.println("Input Course Name: ");
+                    scanner.nextLine();
+                    Course = scanner.nextLine();
+                    if(studentClass == 1){
+                        if(Class1.search(Course))
+                        {
+                            System.out.println(Course+" course is not available for "+studentClass);
+                        }
+                        else
+                            Class1.insert(Course);
+
+                    }
+                    else if(studentClass == 2){
+                        if(Class2.search(Course))
+                        {
+                            System.out.println(Course+" course is not available for "+studentClass);
+                        }
+                        else
+                            Class2.insert(Course);
+                    }
+                    else if(studentClass == 3){
+                        if(Class3.search(Course))
+                        {
+                            System.out.println(Course+" course is not available for "+studentClass);
+                        }
+                        else
+                            Class3.insert(Course);
+                    }
+                    else if(studentClass == 4){
+                        if(Class4.search(Course))
+                        {
+                            System.out.println(Course+" course is not available for "+studentClass);
+                        }
+                        else
+                            Class4.insert(Course);
+                    }
+                    else if(studentClass == 5){
+                        if(Class5.search(Course))
+                        {
+                            System.out.println(Course+" course is not available for "+studentClass);
+                        }
+                        else
+                            Class5.insert(Course);
+                    }
+                    else if(studentClass == 6){
+                        if(Class6.search(Course))
+                        {
+                            System.out.println(Course+" course is not available for "+studentClass);
+                        }
+                        else
+                            Class6.insert(Course);
+                    }
+                    else if(studentClass == 7){
+                        if(Class7.search(Course))
+                        {
+                            System.out.println(Course+" course is not available for "+studentClass);
+                        }
+                        else
+                            Class7.insert(Course);
+                    }
+                    else if(studentClass == 8){
+                        if(Class8.search(Course))
+                        {
+                            System.out.println(Course+" course is not available for "+studentClass);
+                        }
+                        else
+                            Class8.insert(Course);
+                    }
+                    else if(studentClass == 9){
+                        if(Class9.search(Course))
+                        {
+                            System.out.println(Course+" course is not available for "+studentClass);
+                        }
+                        else
+                            Class9.insert(Course);
+                    }
+                    else {
+                        if(Class10.search(Course))
+                        {
+                            System.out.println(Course+" course is not available for "+studentClass);
+                        }
+                        else
+                            Class10.insert(Course);
+                    }
                     break;
                 case 7:
                     return false;
