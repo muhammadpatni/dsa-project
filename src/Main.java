@@ -424,9 +424,108 @@ public  class Main {
                     System.out.println("Viewing Which Teacher is Teaching Which Course in a Specific Class...");
                     break;
                 case 5:
-                    System.out.println("Add Course");
+                    int studentClass=0;
+                    String Course;
+                    boolean isValid = false; // Flag to control the loop termination
+                    while (!isValid) {
+                        System.out.println("Enter Class (1-10):");
 
-                    break;
+                        // Assuming 'scanner' is a properly initialized Scanner object
+                        studentClass = scanner.nextInt();
+
+                        if (studentClass >= 1 && studentClass <= 10) {
+                            isValid = true; // Update the flag to exit the loop
+                        } else {
+                            System.out.println("Invalid Class! Please enter a value between 0 and 10.");
+                        }
+                    }
+                    System.out.println("Input Course Name: ");
+                    scanner.nextLine();
+                    Course = scanner.nextLine();
+                    if(studentClass == 1){
+                        if(Class1.search(Course))
+                        {
+                            System.out.println(Course+" course is already added in class "+studentClass);
+                        }
+                        else
+                            Class1.insert(Course);
+
+                    }
+                    else if(studentClass == 2){
+                        if(Class2.search(Course))
+                        {
+                            System.out.println(Course+" course is already added in class "+studentClass);
+                        }
+                        else
+                            Class2.insert(Course);
+                    }
+                    else if(studentClass == 3){
+                        if(Class3.search(Course))
+                        {
+                            System.out.println(Course+" course is already added in class "+studentClass);
+                        }
+                        else
+                            Class3.insert(Course);
+                    }
+                    else if(studentClass == 4){
+                        if(Class4.search(Course))
+                        {
+                            System.out.println(Course+" course is already added in class "+studentClass);
+                        }
+                        else
+                            Class4.insert(Course);
+                    }
+                    else if(studentClass == 5){
+                        if(Class5.search(Course))
+                        {
+                            System.out.println(Course+" course is already added in class "+studentClass);
+                        }
+                        else
+                            Class5.insert(Course);
+                    }
+                    else if(studentClass == 6){
+                        if(Class6.search(Course))
+                        {
+                            System.out.println(Course+" course is already added in class "+studentClass);
+                        }
+                        else
+                            Class6.insert(Course);
+                    }
+                    else if(studentClass == 7){
+                        if(Class7.search(Course))
+                        {
+                            System.out.println(Course+" course is already added in class "+studentClass);
+                        }
+                        else
+                            Class7.insert(Course);
+                    }
+                    else if(studentClass == 8){
+                        if(Class8.search(Course))
+                        {
+                            System.out.println(Course+" course is already added in class "+studentClass);
+                        }
+                        else
+                            Class8.insert(Course);
+                    }
+                    else if(studentClass == 9){
+                        if(Class9.search(Course))
+                        {
+                            System.out.println(Course+" course is already added in class "+studentClass);
+                        }
+                        else
+                            Class9.insert(Course);
+                    }
+                    else {
+                        if(Class10.search(Course))
+                        {
+                            System.out.println(Course+" course is already added in class "+studentClass);
+                        }
+                        else
+                            Class10.insert(Course);
+                    }
+                    break; // Break the switch case after the loop completes
+
+
                 case 6:
                     System.out.println("remove Course");
                     break;
