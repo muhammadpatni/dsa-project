@@ -4,6 +4,16 @@ import java.time.format.DateTimeParseException;
 import java.util.Scanner;
 
 public  class Main {
+    static Array Class1 = new Array();
+    static Array Class2 = new Array();
+    static Array Class3 = new Array();
+    static Array Class4 = new Array();
+    static Array Class5 = new Array();
+    static Array Class6 = new Array();
+    static Array Class7 = new Array();
+    static Array Class8 = new Array();
+    static Array Class9 = new Array();
+    static Array Class10 = new Array();
 
     static StaffList staff =new StaffList();
     static  StudentClass student=new StudentClass();
@@ -25,7 +35,7 @@ public  class Main {
                     {"teacher", "teacher123"},
                     {"accountant", "accountant123"},
                     {"examination", "exam123"},
-                    {"coordinator", "coordinator123"} // Added Coordinator
+                    {"coordinator", "coordinator123"}
             };
 
             System.out.println("1. Admin");
@@ -415,12 +425,13 @@ public  class Main {
                     break;
                 case 5:
                     System.out.println("Add Course");
+
                     break;
                 case 6:
                     System.out.println("remove Course");
                     break;
                 case 7:
-                    return false; // Back to login menu
+                    return false;
                 default:
                     System.out.println("Invalid choice. Try again.");
             }

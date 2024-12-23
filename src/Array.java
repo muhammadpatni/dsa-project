@@ -74,4 +74,18 @@ public class Array {
         }
         return -1;
     }
+    public boolean search(String course)
+    { boolean find=false;
+        for (String courses:array)
+        {
+            if (course.equals(course))
+            {
+                find=true;
+                break;
+            }
+        }
+        return find;
+
+
+    }
 }

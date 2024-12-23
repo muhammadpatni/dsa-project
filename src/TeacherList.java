@@ -298,7 +298,18 @@ public class TeacherList {
             System.out.println("|-----------------------------------|-------------------|--------------------------------|--------------------------------|\n");
         }
     }
-
+public Teacher validTeacherId(int id)
+{
+    Teacher temp = head;
+    while (temp != null) {
+        if (temp.TeacherID == id)
+        {break;}
+        temp = temp.next;
+    }
+    if (temp==null)
+        return null;
+    return  temp;
+}
 
 
 }
