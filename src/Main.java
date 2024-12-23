@@ -397,6 +397,9 @@ public  class Main {
         }
     }
      private static boolean coordinatorMenu(Scanner scanner) {
+         int studentClass=0;
+         String Course;
+         boolean isValid = false;
         while (true) {
             System.out.println("\nCoordinator Menu:");
             System.out.println("1. Assign Course to Teacher");
@@ -432,12 +435,125 @@ public  class Main {
                     System.out.println("Viewing Which Teacher is Teaching Which Course in a Specific Class...");
                     break;
                 case 5:
-                    System.out.println("Add Course");
+                    isValid = false; // Resetting the validation flag
+                    while (!isValid) {
+                        System.out.println("Enter Class (1-10):");
+                        studentClass = scanner.nextInt();
 
+                        if (studentClass >= 1 && studentClass <= 10) {
+                            isValid = true; // Exit the loop if valid
+                        } else {
+                            System.out.println("Invalid Class! Please enter a value between 1 and 10.");
+                        }
+                    }
+                    System.out.println("Input Course Name: ");
+                    scanner.nextLine(); // Clear the input buffer
+                    Course = scanner.nextLine();
+
+                    // Process based on the class number
+                    if (studentClass == 1) {
+                        if (Class1.search(Course)) {
+                            System.out.println(Course + " course is already added in class " + studentClass);
+                        } else {
+                            Class1.insert(Course);
+                        }
+                    } else if (studentClass == 2) {
+                        if (Class2.search(Course)) {
+                            System.out.println(Course + " course is already added in class " + studentClass);
+                        } else {
+                            Class2.insert(Course);
+                        }
+                    } else if (studentClass == 3) {
+                        if (Class3.search(Course)) {
+                            System.out.println(Course + " course is already added in class " + studentClass);
+                        } else {
+                            Class3.insert(Course);
+                        }
+                    } else if (studentClass == 4) {
+                        if (Class4.search(Course)) {
+                            System.out.println(Course + " course is already added in class " + studentClass);
+                        } else {
+                            Class4.insert(Course);
+                        }
+                    } else if (studentClass == 5) {
+                        if (Class5.search(Course)) {
+                            System.out.println(Course + " course is already added in class " + studentClass);
+                        } else {
+                            Class5.insert(Course);
+                        }
+                    } else if (studentClass == 6) {
+                        if (Class6.search(Course)) {
+                            System.out.println(Course + " course is already added in class " + studentClass);
+                        } else {
+                            Class6.insert(Course);
+                        }
+                    } else if (studentClass == 7) {
+                        if (Class7.search(Course)) {
+                            System.out.println(Course + " course is already added in class " + studentClass);
+                        } else {
+                            Class7.insert(Course);
+                        }
+                    } else if (studentClass == 8) {
+                        if (Class8.search(Course)) {
+                            System.out.println(Course + " course is already added in class " + studentClass);
+                        } else {
+                            Class8.insert(Course);
+                        }
+                    } else if (studentClass == 9) {
+                        if (Class9.search(Course)) {
+                            System.out.println(Course + " course is already added in class " + studentClass);
+                        } else {
+                            Class9.insert(Course);
+                        }
+                    } else {
+                        if (Class10.search(Course)) {
+                            System.out.println(Course + " course is already added in class " + studentClass);
+                        } else {
+                            Class10.insert(Course);
+                        }
+                    }
                     break;
+
                 case 6:
-                    System.out.println("remove Course");
+                    isValid = false; // Resetting the validation flag
+                    while (!isValid) {
+                        System.out.println("Enter Class (1-10):");
+                        studentClass = scanner.nextInt();
+
+                        if (studentClass >= 1 && studentClass <= 10) {
+                            isValid = true; // Exit the loop if valid
+                        } else {
+                            System.out.println("Invalid Class! Please enter a value between 1 and 10.");
+                        }
+                    }
+                    System.out.println("Input Course Name: ");
+                    scanner.nextLine(); // Clear the input buffer
+                    Course = scanner.nextLine();
+
+                    // Process based on the class number
+                    if (studentClass == 1) {
+                        Class1.delete(Class1.position(Course));
+                    } else if (studentClass == 2) {
+                        Class2.delete(Class2.position(Course));
+                    } else if (studentClass == 3) {
+                        Class3.delete(Class3.position(Course));
+                    } else if (studentClass == 4) {
+                        Class4.delete(Class4.position(Course));
+                    } else if (studentClass == 5) {
+                        Class5.delete(Class5.position(Course));
+                    } else if (studentClass == 6) {
+                        Class6.delete(Class6.position(Course));
+                    } else if (studentClass == 7) {
+                        Class7.delete(Class7.position(Course));
+                    } else if (studentClass == 8) {
+                        Class8.delete(Class8.position(Course));
+                    } else if (studentClass == 9) {
+                        Class9.delete(Class9.position(Course));
+                    } else {
+                        Class10.delete(Class10.position(Course));
+                    }
                     break;
+
                 case 7:
                     return false;
                 default:

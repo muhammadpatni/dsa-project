@@ -25,6 +25,7 @@ public class Array {
     {
         return array[certificate];
     }
+
     public void print() {
         for (int i = 0; i < index; i++) {
             System.out.println(i+1 + " : " + array[i]);
@@ -75,10 +76,13 @@ public class Array {
         return -1;
     }
     public boolean search(String course)
-    { boolean find=false;
+    {if (index==0)
+    {return false;}
+
+        boolean find=false;
         for (String courses:array)
         {
-            if (course.equals(course))
+            if (courses.equals(course))
             {
                 find=true;
                 break;
