@@ -1,5 +1,5 @@
 public class MarksNode {
     String subjects;
-    float mark;
+    double mark;
     MarksNode prev,next;
 }

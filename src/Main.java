@@ -44,7 +44,7 @@ public  class Main {
             System.out.println("3. Teacher");
             System.out.println("4. Accountant");
             System.out.println("5. Examination Department");
-            System.out.println("6. Coordinator"); // Added Coordinator option
+            System.out.println("6. Coordinator");
             System.out.println("7. Exit");
 
             System.out.print("Enter the number corresponding to your role: ");
@@ -799,6 +799,15 @@ public  class Main {
             switch (choice) {
                 case 1:
                     System.out.println("Uploading Marks...");
+
+                    if (student.isEmpty())
+                    {
+                        System.out.println("Students not available");
+                        break;
+                    }
+                    System.out.print("enter student Id :");
+                    int id=scanner.nextInt();
+
                     break;
                 case 2:
                     System.out.println("Viewing Marks...");

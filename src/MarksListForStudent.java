@@ -31,42 +31,25 @@ public class MarksListForStudent {
             System.out.println("No students Marks available.");
             return;
         }
-
         MarksNode temp = head;
-
         while (true) {
             System.out.println("\nCurrent Details:");
-            System.out.println("Subject: " + temp.subjects);
-            System.out.println("Mark: " + temp.mark);
-            System.out.println("\nOptions:");
-            System.out.println("1. Update Subject");
-            System.out.println("2. Update Mark");
-            System.out.println("0. Exit");
-            System.out.print("Select an option: ");
-
+           displayStudentMarks();
+            System.out.println("\n:");
+            System.out.print("Select s.no for edit marks or press 0 to save");
             int choice = sc.nextInt();
-            sc.nextLine();
-
-            switch (choice) {
-                case 1:
-                    System.out.print("Enter new subject: ");
-                    temp.subjects = sc.nextLine();
-                    break;
-
-                case 2:
-                    System.out.print("Enter new mark: ");
-                    temp.mark = sc.nextInt();
-                    sc.nextLine();
-                    break;
-
-                case 0:
-                    System.out.println("Student updated successfully.");
-
-                    return;
-
-                default:
-                    System.out.println("Invalid choice, please try again.");
+            if (choice==0)
+                return;
+            for (int i = 0; i <choice&&temp!=null ; i++) {
+                temp=temp.next;
             }
+            if (temp==null)
+            {
+                System.out.println("Invalid selection !!!");
+                continue;
+            }
+            System.out.println("enter new marks");
+            temp.mark= sc.nextDouble();
         }
     }
 

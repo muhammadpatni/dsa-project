@@ -19,7 +19,7 @@ import java.util.Scanner;
             totalNumberOfStudents = 0;
         }
 
-        private boolean isEmpty() {
+        public boolean isEmpty() {
             return head == null;
         }
 
@@ -247,19 +247,14 @@ import java.util.Scanner;
                 return;
             }
             StudentNode temp=head;
-            boolean found=false;
-            while(true){
+            while(temp!=null){
                 if (temp.StudentId==StudentId)
                 {
                     break;
                 }
                 temp=temp.next;
-                if (temp==head) {
-                    found = true;
-                    break;
-                }
             }
-            if (found)
+            if (temp==null)
             {
                 System.out.println("Invalid found");
                 return;
@@ -331,6 +326,23 @@ import java.util.Scanner;
             } catch (IOException e) {
                 System.out.println("Error saving student details: " + e.getMessage());
             }
+        }
+        public  void uploadMarks(int id)
+        {
+            StudentNode temp=head;
+            while(temp!=null){
+                if (temp.StudentId==id)
+                {
+                    break;
+                }
+                temp=temp.next;
+            }
+            if (temp==null)
+            {
+                System.out.println("Invalid found");
+                return;
+            }
+
         }
 
 
