@@ -95,4 +95,46 @@ public class MarksListForStudent {
             sno++;
         }
     }
+
+    public void displayMarkSheet() {
+        System.out.println("                                         ** MARKSHEET **                                        ");
+        System.out.println("|------|---------------------|---------------|---------------|----------------|----------------|");
+        System.out.println("| S.NO |       SUBJECT       | MAXIMUM MARKS | MINIMUM MARKS | OBTAINED MARKS |     GRADE      |");
+        System.out.println("|------|---------------------|---------------|---------------|----------------|----------------|");
+
+        MarksNode temp = head;
+        int totalMarks = 0, sno = 1;
+        String totalGrade = "";
+
+        while (temp != null) {
+            totalMarks += temp.mark;
+            String grade = calculateGrade(temp.mark);
+            System.out.printf("| %-4d | %-18s | %-13d | %-13d | %-14d | %-14s |\n", sno, temp.subjects, 100, 40, temp.mark, grade);
+            temp = temp.next;
+            sno++;
+        }
+
+        double percentage = (double) totalMarks / (sno - 1);
+        totalGrade = calculateGrade(percentage);
+        System.out.println("|------|---------------------|---------------|---------------|----------------|----------------|");
+        System.out.printf("| %-4s | %-18s | %-13s | %-13s | %-14s | %-14s |\n", "", "TOTAL", "500", "200", totalMarks, totalGrade);
+        System.out.println("|------|---------------------|---------------|---------------|----------------|----------------|");
+        System.out.printf("PERCENTAGE: %.2f%%\n", percentage);
+    }
+
+    private String calculateGrade(double marks) {
+        if (marks > 89.9) {
+            return "A";
+        } else if (marks > 79.9) {
+            return "B";
+        } else if (marks > 69.9) {
+            return "C";
+        } else if (marks > 59.9) {
+            return "D";
+        } else if (marks > 49.9) {
+            return "E";
+        } else {
+            return "F";
+        }
+    }
 }
