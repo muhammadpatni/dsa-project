@@ -98,9 +98,9 @@ public class MarksListForStudent {
 
     public void displayMarkSheet() {
         System.out.println("                                         ** MARKSHEET **                                        ");
-        System.out.println("|------|---------------------|---------------|---------------|----------------|----------------|");
-        System.out.println("| S.NO |       SUBJECT       | MAXIMUM MARKS | MINIMUM MARKS | OBTAINED MARKS |     GRADE      |");
-        System.out.println("|------|---------------------|---------------|---------------|----------------|----------------|");
+        System.out.println("|--------|-----------------------|-------------------|-------------------|------------------|------------------|");
+        System.out.println("| S.NO   |       SUBJECT         | MAXIMUM MARKS     | MINIMUM MARKS     | OBTAINED MARKS   |      GRADE       |");
+        System.out.println("|--------|-----------------------|-------------------|-------------------|------------------|------------------|");
 
         MarksNode temp = head;
         int totalMarks = 0, sno = 1;
@@ -109,17 +109,29 @@ public class MarksListForStudent {
         while (temp != null) {
             totalMarks += temp.mark;
             String grade = calculateGrade(temp.mark);
-            System.out.printf("| %-4d | %-18s | %-13d | %-13d | %-14d | %-14s |\n", sno, temp.subjects, 100, 40, temp.mark, grade);
+            System.out.printf("| %-6s | %-21s | %-17s | %-17s | %-16s | %-16s |\n",
+                    centerAlign(String.valueOf(sno), 6),
+                    centerAlign(temp.subjects, 21),
+                    centerAlign("100", 17),
+                    centerAlign("40", 17),
+                    centerAlign(String.valueOf(temp.mark), 16),
+                    centerAlign(grade, 16));
             temp = temp.next;
             sno++;
         }
 
         double percentage = (double) totalMarks / (sno - 1);
         totalGrade = calculateGrade(percentage);
-        System.out.println("|------|---------------------|---------------|---------------|----------------|----------------|");
-        System.out.printf("| %-4s | %-18s | %-13s | %-13s | %-14s | %-14s |\n", "", "TOTAL", "500", "200", totalMarks, totalGrade);
-        System.out.println("|------|---------------------|---------------|---------------|----------------|----------------|");
-        System.out.printf("PERCENTAGE: %.2f%%\n", percentage);
+        System.out.println("|--------|-----------------------|-------------------|-------------------|------------------|------------------|");
+        System.out.printf("| %-6s | %-21s | %-17s | %-17s | %-16s | %-16s |\n",
+                "",
+                centerAlign("TOTAL", 21),
+                centerAlign("500", 17),
+                centerAlign("200", 17),
+                centerAlign(String.valueOf(totalMarks), 16),
+                centerAlign(totalGrade, 16));
+        System.out.println("|--------|-----------------------|-------------------|-------------------|------------------|------------------|");
+        System.out.printf("PERCENTAGE: %-3.2f%%\n", percentage);
     }
 
     private String calculateGrade(double marks) {
@@ -137,4 +149,11 @@ public class MarksListForStudent {
             return "F";
         }
     }
+
+    private String centerAlign(String text, int width) {
+        int padding = (width - text.length()) / 2;
+        String format = String.format("%%%ds%%s%%%ds", padding, padding);
+        return String.format(format, "", text, "");
+    }
+
 }
