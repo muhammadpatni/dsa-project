@@ -35,6 +35,11 @@ public class AssignedCoursesClass {
             }
             temp = temp.next;
         }
+        if (temp==null)
+        {
+            System.out.println("invalid course name");
+            return;
+        }
         if (temp == head) {
             head = temp.next;
             head.prev = null;

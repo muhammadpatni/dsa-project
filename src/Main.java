@@ -1,6 +1,7 @@
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
+import java.util.Locale;
 import java.util.Scanner;
 
 public  class Main {
@@ -439,11 +440,11 @@ public  class Main {
                     String course= scanner.nextLine();
                     if(Class==1)
                     {
-                        if (Class1.search(course))
+                        if (Class1.search(course.toLowerCase()))
                         {
-                            if (!assignedCourses.checkCourseIsAlreadyAssigned(id,course,Class))
+                            if (!assignedCourses.checkCourseIsAlreadyAssigned(id,course.toLowerCase(),Class))
                             {
-                                assignedCourses.add(id,Class,course,temp.Name);
+                                assignedCourses.add(id,Class,course.toLowerCase(),temp.Name);
                             }
                             else {
                                 System.out.println(course+" is already assigned !!! ");
@@ -458,11 +459,11 @@ public  class Main {
                     }
                     else if(Class==2)
                     {
-                        if (Class2.search(course))
+                        if (Class2.search(course.toLowerCase()))
                         {
-                            if (!assignedCourses.checkCourseIsAlreadyAssigned(id,course,Class))
+                            if (!assignedCourses.checkCourseIsAlreadyAssigned(id,course.toLowerCase(),Class))
                             {
-                                assignedCourses.add(id,Class,course,temp.Name);
+                                assignedCourses.add(id,Class,course.toLowerCase(),temp.Name);
                             }
                             else {
                                 System.out.println(course+" is already assigned !!! ");
@@ -475,11 +476,11 @@ public  class Main {
                         }
                     }
                    else if(Class==3)
-                    { if (Class3.search(course))
+                    { if (Class3.search(course.toLowerCase()))
                     {
-                        if (!assignedCourses.checkCourseIsAlreadyAssigned(id,course,Class))
+                        if (!assignedCourses.checkCourseIsAlreadyAssigned(id,course.toLowerCase(),Class))
                         {
-                            assignedCourses.add(id,Class,course,temp.Name);
+                            assignedCourses.add(id,Class,course.toLowerCase(),temp.Name);
                         }
                         else {
                             System.out.println(course+" is already assigned !!! ");
@@ -491,11 +492,11 @@ public  class Main {
                         break;
                     }}
                     else if(Class==4)
-                    { if (Class4.search(course))
+                    { if (Class4.search(course.toLowerCase()))
                     {
-                        if (!assignedCourses.checkCourseIsAlreadyAssigned(id,course,Class))
+                        if (!assignedCourses.checkCourseIsAlreadyAssigned(id,course.toLowerCase(),Class))
                         {
-                            assignedCourses.add(id,Class,course,temp.Name);
+                            assignedCourses.add(id,Class,course.toLowerCase(),temp.Name);
                         }
                         else {
                             System.out.println(course+" is already assigned !!! ");
@@ -507,11 +508,11 @@ public  class Main {
                         break;
                     }}
                     else if(Class==5)
-                    { if (Class5.search(course))
+                    { if (Class5.search(course.toLowerCase()))
                         {
-                            if (!assignedCourses.checkCourseIsAlreadyAssigned(id,course,Class))
+                            if (!assignedCourses.checkCourseIsAlreadyAssigned(id,course.toLowerCase(),Class))
                             {
-                                assignedCourses.add(id,Class,course,temp.Name);
+                                assignedCourses.add(id,Class,course.toLowerCase(),temp.Name);
                             }
                             else {
                                 System.out.println(course+" is already assigned !!! ");
@@ -523,11 +524,11 @@ public  class Main {
                             break;
                         }}
                     else if(Class==6)
-                    { if (Class6.search(course))
+                    { if (Class6.search(course.toLowerCase()))
                         {
-                            if (!assignedCourses.checkCourseIsAlreadyAssigned(id,course,Class))
+                            if (!assignedCourses.checkCourseIsAlreadyAssigned(id,course.toLowerCase(),Class))
                             {
-                                assignedCourses.add(id,Class,course,temp.Name);
+                                assignedCourses.add(id,Class,course.toLowerCase(),temp.Name);
                             }
                             else {
                                 System.out.println(course+" is already assigned !!! ");
@@ -539,11 +540,11 @@ public  class Main {
                             break;
                         }}
                     else if(Class==7)
-                    { if (Class7.search(course))
+                    { if (Class7.search(course.toLowerCase()))
                         {
-                            if (!assignedCourses.checkCourseIsAlreadyAssigned(id,course,Class))
+                            if (!assignedCourses.checkCourseIsAlreadyAssigned(id,course.toLowerCase(),Class))
                             {
-                                assignedCourses.add(id,Class,course,temp.Name);
+                                assignedCourses.add(id,Class,course.toLowerCase(),temp.Name);
                             }
                             else {
                                 System.out.println(course+" is already assigned !!! ");
@@ -556,11 +557,11 @@ public  class Main {
                         }}
                     else if(Class==8)
                     {
-                        if (Class8.search(course))
+                        if (Class8.search(course.toLowerCase()))
                         {
-                            if (!assignedCourses.checkCourseIsAlreadyAssigned(id,course,Class))
+                            if (!assignedCourses.checkCourseIsAlreadyAssigned(id,course.toLowerCase(),Class))
                             {
-                                assignedCourses.add(id,Class,course,temp.Name);
+                                assignedCourses.add(id,Class,course.toLowerCase(),temp.Name);
                             }
                             else {
                                 System.out.println(course+" is already assigned !!! ");
@@ -573,11 +574,11 @@ public  class Main {
                         }}
                     else if(Class==9)
                     {
-                        if (Class9.search(course))
+                        if (Class9.search(course.toLowerCase()))
                         {
-                            if (!assignedCourses.checkCourseIsAlreadyAssigned(id,course,Class))
+                            if (!assignedCourses.checkCourseIsAlreadyAssigned(id,course.toLowerCase(),Class))
                             {
-                                assignedCourses.add(id,Class,course,temp.Name);
+                                assignedCourses.add(id,Class,course.toLowerCase(),temp.Name);
                             }
                             else {
                                 System.out.println(course+" is already assigned !!! ");
@@ -590,11 +591,11 @@ public  class Main {
                         }}
                     else
                     {
-                        if (Class10.search(course))
+                        if (Class10.search(course.toLowerCase()))
                     {
-                            if (!assignedCourses.checkCourseIsAlreadyAssigned(id,course,Class))
+                            if (!assignedCourses.checkCourseIsAlreadyAssigned(id,course.toLowerCase(),Class))
                             {
-                                assignedCourses.add(id,Class,course,temp.Name);
+                                assignedCourses.add(id,Class,course.toLowerCase(),temp.Name);
                             }
                             else {
                                 System.out.println(course+" is already assigned !!! ");
@@ -630,180 +631,12 @@ public  class Main {
                      }
                      else
                      {
-
+                         System.out.println("No course assigned to "+Id+" in class  "+ClassNumber);
+                         break;
                      }
-                    System.out.print("enter course :");
+                    System.out.print("enter course to delete:");
                     String CourseName= scanner.nextLine();
-                    if(ClassNumber==1)
-                    {
-                        if (Class1.search(CourseName))
-                        {
-                            if (assignedCourses.checkCourseIsAlreadyAssigned(Id,CourseName,ClassNumber))
-                            {
-                                assignedCourses.add(id,Class,course,temp.Name);
-                            }
-                            else {
-                                System.out.println(course+" is already assigned !!! ");
-                                break;
-                            }
-
-                        }
-                        else{
-                            System.out.println(course+" is not available in class "+Class);
-                            break;
-                        }
-                    }
-                    else if(Class==2)
-                    {
-                        if (Class2.search(course))
-                        {
-                            if (!assignedCourses.checkCourseIsAlreadyAssigned(id,course,Class))
-                            {
-                                assignedCourses.add(id,Class,course,temp.Name);
-                            }
-                            else {
-                                System.out.println(course+" is already assigned !!! ");
-                                break;
-                            }
-                        }
-                        else{
-                            System.out.println(course+" is not available in class "+Class);
-                            break;
-                        }
-                    }
-                    else if(Class==3)
-                    { if (Class3.search(course))
-                    {
-                        if (!assignedCourses.checkCourseIsAlreadyAssigned(id,course,Class))
-                        {
-                            assignedCourses.add(id,Class,course,temp.Name);
-                        }
-                        else {
-                            System.out.println(course+" is already assigned !!! ");
-                            break;
-                        }
-                    }
-                    else{
-                        System.out.println(course+" is not available in class "+Class);
-                        break;
-                    }}
-                    else if(Class==4)
-                    { if (Class4.search(course))
-                    {
-                        if (!assignedCourses.checkCourseIsAlreadyAssigned(id,course,Class))
-                        {
-                            assignedCourses.add(id,Class,course,temp.Name);
-                        }
-                        else {
-                            System.out.println(course+" is already assigned !!! ");
-                            break;
-                        }
-                    }
-                    else{
-                        System.out.println(course+" is not available in class "+Class);
-                        break;
-                    }}
-                    else if(Class==5)
-                    { if (Class5.search(course))
-                    {
-                        if (!assignedCourses.checkCourseIsAlreadyAssigned(id,course,Class))
-                        {
-                            assignedCourses.add(id,Class,course,temp.Name);
-                        }
-                        else {
-                            System.out.println(course+" is already assigned !!! ");
-                            break;
-                        }
-                    }
-                    else{
-                        System.out.println(course+" is not available in class "+Class);
-                        break;
-                    }}
-                    else if(Class==6)
-                    { if (Class6.search(course))
-                    {
-                        if (!assignedCourses.checkCourseIsAlreadyAssigned(id,course,Class))
-                        {
-                            assignedCourses.add(id,Class,course,temp.Name);
-                        }
-                        else {
-                            System.out.println(course+" is already assigned !!! ");
-                            break;
-                        }
-                    }
-                    else{
-                        System.out.println(course+" is not available in class "+Class);
-                        break;
-                    }}
-                    else if(Class==7)
-                    { if (Class7.search(course))
-                    {
-                        if (!assignedCourses.checkCourseIsAlreadyAssigned(id,course,Class))
-                        {
-                            assignedCourses.add(id,Class,course,temp.Name);
-                        }
-                        else {
-                            System.out.println(course+" is already assigned !!! ");
-                            break;
-                        }
-                    }
-                    else{
-                        System.out.println(course+" is not available in class "+Class);
-                        break;
-                    }}
-                    else if(Class==8)
-                    {
-                        if (Class8.search(course))
-                        {
-                            if (!assignedCourses.checkCourseIsAlreadyAssigned(id,course,Class))
-                            {
-                                assignedCourses.add(id,Class,course,temp.Name);
-                            }
-                            else {
-                                System.out.println(course+" is already assigned !!! ");
-                                break;
-                            }
-                        }
-                        else{
-                            System.out.println(course+" is not available in class "+Class);
-                            break;
-                        }}
-                    else if(Class==9)
-                    {
-                        if (Class9.search(course))
-                        {
-                            if (!assignedCourses.checkCourseIsAlreadyAssigned(id,course,Class))
-                            {
-                                assignedCourses.add(id,Class,course,temp.Name);
-                            }
-                            else {
-                                System.out.println(course+" is already assigned !!! ");
-                                break;
-                            }
-                        }
-                        else{
-                            System.out.println(course+" is not available in class "+Class);
-                            break;
-                        }}
-                    else
-                    {
-                        if (Class10.search(course))
-                        {
-                            if (!assignedCourses.checkCourseIsAlreadyAssigned(id,course,Class))
-                            {
-                                assignedCourses.add(id,Class,course,temp.Name);
-                            }
-                            else {
-                                System.out.println(course+" is already assigned !!! ");
-                                break;
-                            }
-                        }
-                        else{
-                            System.out.println(course+" is not available in class "+Class);
-                            break;
-                        }}
-
-
+                    assignedCourses.delete(Id,CourseName,ClassNumber);
 
 
                     break;
