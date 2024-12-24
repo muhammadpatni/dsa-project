@@ -37,7 +37,7 @@ public class AssignedCoursesClass {
         }
         if (temp==null)
         {
-            System.out.println("invalid course name");
+            System.out.println("Invalid course name");
             return;
         }
         if (temp == head) {

@@ -1,7 +1,6 @@
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
-import java.util.Locale;
 import java.util.Scanner;
 
 public  class Main {
@@ -450,7 +449,6 @@ public  class Main {
                                 System.out.println(course+" is already assigned !!! ");
                                 break;
                             }
-
                         }
                         else{
                             System.out.println(course+" is not available in class "+Class);
@@ -634,17 +632,30 @@ public  class Main {
                          System.out.println("No course assigned to "+Id+" in class  "+ClassNumber);
                          break;
                      }
-                    System.out.print("enter course to delete:");
+                    System.out.print("enter course to unassigned");
                     String CourseName= scanner.nextLine();
-                    assignedCourses.delete(Id,CourseName,ClassNumber);
-
-
+                    assignedCourses.delete(Id,CourseName.toLowerCase(),ClassNumber);
                     break;
                 case 3:
                     System.out.println("Viewing Teachers Teaching Specific Classes...");
+                    System.out.print("enter class : ");
+                    int classnumber=scanner.nextInt();
+                    assignedCourses.displaySpecificClassById(classnumber);
                     break;
                 case 4:
                     System.out.println("Viewing Which Teacher is Teaching Which Course in a Specific Class...");
+                    if(teacher.isEmpty())
+                    {
+                        System.out.println("Teacher not available");
+                    }
+                    System.out.print("enter teacher id : ");
+                    int teacherid =scanner.nextInt();
+                    if (teacher.validTeacherId(teacherid)==null)
+                    {
+                        System.out.println("Invalid teacher Id");
+                        break;
+                    }
+                    assignedCourses.displaySpecificTeacherById(teacherid);
                     break;
                 case 5:
                     isValid = false; // Resetting the validation flag
