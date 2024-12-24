@@ -12,7 +12,7 @@ public class MarksListForStudent {
     {
         return head == null;
     }
-    public void addMarks(String subject,float marks)
+    public void addMarks(String subject,double marks)
     {
         MarksNode newNode = new MarksNode();
         newNode.subjects = subject;
@@ -27,10 +27,6 @@ public class MarksListForStudent {
     }
 
     public void updateStudentMarks() {
-        if (isEmpty()) {
-            System.out.println("No students Marks available.");
-            return;
-        }
         MarksNode temp = head;
         while (true) {
             System.out.println("\nCurrent Details:");
@@ -39,7 +35,8 @@ public class MarksListForStudent {
             System.out.print("Select s.no for edit marks or press 0 to save");
             int choice = sc.nextInt();
             if (choice==0)
-                return;
+            {   System.out.println("marks update successfully ");
+                return;}
             for (int i = 0; i <choice&&temp!=null ; i++) {
                 temp=temp.next;
             }
@@ -87,7 +84,7 @@ public class MarksListForStudent {
 
         MarksNode temp = head;
         int totalMarks = 0, sno = 1;
-        String totalGrade = "";
+        String totalGrade ;
 
         while (temp != null) {
             totalMarks += temp.mark;
@@ -102,19 +99,11 @@ public class MarksListForStudent {
             temp = temp.next;
             sno++;
         }
-
+        System.out.println("|--------|-----------------------|-------------------|-------------------|------------------|------------------|\n");
         double percentage = (double) totalMarks / (sno - 1);
         totalGrade = calculateGrade(percentage);
-        System.out.println("|--------|-----------------------|-------------------|-------------------|------------------|------------------|");
-        System.out.printf("| %-6s | %-21s | %-17s | %-17s | %-16s | %-16s |\n",
-                "",
-                centerAlign("TOTAL", 21),
-                centerAlign("500", 17),
-                centerAlign("200", 17),
-                centerAlign(String.valueOf(totalMarks), 16),
-                centerAlign(totalGrade, 16));
-        System.out.println("|--------|-----------------------|-------------------|-------------------|------------------|------------------|");
-        System.out.printf("PERCENTAGE: %-3.2f%%\n", percentage);
+        System.out.println("                 Grand Total: "+totalMarks+ "/" + (100 * (sno - 1)) + "            Grade: " + totalGrade + "              Percentage: " + String.format("%.2f", percentage) + "%");
+
     }
 
     private String calculateGrade(double marks) {

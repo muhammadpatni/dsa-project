@@ -3,6 +3,6 @@ public class StudentNode {
     int StudentId, CurrentClass;
     char Section;
     PreviousAcademicBackground Previous;
-    MarksListForStudent marks=new MarksListForStudent();
+    MarksListForStudent marks;
     StudentNode prev,next;
 }

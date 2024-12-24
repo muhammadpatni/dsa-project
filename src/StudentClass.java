@@ -327,7 +327,7 @@ import java.util.Scanner;
                 System.out.println("Error saving student details: " + e.getMessage());
             }
         }
-        public  void uploadMarks(int id)
+        public  StudentNode uploadMarks(int id)
         {
             StudentNode temp=head;
             while(temp!=null){
@@ -339,10 +339,9 @@ import java.util.Scanner;
             }
             if (temp==null)
             {
-                System.out.println("Invalid found");
-                return;
+                return null;
             }
-
+            return  temp;
         }
 
 

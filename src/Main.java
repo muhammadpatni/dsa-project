@@ -791,7 +791,8 @@ public  class Main {
             System.out.println("1. Upload Marks");
             System.out.println("2. View Marks");
             System.out.println("3. Edit Marks");
-            System.out.println("4. Back to Login");
+            System.out.println("4. Generate mark sheet");
+            System.out.println("5. Back to Login");
             System.out.print("Enter your choice: ");
             int choice = scanner.nextInt();
             scanner.nextLine();
@@ -799,23 +800,171 @@ public  class Main {
             switch (choice) {
                 case 1:
                     System.out.println("Uploading Marks...");
-
-                    if (student.isEmpty())
-                    {
+                    StudentNode temp;
+                    if (student.isEmpty()) {
                         System.out.println("Students not available");
                         break;
                     }
                     System.out.print("enter student Id :");
-                    int id=scanner.nextInt();
-
+                    int id = scanner.nextInt();
+                    if (student.uploadMarks(id) == null) {
+                        System.out.println("Invalid Id");
+                        break;
+                    }
+                    else {
+                        temp = student.uploadMarks(id);
+                    }
+                    if (!temp.marks.isEmpty())
+                    {
+                        System.out.println("marks already assigned to "+id);
+                        break;
+                    }
+                    if (temp.CurrentClass == 1) {
+                        for (int i = 0; i < Class1.size(); i++) {
+                            System.out.print("Enter marks of " + Class1.GetCertificate(i) + ":");
+                            double marks = scanner.nextDouble();
+                            temp.marks.addMarks(Class1.GetCertificate(i), marks);
+                        }
+                    } else if (temp.CurrentClass == 2) {
+                        for (int i = 0; i < Class2.size(); i++) {
+                            System.out.print("Enter marks of " + Class2.GetCertificate(i) + ":");
+                            double marks = scanner.nextDouble();
+                            temp.marks.addMarks(Class2.GetCertificate(i), marks);
+                        }
+                    } else if (temp.CurrentClass == 3) {
+                        for (int i = 0; i < Class3.size(); i++) {
+                            System.out.print("Enter marks of " + Class3.GetCertificate(i) + ":");
+                            double marks = scanner.nextDouble();
+                            temp.marks.addMarks(Class3.GetCertificate(i), marks);
+                        }
+                    }
+                     else if (temp.CurrentClass==4) {
+                          for (int i = 0; i < Class4.size(); i++) {
+                                 System.out.print("Enter marks of "+Class4.GetCertificate(i)+":");
+                                 double marks = scanner.nextDouble();
+                                 temp.marks.addMarks(Class4.GetCertificate(i),marks);
+                             }
+                         }
+                     else if (temp.CurrentClass==5) {
+                         for (int i = 0; i < Class5.size(); i++) {
+                                 System.out.print("Enter marks of "+Class5.GetCertificate(i)+":");
+                                 double marks = scanner.nextDouble();
+                                 temp.marks.addMarks(Class5.GetCertificate(i),marks);
+                             }
+                     }
+                     else if (temp.CurrentClass==6) {
+                             for (int i = 0; i < Class6.size(); i++) {
+                                 System.out.print("Enter marks of "+Class6.GetCertificate(i)+":");
+                                 double marks = scanner.nextDouble();
+                                 temp.marks.addMarks(Class6.GetCertificate(i),marks);
+                             }
+                     }
+                     else if (temp.CurrentClass==7) {
+                             for (int i = 0; i < Class7.size(); i++) {
+                                 System.out.print("Enter marks of "+Class7.GetCertificate(i)+":");
+                                 double marks = scanner.nextDouble();
+                                 temp.marks.addMarks(Class7.GetCertificate(i),marks);
+                             }
+                     }
+                     else if (temp.CurrentClass==8) {
+                             for (int i = 0; i < Class8.size(); i++) {
+                                 System.out.print("Enter marks of "+Class8.GetCertificate(i)+":");
+                                 double marks = scanner.nextDouble();
+                                 temp.marks.addMarks(Class8.GetCertificate(i),marks);
+                             }
+                     }
+                     else if (temp.CurrentClass==9) {
+                             for (int i = 0; i < Class9.size(); i++) {
+                                 System.out.print("Enter marks of "+Class9.GetCertificate(i)+":");
+                                 double marks = scanner.nextDouble();
+                                 temp.marks.addMarks(Class9.GetCertificate(i),marks);
+                             }
+                     }
+                     else
+                     {
+                         for (int i = 0; i < Class10.size(); i++) {
+                             System.out.print("Enter marks of "+Class10.GetCertificate(i)+":");
+                             double marks = scanner.nextDouble();
+                             temp.marks.addMarks(Class10.GetCertificate(i),marks);
+                         }
+                     }
                     break;
                 case 2:
                     System.out.println("Viewing Marks...");
+                    if (student.isEmpty()) {
+                        System.out.println("Students not available");
+                        break;
+                    }
+                    System.out.print("enter student Id :");
+                    int Id = scanner.nextInt();
+                    if (student.uploadMarks(Id) == null) {
+                        System.out.println("Invalid Id");
+                        break;
+                    }
+                    else {
+                        temp = student.uploadMarks(Id);
+                    }
+                    if (!temp.marks.isEmpty())
+                    {
+                        System.out.println("marks is not assigned to "+Id);
+                        break;
+                    }
+                    else
+                    {
+                       temp.marks.displayStudentMarks();
+                    }
                     break;
                 case 3:
                     System.out.println("Editing Marks...");
+                    if (student.isEmpty()) {
+                        System.out.println("Students not available");
+                        break;
+                    }
+                    System.out.print("enter student Id :");
+                    int ID = scanner.nextInt();
+                    if (student.uploadMarks(ID) == null) {
+                        System.out.println("Invalid Id");
+                        break;
+                    }
+                    else {
+                        temp = student.uploadMarks(ID);
+                    }
+                    if (!temp.marks.isEmpty())
+                    {
+                        System.out.println("marks is not assigned to "+ID);
+                        break;
+                    }
+                    else
+                    {
+                        temp.marks.updateStudentMarks();
+                    }
                     break;
                 case 4:
+                    System.out.println("Generating mark sheet...");
+                    if (student.isEmpty()) {
+                        System.out.println("Students not available");
+                        break;
+                    }
+                    System.out.print("enter student Id :");
+                    int iD = scanner.nextInt();
+                    if (student.uploadMarks(iD) == null) {
+                        System.out.println("Invalid Id");
+                        break;
+                    }
+                    else {
+                        temp = student.uploadMarks(iD);
+                    }
+                    if (!temp.marks.isEmpty())
+                    {
+                        System.out.println("marks is not assigned to "+iD);
+                        break;
+                    }
+                    else
+                    {
+                        temp.marks.displayMarkSheet();
+                    }
+                    break;
+                case 5:
                     return false;
                 default:
                     System.out.println("Invalid choice. Try again.");
