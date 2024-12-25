@@ -204,8 +204,25 @@ public  class StaffList{
             System.out.println("6. Salary");
             System.out.println("7. Designation");
             System.out.println("0. Save");
-            System.out.print("Select option which you want to update : ");
-            int choice = sc.nextInt();
+            System.out.print("Select option which you want to update: ");
+
+            int choice = 0;
+            boolean validChoice = false;
+
+// Input validation loop for choice
+            while (!validChoice) {
+                try {
+                    choice = sc.nextInt();
+                    if (choice < 0 || choice > 7) {
+                        throw new Exception("Invalid choice! Please enter a number between 0 and 7.");
+                    }
+                    validChoice = true; // Valid input, exit loop
+                } catch (Exception e) {
+                    System.out.println(e.getMessage());
+                    sc.nextLine(); // Clear the buffer
+                }
+            }
+
             switch (choice) {
                 case 1:
                     System.out.print("Enter new name: ");
@@ -221,6 +238,25 @@ public  class StaffList{
                     System.out.println("3. Other");
                     int gender = sc.nextInt();
                     sc.nextLine();
+
+                    boolean valid = false;
+
+                    while (!valid) {
+                        try {
+                            System.out.print("Enter your choice (1-3): ");
+                            choice = sc.nextInt();
+                            if (choice < 1 || choice > 6) { // Invalid choice range check
+                                throw new Exception("Invalid choice range!");
+                            }
+                            valid = true; // Input is valid, exit loop
+                        } catch (Exception e) {
+                            sc.nextLine(); // Clear invalid input from scanner
+                            System.out.println("Wrong input! Enter again from 1-3 options.");
+                        }
+                    }
+
+                    System.out.println("You selected: " + choice);
+
                     if (gender == 1)
                         temp.Gender = "Male";
                     else if (gender == 2)
@@ -232,9 +268,19 @@ public  class StaffList{
                     break;
 
                 case 3:
-                    System.out.print("Enter new contact: ");
-                    sc.nextLine();
-                    String contact = sc.nextLine();
+                    String contact = "";
+                    while (true) {
+                        try {
+                            System.out.print("Enter Contact Number: ");
+                            contact = sc.nextLine();
+                            if (!contact.matches("\\d{10}")) { // Assuming contact number is 10 digits
+                                throw new Exception("Invalid contact number format!");
+                            }
+                            break;
+                        } catch (Exception e) {
+                            System.out.println("Invalid input! Contact number must be 10 digits.");
+                        }
+                    }
                     temp.Contact = contact;
                     break;
 
@@ -264,8 +310,20 @@ public  class StaffList{
                     break;
 
                 case 6:
-                    System.out.print("Enter new salary: ");
-                    int salary = sc.nextInt();
+                    double salary = 0;
+                    while (true) {
+                        try {
+                            System.out.print("Enter Salary: ");
+                            salary = sc.nextDouble();
+                            if (salary < 0) {
+                                throw new Exception("Salary cannot be negative!");
+                            }
+                            break;
+                        } catch (Exception e) {
+                            sc.nextLine(); // Clear invalid input
+                            System.out.println("Invalid input! Salary must be a positive number.");
+                        }
+                    }
                     temp.Salary = salary;
                     sc.nextLine();
                     break;

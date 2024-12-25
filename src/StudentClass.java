@@ -91,22 +91,75 @@ import java.util.Scanner;
                 System.out.println("5. Address");
                 System.out.println("0. Exit");
                 System.out.print("Select option which you want to update : ");
-                int choice = sc.nextInt();
+                int choice = 0;
+                boolean valid = false;
+
+                while (!valid) {
+                    try {
+                        System.out.print("Enter your choice (1-5): ");
+                        choice = sc.nextInt();
+                        if (choice < 1 || choice > 6) { // Invalid choice range check
+                            throw new Exception("Invalid choice range!");
+                        }
+                        valid = true; // Input is valid, exit loop
+                    } catch (Exception e) {
+                        sc.nextLine(); // Clear invalid input from scanner
+                        System.out.println("Wrong input! Enter again from 1-5 options.");
+                    }
+                }
+
+                System.out.println("You selected: " + choice);
                 switch (choice) {
-                    case 1:
-                        System.out.print("Enter new name :");
-                        String name=sc.nextLine();
-                        temp.Name=name;
+                    case 1:  // Name
+                        String name = "";
+                        while (true) {
+                            try {
+                                System.out.print("Enter new name: ");
+                                name = sc.nextLine();
+                                if (name.trim().isEmpty()) {
+                                    throw new Exception("Name cannot be empty!");
+                                }
+                                temp.Name = name;
+                                break;
+                            } catch (Exception e) {
+                                System.out.println(e.getMessage());
+                            }
+                        }
                         break;
-                    case 2:
-                        System.out.print("Enter new Father Name :");
-                        String fathername=sc.nextLine();
-                        temp.FatherName=fathername;
+
+                    case 2:  // Father Name
+                        String fathername = "";
+                        while (true) {
+                            try {
+                                System.out.print("Enter new Father Name: ");
+                                fathername = sc.nextLine();
+                                if (fathername.trim().isEmpty()) {
+                                    throw new Exception("Father Name cannot be empty!");
+                                }
+                                temp.FatherName = fathername;
+                                break;
+                            } catch (Exception e) {
+                                System.out.println(e.getMessage());
+                            }
+                        }
                         break;
-                    case 3:
-                        System.out.print("Enter new contact :");
-                        String contact=sc.nextLine();
-                        temp.Contact=contact;
+
+                    case 3:  // Contact
+                        String contact = "";
+                        while (true) {
+                            try {
+                                System.out.print("Enter new contact: ");
+                                contact = sc.nextLine();
+                                // Example validation: Ensure the contact is numeric and 10 digits long
+                                if (!contact.matches("\\d{10}")) {
+                                    throw new Exception("Invalid contact number! Please enter exactly 10 digits.");
+                                }
+                                temp.Contact = contact;
+                                break;
+                            } catch (Exception e) {
+                                System.out.println(e.getMessage());
+                            }
+                        }
                         break;
                     case 4:
                         String dob = "";

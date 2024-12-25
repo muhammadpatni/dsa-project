@@ -46,10 +46,26 @@ public  class Main {
             System.out.println("5. Examination Department");
             System.out.println("6. Coordinator");
             System.out.println("7. Exit");
-
             System.out.print("Enter the number corresponding to your role: ");
-            int choice = scanner.nextInt();
-            scanner.nextLine(); // Consume newline
+
+            boolean valid = false;
+            int choice =0;
+
+            while (!valid) {
+                try {
+                    System.out.print("Enter your choice (1-6): ");
+                    choice = scanner.nextInt();
+                    if (choice < 1 || choice > 6) {
+                        throw new Exception("Invalid choice range!");
+                    }
+                    valid = true;
+                } catch (Exception e) {
+                    scanner.nextLine();
+                    System.out.println("Wrong input! Enter again from 1-6 options.");
+                }
+            }
+
+            System.out.println("You selected: " + choice);
 
             if (choice == 7) {
                 System.out.println("Exiting the application. Goodbye!");
@@ -61,7 +77,6 @@ public  class Main {
                 continue;
             }
 
-            // Generate a welcome message based on the selected role
             String role = getRoleName(choice);
             System.out.println("\nWelcome, " + role + "! Please enter your credentials.");
 
@@ -71,6 +86,7 @@ public  class Main {
             boolean loggedIn = false;
 
             while (!loggedIn) {
+                scanner.nextLine();
                 System.out.print("Enter your username: ");
                 String inputUsername = scanner.nextLine();
 
@@ -81,7 +97,6 @@ public  class Main {
                     System.out.println("\nLogin successful! Welcome " + role + ".");
                     loggedIn = true;
 
-                    // Proceed to the respective menu
                     boolean isLoggedIn = true;
                     while (isLoggedIn) {
                         switch (choice) {
@@ -101,7 +116,7 @@ public  class Main {
                                 isLoggedIn = examinationMenu(scanner);
                                 break;
                             case 6:
-                                isLoggedIn = coordinatorMenu(scanner); // Added coordinator menu
+                                isLoggedIn = coordinatorMenu(scanner);
                                 break;
                         }
                     }
@@ -110,7 +125,7 @@ public  class Main {
                     System.out.print("Would you like to try again or go back to the main menu? (try again/back): ");
                     String action = scanner.nextLine();
                     if (action.equalsIgnoreCase("back")) {
-                        break; // Back to the role selection menu
+                        break;
                     }
                 }
             }
@@ -126,7 +141,7 @@ public  class Main {
             case 3: return "Teacher";
             case 4: return "Accountant";
             case 5: return "Examination Department";
-            case 6: return "Coordinator"; // Added Coordinator
+            case 6: return "Coordinator";
             default: return "Unknown";
         }
     }
@@ -138,8 +153,24 @@ public  class Main {
             System.out.println("3. Manage Staff");
             System.out.println("4. Back to Login");
             System.out.print("Enter your choice: ");
-            int choice = scanner.nextInt();
-            scanner.nextLine();
+            int choice = 0;
+            boolean valid = false;
+
+            while (!valid) {
+                try {
+                    System.out.print("Enter your choice (1-4): ");
+                    choice = scanner.nextInt();
+                    if (choice < 1 || choice > 4) { // Invalid choice range check
+                        throw new Exception("Invalid choice range!");
+                    }
+                    valid = true; // Input is valid, exit loop
+                } catch (Exception e) {
+                    scanner.nextLine(); // Clear invalid input from scanner
+                    System.out.println("Wrong input! Enter again from 1-4 options.");
+                }
+            }
+
+            System.out.println("You selected: " + choice);
 
             switch (choice) {
                 case 1:
@@ -167,9 +198,24 @@ public  class Main {
             System.out.println("3. Update " + entity);
             System.out.println("4. Search " + entity);
             System.out.println("5. Back");
-            System.out.print("Enter your choice: ");
-            int choice = scanner.nextInt();
-            scanner.nextLine();
+            int choice = 0;
+            boolean valid = false;
+
+            while (!valid) {
+                try {
+                    System.out.print("Enter your choice (1-5): ");
+                    choice = scanner.nextInt();
+                    if (choice < 1 || choice > 6) {
+                        throw new Exception("Invalid choice range!");
+                    }
+                    valid = true;
+                } catch (Exception e) {
+                    scanner.nextLine();
+                    System.out.println("Wrong input! Enter again from 1-5 options.");
+                }
+            }
+
+            System.out.println("You selected: " + choice);
 
             switch (choice) {
                 case 1:
@@ -184,51 +230,98 @@ public  class Main {
                         System.out.println("1. Male");
                         System.out.println("2. Female");
                         String gender = "";
-                        int GenderChoice= scanner.nextInt();
-                        if (GenderChoice==1)
-                        {
-                            gender="Male";
+                        boolean genderValid = false; // Reset the flag for gender choice
+
+                        while (!genderValid) {
+                            try {
+                                System.out.print("Enter your choice (1-2): ");
+                                int genderChoice = scanner.nextInt();
+                                if (genderChoice == 1) {
+                                    gender = "Male";
+                                    genderValid = true; // Valid choice, exit loop
+                                } else if (genderChoice == 2) {
+                                    gender = "Female";
+                                    genderValid = true; // Valid choice, exit loop
+                                } else {
+                                    throw new Exception("Invalid gender choice!"); // Throw for invalid range
+                                }
+                            } catch (Exception e) {
+                                scanner.nextLine(); // Clear the invalid input
+                                System.out.println("Wrong input! Please select 1 for Male or 2 for Female.");
+                            }
                         }
-                        else if(GenderChoice==2)
-                        {
-                            gender="Female";
-                        }
+
                         while (true) {
                             scanner.nextLine();
                             System.out.print("Enter your Date of Birth (dd-MM-yyyy): ");
-                            String input = scanner.nextLine();
+                            String input = scanner.nextLine(); // Read the date input directly
 
                             try {
-                                // Validate the input by parsing it into a LocalDate
-                                LocalDate birthDate = LocalDate.parse(input, formatter);
-
-                                // If parsing succeeds, store it in the dob variable
-                                dob = input;
+                                LocalDate birthDate = LocalDate.parse(input, formatter); // Parse the date
+                                dob = input; // Store the valid date
                                 break; // Exit the loop
                             } catch (DateTimeParseException e) {
                                 System.out.println("Invalid date format. Please enter again in 'dd-MM-yyyy' format.");
                             }
                         }
-                        System.out.print("Enter Contact Number: ");
-                        String contact = scanner.nextLine();
+
+                        String contact = "";
+                        while (true) {
+                            try {
+                                System.out.print("Enter Contact Number: ");
+                                contact = scanner.nextLine();
+                                if (!contact.matches("\\d{10}")) { // Assuming contact number is 10 digits
+                                    throw new Exception("Invalid contact number format!");
+                                }
+                                break;
+                            } catch (Exception e) {
+                                System.out.println("Invalid input! Contact number must be 10 digits.");
+                            }
+                        }
                         System.out.print("Enter Address: ");
                         String address = scanner.nextLine();
                         System.out.print("Enter Designation: ");
                         String designation = scanner.nextLine();
-                        System.out.print("Enter Salary: ");
-                        double salary = scanner.nextDouble();
-                        scanner.nextLine(); // Consume the newline
+                        double salary = 0;
+                        while (true) {
+                            try {
+                                System.out.print("Enter Salary: ");
+                                salary = scanner.nextDouble();
+                                if (salary < 0) {
+                                    System.out.println("Salary cannot be negative! Please enter a positive value.");
+                                } else {
+                                    break; // Exit loop if salary is valid
+                                }
+                            } catch (java.util.InputMismatchException e) {
+                                System.out.println("Invalid input! Salary must be a number.");
+                                scanner.nextLine(); // Clear invalid input
+                            }
+                        }
+
+
+                        scanner.nextLine();
                         System.out.print("Enter Skills: ");
                         String skills = scanner.nextLine();
                         System.out.print("Enter Experience : ");
                         String experience = scanner.nextLine();
-                        System.out.print("Enter number of Certifications: ");
-                        int certCount = scanner.nextInt();
-                        scanner.nextLine(); // Consume newline
+                        int certCount = 0;
+                        while (true) {
+                            try {
+                                System.out.print("Enter number of Certifications: ");
+                                certCount = scanner.nextInt();
+                                if (certCount < 0) {
+                                    throw new Exception("Number of certifications cannot be negative!");
+                                }
+                                break;
+                            } catch (Exception e) {
+                                scanner.nextLine(); // Clear invalid input
+                                System.out.println("Invalid input! Please enter a positive integer for certifications.");
+                            }
+                        }
 
-                        // Array to store certifications
                         String[] certifications = new String[certCount];
                         for (int i = 0; i < certCount; i++) {
+                            scanner.nextLine();
                             System.out.print("Enter Certification " + (i + 1) + ": ");
                             certifications[i] = scanner.nextLine();
                         }
@@ -240,7 +333,7 @@ public  class Main {
                     if(entity.equals("Student"))
                     { System.out.print("Enter Class For Admission: ");
                         int currentClass = scanner.nextInt();
-                        scanner.nextLine(); // Consume newline
+                        scanner.nextLine();
                         if (student.countStudentsInClass(currentClass) >= 200) {
                             System.out.println("Student capacity is full for this class.");
                             break;
@@ -260,7 +353,7 @@ public  class Main {
                             String input = scanner.nextLine();
 
                             try {
-                                LocalDate.parse(input, formatter); // Validate format
+                                LocalDate.parse(input, formatter);
                                 dob = input;
                                 break;
                             } catch (DateTimeParseException e) {
@@ -268,8 +361,19 @@ public  class Main {
                             }
                         }
 
-                        System.out.print("Enter Contact Number: ");
-                        String contact = scanner.nextLine();
+                        String contact = "";
+                        while (true) {
+                            try {
+                                System.out.print("Enter Contact Number: ");
+                                contact = scanner.nextLine();
+                                if (!contact.matches("\\d{10}")) { // Assuming contact number is 10 digits
+                                    throw new Exception("Invalid contact number format!");
+                                }
+                                break;
+                            } catch (Exception e) {
+                                System.out.println("Invalid input! Contact number must be 10 digits.");
+                            }
+                        }
                         System.out.print("Enter Address: ");
                         String address = scanner.nextLine();
 
@@ -282,8 +386,20 @@ public  class Main {
                 case 2:
                     System.out.println("Deleting a " + entity + "...");
                     if (entity.equals("Staff"))
-                    { System.out.print("enter id for delete ");
-                        int iD =scanner.nextInt();
+                    { int iD = 0; // Initialize the variable
+                        while (true) {
+                            try {
+                                System.out.print("Enter ID for delete: ");
+                                iD = scanner.nextInt(); // Try to read the input
+                                if (iD <= 0) { // Optional check for valid positive IDs
+                                    throw new Exception("ID must be a positive number.");
+                                }
+                                break; // Exit the loop if input is valid
+                            } catch (Exception e) {
+                                System.out.println("Invalid input! Please enter a valid numerical ID.");
+                                scanner.nextLine(); // Clear the invalid input
+                            }
+                        }
                         staff.removeStaff(iD);
                         staff.saveToFile();
                     }
@@ -291,18 +407,42 @@ public  class Main {
                 case 3:
                     System.out.println("Updating " + entity + " details...");
                     if (entity.equals("Staff"))
-                    { System.out.print("enter id for update ");
-                        int Id =scanner.nextInt();
-                        staff.updateStudent(Id);
+                    { int iD = 0; // Initialize the variable
+                        while (true) {
+                            try {
+                                System.out.print("Enter ID for update: ");
+                                iD = scanner.nextInt(); // Try to read the input
+                                if (iD <= 0) { // Optional check for valid positive IDs
+                                    throw new Exception("ID must be a positive number.");
+                                }
+                                break; // Exit the loop if input is valid
+                            } catch (Exception e) {
+                                System.out.println("Invalid input! Please enter a valid numerical ID.");
+                                scanner.nextLine(); // Clear the invalid input
+                            }
+                        }
+                        staff.updateStudent(iD);
                         staff.saveToFile();
                     }
                     break;
                 case 4:
                     System.out.println("Searching for a " + entity + "...");
                     if (entity.equals("Staff"))
-                    {  System.out.print("enter id for search ");
-                        int id =scanner.nextInt();
-                        staff.searchStaff(id);
+                    { int iD = 0; // Initialize the variable
+                        while (true) {
+                            try {
+                                System.out.print("Enter ID for delete: ");
+                                iD = scanner.nextInt(); // Try to read the input
+                                if (iD <= 0) { // Optional check for valid positive IDs
+                                    throw new Exception("ID must be a positive number.");
+                                }
+                                break; // Exit the loop if input is valid
+                            } catch (Exception e) {
+                                System.out.println("Invalid input! Please enter a valid numerical ID.");
+                                scanner.nextLine(); // Clear the invalid input
+                            }
+                        }
+                        staff.searchStaff(iD);
                         staff.saveToFile();
                         break;
                     }
@@ -321,9 +461,24 @@ public  class Main {
             System.out.println("1. View Marks");
             System.out.println("2. View Teacher Assignments (Class & Subject)");
             System.out.println("3. Back to Login");
-            System.out.print("Enter your choice: ");
-            int choice = scanner.nextInt();
-            scanner.nextLine();
+
+            int choice = 0; // Initialize the variable
+
+            // Adding exception handling
+            while (true) {
+                try {
+                    System.out.print("Enter your choice (1-3): ");
+                    choice = scanner.nextInt();
+                    scanner.nextLine(); // Clear the buffer
+                    if (choice < 1 || choice > 3) {
+                        throw new Exception("Choice out of range! Please enter a number between 1 and 3.");
+                    }
+                    break; // Exit the loop if input is valid
+                } catch (Exception e) {
+                    System.out.println("Invalid input! Please enter a valid numerical option (1-3).");
+                    scanner.nextLine(); // Clear invalid input
+                }
+            }
 
             switch (choice) {
                 case 1:
@@ -340,6 +495,7 @@ public  class Main {
         }
     }
 
+
     private static boolean teacherMenu(Scanner scanner) {
         while (true) {
             System.out.println("\nTeacher Menu:");
@@ -347,9 +503,24 @@ public  class Main {
             System.out.println("2. View Courses");
             System.out.println("3. View Scheduling List");
             System.out.println("4. Back to Login");
-            System.out.print("Enter your choice: ");
-            int choice = scanner.nextInt();
-            scanner.nextLine();
+
+            int choice = 0; // Initialize the variable
+
+            // Adding exception handling for choice input
+            while (true) {
+                try {
+                    System.out.print("Enter your choice (1-4): ");
+                    choice = scanner.nextInt();
+                    scanner.nextLine(); // Clear the buffer
+                    if (choice < 1 || choice > 4) {
+                        throw new Exception("Choice out of range! Please enter a number between 1 and 4.");
+                    }
+                    break; // Exit the loop if input is valid
+                } catch (Exception e) {
+                    System.out.println("Invalid input! Please enter a valid numerical option (1-4).");
+                    scanner.nextLine(); // Clear invalid input
+                }
+            }
 
             switch (choice) {
                 case 1:
@@ -369,6 +540,7 @@ public  class Main {
         }
     }
 
+
     private static boolean accountantMenu(Scanner scanner) {
         while (true) {
             System.out.println("\nAccountant Menu:");
@@ -376,9 +548,24 @@ public  class Main {
             System.out.println("2. Manage Teacher Salaries");
             System.out.println("3. Generate Reports");
             System.out.println("4. Back to Login");
-            System.out.print("Enter your choice: ");
-            int choice = scanner.nextInt();
-            scanner.nextLine();
+
+            int choice = 0; // Initialize the variable
+
+            // Adding exception handling for choice input
+            while (true) {
+                try {
+                    System.out.print("Enter your choice (1-4): ");
+                    choice = scanner.nextInt();
+                    scanner.nextLine(); // Clear the buffer
+                    if (choice < 1 || choice > 4) {
+                        throw new Exception("Choice out of range! Please enter a number between 1 and 4.");
+                    }
+                    break; // Exit the loop if input is valid
+                } catch (Exception e) {
+                    System.out.println("Invalid input! Please enter a valid numerical option (1-4).");
+                    scanner.nextLine(); // Clear invalid input
+                }
+            }
 
             switch (choice) {
                 case 1:
@@ -397,7 +584,9 @@ public  class Main {
             }
         }
     }
-     private static boolean coordinatorMenu(Scanner scanner) {
+
+
+    private static boolean coordinatorMenu(Scanner scanner) {
          int studentClass=0;
          String Course;
          boolean isValid = false;
@@ -410,9 +599,23 @@ public  class Main {
             System.out.println("5. Add Courses");
             System.out.println("6. Remove Courses");
             System.out.println("7. Back to Login");
-            System.out.print("Enter your choice: ");
-            int choice = scanner.nextInt();
-            scanner.nextLine();
+            int choice = 0; // Initialize choice variable
+
+            // Input validation loop for choice
+            while (true) {
+                try {
+                    System.out.print("Enter your choice (1-7): ");
+                    choice = scanner.nextInt();
+                    scanner.nextLine(); // Clear the buffer after nextInt
+                    if (choice < 1 || choice > 7) {
+                        throw new Exception("Choice out of range! Please enter a number between 1 and 7.");
+                    }
+                    break; // Valid input, exit the loop
+                } catch (Exception e) {
+                    System.out.println("Invalid input! Please enter a valid numerical option between 1 and 7.");
+                    scanner.nextLine(); // Clear invalid input
+                }
+            }
 
             switch (choice) {
                 case 1:
@@ -658,22 +861,21 @@ public  class Main {
                     assignedCourses.displaySpecificTeacherById(teacherid);
                     break;
                 case 5:
-                    isValid = false; // Resetting the validation flag
+                    isValid = false;
                     while (!isValid) {
                         System.out.println("Enter Class (1-10):");
                         studentClass = scanner.nextInt();
 
                         if (studentClass >= 1 && studentClass <= 10) {
-                            isValid = true; // Exit the loop if valid
+                            isValid = true;
                         } else {
                             System.out.println("Invalid Class! Please enter a value between 1 and 10.");
                         }
                     }
                     System.out.println("Input Course Name: ");
-                    scanner.nextLine(); // Clear the input buffer
+                    scanner.nextLine();
                     Course = scanner.nextLine();
 
-                    // Process based on the class number
                     if (studentClass == 1) {
                         if (Class1.search(Course)) {
                             System.out.println(Course + " course is already added in class " + studentClass);
@@ -792,34 +994,72 @@ public  class Main {
             System.out.println("2. View Marks");
             System.out.println("3. Edit Marks");
             System.out.println("4. Back to Login");
-            System.out.print("Enter your choice: ");
-            int choice = scanner.nextInt();
-            scanner.nextLine();
 
+            int choice = 0; // Initialize choice variable
+
+            // Input validation loop for choice
+            while (true) {
+                try {
+                    System.out.print("Enter your choice (1-4): ");
+                    choice = scanner.nextInt();
+                    scanner.nextLine(); // Clear the buffer after nextInt
+                    if (choice < 1 || choice > 4) {
+                        throw new Exception("Choice out of range! Please enter a number between 1 and 4.");
+                    }
+                    break; // Valid input, exit the loop
+                } catch (Exception e) {
+                    System.out.println("Invalid input! Please enter a valid numerical option between 1 and 4.");
+                    scanner.nextLine(); // Clear invalid input
+                }
+            }
+
+            // Switch case to handle the selected option
             switch (choice) {
                 case 1:
                     System.out.println("Uploading Marks...");
 
-                    if (student.isEmpty())
-                    {
-                        System.out.println("Students not available");
+                    if (student.isEmpty()) {
+                        System.out.println("No students available.");
                         break;
                     }
-                    System.out.print("enter student Id :");
-                    int id=scanner.nextInt();
 
+                    int studentId = 0;
+                    boolean validId = false;
+
+                    // Input validation loop for student ID
+                    while (!validId) {
+                        try {
+                            System.out.print("Enter student ID: ");
+                            studentId = scanner.nextInt();
+                            if (studentId <= 0) {
+                                throw new Exception("Student ID must be a positive number.");
+                            }
+                            validId = true; // Valid ID, exit loop
+                        } catch (Exception e) {
+                            System.out.println("Invalid student ID! Please enter a positive integer.");
+                            scanner.nextLine(); // Clear invalid input
+                        }
+                    }
+
+                    // Proceed with uploading marks for the valid student ID
+                    System.out.println("Marks uploaded for student ID: " + studentId);
                     break;
+
                 case 2:
                     System.out.println("Viewing Marks...");
                     break;
+
                 case 3:
                     System.out.println("Editing Marks...");
                     break;
+
                 case 4:
                     return false;
+
                 default:
                     System.out.println("Invalid choice. Try again.");
             }
         }
     }
+
 }

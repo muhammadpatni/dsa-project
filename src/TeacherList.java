@@ -119,7 +119,21 @@ public class TeacherList {
             System.out.println("7. Marital Status");
             System.out.println("0. Save");
             System.out.print("Select option which you want to update : ");
-            int choice = sc.nextInt();
+            int choice = 0;
+            while (true) {
+                try {
+                    choice = sc.nextInt();
+                    if (choice < 0 || choice > 7) {
+                        throw new Exception("Invalid choice! Please enter a number between 0 and 7.");
+                    }
+                    break;
+                } catch (Exception e) {
+                    sc.nextLine();  // Clear the invalid input
+                    System.out.println(e.getMessage());
+                    System.out.print("Please enter a valid choice: ");
+                }
+            }
+
             switch (choice) {
                 case 1:
                     System.out.print("Enter new name: ");
@@ -133,8 +147,24 @@ public class TeacherList {
                     System.out.println("1. Male");
                     System.out.println("2. Female");
                     System.out.println("3. Other");
-                    int gender = sc.nextInt();
-                    sc.nextLine();
+                    int gender = 0;
+                    boolean valid = false;
+
+                    while (!valid) {
+                        try {
+                            System.out.print("Enter your choice (1-3): ");
+                            choice = sc.nextInt();
+                            if (choice < 1 || choice > 4) { // Invalid choice range check
+                                throw new Exception("Invalid choice range!");
+                            }
+                            valid = true; // Input is valid, exit loop
+                        } catch (Exception e) {
+                            sc.nextLine(); // Clear invalid input from scanner
+                            System.out.println("Wrong input! Enter again from 1-3 options.");
+                        }
+                    }
+
+                    System.out.println("You selected: " + choice);
                     if (gender == 1)
                         temp.Gender = "Male";
                     else if (gender == 2)
@@ -147,15 +177,46 @@ public class TeacherList {
 
                 case 3:
                     System.out.print("Enter new contact: ");
-                    sc.nextLine();
-                    String contact = sc.nextLine();
+                    String contact = "";
+                    while (true) {
+                        try {
+                            sc.nextLine();  // Clear any leftover newlines in the buffer
+                            contact = sc.nextLine();
+                            // Simple validation: Contact should not be empty
+                            if (contact.isEmpty()) {
+                                throw new Exception("Contact cannot be empty!");
+                            }
+                            // Additional validation (optional) can be added (e.g., phone number format)
+                            break;
+                        } catch (Exception e) {
+                            System.out.println(e.getMessage());
+                            System.out.print("Please enter a valid contact: ");
+                        }
+                    }
                     temp.Contact = contact;
                     break;
 
                 case 4:
                     System.out.print("Enter new Email: ");
-                    sc.nextLine();
-                    String email = sc.nextLine();
+                    String email = "";
+                    while (true) {
+                        try {
+                            sc.nextLine();  // Clear any leftover newlines in the buffer
+                            email = sc.nextLine();
+                            // Simple validation: Email should not be empty
+                            if (email.isEmpty()) {
+                                throw new Exception("Email cannot be empty!");
+                            }
+                            // Additional email format validation (optional)
+                            if (!email.matches("^[a-zA-Z0-9_+&*-]+(?:\\.[a-zA-Z0-9_+&*-]+)*@(?:[a-zA-Z0-9-]+\\.)+[a-zA-Z]{2,7}$")) {
+                                throw new Exception("Invalid email format! Please enter a valid email.");
+                            }
+                            break;
+                        } catch (Exception e) {
+                            System.out.println(e.getMessage());
+                            System.out.print("Please enter a valid email: ");
+                        }
+                    }
                     temp.Email = email;
                     break;
 
@@ -190,8 +251,24 @@ public class TeacherList {
                     System.out.println("1. Married");
                     System.out.println("2. UnMarried");
                     System.out.println("3. Widow");
-                    int status = sc.nextInt();
-                    sc.nextLine();
+                    int status = 0;
+                    boolean validd = false;
+
+                    while (!validd) {
+                        try {
+                            System.out.print("Enter your choice (1-3): ");
+                            choice = sc.nextInt();
+                            if (choice < 1 || choice > 6) { // Invalid choice range check
+                                throw new Exception("Invalid choice range!");
+                            }
+                            validd = true; // Input is valid, exit loop
+                        } catch (Exception e) {
+                            sc.nextLine(); // Clear invalid input from scanner
+                            System.out.println("Wrong input! Enter again from 1-3 options.");
+                        }
+                    }
+
+                    System.out.println("You selected: " + choice);
                     if (status == 1)
                         temp.MaritalStatus = "Married";
                     else if (status == 2)
