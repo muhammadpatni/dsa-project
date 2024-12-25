@@ -407,6 +407,20 @@ public  class Main {
                     break;
                 case 4:
                     System.out.println("Marking student fee as paid...");
+                    System.out.println("Choose the month for the fee payment:");
+                    System.out.println("1. Current Month");
+                    System.out.println("2. Previous Month");
+                    System.out.print("Enter your choice: ");
+                    int paymentMonthChoice = scanner.nextInt();
+                    scanner.nextLine();
+
+                    if (paymentMonthChoice == 1) {
+                        System.out.println("Marking fee as paid for the current month...");
+                    } else if (paymentMonthChoice == 2) {
+                        System.out.println("Marking fee as paid for the previous month...");
+                    } else {
+                        System.out.println("Invalid choice. Returning to the menu...");
+                    }
                     break;
                 case 5:
                     return false;
@@ -415,6 +429,7 @@ public  class Main {
             }
         }
     }
+
 
     private static boolean coordinatorMenu(Scanner scanner) {
          int studentClass=0;
