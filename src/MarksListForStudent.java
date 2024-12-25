@@ -1,5 +1,4 @@
 import java.util.Scanner;
-
 public class MarksListForStudent {
     MarksNode head,tail;
     MarksListForStudent()
@@ -77,14 +76,14 @@ public class MarksListForStudent {
     }
 
     public void displayMarkSheet() {
-        System.out.println("                                         ** MARKSHEET **                                        ");
+        System.out.println("                                         ** MARK SHEET **                                        ");
         System.out.println("|--------|-----------------------|-------------------|-------------------|------------------|------------------|");
         System.out.println("| S.NO   |       SUBJECT         | MAXIMUM MARKS     | MINIMUM MARKS     | OBTAINED MARKS   |      GRADE       |");
         System.out.println("|--------|-----------------------|-------------------|-------------------|------------------|------------------|");
 
         MarksNode temp = head;
         int totalMarks = 0, sno = 1;
-        String totalGrade ;
+        String totalGrade;
 
         while (temp != null) {
             totalMarks += temp.mark;
@@ -102,8 +101,40 @@ public class MarksListForStudent {
         System.out.println("|--------|-----------------------|-------------------|-------------------|------------------|------------------|\n");
         double percentage = (double) totalMarks / (sno - 1);
         totalGrade = calculateGrade(percentage);
-        System.out.println("                 Grand Total: "+totalMarks+ "/" + (100 * (sno - 1)) + "            Grade: " + totalGrade + "              Percentage: " + String.format("%.2f", percentage) + "%");
 
+        // Display total marks, grade, and percentage
+        System.out.println("                 Grand Total: " + totalMarks + "/" + (100 * (sno - 1)) + "            Grade: " + totalGrade + "              Percentage: " + String.format("%.2f", percentage) + "%");
+
+        // Adding remarks based on the total grade
+        System.out.println("\nRemarks:");
+        switch (totalGrade) {
+            case "A":
+                System.out.println("Outstanding! Your dedication and hard work shine brightly.");
+                System.out.println("Keep up this excellent momentum and inspire others around you!");
+                break;
+            case "B":
+                System.out.println("Great job! Your consistent efforts are paying off.");
+                System.out.println("Push a little harder to reach the pinnacle of success—you’ve got this!");
+                break;
+            case "C":
+                System.out.println("Good work! With a bit more focus and determination, you'll achieve even greater heights.");
+                System.out.println("Keep believing in yourself!");
+                break;
+            case "D":
+                System.out.println("You passed, and that's a step forward!");
+                System.out.println("Now, focus on strengthening your weak areas to ensure a stronger future.");
+                break;
+            case "E":
+                System.out.println("Don't be disheartened. This is an opportunity to work harder and prove your potential.");
+                System.out.println("Keep striving and never give up!");
+                break;
+            case "F":
+                System.out.println("Failure is a stepping stone to success. Learn from this experience.");
+                System.out.println("Rebuild your confidence and come back stronger!");
+                break;
+            default:
+                System.out.println("Invalid grade. Please check your marks calculation.");
+        }
     }
 
     private String calculateGrade(double marks) {
@@ -121,6 +152,7 @@ public class MarksListForStudent {
             return "F";
         }
     }
+
 
     private String centerAlign(String text, int width) {
         int padding = (width - text.length()) / 2;
