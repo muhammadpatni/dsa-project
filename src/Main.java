@@ -372,32 +372,38 @@ public  class Main {
     private static boolean accountantMenu(Scanner scanner) {
         while (true) {
             System.out.println("\nAccountant Menu:");
-            System.out.println("1. Manage Student Fees");
-            System.out.println("2. Manage Teacher Salaries");
-            System.out.println("3. Generate Reports");
-            System.out.println("4. Back to Login");
+            System.out.println("1. Generate Fee Voucher");
+            System.out.println("2. View Details of Students with Unpaid Fees");
+            System.out.println("3. Check Individual Student Fee Status");
+            System.out.println("4. Mark Student Fee as Paid");
+            System.out.println("5. Back to Login");
             System.out.print("Enter your choice: ");
             int choice = scanner.nextInt();
             scanner.nextLine();
 
             switch (choice) {
                 case 1:
-                    System.out.println("Managing Student Fees...");
+
+                    System.out.println("Generating Fee Voucher...");
                     break;
                 case 2:
-                    System.out.println("Managing Teacher Salaries...");
+                    System.out.println("Viewing details of students with unpaid fees...");
                     break;
                 case 3:
-                    System.out.println("Generating Reports...");
+                    System.out.println("Checking individual student fee status...");
                     break;
                 case 4:
+                    System.out.println("Marking student fee as paid...");
+                    break;
+                case 5:
                     return false;
                 default:
                     System.out.println("Invalid choice. Try again.");
             }
         }
     }
-     private static boolean coordinatorMenu(Scanner scanner) {
+
+    private static boolean coordinatorMenu(Scanner scanner) {
          int studentClass=0;
          String Course;
          boolean isValid = false;
