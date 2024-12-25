@@ -383,8 +383,21 @@ public  class Main {
 
             switch (choice) {
                 case 1:
-
                     System.out.println("Generating Fee Voucher...");
+                    System.out.println("Choose the month for the fee voucher:");
+                    System.out.println("1. Current Month");
+                    System.out.println("2. Previous Month");
+                    System.out.print("Enter your choice: ");
+                    int monthChoice = scanner.nextInt();
+                    scanner.nextLine();
+
+                    if (monthChoice == 1) {
+                        System.out.println("Generating voucher for the current month...");
+                    } else if (monthChoice == 2) {
+                        System.out.println("Generating voucher for the previous month...");
+                    } else {
+                        System.out.println("Invalid choice. Returning to the menu...");
+                    }
                     break;
                 case 2:
                     System.out.println("Viewing details of students with unpaid fees...");
