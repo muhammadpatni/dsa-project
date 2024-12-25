@@ -441,11 +441,11 @@ import java.util.Scanner;
 
                 // Footer Section
                 System.out.println("════════════════════════════════════════════════════════════════════════════════════");
-                System.out.println("                                SCHOOL CONTACT DETAILS                               ");
-                System.out.println("                           Address: 123 School Road, City Name, Zip Code           ");
-                System.out.println("                            Phone: (123) 456-7890 | Email: info@abcschool.com      ");
+                System.out.println("                                 SCHOOL CONTACT DETAILS                               ");
+                System.out.println("                       Address: 123 School Road, City Name, Zip Code           ");
+                System.out.println("                       Phone: (123) 456-7890 | Email: info@abcschool.com      ");
                 System.out.println("════════════════════════════════════════════════════════════════════════════════════");
-                System.out.println("                     END OF FEE VOUCHER                                               ");
+                System.out.println("                                     END OF FEE VOUCHER                                               ");
                 System.out.println("════════════════════════════════════════════════════════════════════════════════════");
                 System.out.println();
 
