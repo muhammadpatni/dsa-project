@@ -402,21 +402,21 @@ import java.util.Scanner;
                 System.out.println("╔════════════════════════════════════════════════════════════════════════════════════╗");
                 System.out.println("║                                STUDENT DETAILS                                      ║");
                 System.out.println("╠════════════════════════════════════════════════════════════════════════════════════╣");
-                System.out.printf("║ Voucher ID            : %-35d ║\n", voucherId);
-                System.out.printf("║ Student ID            : %-35d ║\n", temp.StudentId);
-                System.out.printf("║ Student Name          : %-35s ║\n", studentName);
-                System.out.printf("║ Father's Name         : %-35s ║\n", fatherName);
-                System.out.printf("║ Class                 : %-35d ║\n", temp.CurrentClass);
+                 System.out.printf("║ Voucher ID            : %-35d ║\n", voucherId);
+                 System.out.printf("║ Student ID            : %-35d ║\n", temp.StudentId);
+                 System.out.printf("║ Student Name          : %-35s ║\n", studentName);
+                 System.out.printf("║ Father's Name         : %-35s ║\n", fatherName);
+                 System.out.printf("║ Class                 : %-35d ║\n", temp.CurrentClass);
                 System.out.println("╚════════════════════════════════════════════════════════════════════════════════════╝");
 
                 // Fee Information Section
                 System.out.println("╔════════════════════════════════════════════════════════════════════════════════════╗");
                 System.out.println("║                               FEE INFORMATION                                      ║");
                 System.out.println("╠════════════════════════════════════════════════════════════════════════════════════╣");
-                System.out.printf("║ Fee Amount            : Rs. %-28.2f ║\n", feeAmount);
-                System.out.printf("║ Issue Date            : %-35s ║\n", issueDate);
-                System.out.printf("║ Due Date              : %-35s ║\n", dueDate);
-                System.out.printf("║ Billing Month         : %-35s ║\n", month);
+                 System.out.printf("║ Fee Amount            : Rs. %-28.2f ║\n", feeAmount);
+                 System.out.printf("║ Issue Date            : %-35s ║\n", issueDate);
+                 System.out.printf("║ Due Date              : %-35s ║\n", dueDate);
+                 System.out.printf("║ Billing Month         : %-35s ║\n", month);
                 System.out.println("╚════════════════════════════════════════════════════════════════════════════════════╝");
 
                 // Important Notes Section
@@ -430,11 +430,11 @@ import java.util.Scanner;
 
                 // Bank Stamp / Principal's Signature Section
                 System.out.println("╔════════════════════════════════════════════════════════════════════════════════════╗");
-                System.out.println("║                        BANK STAMP / PRINCIPAL SIGNATURE                           ║");
+                System.out.println("║                        BANK STAMP / PRINCIPAL SIGNATURE                            ║");
                 System.out.println("╠════════════════════════════════════════════════════════════════════════════════════╣");
                 System.out.println("║                               [BANK LOGO]                                          ║");
-                System.out.println("║                       ABC BANK LIMITED (STAMP)                                     ║");
-                System.out.println("║                           _______________________                                 ║");
+                System.out.println("║                            ABC BANK LIMITED (STAMP)                                ║");
+                System.out.println("║                            _______________________                                 ║");
                 System.out.println("║                           Signature: _______________________                       ║");
                 System.out.println("║                           Date: ________________________                           ║");
                 System.out.println("╚════════════════════════════════════════════════════════════════════════════════════╝");
