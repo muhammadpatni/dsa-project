@@ -79,5 +79,4 @@ public class FeeClass {
         }
         return 0;
     }
-
 }
