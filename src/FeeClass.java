@@ -1,9 +1,7 @@
 import java.time.LocalDate;
-import java.util.Scanner;
 
 public class FeeClass {
 
-    Scanner sc= new Scanner(System.in);
     FeeNode head,tail;
     FeeClass()
     {

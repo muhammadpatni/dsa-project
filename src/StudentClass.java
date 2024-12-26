@@ -403,7 +403,7 @@ import java.util.Scanner;
 
             // Student Info Section
             System.out.println("╔════════════════════════════════════════════════════════════════════════════════════╗");
-            System.out.println("║                                STUDENT DETAILS                                      ║");
+            System.out.println("║                                STUDENT DETAILS                                     ║");
             System.out.println("╠════════════════════════════════════════════════════════════════════════════════════╣");
             System.out.printf("║ Voucher ID            : %-35d ║\n", voucherId);
             System.out.printf("║ Student ID            : %-35d ║\n", temp.StudentId);
@@ -435,7 +435,7 @@ import java.util.Scanner;
             System.out.println("║                        BANK STAMP / PRINCIPAL SIGNATURE                            ║");
             System.out.println("╠════════════════════════════════════════════════════════════════════════════════════╣");
             System.out.println("║                               [BANK LOGO]                                          ║");
-            System.out.println("║                            ABC BANK LIMITED (STAMP)                                ║");
+            System.out.println("║                          ABC BANK LIMITED (STAMP)                                  ║");
             System.out.println("║                            _______________________                                 ║");
             System.out.println("║                           Signature: _______________________                       ║");
             System.out.println("║                           Date: ________________________                           ║");
@@ -578,6 +578,10 @@ import java.util.Scanner;
             System.out.println("|----------|--------------------|--------------------|-------------------|-------------------|-------------------|");
         }
 
+        public String[] returnMonthsOfUnpaidFee()
+        {
+
+        }
 
 
 
