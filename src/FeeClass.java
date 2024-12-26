@@ -71,6 +71,15 @@ public class FeeClass {
         }
         tail = newNode;
     }
-
+    public int ReturnVoucherNo(String month) {
+        FeeNode temp = head;
+        while (temp != null) {
+            if (month.equals(temp.Month)) {
+                return temp.VoucherNo;
+            }
+            temp = temp.next;
+        }
+        return 0;
+    }
 
 }

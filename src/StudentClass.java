@@ -452,6 +452,132 @@ import java.util.Scanner;
             System.out.println();
 
         }
+        public void GenerateFeeStatusTable(int StudentId) {
+            StudentNode temp = head;
+            while (temp != null) {
+                if (temp.StudentId == StudentId)
+                    break;
+                temp = temp.next;
+            }
+            if (temp == null) {
+                System.out.println("Invalid Id");
+                return;
+            }
+            System.out.println("                                    * * * STUDENT DETAILS * * *                               ");
+            System.out.println("|==========|====================|====================|===================|===================|===================|");
+            System.out.println("|    ID    |        NAME        |       CLASS        |       MONTH       |     VOUCHER ID    |       STATUS      |");
+            System.out.println("|==========|====================|====================|===================|===================|===================|");
+
+            if (temp.fee.ReturnVoucherNo("January") != 0) {
+                System.out.printf("|%-10s|%-20s|%-20s|%-19s|%-19s|%-19s|\n",
+                        temp.StudentId, temp.Name, temp.CurrentClass, "January", temp.fee.ReturnVoucherNo("January"), "Paid");
+            }
+            else{
+                System.out.printf("|%-10s|%-20s|%-20s|%-19s|%-19s|%-19s|\n",
+                        temp.StudentId, temp.Name, temp.CurrentClass, "January", "------", "Unpaid");
+            }
+
+            if (temp.fee.ReturnVoucherNo("February") != 0) {
+                System.out.printf("|%-10s|%-20s|%-20s|%-19s|%-19s|%-19s|\n",
+                        temp.StudentId, temp.Name, temp.CurrentClass, "February", temp.fee.ReturnVoucherNo("February"), "Paid");
+            }
+            else{
+                System.out.printf("|%-10s|%-20s|%-20s|%-19s|%-19s|%-19s|\n",
+                        temp.StudentId, temp.Name, temp.CurrentClass, "February", "------", "Unpaid");
+            }
+
+            if (temp.fee.ReturnVoucherNo("March") != 0) {
+                System.out.printf("|%-10s|%-20s|%-20s|%-19s|%-19s|%-19s|\n",
+                        temp.StudentId, temp.Name, temp.CurrentClass, "March", temp.fee.ReturnVoucherNo("March"), "Paid");
+            }
+            else{
+                System.out.printf("|%-10s|%-20s|%-20s|%-19s|%-19s|%-19s|\n",
+                        temp.StudentId, temp.Name, temp.CurrentClass, "March", "------", "Unpaid");
+            }
+
+            if (temp.fee.ReturnVoucherNo("April") != 0) {
+                System.out.printf("|%-10s|%-20s|%-20s|%-19s|%-19s|%-19s|\n",
+                        temp.StudentId, temp.Name, temp.CurrentClass, "April", temp.fee.ReturnVoucherNo("April"), "Paid");
+            }
+            else{
+                System.out.printf("|%-10s|%-20s|%-20s|%-19s|%-19s|%-19s|\n",
+                        temp.StudentId, temp.Name, temp.CurrentClass, "April", "------", "Unpaid");
+            }
+
+            if (temp.fee.ReturnVoucherNo("May") != 0) {
+                System.out.printf("|%-10s|%-20s|%-20s|%-19s|%-19s|%-19s|\n",
+                        temp.StudentId, temp.Name, temp.CurrentClass, "May", temp.fee.ReturnVoucherNo("May"), "Paid");
+            }
+            else{
+                System.out.printf("|%-10s|%-20s|%-20s|%-19s|%-19s|%-19s|\n",
+                        temp.StudentId, temp.Name, temp.CurrentClass, "May", "------", "Unpaid");
+            }
+
+            if (temp.fee.ReturnVoucherNo("June") != 0) {
+                System.out.printf("|%-10s|%-20s|%-20s|%-19s|%-19s|%-19s|\n",
+                        temp.StudentId, temp.Name, temp.CurrentClass, "June", temp.fee.ReturnVoucherNo("June"), "Paid");
+            }
+            else{
+                System.out.printf("|%-10s|%-20s|%-20s|%-19s|%-19s|%-19s|\n",
+                        temp.StudentId, temp.Name, temp.CurrentClass, "June", "------", "Unpaid");
+            }
+
+            if (temp.fee.ReturnVoucherNo("July") != 0) {
+                System.out.printf("|%-10s|%-20s|%-20s|%-19s|%-19s|%-19s|\n",
+                        temp.StudentId, temp.Name, temp.CurrentClass, "July", temp.fee.ReturnVoucherNo("July"), "Paid");
+            }
+            else{
+                System.out.printf("|%-10s|%-20s|%-20s|%-19s|%-19s|%-19s|\n",
+                        temp.StudentId, temp.Name, temp.CurrentClass, "July", "------", "Unpaid");
+            }
+
+            if (temp.fee.ReturnVoucherNo("August") != 0) {
+                System.out.printf("|%-10s|%-20s|%-20s|%-19s|%-19s|%-19s|\n",
+                        temp.StudentId, temp.Name, temp.CurrentClass, "August", temp.fee.ReturnVoucherNo("August"), "Paid");
+            }
+            else{
+                System.out.printf("|%-10s|%-20s|%-20s|%-19s|%-19s|%-19s|\n",
+                        temp.StudentId, temp.Name, temp.CurrentClass, "August", "------", "Unpaid");
+            }
+
+            if (temp.fee.ReturnVoucherNo("September") != 0) {
+                System.out.printf("|%-10s|%-20s|%-20s|%-19s|%-19s|%-19s|\n",
+                        temp.StudentId, temp.Name, temp.CurrentClass, "September", temp.fee.ReturnVoucherNo("September"), "Paid");
+            }
+            else{
+                System.out.printf("|%-10s|%-20s|%-20s|%-19s|%-19s|%-19s|\n",
+                        temp.StudentId, temp.Name, temp.CurrentClass, "September", "------", "Unpaid");
+            }
+
+            if (temp.fee.ReturnVoucherNo("October") != 0) {
+                System.out.printf("|%-10s|%-20s|%-20s|%-19s|%-19s|%-19s|\n",
+                        temp.StudentId, temp.Name, temp.CurrentClass, "October", temp.fee.ReturnVoucherNo("October"), "Paid");
+            }
+            else{
+                System.out.printf("|%-10s|%-20s|%-20s|%-19s|%-19s|%-19s|\n",
+                        temp.StudentId, temp.Name, temp.CurrentClass, "October", "------", "Unpaid");
+            }
+
+            if (temp.fee.ReturnVoucherNo("November") != 0) {
+                System.out.printf("|%-10s|%-20s|%-20s|%-19s|%-19s|%-19s|\n",
+                        temp.StudentId, temp.Name, temp.CurrentClass, "November", temp.fee.ReturnVoucherNo("November"), "Paid");
+            }
+            else{
+                System.out.printf("|%-10s|%-20s|%-20s|%-19s|%-19s|%-19s|\n",
+                        temp.StudentId, temp.Name, temp.CurrentClass, "November", "------", "Unpaid");
+            }
+
+            if (temp.fee.ReturnVoucherNo("December") != 0) {
+                System.out.printf("|%-10s|%-20s|%-20s|%-19s|%-19s|%-19s|\n",
+                        temp.StudentId, temp.Name, temp.CurrentClass, "December", temp.fee.ReturnVoucherNo("December"), "Paid");
+            }
+            else{
+                System.out.printf("|%-10s|%-20s|%-20s|%-19s|%-19s|%-19s|\n",
+                        temp.StudentId, temp.Name, temp.CurrentClass, "December", "------", "Unpaid");
+            }
+            System.out.println("|----------|--------------------|--------------------|-------------------|-------------------|-------------------|");
+        }
+
 
 
 
