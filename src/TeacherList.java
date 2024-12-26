@@ -16,6 +16,7 @@ public class TeacherList {
         tail = null;
         TotalNumberOfTeachers = 0;
     }
+   String Filename =" C:\\Users\\Admin\\Desktop\\dsa-project\\Teacher.txt";
 
     public boolean isEmpty() {
         return head == null;
@@ -204,6 +205,7 @@ public class TeacherList {
 
                 case 0:
                     System.out.println("Teacher updated successfully . . . ");
+                    saveToFile();
                     return;
 
                 default:
@@ -237,16 +239,19 @@ public class TeacherList {
         if (temp==head)
         {   head=temp.next;
             head.prev=null;
+            saveToFile();
             return;
         }
         if (temp==tail)
         {
             tail=temp.prev;
             tail.next=null;
+            saveToFile();
             return;
         }
         temp.prev.next = temp.next;
         temp.next.prev = temp.prev;
+        saveToFile();
     }
 
     public void searchTeacher(int TeacherID) {
@@ -310,6 +315,130 @@ public Teacher validTeacherId(int id)
         return null;
     return  temp;
 }
+    public void saveToFile() {
+        try (BufferedWriter writer = new BufferedWriter(new FileWriter(Filename))) {
+            Teacher temp = head;
+            writer.write("\t\t\t\t\t* * * * TEACHER DETAILS * * * *\n\n");
+            while (temp != null) {
+                writer.write("Teacher ID: " + temp.TeacherID + "\n");
+                writer.write("Name: " + temp.Name + "\n");
+                writer.write("Gender: " + temp.Gender + "\n");
+                writer.write("DOB: " + temp.DateOfBirth + "\n");
+                writer.write("Date of Joining: " + temp.DateOfJoining + "\n");
+                writer.write("Contact: " + temp.Contact + "\n");
+                writer.write("Address: " + temp.Address + "\n");
+                writer.write("Salary: " + temp.Salary + "\n");
+                writer.write("Skills: " + temp.Skills + "\n");
+                writer.write("Experience: " + temp.Experience + "\n");
+                writer.write("Highest Qualification: " + temp.HigestQualification + "\n");
+                writer.write("Specialization: " + temp.Specialization + "\n");
+                writer.write("Certifications:\n");
+                if (!temp.Certifications.noCertificate()) {
+                    for (int i = 0; i < temp.Certifications.size(); i++) {
+                        String certification = temp.Certifications.GetCertificate(i);
+                        writer.write("• " + certification + "\n");
+                    }
+                } else {
+                    writer.write("No certifications available.\n");
+                }
+                writer.write("\n\n");
+                temp = temp.next;
+            }
+        } catch (IOException e) {
+            System.out.println("Error saving teacher details to file.");
+        }
+    }
+
+    public void readFromFile(String Filename) {
+        try (BufferedReader reader = new BufferedReader(new FileReader(Filename))) {
+            String line;
+
+            // Variables to store teacher details
+            int teacherId = 0;
+            String name = "", gender = "", dob = "", contact = "", address = "", designation = "",
+                    specialization = "", skills = "", experience = "", dateOfJoining = "", email = "", maritalStatus = "",
+                    highestQualification = "";
+            double salary = 0.0;
+            Array certifications = new Array();
+
+            while ((line = reader.readLine()) != null) {
+                if (line.startsWith("Teacher ID:")) {
+
+                    // Add the previous teacher details to the list before starting a new record
+                    if (teacherId != 0) {
+                        TotalNumberOfTeachers = teacherId - 1; // Update count before adding a new teacher
+                        addTeacher(name, gender, dob, maritalStatus, email, specialization, highestQualification,
+                                contact, address, designation, salary, skills, experience,
+                                certifications.giveCurrentArray());
+                    }
+
+                    // Start a new teacher record
+                    teacherId = Integer.parseInt(line.split(":")[1].trim());
+                    certifications.makeArrayEmpty(); // Reset certifications
+                    name = gender = dob = contact = address = designation = specialization = skills = experience =
+                            dateOfJoining = email = maritalStatus = highestQualification = "";
+                    salary = 0.0;
+
+                } else if (line.startsWith("Name:")) {
+                    name = line.split(":")[1].trim();
+
+                } else if (line.startsWith("Gender:")) {
+                    gender = line.split(":")[1].trim();
+
+                } else if (line.startsWith("DOB:")) {
+                    dob = line.split(":")[1].trim();
+
+                } else if (line.startsWith("Date of Joining:")) {
+                    dateOfJoining = line.split(":")[1].trim();
+
+                } else if (line.startsWith("Contact:")) {
+                    contact = line.split(":")[1].trim();
+
+                } else if (line.startsWith("Address:")) {
+                    address = line.split(":")[1].trim();
+
+                } else if (line.startsWith("Designation:")) {
+                    designation = line.split(":")[1].trim();
+
+                } else if (line.startsWith("Salary:")) {
+                    salary = Double.parseDouble(line.split(":")[1].trim());
+
+                } else if (line.startsWith("Skills:")) {
+                    skills = line.split(":")[1].trim();
+
+                } else if (line.startsWith("Experience:")) {
+                    experience = line.split(":")[1].trim();
+
+                } else if (line.startsWith("Specialization:")) {
+                    specialization = line.split(":")[1].trim();
+
+                } else if (line.startsWith("Email:")) {
+                    email = line.split(":")[1].trim();
+
+                } else if (line.startsWith("Marital Status:")) {
+                    maritalStatus = line.split(":")[1].trim();
+
+                } else if (line.startsWith("Highest Qualification:")) {
+                    highestQualification = line.split(":")[1].trim();
+
+                } else if (line.startsWith("\u2022 ")) { // Unicode for bullet point (•)
+                    certifications.insert(line.substring(2).trim());
+                }
+            }
+
+            if (teacherId != 0) {
+                TotalNumberOfTeachers = teacherId - 1; // Update count before adding the last teacher
+                addTeacher(name, gender, dob, maritalStatus, email, specialization, highestQualification,
+                        contact, address, designation, salary, skills, experience,
+                        certifications.giveCurrentArray());
+            }
+
+        } catch (IOException e) {
+            System.out.println("Error reading teacher details from file: " + e.getMessage());
+        } catch (Exception e) {
+            System.out.println("An unexpected error occurred while reading teacher details: " + e.getMessage());
+        }
+    }
 
 
 }
