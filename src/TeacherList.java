@@ -16,7 +16,9 @@ public class TeacherList {
         tail = null;
         TotalNumberOfTeachers = 0;
     }
-   String Filename =" C:\\Users\\Admin\\Desktop\\dsa-project\\Teacher.txt";
+
+    String Filename="C:\\Users\\HP\\Desktop\\lab 1\\DSA project\\Staff.txt";
+   //String Filename =" C:\\Users\\Admin\\Desktop\\dsa-project1\\Teacher.txt";
 
     public boolean isEmpty() {
         return head == null;
@@ -25,7 +27,7 @@ public class TeacherList {
 
     public void addTeacher(String Name, String Gender, String DateOfBirth, String MaritalStatus, String Email,
                            String Specialization, String HigestQualification, String Contact, String Address,
-                           String Designation,  double Salary, String Skills, String Experience,
+                           double Salary, String Skills, String Experience,
                            String[] Certificates) {
         TotalNumberOfTeachers++;
         Teacher newNode = new Teacher();
@@ -333,7 +335,8 @@ public Teacher validTeacherId(int id)
                 writer.write("Highest Qualification: " + temp.HigestQualification + "\n");
                 writer.write("Specialization: " + temp.Specialization + "\n");
                 writer.write("Certifications:\n");
-                if (!temp.Certifications.noCertificate()) {
+
+                if (temp.Certifications != null && temp.Certifications.size() > 0) {
                     for (int i = 0; i < temp.Certifications.size(); i++) {
                         String certification = temp.Certifications.GetCertificate(i);
                         writer.write("• " + certification + "\n");
@@ -341,6 +344,7 @@ public Teacher validTeacherId(int id)
                 } else {
                     writer.write("No certifications available.\n");
                 }
+
                 writer.write("\n\n");
                 temp = temp.next;
             }
@@ -348,6 +352,7 @@ public Teacher validTeacherId(int id)
             System.out.println("Error saving teacher details to file.");
         }
     }
+
 
     public void readFromFile(String Filename) {
         try (BufferedReader reader = new BufferedReader(new FileReader(Filename))) {
@@ -368,7 +373,7 @@ public Teacher validTeacherId(int id)
                     if (teacherId != 0) {
                         TotalNumberOfTeachers = teacherId - 1; // Update count before adding a new teacher
                         addTeacher(name, gender, dob, maritalStatus, email, specialization, highestQualification,
-                                contact, address, designation, salary, skills, experience,
+                                contact, address, salary, skills, experience,
                                 certifications.giveCurrentArray());
                     }
 
@@ -397,10 +402,7 @@ public Teacher validTeacherId(int id)
                 } else if (line.startsWith("Address:")) {
                     address = line.split(":")[1].trim();
 
-                } else if (line.startsWith("Designation:")) {
-                    designation = line.split(":")[1].trim();
-
-                } else if (line.startsWith("Salary:")) {
+                }  else if (line.startsWith("Salary:")) {
                     salary = Double.parseDouble(line.split(":")[1].trim());
 
                 } else if (line.startsWith("Skills:")) {
@@ -429,7 +431,7 @@ public Teacher validTeacherId(int id)
             if (teacherId != 0) {
                 TotalNumberOfTeachers = teacherId - 1; // Update count before adding the last teacher
                 addTeacher(name, gender, dob, maritalStatus, email, specialization, highestQualification,
-                        contact, address, designation, salary, skills, experience,
+                        contact, address,  salary, skills, experience,
                         certifications.giveCurrentArray());
             }
 
