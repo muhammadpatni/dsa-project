@@ -1,3 +1,4 @@
+import java.io.*;
 import java.util.Objects;
 import java.util.Scanner;
 
@@ -11,6 +12,8 @@ public class AssignedCoursesClass {
     public boolean isEmpty() {
         return head == null;
     }
+
+    String Filename =" C:\\Users\\Admin\\Desktop\\dsa-project\\AssignedCourseClass.txt";
 
     public void add(int teacherId, int classNumber, String course, String teacherName) {
         ClassNode newNode = new ClassNode();
@@ -146,4 +149,76 @@ public class AssignedCoursesClass {
         return false;
     }
 
+    public void saveToFile() {
+        try (BufferedWriter writer = new BufferedWriter(new FileWriter(Filename))) {
+            ClassNode temp = head;
+            writer.write("\t \t \t \t \t \t * * * * ASSIGNED COURSES DETAILS * * * * \n\n");
+
+            if (temp == null) {
+                writer.write("No assigned courses to display.\n");
+                return;
+            }
+
+            while (temp != null) {
+                writer.write("Teacher ID: " + temp.Teacher_ID + "\n");
+                writer.write("Teacher Name: " + temp.Teacher_Name + "\n");
+                writer.write("Class: " + temp.CLASS + "\n");
+                writer.write("Course: " + temp.Course + "\n");
+                writer.write("----------------------------------------------------\n");
+                temp = temp.next;
+            }
+        } catch (IOException e) {
+            System.out.println("Error saving assigned courses details to file.");
+        }
     }
+
+    public void readFromFile() {
+        try (BufferedReader reader = new BufferedReader(new FileReader(Filename))) {
+            String line;
+
+            int teacherId = 0;
+            int classNumber = 0;
+            String course = "";
+            String teacherName = "";
+
+            while ((line = reader.readLine()) != null) {
+                if (line.startsWith("Teacher ID:")) {
+                    teacherId = Integer.parseInt(line.split(":")[1].trim());
+                } else if (line.startsWith("Teacher Name:")) {
+                    teacherName = line.split(":")[1].trim();
+                } else if (line.startsWith("Class:")) {
+                    classNumber = Integer.parseInt(line.split(":")[1].trim());
+                } else if (line.startsWith("Course:")) {
+                    course = line.split(":")[1].trim();
+                } else if (line.startsWith("----------------------------------------------------")) {
+                    // Add a new node for the current teacher-course assignment
+                    add(teacherId, classNumber, course, teacherName);
+
+                    // Reset variables for the next record
+                    teacherId = 0;
+                    classNumber = 0;
+                    course = "";
+                    teacherName = "";
+                }
+            }
+
+            // Check for the last record in case the file doesn't end with a separator line
+            if (teacherId != 0) {
+                add(teacherId, classNumber, course, teacherName);
+            }
+
+        } catch (IOException e) {
+            System.out.println("Error reading assigned courses from file: " + e.getMessage());
+        } catch (NumberFormatException e) {
+            System.out.println("Error parsing number in file: " + e.getMessage());
+        } catch (Exception e) {
+            System.out.println("An unexpected error occurred while reading assigned courses: " + e.getMessage());
+        }
+    }
+
+
+
+
+
+}
+ 
