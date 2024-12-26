@@ -14,7 +14,7 @@ public  class Main {
     static Array Class8 = new Array();
     static Array Class9 = new Array();
     static Array Class10 = new Array();
-     static TeacherList teacher=new TeacherList();
+    static TeacherList teacher=new TeacherList();
     static StaffList staff =new StaffList();
     static AssignedCoursesClass assignedCourses = new AssignedCoursesClass();
     static  StudentClass student=new StudentClass();

@@ -394,13 +394,13 @@ import java.util.Scanner;
                 System.out.println("════════════════════════════════════════════════════════════════════════════════════════");
                 System.out.println("                           ABC SCHOOL OF EXCELLENCE                                     ");
                 System.out.println("════════════════════════════════════════════════════════════════════════════════════════");
-                System.out.println("                   OFFICIAL FEE PAYMENT VOUCHER                                          ");
+                System.out.println("                         OFFICIAL FEE PAYMENT VOUCHER                                          ");
                 System.out.println("════════════════════════════════════════════════════════════════════════════════════════");
                 System.out.println(" ");
 
                 // Student Info Section
                 System.out.println("╔════════════════════════════════════════════════════════════════════════════════════╗");
-                System.out.println("║                                STUDENT DETAILS                                      ║");
+                System.out.println("║                                STUDENT DETAILS                                     ║");
                 System.out.println("╠════════════════════════════════════════════════════════════════════════════════════╣");
                  System.out.printf("║ Voucher ID            : %-35d ║\n", voucherId);
                  System.out.printf("║ Student ID            : %-35d ║\n", temp.StudentId);
@@ -424,7 +424,7 @@ import java.util.Scanner;
                 System.out.println("║                              IMPORTANT NOTES                                       ║");
                 System.out.println("╠════════════════════════════════════════════════════════════════════════════════════╣");
                 System.out.println("║ 1. Fee must be paid before the due date to avoid a fine.                           ║");
-                System.out.println("║ 2. Late payments incur an additional charge of Rs. 200 per day.                   ║");
+                System.out.println("║ 2. Late payments incur an additional charge of Rs. 200 per day.                    ║");
                 System.out.println("║ 3. Fees can be paid via bank transfer, cheque, or directly at the school office.   ║");
                 System.out.println("╚════════════════════════════════════════════════════════════════════════════════════╝");
 
