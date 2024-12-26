@@ -1,17 +1,15 @@
 import java.io.IOException;
-
-
-    import java.io.*;
+import java.io.*;
 import java.time.LocalDate;
 import java.time.Period;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
-import java.util.Date;
 import java.util.Scanner;
 
     public class StudentClass {
         private int totalNumberOfStudents;
         private StudentNode head, tail;
+        int VoucherNo=0;
         Scanner sc = new Scanner(System.in);
 
         public StudentClass() {
@@ -340,9 +338,8 @@ import java.util.Scanner;
             return temp;
         }
 
-        public void PaidFee(int Studentid,int voucherid ) {
+        public void PaidFee(int Studentid,int voucherid , String month) {
             StudentNode temp = head;
-            String month = temp.fee1.getMonthNameFromDate(LocalDate.now());
             while (temp != null) {
                 if (temp.StudentId == Studentid) {
                     break;
@@ -354,104 +351,106 @@ import java.util.Scanner;
                 System.out.println("Invalid ID");
                 return;
             }
-            if (temp.fee1.searchMonth(month)) {
+            if (temp.fee.searchMonth(month)) {
                 System.out.println("Fee for this month has already been recorded.");
                 return;
             }
-            temp.fee1.addStudentFee(voucherid,month);
+            temp.fee.addStudentFee(voucherid,month);
         }
 
-        public void generateFeeVouchers(String month) {
+        public void generateFeeVouchers(String month ,int id) {
             StudentNode temp = head;
-
-            if (temp == null) {
-                System.out.println("No students found.");
-                return;
-            }
-
             while (temp != null) {
-                int voucherId = temp.fee.VoucherNo;
-                String studentName = temp.Name;
-                String fatherName = temp.FatherName;
-                double feeAmount;
-                LocalDate issueDate = LocalDate.now();
-                LocalDate dueDate = issueDate.plusDays(15);
-
-                // Fee structure based on class groups
-                if (temp.CurrentClass >= 1 && temp.CurrentClass <= 4) {
-                    feeAmount = 5000.0;
-                } else if (temp.CurrentClass >= 5 && temp.CurrentClass <= 7) {
-                    feeAmount = 7000.0;
-                } else if (temp.CurrentClass >= 8 && temp.CurrentClass <= 10) {
-                    feeAmount = 14000.0;
-                } else {
-                    System.out.println("Class not recognized for Student ID: " + temp.StudentId);
-                    temp = temp.next;
-                    continue;
-                }
-
-                // Enhanced Fee Voucher Output
-                System.out.println("════════════════════════════════════════════════════════════════════════════════════════");
-                System.out.println("                           ABC SCHOOL OF EXCELLENCE                                     ");
-                System.out.println("════════════════════════════════════════════════════════════════════════════════════════");
-                System.out.println("                   OFFICIAL FEE PAYMENT VOUCHER                                          ");
-                System.out.println("════════════════════════════════════════════════════════════════════════════════════════");
-                System.out.println(" ");
-
-                // Student Info Section
-                System.out.println("╔════════════════════════════════════════════════════════════════════════════════════╗");
-                System.out.println("║                                STUDENT DETAILS                                      ║");
-                System.out.println("╠════════════════════════════════════════════════════════════════════════════════════╣");
-                 System.out.printf("║ Voucher ID            : %-35d ║\n", voucherId);
-                 System.out.printf("║ Student ID            : %-35d ║\n", temp.StudentId);
-                 System.out.printf("║ Student Name          : %-35s ║\n", studentName);
-                 System.out.printf("║ Father's Name         : %-35s ║\n", fatherName);
-                 System.out.printf("║ Class                 : %-35d ║\n", temp.CurrentClass);
-                System.out.println("╚════════════════════════════════════════════════════════════════════════════════════╝");
-
-                // Fee Information Section
-                System.out.println("╔════════════════════════════════════════════════════════════════════════════════════╗");
-                System.out.println("║                               FEE INFORMATION                                      ║");
-                System.out.println("╠════════════════════════════════════════════════════════════════════════════════════╣");
-                 System.out.printf("║ Fee Amount            : Rs. %-28.2f ║\n", feeAmount);
-                 System.out.printf("║ Issue Date            : %-35s ║\n", issueDate);
-                 System.out.printf("║ Due Date              : %-35s ║\n", dueDate);
-                 System.out.printf("║ Billing Month         : %-35s ║\n", month);
-                System.out.println("╚════════════════════════════════════════════════════════════════════════════════════╝");
-
-                // Important Notes Section
-                System.out.println("╔════════════════════════════════════════════════════════════════════════════════════╗");
-                System.out.println("║                              IMPORTANT NOTES                                       ║");
-                System.out.println("╠════════════════════════════════════════════════════════════════════════════════════╣");
-                System.out.println("║ 1. Fee must be paid before the due date to avoid a fine.                           ║");
-                System.out.println("║ 2. Late payments incur an additional charge of Rs. 200 per day.                   ║");
-                System.out.println("║ 3. Fees can be paid via bank transfer, cheque, or directly at the school office.   ║");
-                System.out.println("╚════════════════════════════════════════════════════════════════════════════════════╝");
-
-                // Bank Stamp / Principal's Signature Section
-                System.out.println("╔════════════════════════════════════════════════════════════════════════════════════╗");
-                System.out.println("║                        BANK STAMP / PRINCIPAL SIGNATURE                            ║");
-                System.out.println("╠════════════════════════════════════════════════════════════════════════════════════╣");
-                System.out.println("║                               [BANK LOGO]                                          ║");
-                System.out.println("║                            ABC BANK LIMITED (STAMP)                                ║");
-                System.out.println("║                            _______________________                                 ║");
-                System.out.println("║                           Signature: _______________________                       ║");
-                System.out.println("║                           Date: ________________________                           ║");
-                System.out.println("╚════════════════════════════════════════════════════════════════════════════════════╝");
-
-                // Footer Section
-                System.out.println("════════════════════════════════════════════════════════════════════════════════════");
-                System.out.println("                                 SCHOOL CONTACT DETAILS                               ");
-                System.out.println("                       Address: 123 School Road, City Name, Zip Code           ");
-                System.out.println("                       Phone: (123) 456-7890 | Email: info@abcschool.com      ");
-                System.out.println("════════════════════════════════════════════════════════════════════════════════════");
-                System.out.println("                                     END OF FEE VOUCHER                                               ");
-                System.out.println("════════════════════════════════════════════════════════════════════════════════════");
-                System.out.println();
-
-                // Move to the next student
+                if (temp.StudentId==id)
+                         break;
                 temp = temp.next;
             }
+            if (temp==null)
+            {
+                System.out.println("Invalid Id");
+                return;
+            }
+            if (temp.fee.searchMonth(month))
+            {
+                System.out.println("Fees is already paid for month "+month);
+                return;
+            }
+            int voucherId = VoucherNo;
+            String studentName = temp.Name;
+            String fatherName = temp.FatherName;
+            double feeAmount = 0;
+            LocalDate issueDate = LocalDate.now();
+            LocalDate dueDate = issueDate.plusDays(15);
+
+            // Fee structure based on class groups
+            if (temp.CurrentClass >= 1 && temp.CurrentClass <= 4) {
+                feeAmount = 5000.0;
+            } else if (temp.CurrentClass >= 5 && temp.CurrentClass <= 7) {
+                feeAmount = 7000.0;
+            } else if (temp.CurrentClass >= 8 && temp.CurrentClass <= 10) {
+                feeAmount = 14000.0;
+            } else {
+                System.out.println("Class not recognized for Student ID: " + temp.StudentId);
+            }
+
+            // Enhanced Fee Voucher Output
+            System.out.println("════════════════════════════════════════════════════════════════════════════════════════");
+            System.out.println("                           ABC SCHOOL OF EXCELLENCE                                     ");
+            System.out.println("════════════════════════════════════════════════════════════════════════════════════════");
+            System.out.println("                         OFFICIAL FEE PAYMENT VOUCHER                                   ");
+            System.out.println("════════════════════════════════════════════════════════════════════════════════════════");
+            System.out.println(" ");
+
+            // Student Info Section
+            System.out.println("╔════════════════════════════════════════════════════════════════════════════════════╗");
+            System.out.println("║                                STUDENT DETAILS                                      ║");
+            System.out.println("╠════════════════════════════════════════════════════════════════════════════════════╣");
+            System.out.printf("║ Voucher ID            : %-35d ║\n", voucherId);
+            System.out.printf("║ Student ID            : %-35d ║\n", temp.StudentId);
+            System.out.printf("║ Student Name          : %-35s ║\n", studentName);
+            System.out.printf("║ Father's Name         : %-35s ║\n", fatherName);
+            System.out.printf("║ Class                 : %-35d ║\n", temp.CurrentClass);
+            System.out.println("╚════════════════════════════════════════════════════════════════════════════════════╝");
+
+            // Fee Information Section
+            System.out.println("╔════════════════════════════════════════════════════════════════════════════════════╗");
+            System.out.println("║                               FEE INFORMATION                                      ║");
+            System.out.println("╠════════════════════════════════════════════════════════════════════════════════════╣");
+            System.out.printf(" ║ Fee Amount            : Rs. %-28.2f ║\n", feeAmount);
+            System.out.printf(" ║ Issue Date            : %-35s ║\n", issueDate);
+            System.out.printf(" ║ Due Date              : %-35s ║\n", dueDate);
+            System.out.printf(" ║ Billing Month         : %-35s ║\n", month);
+            System.out.println("╚════════════════════════════════════════════════════════════════════════════════════╝");
+
+            // Important Notes
+            System.out.println("╔════════════════════════════════════════════════════════════════════════════════════╗");
+            System.out.println("║                              IMPORTANT NOTES                                       ║");
+            System.out.println("╠════════════════════════════════════════════════════════════════════════════════════╣");
+            System.out.println("║ 1. Fee must be paid before the due date to avoid a fine.                           ║");
+            System.out.println("║ 2. Late payments incur an additional charge of Rs. 200 per day.                    ║");
+            System.out.println("║ 3. Fees can be paid via bank transfer, cheque, or directly at the school office.   ║");
+            System.out.println("╚════════════════════════════════════════════════════════════════════════════════════╝");
+
+            System.out.println("╔════════════════════════════════════════════════════════════════════════════════════╗");
+            System.out.println("║                        BANK STAMP / PRINCIPAL SIGNATURE                            ║");
+            System.out.println("╠════════════════════════════════════════════════════════════════════════════════════╣");
+            System.out.println("║                               [BANK LOGO]                                          ║");
+            System.out.println("║                            ABC BANK LIMITED (STAMP)                                ║");
+            System.out.println("║                            _______________________                                 ║");
+            System.out.println("║                           Signature: _______________________                       ║");
+            System.out.println("║                           Date: ________________________                           ║");
+            System.out.println("╚════════════════════════════════════════════════════════════════════════════════════╝");
+
+            // Footer Section
+            System.out.println("════════════════════════════════════════════════════════════════════════════════════");
+            System.out.println("                                 SCHOOL CONTACT DETAILS                               ");
+            System.out.println("                       Address: 123 School Road, City Name, Zip Code                  ");
+            System.out.println("                       Phone: (123) 456-7890 | Email: info@abcschool.com              ");
+            System.out.println("════════════════════════════════════════════════════════════════════════════════════");
+            System.out.println("                                END OF FEE VOUCHER                                  ");
+            System.out.println("════════════════════════════════════════════════════════════════════════════════════");
+            System.out.println();
+
         }
 
 

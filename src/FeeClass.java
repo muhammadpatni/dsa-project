@@ -3,15 +3,12 @@ import java.util.Scanner;
 
 public class FeeClass {
 
-    private int FeeId;
     Scanner sc= new Scanner(System.in);
     FeeNode head,tail;
     FeeClass()
     {
         head = null;
         tail = null;
-        FeeId =0;
-
     }
     public boolean isEmpty()
     {
@@ -27,7 +24,7 @@ public class FeeClass {
         }
         return false;
     }
-    public  String getMonthNameFromDate(LocalDate date)
+    public static String getMonthNameFromDate(LocalDate date)
     {
         String dateString = date.toString();
         String monthString = dateString.substring(5, 7);

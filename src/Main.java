@@ -383,17 +383,108 @@ public  class Main {
 
             switch (choice) {
                 case 1:
-
+                    if (student.isEmpty())
+                    {
+                        System.out.println("Student not available . .");
+                        break;
+                    }
                     System.out.println("Generating Fee Voucher...");
+                    System.out.println("Choose the month for the fee voucher:");
+                    System.out.println("1. Current Month");
+                    System.out.println("2. Previous Month");
+                    System.out.print("Enter your choice: ");
+                    int monthChoice = scanner.nextInt(); // kamran yahan just exceptional handling karna sara nhi karna ka input 1 2 hi hoo sahi hai
+                    scanner.nextLine();
+
+                    if (monthChoice == 1) {
+                        System.out.println("Generating voucher for the current month...");
+                        System.out.print("Enter student Id: ");
+                        int id=scanner.nextInt();
+                        student.generateFeeVouchers(FeeClass.getMonthNameFromDate( LocalDate.now()),id);
+                    } else if (monthChoice == 2) {
+                        System.out.println("Generating voucher for the previous month...");
+                        scanner.nextLine();
+                        System.out.print("Enter student Id: ");
+                        int id=scanner.nextInt();
+                        System.out.println("1.January");
+                        System.out.println("2.February");
+                        System.out.println("3.March");
+                        System.out.println("4.April");
+                        System.out.println("5.May");
+                        System.out.println("6.June");
+                        System.out.println("7.July");
+                        System.out.println("8.August");
+                        System.out.println("9.September");
+                        System.out.println("10.October");
+                        System.out.println("11.November");
+                        System.out.println("12.December");
+                        System.out.print("Enter month no.: ");
+                        int month= scanner.nextInt();
+                        String MonthName="";
+                        switch (month)
+                        {
+                            case 1:
+                                MonthName= "January";
+                            case 2:
+                                MonthName="February";
+                            case 3:
+                                MonthName= "March";
+                            case 4:
+                                MonthName="April";
+                            case 5:
+                                MonthName= "May";
+                            case 6:
+                                MonthName= "June";
+                            case 7:
+                                MonthName= "July";
+                            case 8:
+                                MonthName= "August";
+                            case 9:
+                                MonthName= "September";
+                            case 10:
+                                MonthName= "October";
+                            case 11:
+                                MonthName= "November";
+                            case 12:
+                                MonthName= "December";
+                        }
+
+                        student.generateFeeVouchers(MonthName,id);
+                    } else {
+                        System.out.println("Invalid choice. Returning to the menu...");
+                    }
                     break;
                 case 2:
+
                     System.out.println("Viewing details of students with unpaid fees...");
                     break;
                 case 3:
                     System.out.println("Checking individual student fee status...");
                     break;
                 case 4:
+                    if (student.isEmpty())
+                    {
+                        System.out.println("Student not available . .");
+                        break;
+                    }
                     System.out.println("Marking student fee as paid...");
+                    System.out.println("Generating Fee Voucher...");
+                    System.out.println("Choose the month for the fee voucher:");
+                    System.out.println("1. Current Month");
+                    System.out.println("2. Previous Month");
+                    System.out.print("Enter your choice: ");
+                    int MonthChoice = scanner.nextInt(); // kamran yahan just exceptional handling karna sara nhi karna ka input 1 2 hi hoo sahi hai
+                    scanner.nextLine();
+                    if (MonthChoice == 1) {
+                        System.out.println("Marking student fee for the current month...");
+                        System.out.print("Enter student Id: ");
+                        int id=scanner.nextInt();
+                        System.out.println("Enter voucher number");
+                        int VoucherNo=scanner.nextInt();
+                        student.PaidFee(id,VoucherNo,FeeClass.getMonthNameFromDate(LocalDate.now()));
+                    }
+
+
                     break;
                 case 5:
                     return false;
