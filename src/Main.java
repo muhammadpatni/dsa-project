@@ -18,6 +18,7 @@ public  class Main {
     static StaffList staff =new StaffList();
     static AssignedCoursesClass assignedCourses = new AssignedCoursesClass();
     static  StudentClass student=new StudentClass();
+    static TeacherList Teacher = new TeacherList();
     public static void main(String[] args) {
         login();
 
@@ -237,6 +238,111 @@ public  class Main {
                         staff.saveToFile();
                         System.out.println("Staff added successfully.");
                     }
+
+                    if (entity.equals("Teacher")) {
+                        String dob = "";
+                        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy");
+
+                        System.out.print("Enter Teacher Name: ");
+                        String name = scanner.nextLine();
+
+                        System.out.println("Select Gender: ");
+                        System.out.println("1. Male");
+                        System.out.println("2. Female");
+                        String gender = "";
+                        int genderChoice = scanner.nextInt();
+                        scanner.nextLine(); // Consume the newline
+
+                        if (genderChoice == 1) {
+                            gender = "Male";
+                        } else if (genderChoice == 2) {
+                            gender = "Female";
+                        }
+
+                        while (true) {
+                            System.out.print("Enter your Date of Birth (dd-MM-yyyy): ");
+                            String input = scanner.nextLine();
+                            try {
+                                LocalDate birthDate = LocalDate.parse(input, formatter);
+                                dob = input;
+                                break;
+                            } catch (DateTimeParseException e) {
+                                System.out.println("Invalid date format. Please enter again in 'dd-MM-yyyy' format.");
+                            }
+                        }
+
+                        System.out.println("Select Marital Status: ");
+                        System.out.println("1. Married");
+                        System.out.println("2. Unmarried");
+                        System.out.println("3. Widow");
+                        String maritalStatus = "";
+                        int maritalChoice = scanner.nextInt();
+                        scanner.nextLine(); // Consume the newline
+
+                        switch (maritalChoice) {
+                            case 1:
+                                maritalStatus = "Married";
+                                break;
+                            case 2:
+                                maritalStatus = "Unmarried";
+                                break;
+                            case 3:
+                                maritalStatus = "Widow";
+                                break;
+                        }
+
+                        System.out.print("Enter Email: ");
+                        String email = scanner.nextLine();
+                        System.out.print("Enter Specialization: ");
+                        String specialization = scanner.nextLine();
+                        System.out.print("Enter Highest Qualification: ");
+                        String highestQualification = scanner.nextLine();
+                        System.out.print("Enter Contact Number: ");
+                        String contact = scanner.nextLine();
+                        System.out.print("Enter Address: ");
+                        String address = scanner.nextLine();
+
+                        String dateOfJoining = "";
+                        while (true) {
+                            System.out.print("Enter your Date of Joining (dd-MM-yyyy): ");
+                            String input = scanner.nextLine();
+                            try {
+                                LocalDate joiningDate = LocalDate.parse(input, formatter);
+                                dateOfJoining = input;
+                                break;
+                            } catch (DateTimeParseException e) {
+                                System.out.println("Invalid date format. Please enter again in 'dd-MM-yyyy' format.");
+                            }
+                        }
+
+                        System.out.print("Enter Salary: ");
+                        double salary = scanner.nextDouble();
+                        scanner.nextLine(); // Consume the newline
+
+                        System.out.print("Enter Skills: ");
+                        String skills = scanner.nextLine();
+                        System.out.print("Enter Experience: ");
+                        String experience = scanner.nextLine();
+
+                        System.out.print("Enter number of Certifications: ");
+                        int certCount = scanner.nextInt();
+                        scanner.nextLine(); // Consume newline
+
+                        // Array to store certifications
+                        String[] certifications = new String[certCount];
+                        for (int i = 0; i < certCount; i++) {
+                            System.out.print("Enter Certification " + (i + 1) + ": ");
+                            certifications[i] = scanner.nextLine();
+                        }
+
+                        Teacher.addTeacher(name, gender, dob, maritalStatus, email, specialization, highestQualification, contact, address, salary, dateOfJoining, experience, certifications);
+                        Teacher.saveToFile();
+
+                        System.out.println("Teacher added successfully.");
+                    }
+
+
+
                     if(entity.equals("Student"))
                     { System.out.print("Enter Class For Admission: ");
                         int currentClass = scanner.nextInt();
@@ -282,10 +388,16 @@ public  class Main {
                 case 2:
                     System.out.println("Deleting a " + entity + "...");
                     if (entity.equals("Staff"))
-                    { System.out.print("enter id for delete ");
+                    { System.out.print("enter id for delete: ");
                         int iD =scanner.nextInt();
                         staff.removeStaff(iD);
                         staff.saveToFile();
+                    }
+                    if(entity.equals("Teacher")){
+                        System.out.println("Enter Id for Delete: ");
+                        int iD =scanner.nextInt();
+                        Teacher.removeTeacher(iD);
+                        Teacher.saveToFile();
                     }
                     break;
                 case 3:
@@ -296,6 +408,12 @@ public  class Main {
                         staff.updateStudent(Id);
                         staff.saveToFile();
                     }
+                    if (entity.equals("Teacher"))
+                    { System.out.print("enter id for update ");
+                        int Id =scanner.nextInt();
+                        Teacher.updateTeacher(Id);
+                        Teacher.saveToFile();
+                    }
                     break;
                 case 4:
                     System.out.println("Searching for a " + entity + "...");
@@ -304,6 +422,13 @@ public  class Main {
                         int id =scanner.nextInt();
                         staff.searchStaff(id);
                         staff.saveToFile();
+                        break;
+                    }
+                    if (entity.equals("Teacher"))
+                    {  System.out.print("enter id for search ");
+                        int id =scanner.nextInt();
+                        Teacher.searchTeacher(id);
+                        Teacher.saveToFile();
                         break;
                     }
                     break;

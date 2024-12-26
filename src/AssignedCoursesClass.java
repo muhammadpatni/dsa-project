@@ -152,7 +152,7 @@ public class AssignedCoursesClass {
     public void saveToFile() {
         try (BufferedWriter writer = new BufferedWriter(new FileWriter(Filename))) {
             ClassNode temp = head;
-            writer.write("\t \t \t \t \t \t * * * * ASSIGNED COURSES DETAILS * * * * \n\n");
+            writer.write("\t \t \t \t * * * * ASSIGNED COURSES DETAILS * * * * \n\n");
 
             if (temp == null) {
                 writer.write("No assigned courses to display.\n");
