@@ -18,7 +18,7 @@ public class TeacherList {
     }
 
     String Filename="C:\\Users\\HP\\Desktop\\lab 1\\DSA project\\Staff.txt";
-   //String Filename =" C:\\Users\\Admin\\Desktop\\dsa-project1\\Teacher.txt";
+   //String Filename =" C:\\Users\\Admin\\Desktop\\dsa-project1\\Teacher.txt";S
 
     public boolean isEmpty() {
         return head == null;

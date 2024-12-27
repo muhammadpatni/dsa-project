@@ -463,7 +463,7 @@ import java.util.Scanner;
                 System.out.println("Invalid Id");
                 return;
             }
-            System.out.println("                                    * * * STUDENT DETAILS * * *                               ");
+            System.out.println("                                    * * * STUDENT FEE DETAILS * * *                               ");
             System.out.println("|==========|====================|====================|===================|===================|===================|");
             System.out.println("|    ID    |        NAME        |       CLASS        |       MONTH       |     VOUCHER ID    |       STATUS      |");
             System.out.println("|==========|====================|====================|===================|===================|===================|");
@@ -473,7 +473,6 @@ import java.util.Scanner;
                     System.out.printf("|%-10s|%-20s|%-20s|%-19s|%-19s|%-19s|\n",
                             temp.StudentId, temp.Name, temp.CurrentClass,months[i], temp.fee.ReturnVoucherNo(months[i]), "Paid");
                     System.out.println("|----------|--------------------|--------------------|-------------------|-------------------|-------------------|");
-
                 }
                 else{
                     System.out.printf("|%-10s|%-20s|%-20s|%-19s|%-19s|%-19s|\n",
@@ -495,8 +494,44 @@ import java.util.Scanner;
             }
             return temp;
         }
+     public void displayAllStudentWithUnpaidFee()
+     {
+         if (isEmpty())
+         {
+             System.out.println("Students not available");
+             return;
+         }
+         System.out.println("|==========|====================|====================|====================|");
+         System.out.println("|    ID    |        NAME        |       CLASS        |       MONTHS       |");
+         System.out.println("|==========|====================|====================|====================|");
+         StudentNode temp=head;
+         while (temp!=null)
+         {
+             String[] month = returnMonthsOfUnpaidFee(temp);
+             System.out.printf("|%-10s|%-20s|%-20s|",temp.StudentId, temp.Name, temp.CurrentClass);
+             for (int i = 0; i <month.length; i++) {
+                if (FeeClass.getMonthNameFromDate(LocalDate.now())!=month[i]){
+                 if (i==0)
+                     System.out.printf("%-20s|\n",month[i]);
+                 else
+                     System.out.printf("|%-10s|%-20s|%-20s|%-20s|\n","","","",month[i]);
+             }
+             else
+                {
+                    if (i==0)
+                        System.out.printf("%-20s|\n",month[i]);
+                    else
+                        System.out.printf("|%-10s|%-20s|%-20s|%-20s|\n","","","",month[i]);
+                    break;
+                }
+
+             }
+             System.out.println("|-----------------------------------|-------------------|--------------------------------|\n");
+             temp=temp.next;
+         }
+     }
 
 
+     }
 
-    }
 

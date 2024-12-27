@@ -292,7 +292,7 @@ public  class StaffList{
     public void displayAllStaff()
     {
         Staff temp=head;
-        System.out.println("                                                 * * * STAFF DETAILS * * *                               ");
+        System.out.println("                                                     * * * STAFF DETAILS * * *                               ");
         System.out.println("|==========|====================|===========|=============================|===================|=============|========|========================================|");
         System.out.println("|    ID    |        NAME        |   GENDER  |        DESIGNATION          |      CONTACT      |    SALARY   |  Age   |                 ADDRESS                |");
         System.out.println("|==========|====================|===========|=============================|===================|=============|========|========================================|");

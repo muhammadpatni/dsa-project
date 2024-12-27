@@ -581,6 +581,7 @@ public  class Main {
                     break;
                 case 2:
                     System.out.println("Viewing details of students with unpaid fees...");
+                    student.displayAllStudentWithUnpaidFee();
                     break;
                 case 3:
                     System.out.println("Checking individual student fee status...");
