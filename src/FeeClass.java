@@ -60,7 +60,7 @@ public class FeeClass {
         FeeNode newNode = new FeeNode();
         newNode.VoucherNo = Voucherid;
         newNode.Month = Month;
-        newNode.date = LocalDate.now();
+        newNode.date = LocalDate.now().toString();
         if (isEmpty()) {
             head = newNode;
         } else {

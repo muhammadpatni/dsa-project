@@ -3,7 +3,7 @@ import java.time.LocalDate;
 public class FeeNode {
     String Month;
     int VoucherNo;
-    LocalDate date;
+    String date;
     FeeNode next, prev;
 }
 
