@@ -68,6 +68,12 @@ public  class Main {
                 continue;
             }
 
+            // Directly display Attendance menu for "Attendance" role
+            if (choice == 7) {
+                attendanceMenu(scanner);  // Handle Attendance Menu directly
+                continue; // Return to the main menu after Attendance menu execution
+            }
+
             // Generate a welcome message based on the selected role
             String role = getRoleName(choice);
             System.out.println("\nWelcome, " + role + "! Please enter your credentials.");
@@ -77,54 +83,47 @@ public  class Main {
 
             boolean loggedIn = false;
 
-            if (choice == 7) {
-                // Directly proceed to the attendance menu without asking for credentials
-                System.out.println("\nNo login required for Attendance role.");
-                loggedIn = true;
-                attendanceMenu(scanner);  // Handle Attendance Menu directly
-            } else {
-                while (!loggedIn) {
-                    System.out.print("Enter your username: ");
-                    String inputUsername = scanner.nextLine();
+            while (!loggedIn) {
+                System.out.print("Enter your username: ");
+                String inputUsername = scanner.nextLine();
 
-                    System.out.print("Enter your password: ");
-                    String inputPassword = scanner.nextLine();
+                System.out.print("Enter your password: ");
+                String inputPassword = scanner.nextLine();
 
-                    if (inputUsername.equals(username) && inputPassword.equals(password)) {
-                        System.out.println("\nLogin successful! Welcome " + role + ".");
-                        loggedIn = true;
+                if (inputUsername.equals(username) && inputPassword.equals(password)) {
+                    System.out.println("\nLogin successful! Welcome " + role + ".");
+                    loggedIn = true;
 
-                        // Proceed to the respective menu
-                        boolean isLoggedIn = true;
-                        while (isLoggedIn) {
-                            switch (choice) {
-                                case 1:
-                                    isLoggedIn = adminMenu(scanner);
-                                    break;
-                                case 2:
-                                    isLoggedIn = principalMenu(scanner);
-                                    break;
-                                case 3:
-                                    isLoggedIn = teacherMenu(scanner);
-                                    break;
-                                case 4:
-                                    isLoggedIn = accountantMenu(scanner);
-                                    break;
-                                case 5:
-                                    isLoggedIn = examinationMenu(scanner);
-                                    break;
-                                case 6:
-                                    isLoggedIn = coordinatorMenu(scanner);
-                                    break;
-                            }
+                    // Proceed to the respective menu
+                    boolean isLoggedIn = true;
+                    while (isLoggedIn) {
+                        switch (choice) {
+                            case 1:
+                                isLoggedIn = adminMenu(scanner);
+                                break;
+                            case 2:
+                                isLoggedIn = principalMenu(scanner);
+                                break;
+                            case 3:
+                                isLoggedIn = teacherMenu(scanner);
+                                break;
+                            case 4:
+                                isLoggedIn = accountantMenu(scanner);
+                                break;
+                            case 5:
+                                isLoggedIn = examinationMenu(scanner);
+                                break;
+                            case 6:
+                                isLoggedIn = coordinatorMenu(scanner);
+                                break;
                         }
-                    } else {
-                        System.out.println("Invalid credentials. Please try again.");
-                        System.out.print("Would you like to try again or go back to the main menu? (try again/back): ");
-                        String action = scanner.nextLine();
-                        if (action.equalsIgnoreCase("back")) {
-                            break; // Back to the role selection menu
-                        }
+                    }
+                } else {
+                    System.out.println("Invalid credentials. Please try again.");
+                    System.out.print("Would you like to try again or go back to the main menu? (try again/back): ");
+                    String action = scanner.nextLine();
+                    if (action.equalsIgnoreCase("back")) {
+                        break; // Back to the role selection menu
                     }
                 }
             }
@@ -145,7 +144,6 @@ public  class Main {
             default: return "Unknown";
         }
     }
-
     private static boolean attendanceMenu(Scanner scanner) {
         String[][] Attendance = {
                 {"teacher1", "class1"},
@@ -232,12 +230,6 @@ public  class Main {
         }
         return true;
     }
-
-
-
-
-
-
     private static boolean adminMenu(Scanner scanner) {
         while (true) {
             System.out.println("\nAdmin Menu:");
@@ -538,9 +530,153 @@ public  class Main {
 
     private static boolean principalMenu(Scanner scanner) {
         while (true) {
-            System.out.println("\nPrincipal Menu:");
-            System.out.println("1. View Marks");
-            System.out.println("2. View Teacher Assignments (Class & Subject)");
+            System.out.println("\nMain Menu:");
+            System.out.println("1. Teacher");
+            System.out.println("2. Student");
+            System.out.println("3. Staff");
+            System.out.println("4. Class");
+            System.out.println("5. Back to Login");
+            System.out.print("Enter your choice: ");
+            int choice = scanner.nextInt();
+            scanner.nextLine();
+
+            switch (choice) {
+                case 1:
+                    while (true) {
+                        System.out.println("\nTeacher Menu:");
+                        System.out.println("1. View all teachers' details");
+                        System.out.println("2. Search for a teacher's details");
+                        System.out.println("3. View classes and subjects taught by a teacher");
+                        System.out.println("4. Back to Main Menu");
+                        System.out.print("Enter your choice: ");
+                        int teacherChoice = scanner.nextInt();
+                        scanner.nextLine();
+
+                        switch (teacherChoice) {
+                            case 1:
+                                System.out.println("Displaying all teachers' details...");
+                                break;
+                            case 2:
+                                System.out.println("Searching for a teacher's details...");
+                                break;
+                            case 3:
+                                System.out.println("Viewing classes and subjects taught by a teacher...");
+                                break;
+                            case 4:
+                                return true;
+                            default:
+                                System.out.println("Invalid choice. Try again.");
+                        }
+                    }
+
+                case 2:
+                    while (true) {
+                        System.out.println("\nStudent Menu:");
+                        System.out.println("1. View all students' details");
+                        System.out.println("2. Search for a student");
+                        System.out.println("3. View student marks");
+                        System.out.println("4. View student fee details");
+                        System.out.println("5. View student attendance");
+                        System.out.println("6. Back to Main Menu");
+                        System.out.print("Enter your choice: ");
+                        int studentChoice = scanner.nextInt();
+                        scanner.nextLine();
+
+                        switch (studentChoice) {
+                            case 1:
+                                System.out.println("Displaying all students' details...");
+                                break;
+                            case 2:
+                                System.out.println("Searching for a student...");
+                                break;
+                            case 3:
+                                System.out.println("Viewing student marks...");
+                                break;
+                            case 4:
+                                System.out.println("Viewing student fee details...");
+                                break;
+                            case 5:
+                                System.out.println("Viewing student attendance...");
+                                break;
+                            case 6:
+                                return true;
+                            default:
+                                System.out.println("Invalid choice. Try again.");
+                        }
+                    }
+
+                case 3:
+                    while (true) {
+                        System.out.println("\nStaff Menu:");
+                        System.out.println("1. Search for a staff member's details");
+                        System.out.println("2. View all staff members");
+                        System.out.println("3. Back to Main Menu");
+                        System.out.print("Enter your choice: ");
+                        int staffChoice = scanner.nextInt();
+                        scanner.nextLine();
+
+                        switch (staffChoice) {
+                            case 1:
+                                System.out.print("enter id for search ");
+                                int id =scanner.nextInt();
+                                staff.searchStaff(id);
+                                break;
+                            case 2:
+                                staff.displayAllStaff();
+                                break;
+                            case 3:
+                                return true;
+                            default:
+                                System.out.println("Invalid choice. Try again.");
+                        }
+                    }
+
+                case 4:
+                    while (true) {
+                        System.out.println("\nClass Menu:");
+                        System.out.println("1. View courses of a class");
+                        System.out.println("2. View students in a class");
+                        System.out.println("3. View teachers teaching a class");
+                        System.out.println("4. View last month's attendance of a class");
+                        System.out.println("5. Back to Main Menu");
+                        System.out.print("Enter your choice: ");
+                        int classChoice = scanner.nextInt();
+                        scanner.nextLine();
+
+                        switch (classChoice) {
+                            case 1:
+                                System.out.println("Viewing courses of a class...");
+                                break;
+                            case 2:
+                                System.out.println("Viewing students in a class...");
+                                break;
+                            case 3:
+                                System.out.println("Viewing teachers teaching a class...");
+                                break;
+                            case 4:
+                                System.out.println("Viewing last month's attendance of a class...");
+                                break;
+                            case 5:
+                                return true;
+                            default:
+                                System.out.println("Invalid choice. Try again.");
+                        }
+                    }
+
+                case 5:
+                    return false; // Back to Login
+                default:
+                    System.out.println("Invalid choice. Try again.");
+            }
+        }
+    }
+
+
+    private static boolean teacherMenu(Scanner scanner) {
+        while (true) {
+            System.out.println("\nTeacher Menu:");
+            System.out.println("1. View Your Assign Course");
+            System.out.println("2. View Students in Any Class");
             System.out.println("3. Back to Login");
             System.out.print("Enter your choice: ");
             int choice = scanner.nextInt();
@@ -548,36 +684,6 @@ public  class Main {
 
             switch (choice) {
                 case 1:
-                    System.out.println("Viewing Marks...");
-                    break;
-                case 2:
-                    System.out.println("Viewing Teacher Assignments...");
-                    break;
-                case 3:
-                    return false;
-                default:
-                    System.out.println("Invalid choice. Try again.");
-            }
-        }
-    }
-
-    private static boolean teacherMenu(Scanner scanner) {
-        while (true) {
-            System.out.println("\nTeacher Menu:");
-            System.out.println("1. Mark Attendance (Class-wise)");
-            System.out.println("2. View Your Assign Course");
-            System.out.println("3. View Students in Any Class");
-            System.out.println("4. Back to Login");
-            System.out.print("Enter your choice: ");
-            int choice = scanner.nextInt();
-            scanner.nextLine();
-
-            switch (choice) {
-                case 1:
-                    System.out.println("Option 1: Mark Attendance (Class-wise)");
-                    break;
-
-                case 2:
                     System.out.println("View Your Assign Course");
                     if(teacher.isEmpty())
                     {
@@ -593,14 +699,14 @@ public  class Main {
                     assignedCourses.displaySpecificTeacherById(teacherid);
                     break;
 
-                case 3:
+                case 2:
                     // View students in any class
                     System.out.print("Enter class number to view students: ");
                     int Class = scanner.nextInt();
                     student.Displaybyclass(Class);
                     break;
 
-                case 4:
+                case 3:
                     // Back to login
                     return false;
 
