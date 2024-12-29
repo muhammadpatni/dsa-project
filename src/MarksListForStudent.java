@@ -11,6 +11,15 @@ public class MarksListForStudent {
     {
         return head == null;
     }
+    public void displayAllMarks()
+    {
+        MarksNode temp=head;
+        while (temp!=null)
+        {
+            System.out.println("1. "+temp.mark+" : "+temp.mark);
+            temp=temp.next;
+        }
+    }
     public void addMarks(String subject,double marks)
     {
         MarksNode newNode = new MarksNode();

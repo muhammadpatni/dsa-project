@@ -6,9 +6,21 @@ public class BooleanArray {
         array = new boolean[3];
         index = 0;
     }
+    public boolean getAttendance(int i)
+    {
+        return array[i];
+    }
     public int size() {
         return index;
     }
+    public void print()
+    {
+        for (int i = 0; i < index; i++) {
+            System.out.println(array[i]);
+        }
+    }
+    public boolean isEmpty()
+    {return  index==0;}
     public void insert(boolean isPresent) {
         if (index == array.length) {
             boolean[] temp = new boolean[array.length * 2];
@@ -19,24 +31,5 @@ public class BooleanArray {
             array = temp;
         }
         array[index++] =isPresent;
-    }
-
-    public  void delete(int Pos)
-    {
-        if (Pos==-1)
-        {
-            System.out.println("course not found");
-            return;
-        }
-        for(int i = Pos-1; i<index; i++)
-        {
-            if(i==index-1)
-                array[i] = false;
-            else
-            {
-                array[i] = array[i+1];
-            }
-        }
-        index--;
     }
 }

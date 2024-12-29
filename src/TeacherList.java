@@ -17,8 +17,7 @@ public class TeacherList {
         TotalNumberOfTeachers = 0;
     }
 
-    //String Filename="C:\\Users\\HP\\Desktop\\lab 1\\DSA project\\Staff.txt";
-    String Filename ="C:\\Users\\Admin\\Desktop\\dsa-project1\\Teacher.txt";
+    String Filename ="C:\\Users\\HP\\Desktop\\lab 1\\DSA project\\Teacher.txt";
 
     public boolean isEmpty() {
         return head == null;

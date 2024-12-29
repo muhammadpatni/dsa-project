@@ -22,6 +22,19 @@ public class FeeClass {
         }
         return false;
     }
+    public void displayFee()
+    {
+        FeeNode temp=head;
+        while (temp!=null)
+        {
+            System.out.println("Month: "+temp.Month);
+            System.out.println("Voucher Number: "+temp.VoucherNo);
+            System.out.println("Date: "+temp.date);
+            temp=temp.next;
+        }
+    }
+
+
     public static String getMonthNameFromDate(LocalDate date)
     {
         String dateString = date.toString();

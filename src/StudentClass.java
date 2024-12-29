@@ -11,6 +11,7 @@ import java.util.Scanner;
         private StudentNode head, tail;
         int VoucherNo=0;
         Scanner sc = new Scanner(System.in);
+        String Filename = "C:\\Users\\HP\\Desktop\\lab 1\\DSA project\\student.txt";
 
         public StudentClass() {
             head = null;
@@ -292,35 +293,57 @@ import java.util.Scanner;
             }
         }
 
-        String Filename = "D:\\DSA Student Part\\file handling.txt";
-
         public void saveToFile() {
             try (BufferedWriter writer = new BufferedWriter(new FileWriter(Filename))) {
-                StudentNode temp = head;
-                writer.write("******** STUDENT DETAILS ********\n\n");
-
+                StudentNode temp = head; // Assuming "this" is the head of the StudentNode list
+                writer.write("\t\t\t\t\t* * * * STUDENT DETAILS * * * *\n\n");
                 while (temp != null) {
-                    writer.write("Student Id: " + temp.StudentId + "\n");
+                    writer.write("Student ID: " + temp.StudentId + "\n");
                     writer.write("Name: " + temp.Name + "\n");
-                    writer.write("Father Name: " + temp.FatherName + "\n");
                     writer.write("Gender: " + temp.Gender + "\n");
-                    writer.write("Date of Birth: " + temp.DateOfBirth + "\n");
+                    writer.write("DOB: " + temp.DateOfBirth + "\n");
                     writer.write("Contact: " + temp.Contact + "\n");
                     writer.write("Address: " + temp.Address + "\n");
+                    writer.write("Father's Name: " + temp.FatherName + "\n");
                     writer.write("Current Class: " + temp.CurrentClass + "\n");
                     writer.write("Section: " + temp.Section + "\n");
 
+                    writer.write("Previous Academic Background: \n");
                     if (temp.Previous != null) {
-                        writer.write("Previous Institute: " + temp.Previous.PreviousInstitute + "\n");
-                        writer.write("Previous Class: " + temp.Previous.ClassName + "\n");
-                        writer.write("Previous Grade: " + temp.Previous.Grade + "\n");
+                     writer.write("Previous Institute: "+temp.Previous.PreviousInstitute+"\n");
+                     writer.write("Previous Class: "+temp.Previous.ClassName+"\n");
+                     writer.write("Previous Grade: "+temp.Previous.PreviousInstitute+"\n");
+                    } else {
+                        writer.write("No previous academic background available.\n");
+                    }
+
+                    writer.write("Marks List: \n");
+                    if (!temp.marks.isEmpty() ) {
+                        temp.marks.displayAllMarks();
+                    } else {
+                        writer.write("No marks available.\n");
+                    }
+
+                    writer.write("Fee Details: \n");
+                    if (!temp.fee.isEmpty()) {
+                          temp.fee.displayFee();
+                    } else {
+                        writer.write("No fee details available.\n");
+                    }
+
+                    writer.write("Attendance: \n");
+                    if (!temp.attendance.isEmpty()) {
+                        temp.attendance.print();
+
+                    } else {
+                        writer.write("No attendance records available.\n");
                     }
 
                     writer.write("\n\n");
                     temp = temp.next;
                 }
             } catch (IOException e) {
-                System.out.println("Error saving student details: " + e.getMessage());
+                System.out.println("Error saving student details to file.");
             }
         }
 
@@ -563,29 +586,188 @@ import java.util.Scanner;
      public void displayMonthAttendanceOfClass(int Class)
      {
          boolean found=false;
+         System.out.println("                             Last 15 Days Attendance Of Class "+Class+"\n");
+         System.out.println("|=======|======================|===|===|===|===|===|===|===|===|===|====|====|====|====|====|====|");
          System.out.println("| ROLL# |         Name         | 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 | 11 | 12 | 13 | 14 | 15 |");
-
+         System.out.println("|=======|======================|===|===|===|===|===|===|===|===|===|====|====|====|====|====|====|");
          StudentNode temp=head;
          while (temp!=null)
          {
-             if (temp.CurrentClass==Class)
-             {   found=true;
-
+             if (temp.CurrentClass==Class) {
+                 found = true;
+                 System.out.printf("|%-7s|%-22s",temp.StudentId,temp.Name);
+                 if (temp.attendance.size()<15)
+                 {
+                     for (int i = 0; i < 15-temp.attendance.size(); i++) {
+                            System.out.print("| A ");
+                     }
+                     for (int i = 0; i < temp.attendance.size(); i++) {
+                         if (temp.attendance.getAttendance(i))
+                               System.out.print("| p ");
+                        else
+                             System.out.print("| A ");
+                     }
+                 } 
+                 else if(temp.attendance.size()==15)  {
+                     for (int i = 0; i < temp.attendance.size(); i++) {
+                         if (temp.attendance.getAttendance(i))
+                             System.out.print("| p ");
+                         else
+                             System.out.print("| A ");
+                     }
+                     
+                 } else if (temp.attendance.size()>15) {
+                     for (int i =temp.attendance.size()-15; i < temp.attendance.size(); i++) {
+                         if (temp.attendance.getAttendance(i))
+                             System.out.print("| p ");
+                         else
+                             System.out.print("| A ");
+                     }
+                     
+                 }
+             }
+             System.out.print("|\n");
              temp=temp.next;
          }
          if (found)
          {
-             System.out.println("no student in class "+Class);
+             System.out.println("|=======|======================|===|===|===|===|===|===|===|===|===|====|====|====|====|====|====|");
+             System.out.println("|-------|----------------------|---|---|---|---|---|---|---|---|---|----|----|----|----|----|----|");
          }
 
-
-
-
-
      }
+        public void retrieveFromFile(String Filename) {
+            try (BufferedReader reader = new BufferedReader(new FileReader(Filename))) {
+                String line;
+                StudentNode tempStudent = null;
+
+                // Variables to store student details temporarily
+                int studentId = 0,currentClass=0;
+                String name = "", gender = "", dob = "", contact = "", address = "";
+              char section='\0';
+                PreviousAcademicBackground previous = null;
+                MarksListForStudent marksList = new MarksListForStudent();
+                FeeClass feeDetails = new FeeClass();
+                BooleanArray attendance = new BooleanArray();
+
+                while ((line = reader.readLine()) != null) {
+                    // Detect student details
+                    if (line.startsWith("Student ID:")) {
+                        if (tempStudent != null) {
+                            // Add the previous student to the list
+                            addStudentToList(studentId, name, gender, dob, contact, address, currentClass, section,
+                                    previous, marksList, feeDetails, attendance);
+                        }
+
+                        // Reset all variables for the new student
+                        studentId = Integer.parseInt(line.split(":")[1].trim());
+                        name = gender = dob = contact = address ="";
+                        marksList = new MarksListForStudent();  // Reset the Marks list
+                        feeDetails = new FeeClass();          // Reset Fee details
+                        attendance = new BooleanArray();         // Reset Attendance
+                    } else if (line.startsWith("Name:")) {
+                        name = line.split(":")[1].trim();
+                    } else if (line.startsWith("Gender:")) {
+                        gender = line.split(":")[1].trim();
+                    } else if (line.startsWith("DOB:")) {
+                        dob = line.split(":")[1].trim();
+                    } else if (line.startsWith("Contact:")) {
+                        contact = line.split(":")[1].trim();
+                    } else if (line.startsWith("Address:")) {
+                        address = line.split(":")[1].trim();
+                    } else if (line.startsWith("Current Class:")) {
+                        currentClass =Integer.parseInt(line.split(":")[1].trim()) ;
+                    } else if (line.startsWith("Section:")) {
+                        section = line.split(":")[1].trim().charAt(0);
+                    } else if (line.startsWith("Previous Institute:")) {
+                        if (previous == null) {
+                            previous = new PreviousAcademicBackground();
+                        }
+                        previous.PreviousInstitute = line.split(":")[1].trim();
+                    } else if (line.startsWith("Previous Class:")) {
+                        if (previous != null) {
+                            previous.ClassName =Integer.parseInt(line.split(":")[1].trim());
+                        }
+                    } else if (line.startsWith("Previous Grade:")) {
+                        if (previous != null) {
+                            previous.Grade = line.split(":")[1].trim().charAt(0);
+                        }
+                    } else if (line.startsWith("Marks List:")) {
+                        // Read marks until Fee Details
+                        while ((line = reader.readLine()) != null && !line.startsWith("Fee Details:")) {
+                            if (line.trim().equals("No marks available.")) {
+                                break;
+                            }
+                            String[] markDetails = line.split(":");
+                            String subject = markDetails[0].trim();
+                            double marks = Double.parseDouble(markDetails[1].trim());
+                            marksList.addMarks(subject, marks);
+                        }
+                    } else if (line.startsWith("Fee Details:")) {
+                        // Read fee details until Attendance
+                        while ((line = reader.readLine()) != null && !line.startsWith("Attendance:")) {
+                            if (line.trim().equals("No fee details available.")) {
+                                break;
+                            }
+                            String[] feeDetailsArray = line.split(":");
+                            int voucherNo = Integer.parseInt(feeDetailsArray[0].trim());
+                            String month = feeDetailsArray[1].trim();
+                            feeDetails.addStudentFee(voucherNo, month);
+                        }
+                    } else if (line.startsWith("Attendance:")) {
+                        // Read attendance until the end of the student details
+                        while ((line = reader.readLine()) != null && !line.trim().equals("")) {
+                            if (line.trim().equals("No attendance records available.")) {
+                                break;
+                            }
+                            boolean isPresent = Boolean.parseBoolean(line.trim());
+                            attendance.insert(isPresent);
+                        }
+                    }
+                }
+
+                // Add the last student to the list if exists
+                if (studentId != 0) {
+                    addStudentToList(studentId, name, gender, dob, contact, address, currentClass, section,
+                            previous, marksList, feeDetails, attendance);
+                }
+
+            } catch (IOException e) {
+                System.out.println("Error reading student details from file: " + e.getMessage());
+            } catch (Exception e) {
+                System.out.println("An unexpected error occurred while reading student details: " + e.getMessage());
+            }
+        }
+
+        // Helper function to add student node to the list
+        private void addStudentToList(int studentId, String name, String gender, String dob, String contact, String address,
+                                      int currentClass, char section, PreviousAcademicBackground previous,
+                                      MarksListForStudent marksList, FeeClass feeDetails, BooleanArray attendance) {
+            StudentNode newStudent = new StudentNode();
+            newStudent.StudentId = studentId;
+            newStudent.Name = name;
+            newStudent.Gender = gender;
+            newStudent.DateOfBirth = dob;
+            newStudent.Contact = contact;
+            newStudent.Address = address;
+            newStudent.CurrentClass = currentClass;
+            newStudent.Section = section;
+            newStudent.Previous = previous;
+            newStudent.marks = marksList;
+            newStudent.fee = feeDetails;
+            newStudent.attendance = attendance;
+
+            // Add the student to the list
+            if (head == null) {
+                head = newStudent;
+            } else {
+                tail.next = newStudent;
+            }
+            tail = newStudent;
+        }
 
 
 
-     }
+    }
 
 

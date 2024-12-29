@@ -17,7 +17,7 @@ public  class Main {
     static Array Class8 = new Array();
     static Array Class9 = new Array();
     static Array Class10 = new Array();
-    static String Filename;
+    static String Filename="C:\\Users\\HP\\Desktop\\lab 1\\DSA project\\class.txt";
      static TeacherList teacher=new TeacherList();
     static StaffList staff =new StaffList();
     static AssignedCoursesClass assignedCourses = new AssignedCoursesClass();
@@ -144,7 +144,7 @@ public  class Main {
             default: return "Unknown";
         }
     }
-    private static boolean attendanceMenu(Scanner scanner) {
+    private static void attendanceMenu(Scanner scanner) {
         String[][] Attendance = {
                 {"teacher1", "class1"},
                 {"teacher2", "class2"},
@@ -215,9 +215,9 @@ public  class Main {
 
                 case 2:
                     // View Attendance
-                    System.out.print("Enter Class Name: ");
+                    System.out.print("Enter Class : ");
                     int viewClassName = scanner.nextInt();
-                    System.out.println("Viewing attendance for Class " + viewClassName);
+                    student.displayMonthAttendanceOfClass(viewClassName);
                     break;
 
                 case 3:
@@ -237,7 +237,6 @@ public  class Main {
                     break;
             }
         }
-        return true;
     }
     private static boolean adminMenu(Scanner scanner) {
         while (true) {
@@ -598,7 +597,7 @@ public  class Main {
                         System.out.println("2. Search for a student");
                         System.out.println("3. View student marks");
                         System.out.println("4. View student fee details");
-                        System.out.println("5. View student attendance");
+                        System.out.println("5. View student attendance of 15 days");
                         System.out.println("6. Back to Main Menu");
                         System.out.print("Enter your choice: ");
                         int studentChoice = scanner.nextInt();
@@ -609,7 +608,7 @@ public  class Main {
                                 student.displayAllStudents();
                                 break;
                             case 2:
-                                System.out.print("enter id for search ");
+                                System.out.print("Enter id for search ");
                                 int id =scanner.nextInt();
                                 student.searchStudent(id);
                                 break;
@@ -619,7 +618,7 @@ public  class Main {
                                     System.out.println("Students not available");
                                     break;
                                 }
-                                System.out.print("enter student Id :");
+                                System.out.print("Enter student Id :");
                                 int Id = scanner.nextInt();
                                 if (student.uploadMarks(Id) == null) {
                                     System.out.println("Invalid Id");
@@ -639,12 +638,15 @@ public  class Main {
                                 }
                                 break;
                             case 4:
-                                System.out.println("Enter student Id");
-                                Id =scanner.nextInt();
-                                student.GenerateFeeStatusTable(Id);
+                                System.out.print("Enter student Id");
+                                 int ID=scanner.nextInt();
+                                student.GenerateFeeStatusTable(ID);
                                 break;
                             case 5:
                                 System.out.println("Viewing student attendance...");
+                                System.out.print("Enter class : ");
+                                 int Class =scanner.nextInt();
+                                 student.displayMonthAttendanceOfClass(Class);
                                 break;
                             case 6:
                                 return true;
@@ -685,7 +687,7 @@ public  class Main {
                         System.out.println("1. View courses of a class");
                         System.out.println("2. View students in a class");
                         System.out.println("3. View teachers teaching a class");
-                        System.out.println("4. View last month's attendance of a class");
+                        System.out.println("4. View last 15 days attendance of a class");
                         System.out.println("5. Back to Main Menu");
                         System.out.print("Enter your choice: ");
                         int classChoice = scanner.nextInt();
@@ -777,7 +779,10 @@ public  class Main {
                                 assignedCourses.displaySpecificClassById(ClassNumber);
                                 break;
                             case 4:
-                                System.out.println("Viewing last month's attendance of a class...");
+                                System.out.println("Viewing last 12 days attendance of a class...");
+                                System.out.print("enter class : ");
+                                int classNumber=scanner.nextInt();
+
                                 break;
                             case 5:
                                 return true;

@@ -13,7 +13,7 @@ public class AssignedCoursesClass {
         return head == null;
     }
 
-    String Filename =" C:\\Users\\Admin\\Desktop\\dsa-project\\AssignedCourseClass.txt";
+    String Filename ="C:\\Users\\HP\\Desktop\\lab 1\\DSA project\\assigncourses.txt";
 
     public void add(int teacherId, int classNumber, String course, String teacherName) {
         ClassNode newNode = new ClassNode();
@@ -193,12 +193,6 @@ public class AssignedCoursesClass {
         try (BufferedWriter writer = new BufferedWriter(new FileWriter(Filename))) {
             ClassNode temp = head;
             writer.write("\t \t \t \t * * * * ASSIGNED COURSES DETAILS * * * * \n\n");
-
-            if (temp == null) {
-                writer.write("No assigned courses to display.\n");
-                return;
-            }
-
             while (temp != null) {
                 writer.write("Teacher ID: " + temp.Teacher_ID + "\n");
                 writer.write("Teacher Name: " + temp.Teacher_Name + "\n");
