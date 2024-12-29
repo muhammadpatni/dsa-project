@@ -1,17 +1,17 @@
 					* * * * TEACHER DETAILS * * * *
 
 Teacher ID: 1
-Name: HARAM ZAINAB
+Name: HARAM
 Gender: Female
 DOB: 10-12-2007
-Date of Joining: 2024-12-28
-Contact: 031529587889
+Date of Joining: 2024-12-29
+Contact: 03152958789
 Address: orangi town
-Salary: 200000.0
-Skills: 10-12-2022
+Salary: 230000.0
+Skills: nothing
 Experience: 0
-Highest Qualification: no
-Specialization: no
+Highest Qualification: inter
+Specialization: Software Engineering
 Certifications:
 No certifications available.
 
