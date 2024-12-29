@@ -26,7 +26,7 @@ public class TeacherList {
     public void addTeacher(String Name, String Gender, String DateOfBirth, String MaritalStatus, String Email,
                            String Specialization, String HigestQualification, String Contact, String Address,
                            double Salary, String Skills, String Experience,
-                           String[] Certificates) {
+                           String[] Certificates,String DateOfJoining) {
         TotalNumberOfTeachers++;
         Teacher newNode = new Teacher();
         newNode.Certifications = new Array();
@@ -40,7 +40,7 @@ public class TeacherList {
         newNode.HigestQualification = HigestQualification;
         newNode.Contact = Contact;
         newNode.Address = Address;
-        newNode.DateOfJoining = LocalDate.now().toString();
+        newNode.DateOfJoining =DateOfJoining;
         newNode.Salary = Salary;
         newNode.Skills = Skills;
         newNode.Experience = Experience;
@@ -358,7 +358,7 @@ public Teacher validTeacherId(int id)
 
             // Variables to store teacher details
             int teacherId = 0;
-            String name = "", gender = "", dob = "", contact = "", address = "", designation = "",
+            String name = "", gender = "", dob = "", contact = "", address = "",
                     specialization = "", skills = "", experience = "", dateOfJoining = "", email = "", maritalStatus = "",
                     highestQualification = "";
             double salary = 0.0;
@@ -372,13 +372,13 @@ public Teacher validTeacherId(int id)
                         TotalNumberOfTeachers = teacherId - 1; // Update count before adding a new teacher
                         addTeacher(name, gender, dob, maritalStatus, email, specialization, highestQualification,
                                 contact, address, salary, skills, experience,
-                                certifications.giveCurrentArray());
+                                certifications.giveCurrentArray(),dateOfJoining);
                     }
 
                     // Start a new teacher record
                     teacherId = Integer.parseInt(line.split(":")[1].trim());
                     certifications.makeArrayEmpty(); // Reset certifications
-                    name = gender = dob = contact = address = designation = specialization = skills = experience =
+                    name = gender = dob = contact = address = specialization = skills = experience =
                             dateOfJoining = email = maritalStatus = highestQualification = "";
                     salary = 0.0;
 
@@ -430,7 +430,7 @@ public Teacher validTeacherId(int id)
                 TotalNumberOfTeachers = teacherId - 1; // Update count before adding the last teacher
                 addTeacher(name, gender, dob, maritalStatus, email, specialization, highestQualification,
                         contact, address,  salary, skills, experience,
-                        certifications.giveCurrentArray());
+                        certifications.giveCurrentArray(),dateOfJoining);
             }
 
         } catch (IOException e) {

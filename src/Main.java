@@ -1,3 +1,6 @@
+import java.io.BufferedWriter;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
@@ -14,12 +17,11 @@ public  class Main {
     static Array Class8 = new Array();
     static Array Class9 = new Array();
     static Array Class10 = new Array();
+    static String Filename;
      static TeacherList teacher=new TeacherList();
     static StaffList staff =new StaffList();
     static AssignedCoursesClass assignedCourses = new AssignedCoursesClass();
     static  StudentClass student=new StudentClass();
-    static TeacherList Teacher = new TeacherList();
-
     public static void main(String[] args) {
         login();
 
@@ -407,19 +409,6 @@ public  class Main {
                         System.out.print("Enter Address: ");
                         String address = scanner.nextLine();
 
-                        String dateOfJoining = "";
-                        while (true) {
-                            System.out.print("Enter your Date of Joining (dd-MM-yyyy): ");
-                            String input = scanner.nextLine();
-                            try {
-                                LocalDate joiningDate = LocalDate.parse(input, formatter);
-                                dateOfJoining = input;
-                                break;
-                            } catch (DateTimeParseException e) {
-                                System.out.println("Invalid date format. Please enter again in 'dd-MM-yyyy' format.");
-                            }
-                        }
-
                         System.out.print("Enter Salary: ");
                         double salary = scanner.nextDouble();
                         scanner.nextLine(); // Consume the newline
@@ -440,8 +429,8 @@ public  class Main {
                             certifications[i] = scanner.nextLine();
                         }
 
-                        Teacher.addTeacher(name, gender, dob, maritalStatus, email, specialization, highestQualification, contact, address, salary, dateOfJoining, experience, certifications);
-                        Teacher.saveToFile();
+                        teacher.addTeacher(name, gender, dob, maritalStatus, email, specialization, highestQualification, contact, address, salary,skills, experience, certifications,LocalDate.now().toString());
+                        teacher.saveToFile();
 
                         System.out.println("Teacher added successfully.");
                     }
@@ -501,8 +490,10 @@ public  class Main {
                     if(entity.equals("Teacher")){
                         System.out.println("Enter Id for Delete: ");
                         int iD =scanner.nextInt();
-                        Teacher.removeTeacher(iD);
-                        Teacher.saveToFile();
+                        teacher.removeTeacher(iD);
+                        teacher.saveToFile();
+                        assignedCourses.deleteRecordOfAnyTeacher(iD);
+                        assignedCourses.saveToFile();
                     }
                     break;
                 case 3:
@@ -516,8 +507,8 @@ public  class Main {
                     if (entity.equals("Teacher"))
                     { System.out.print("enter id for update ");
                         int Id =scanner.nextInt();
-                        Teacher.updateTeacher(Id);
-                        Teacher.saveToFile();
+                        teacher.updateTeacher(Id);
+                        teacher.saveToFile();
                     }
                     break;
                 case 4:
@@ -532,8 +523,8 @@ public  class Main {
                     if (entity.equals("Teacher"))
                     {  System.out.print("enter id for search ");
                         int id =scanner.nextInt();
-                        Teacher.searchTeacher(id);
-                        Teacher.saveToFile();
+                        teacher.searchTeacher(id);
+                        teacher.saveToFile();
                         break;
                     }
                     break;
@@ -847,6 +838,7 @@ public  class Main {
                             if (!assignedCourses.checkCourseIsAlreadyAssigned(id,course.toLowerCase(),Class))
                             {
                                 assignedCourses.add(id,Class,course.toLowerCase(),temp.Name);
+                                assignedCourses.saveToFile();
                             }
                             else {
                                 System.out.println(course+" is already assigned !!! ");
@@ -865,6 +857,7 @@ public  class Main {
                             if (!assignedCourses.checkCourseIsAlreadyAssigned(id,course.toLowerCase(),Class))
                             {
                                 assignedCourses.add(id,Class,course.toLowerCase(),temp.Name);
+                                assignedCourses.saveToFile();
                             }
                             else {
                                 System.out.println(course+" is already assigned !!! ");
@@ -882,6 +875,7 @@ public  class Main {
                         if (!assignedCourses.checkCourseIsAlreadyAssigned(id,course.toLowerCase(),Class))
                         {
                             assignedCourses.add(id,Class,course.toLowerCase(),temp.Name);
+                            assignedCourses.saveToFile();
                         }
                         else {
                             System.out.println(course+" is already assigned !!! ");
@@ -898,6 +892,7 @@ public  class Main {
                         if (!assignedCourses.checkCourseIsAlreadyAssigned(id,course.toLowerCase(),Class))
                         {
                             assignedCourses.add(id,Class,course.toLowerCase(),temp.Name);
+                            assignedCourses.saveToFile();
                         }
                         else {
                             System.out.println(course+" is already assigned !!! ");
@@ -914,6 +909,7 @@ public  class Main {
                             if (!assignedCourses.checkCourseIsAlreadyAssigned(id,course.toLowerCase(),Class))
                             {
                                 assignedCourses.add(id,Class,course.toLowerCase(),temp.Name);
+                                assignedCourses.saveToFile();
                             }
                             else {
                                 System.out.println(course+" is already assigned !!! ");
@@ -930,6 +926,7 @@ public  class Main {
                             if (!assignedCourses.checkCourseIsAlreadyAssigned(id,course.toLowerCase(),Class))
                             {
                                 assignedCourses.add(id,Class,course.toLowerCase(),temp.Name);
+                                assignedCourses.saveToFile();
                             }
                             else {
                                 System.out.println(course+" is already assigned !!! ");
@@ -946,6 +943,7 @@ public  class Main {
                             if (!assignedCourses.checkCourseIsAlreadyAssigned(id,course.toLowerCase(),Class))
                             {
                                 assignedCourses.add(id,Class,course.toLowerCase(),temp.Name);
+                                assignedCourses.saveToFile();
                             }
                             else {
                                 System.out.println(course+" is already assigned !!! ");
@@ -963,6 +961,7 @@ public  class Main {
                             if (!assignedCourses.checkCourseIsAlreadyAssigned(id,course.toLowerCase(),Class))
                             {
                                 assignedCourses.add(id,Class,course.toLowerCase(),temp.Name);
+                                assignedCourses.saveToFile();
                             }
                             else {
                                 System.out.println(course+" is already assigned !!! ");
@@ -980,6 +979,7 @@ public  class Main {
                             if (!assignedCourses.checkCourseIsAlreadyAssigned(id,course.toLowerCase(),Class))
                             {
                                 assignedCourses.add(id,Class,course.toLowerCase(),temp.Name);
+                                assignedCourses.saveToFile();
                             }
                             else {
                                 System.out.println(course+" is already assigned !!! ");
@@ -997,6 +997,7 @@ public  class Main {
                             if (!assignedCourses.checkCourseIsAlreadyAssigned(id,course.toLowerCase(),Class))
                             {
                                 assignedCourses.add(id,Class,course.toLowerCase(),temp.Name);
+                                assignedCourses.saveToFile();
                             }
                             else {
                                 System.out.println(course+" is already assigned !!! ");
@@ -1085,60 +1086,70 @@ public  class Main {
                             System.out.println(Course + " course is already added in class " + studentClass);
                         } else {
                             Class1.insert(Course);
+                            saveCoursesToFile();
                         }
                     } else if (studentClass == 2) {
                         if (Class2.search(Course)) {
                             System.out.println(Course + " course is already added in class " + studentClass);
                         } else {
                             Class2.insert(Course);
+                            saveCoursesToFile();
                         }
                     } else if (studentClass == 3) {
                         if (Class3.search(Course)) {
                             System.out.println(Course + " course is already added in class " + studentClass);
                         } else {
                             Class3.insert(Course);
+                            saveCoursesToFile();
                         }
                     } else if (studentClass == 4) {
                         if (Class4.search(Course)) {
                             System.out.println(Course + " course is already added in class " + studentClass);
                         } else {
                             Class4.insert(Course);
+                            saveCoursesToFile();
                         }
                     } else if (studentClass == 5) {
                         if (Class5.search(Course)) {
                             System.out.println(Course + " course is already added in class " + studentClass);
                         } else {
                             Class5.insert(Course);
+                            saveCoursesToFile();
                         }
                     } else if (studentClass == 6) {
                         if (Class6.search(Course)) {
                             System.out.println(Course + " course is already added in class " + studentClass);
                         } else {
                             Class6.insert(Course);
+                            saveCoursesToFile();
                         }
                     } else if (studentClass == 7) {
                         if (Class7.search(Course)) {
                             System.out.println(Course + " course is already added in class " + studentClass);
                         } else {
                             Class7.insert(Course);
+                            saveCoursesToFile();
                         }
                     } else if (studentClass == 8) {
                         if (Class8.search(Course)) {
                             System.out.println(Course + " course is already added in class " + studentClass);
                         } else {
                             Class8.insert(Course);
+                            saveCoursesToFile();
                         }
                     } else if (studentClass == 9) {
                         if (Class9.search(Course)) {
                             System.out.println(Course + " course is already added in class " + studentClass);
                         } else {
                             Class9.insert(Course);
+                            saveCoursesToFile();
                         }
                     } else {
                         if (Class10.search(Course)) {
                             System.out.println(Course + " course is already added in class " + studentClass);
                         } else {
                             Class10.insert(Course);
+                            saveCoursesToFile();
                         }
                     }
                     assignedCourses.saveToFile();
@@ -1163,28 +1174,57 @@ public  class Main {
                     // Process based on the class number
                     if (studentClass == 1) {
                         Class1.delete(Class1.position(Course));
+                        saveCoursesToFile();
+                        assignedCourses.deleteRecordOfAnyCourseOfAnyClass(1,Course);
+                        assignedCourses.saveToFile();
                     } else if (studentClass == 2) {
                         Class2.delete(Class2.position(Course));
+                        saveCoursesToFile();
+                        assignedCourses.deleteRecordOfAnyCourseOfAnyClass(2,Course);
+                        assignedCourses.saveToFile();
                     } else if (studentClass == 3) {
                         Class3.delete(Class3.position(Course));
+                        saveCoursesToFile();
+                        assignedCourses.deleteRecordOfAnyCourseOfAnyClass(3,Course);
+                        assignedCourses.saveToFile();
                     } else if (studentClass == 4) {
                         Class4.delete(Class4.position(Course));
+                        saveCoursesToFile();
+                        assignedCourses.deleteRecordOfAnyCourseOfAnyClass(4,Course);
+                        assignedCourses.saveToFile();
                     } else if (studentClass == 5) {
                         Class5.delete(Class5.position(Course));
+                        saveCoursesToFile();
+                        assignedCourses.deleteRecordOfAnyCourseOfAnyClass(5,Course);
+                        assignedCourses.saveToFile();
                     } else if (studentClass == 6) {
                         Class6.delete(Class6.position(Course));
+                        saveCoursesToFile();
+                        assignedCourses.deleteRecordOfAnyCourseOfAnyClass(6,Course);
+                        assignedCourses.saveToFile();
                     } else if (studentClass == 7) {
                         Class7.delete(Class7.position(Course));
+                        saveCoursesToFile();
+                        assignedCourses.deleteRecordOfAnyCourseOfAnyClass(7,Course);
+                        assignedCourses.saveToFile();
                     } else if (studentClass == 8) {
                         Class8.delete(Class8.position(Course));
+                        saveCoursesToFile();
+                        assignedCourses.deleteRecordOfAnyCourseOfAnyClass(8,Course);
+                        assignedCourses.saveToFile();
                     } else if (studentClass == 9) {
                         Class9.delete(Class9.position(Course));
+                        saveCoursesToFile();
+                        assignedCourses.deleteRecordOfAnyCourseOfAnyClass(9,Course);
+                        assignedCourses.saveToFile();
                     } else {
                         Class10.delete(Class10.position(Course));
+                        saveCoursesToFile();
+                        assignedCourses.deleteRecordOfAnyCourseOfAnyClass(10,Course);
+                        assignedCourses.saveToFile();
                     }
                     assignedCourses.saveToFile();
                     break;
-
                 case 7:
                     return false;
                 default:
@@ -1379,4 +1419,80 @@ public  class Main {
             }
         }
     }
+
+    public static void saveCoursesToFile()
+    {
+        try (BufferedWriter writer = new BufferedWriter(new FileWriter(Filename))) {
+            for (int i = 1; i < 11; i++) {
+                writer.write("\t\t\t\t\t* * * * COURSES DETAILS * * * *\n\n");
+                writer.write("class "+i+"\n\n");
+                if (i==1)
+                {
+                    for (int j = 0; j < Class1.size(); j++) {
+                        writer.write(". "+Class1.GetCertificate(j)+"\n");
+                    }
+                }
+             else if (i==2)
+                {
+                    for (int j = 0; j < Class2.size(); j++) {
+                        writer.write(". "+Class2.GetCertificate(j)+"\n");
+                    }
+                }
+              else if (i==3)
+                {
+                    for (int j = 0; j < Class3.size(); j++) {
+                        writer.write(". "+Class3.GetCertificate(j)+"\n");
+                    }
+                }
+               else if (i==4)
+                {
+                    for (int j = 0; j < Class4.size(); j++) {
+                        writer.write(". "+Class4.GetCertificate(j)+"\n");
+                    }
+                }
+               else if (i==5)
+                {
+                    for (int j = 0; j < Class5.size(); j++) {
+                        writer.write(". "+Class5.GetCertificate(j)+"\n");
+                    }
+                }
+              else if (i==6)
+                {
+                    for (int j = 0; j < Class6.size(); j++) {
+                        writer.write(". "+Class6.GetCertificate(j)+"\n");
+                    }
+                }
+              else if (i==7)
+                {
+                    for (int j = 0; j < Class7.size(); j++) {
+                        writer.write(". "+Class7.GetCertificate(j)+"\n");
+                    }
+                }
+             else if (i==8)
+                {
+                    for (int j = 0; j < Class8.size(); j++) {
+                        writer.write(". "+Class8.GetCertificate(j)+"\n");
+                    }
+                }
+             else if (i==9)
+                {
+                    for (int j = 0; j < Class9.size(); j++) {
+                        writer.write(". "+Class9.GetCertificate(j)+"\n");
+                    }
+                }
+               else
+                {
+                    for (int j = 0; j < Class10.size(); j++) {
+                        writer.write(". "+Class10.GetCertificate(j)+"\n");
+                    }
+                }
+                writer.write("\n\n");
+            }
+        } catch (IOException e) {
+            System.out.println("Error saving teacher details to file.");
+        }
+    }
+
+
+
 }

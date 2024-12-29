@@ -30,6 +30,46 @@ public class AssignedCoursesClass {
         tail = newNode;
     }
 
+    public void deleteRecordOfAnyTeacher(int id)
+    {
+        ClassNode temp =head;
+      while (temp!=null)
+      { if (temp.Teacher_ID==id)
+      {
+          delete(temp);
+      }
+          temp=temp.next;
+      }
+    }
+
+    public void deleteRecordOfAnyCourseOfAnyClass(int Class ,String course)
+    {
+        ClassNode temp =head;
+        while (temp!=null)
+        { if (temp.CLASS==Class&& temp.Course.equals(course))
+        {
+            delete(temp);
+            break;
+        }
+            temp=temp.next;
+        }
+    }
+    public void delete(ClassNode temp)
+    {
+        if (temp == head) {
+            head = temp.next;
+            head.prev = null;
+            return;
+        }
+        if (temp == tail) {
+            tail = temp.prev;
+            tail.next = null;
+            return;
+        }
+        temp.prev.next = temp.next;
+        temp.next.prev = temp.prev;
+    }
+
     public void delete(int teacherId, String course, int Class) {
         ClassNode temp = head;
         while (temp != null) {
@@ -164,7 +204,6 @@ public class AssignedCoursesClass {
                 writer.write("Teacher Name: " + temp.Teacher_Name + "\n");
                 writer.write("Class: " + temp.CLASS + "\n");
                 writer.write("Course: " + temp.Course + "\n");
-                writer.write("----------------------------------------------------\n");
                 temp = temp.next;
             }
         } catch (IOException e) {
