@@ -17,14 +17,12 @@ public class TeacherList {
         TotalNumberOfTeachers = 0;
     }
 
-    String Filename="C:\\Users\\HP\\Desktop\\lab 1\\DSA project\\Staff.txt";
-   //String Filename =" C:\\Users\\Admin\\Desktop\\dsa-project1\\Teacher.txt";
+    //String Filename="C:\\Users\\HP\\Desktop\\lab 1\\DSA project\\Staff.txt";
+    String Filename ="C:\\Users\\Admin\\Desktop\\dsa-project1\\Teacher.txt";
 
     public boolean isEmpty() {
         return head == null;
     }
-
-
     public void addTeacher(String Name, String Gender, String DateOfBirth, String MaritalStatus, String Email,
                            String Specialization, String HigestQualification, String Contact, String Address,
                            double Salary, String Skills, String Experience,

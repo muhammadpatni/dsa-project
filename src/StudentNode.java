@@ -6,4 +6,5 @@ public class StudentNode {
     MarksListForStudent marks;
     StudentNode prev,next;
     FeeClass fee = new FeeClass();
+    BooleanArray attendance = new BooleanArray();
 }

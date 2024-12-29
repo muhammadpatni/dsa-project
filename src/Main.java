@@ -26,8 +26,8 @@ public  class Main {
         login();
 
     }
-    public static void login()
-    {
+
+    public static void login() {
         Scanner scanner = new Scanner(System.in);
 
         while (true) {
@@ -40,27 +40,30 @@ public  class Main {
                     {"teacher", "teacher123"},
                     {"accountant", "accountant123"},
                     {"examination", "exam123"},
-                    {"coordinator", "coordinator123"}
+                    {"coordinator", "coordinator123"},
+                    {"attendance", "attendance123"}  // Added password for Attendance role
             };
 
+            // Displaying the login options
             System.out.println("1. Admin");
             System.out.println("2. Principal");
             System.out.println("3. Teacher");
             System.out.println("4. Accountant");
             System.out.println("5. Examination Department");
             System.out.println("6. Coordinator");
-            System.out.println("7. Exit");
+            System.out.println("7. Attendance"); // Added Attendance option
+            System.out.println("8. Exit");
 
             System.out.print("Enter the number corresponding to your role: ");
             int choice = scanner.nextInt();
             scanner.nextLine(); // Consume newline
 
-            if (choice == 7) {
+            if (choice == 8) {
                 System.out.println("Exiting the application. Goodbye!");
                 break;
             }
 
-            if (choice < 1 || choice > 6) {
+            if (choice < 1 || choice > 7) {
                 System.out.println("Invalid choice. Please try again.");
                 continue;
             }
@@ -74,47 +77,54 @@ public  class Main {
 
             boolean loggedIn = false;
 
-            while (!loggedIn) {
-                System.out.print("Enter your username: ");
-                String inputUsername = scanner.nextLine();
+            if (choice == 7) {
+                // Directly proceed to the attendance menu without asking for credentials
+                System.out.println("\nNo login required for Attendance role.");
+                loggedIn = true;
+                attendanceMenu(scanner);  // Handle Attendance Menu directly
+            } else {
+                while (!loggedIn) {
+                    System.out.print("Enter your username: ");
+                    String inputUsername = scanner.nextLine();
 
-                System.out.print("Enter your password: ");
-                String inputPassword = scanner.nextLine();
+                    System.out.print("Enter your password: ");
+                    String inputPassword = scanner.nextLine();
 
-                if (inputUsername.equals(username) && inputPassword.equals(password)) {
-                    System.out.println("\nLogin successful! Welcome " + role + ".");
-                    loggedIn = true;
+                    if (inputUsername.equals(username) && inputPassword.equals(password)) {
+                        System.out.println("\nLogin successful! Welcome " + role + ".");
+                        loggedIn = true;
 
-                    // Proceed to the respective menu
-                    boolean isLoggedIn = true;
-                    while (isLoggedIn) {
-                        switch (choice) {
-                            case 1:
-                                isLoggedIn = adminMenu(scanner);
-                                break;
-                            case 2:
-                                isLoggedIn = principalMenu(scanner);
-                                break;
-                            case 3:
-                                isLoggedIn = teacherMenu(scanner);
-                                break;
-                            case 4:
-                                isLoggedIn = accountantMenu(scanner);
-                                break;
-                            case 5:
-                                isLoggedIn = examinationMenu(scanner);
-                                break;
-                            case 6:
-                                isLoggedIn = coordinatorMenu(scanner); // Added coordinator menu
-                                break;
+                        // Proceed to the respective menu
+                        boolean isLoggedIn = true;
+                        while (isLoggedIn) {
+                            switch (choice) {
+                                case 1:
+                                    isLoggedIn = adminMenu(scanner);
+                                    break;
+                                case 2:
+                                    isLoggedIn = principalMenu(scanner);
+                                    break;
+                                case 3:
+                                    isLoggedIn = teacherMenu(scanner);
+                                    break;
+                                case 4:
+                                    isLoggedIn = accountantMenu(scanner);
+                                    break;
+                                case 5:
+                                    isLoggedIn = examinationMenu(scanner);
+                                    break;
+                                case 6:
+                                    isLoggedIn = coordinatorMenu(scanner);
+                                    break;
+                            }
                         }
-                    }
-                } else {
-                    System.out.println("Invalid credentials. Please try again.");
-                    System.out.print("Would you like to try again or go back to the main menu? (try again/back): ");
-                    String action = scanner.nextLine();
-                    if (action.equalsIgnoreCase("back")) {
-                        break; // Back to the role selection menu
+                    } else {
+                        System.out.println("Invalid credentials. Please try again.");
+                        System.out.print("Would you like to try again or go back to the main menu? (try again/back): ");
+                        String action = scanner.nextLine();
+                        if (action.equalsIgnoreCase("back")) {
+                            break; // Back to the role selection menu
+                        }
                     }
                 }
             }
@@ -130,10 +140,104 @@ public  class Main {
             case 3: return "Teacher";
             case 4: return "Accountant";
             case 5: return "Examination Department";
-            case 6: return "Coordinator"; // Added Coordinator
+            case 6: return "Coordinator";
+            case 7: return "Attendance"; // Return Attendance for the added option
             default: return "Unknown";
         }
     }
+
+    private static boolean attendanceMenu(Scanner scanner) {
+        String[][] Attendance = {
+                {"teacher1", "class1"},
+                {"teacher2", "class2"},
+                {"teacher3", "class3"},
+                {"teacher4", "class4"},
+                {"teacher5", "class5"},
+                {"teacher6", "class6"},
+                {"teacher7", "class7"},
+                {"teacher8", "class8"},
+                {"teacher9", "class9"},
+                {"teacher10", "class10"}
+        };
+
+        // Backup for class information
+        String[] classData = {"1", "2", "3", "4", "5", "6", "7", "8", "9", "10"};
+
+        boolean isLoggedIn = false;
+
+        // Attendance menu for the logged-in user
+        while (!isLoggedIn) {
+            System.out.println("\nAttendance Menu:");
+            System.out.println("1. Mark Attendance");
+            System.out.println("2. View Attendance");
+            System.out.println("3. Logout");
+            System.out.println("4. Back to Login");
+            System.out.print("Enter your choice: ");
+            int choice = scanner.nextInt();
+            scanner.nextLine(); // Consume newline
+
+            switch (choice) {
+                case 1:
+                    // Mark Attendance
+                    System.out.print("Enter Class Name: ");
+                    String className = scanner.nextLine();
+
+                    // Ask for credentials after class name
+                    boolean validUser = false;
+                    while (!validUser) {
+                        System.out.print("Enter Username: ");
+                        String username = scanner.nextLine();
+                        System.out.print("Enter Password: ");
+                        String password = scanner.nextLine();
+
+                        // Check if the credentials are valid
+                        for (int i = 0; i < Attendance.length; i++) {
+                            if (Attendance[i][0].equals(username) && Attendance[i][1].equals(password) && classData[i].equals(className)) {
+                                validUser = true;
+                                System.out.println("Attendance marked for Class " + className + " by " + username);
+                                break;
+                            }
+                        }
+
+                        if (!validUser) {
+                            System.out.println("Invalid username, password, or class. Please try again.");
+                        }
+                    }
+                    break;
+
+                case 2:
+                    // View Attendance
+                    System.out.print("Enter Class Name: ");
+                    String viewClassName = scanner.nextLine();
+                    System.out.println("Viewing attendance for Class " + viewClassName);
+                    // Display attendance logic can be added here
+                    break;
+
+                case 3:
+                    // Logout
+                    System.out.println("Logging out...");
+                    isLoggedIn = false;
+                    break;
+
+                case 4:
+                    // Back to Login
+                    System.out.println("Returning to login page...");
+                    isLoggedIn = false;
+                    break;
+
+                default:
+                    System.out.println("Invalid choice. Please try again.");
+                    break;
+            }
+        }
+        return true;
+    }
+
+
+
+
+
+
     private static boolean adminMenu(Scanner scanner) {
         while (true) {
             System.out.println("\nAdmin Menu:");
@@ -432,6 +536,7 @@ public  class Main {
         }
     }
 
+
     private static boolean principalMenu(Scanner scanner) {
         while (true) {
             System.out.println("\nPrincipal Menu:");
@@ -460,9 +565,9 @@ public  class Main {
     private static boolean teacherMenu(Scanner scanner) {
         while (true) {
             System.out.println("\nTeacher Menu:");
-            System.out.println("1. View Students in Class");
-            System.out.println("2. View Courses");
-            System.out.println("3. View Scheduling List");
+            System.out.println("1. Mark Attendance (Class-wise)");
+            System.out.println("2. View Your Assign Course");
+            System.out.println("3. View Students in Any Class");
             System.out.println("4. Back to Login");
             System.out.print("Enter your choice: ");
             int choice = scanner.nextInt();
@@ -470,21 +575,43 @@ public  class Main {
 
             switch (choice) {
                 case 1:
-                    System.out.println("Viewing Students in Class...");
+                    System.out.println("Option 1: Mark Attendance (Class-wise)");
                     break;
+
                 case 2:
-                    System.out.println("Viewing Courses...");
+                    System.out.println("View Your Assign Course");
+                    if(teacher.isEmpty())
+                    {
+                        System.out.println("Teacher not available");
+                    }
+                    System.out.print("enter teacher id : ");
+                    int teacherid =scanner.nextInt();
+                    if (teacher.validTeacherId(teacherid)==null)
+                    {
+                        System.out.println("Invalid teacher Id");
+                        break;
+                    }
+                    assignedCourses.displaySpecificTeacherById(teacherid);
                     break;
+
                 case 3:
-                    System.out.println("Viewing Scheduling List...");
+                    // View students in any class
+                    System.out.print("Enter class number to view students: ");
+                    int Class = scanner.nextInt();
+                    student.Displaybyclass(Class);
                     break;
+
                 case 4:
+                    // Back to login
                     return false;
+
                 default:
                     System.out.println("Invalid choice. Try again.");
             }
         }
     }
+
+
 
     private static boolean accountantMenu(Scanner scanner) {
         while (true) {
@@ -881,6 +1008,7 @@ public  class Main {
                         System.out.println(course+" is not available in class "+Class);
                         break;
                     }}
+                    assignedCourses.saveToFile();
 
                     break;
                 case 2:
@@ -912,12 +1040,14 @@ public  class Main {
                     System.out.print("enter course to unassigned");
                     String CourseName= scanner.nextLine();
                     assignedCourses.delete(Id,CourseName.toLowerCase(),ClassNumber);
+                    assignedCourses.saveToFile();
                     break;
                 case 3:
                     System.out.println("Viewing Teachers Teaching Specific Classes...");
                     System.out.print("enter class : ");
                     int classnumber=scanner.nextInt();
                     assignedCourses.displaySpecificClassById(classnumber);
+                    assignedCourses.saveToFile();
                     break;
                 case 4:
                     System.out.println("Viewing Which Teacher is Teaching Which Course in a Specific Class...");
@@ -1022,6 +1152,7 @@ public  class Main {
                             saveCoursesToFile();
                         }
                     }
+                    assignedCourses.saveToFile();
                     break;
 
                 case 6:
@@ -1092,6 +1223,7 @@ public  class Main {
                         assignedCourses.deleteRecordOfAnyCourseOfAnyClass(10,Course);
                         assignedCourses.saveToFile();
                     }
+                    assignedCourses.saveToFile();
                     break;
                 case 7:
                     return false;
