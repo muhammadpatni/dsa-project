@@ -552,8 +552,38 @@ import java.util.Scanner;
                  }
                  System.out.println();
              }
+             temp=temp.next;
+         }
+         if (found)
+         {
+             System.out.println("no student in class "+Class);
          }
      }
+
+     public void displayMonthAttendanceOfClass(int Class)
+     {
+         boolean found=false;
+         System.out.println("| ROLL# |         Name         | 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 | 11 | 12 | 13 | 14 | 15 |");
+
+         StudentNode temp=head;
+         while (temp!=null)
+         {
+             if (temp.CurrentClass==Class)
+             {   found=true;
+
+             temp=temp.next;
+         }
+         if (found)
+         {
+             System.out.println("no student in class "+Class);
+         }
+
+
+
+
+
+     }
+
 
 
      }

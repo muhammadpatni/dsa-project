@@ -159,7 +159,7 @@ public  class Main {
         };
 
         // Backup for class information
-        String[] classData = {"1", "2", "3", "4", "5", "6", "7", "8", "9", "10"};
+        int[] classData = {1,2,3,4,5,6,7,8,9,10};
 
         boolean isLoggedIn = false;
 
@@ -176,10 +176,10 @@ public  class Main {
 
             switch (choice) {
                 case 1:
-                    // Mark Attendance
+                    String[] date={"","","","","","","","","",""};
                     System.out.print("Enter Class Name: ");
-                    String className = scanner.nextLine();
-
+                    int className = scanner.nextInt();
+                    scanner.nextLine();
                     // Ask for credentials after class name
                     boolean validUser = false;
                     while (!validUser) {
@@ -190,10 +190,20 @@ public  class Main {
 
                         // Check if the credentials are valid
                         for (int i = 0; i < Attendance.length; i++) {
-                            if (Attendance[i][0].equals(username) && Attendance[i][1].equals(password) && classData[i].equals(className)) {
+                            if (Attendance[i][0].equals(username) && Attendance[i][1].equals(password) && classData[i]==className) {
                                 validUser = true;
-                                System.out.println("Attendance marked for Class " + className + " by " + username);
-                                break;
+                                if (date[className].equals(LocalDate.now().toString()))
+                                {
+                                    System.out.println("Today's attendance is already marked for class "+className);
+                                    break;
+                                }
+                                else
+                                {
+                                    date[className]=LocalDate.now().toString();
+                                    student.markAttendanceOfClass(className);
+                                    System.out.println("Attendance marked for Class " + className + " by " + username);
+                                    break;
+                                }
                             }
                         }
 
@@ -206,9 +216,8 @@ public  class Main {
                 case 2:
                     // View Attendance
                     System.out.print("Enter Class Name: ");
-                    String viewClassName = scanner.nextLine();
+                    int viewClassName = scanner.nextInt();
                     System.out.println("Viewing attendance for Class " + viewClassName);
-                    // Display attendance logic can be added here
                     break;
 
                 case 3:
@@ -1459,7 +1468,7 @@ public  class Main {
                     }
                     if (!temp.marks.isEmpty())
                     {
-                        System.out.println("marks is not assigned to "+Id);
+                        System.out.println("marks is not uploaded for "+Id);
                         break;
                     }
                     else
