@@ -554,13 +554,26 @@ public  class Main {
 
                         switch (teacherChoice) {
                             case 1:
-                                System.out.println("Displaying all teachers' details...");
+                                teacher.displayAllTeachers();
                                 break;
                             case 2:
-                                System.out.println("Searching for a teacher's details...");
+                                System.out.print("enter id for search ");
+                                int id =scanner.nextInt();
+                                teacher.searchTeacher(id);
                                 break;
                             case 3:
-                                System.out.println("Viewing classes and subjects taught by a teacher...");
+                                if(teacher.isEmpty())
+                                {
+                                    System.out.println("Teacher not available");
+                                }
+                                System.out.print("enter teacher id : ");
+                                int teacherid =scanner.nextInt();
+                                if (teacher.validTeacherId(teacherid)==null)
+                                {
+                                    System.out.println("Invalid teacher Id");
+                                    break;
+                                }
+                                assignedCourses.displaySpecificTeacherById(teacherid);
                                 break;
                             case 4:
                                 return true;
@@ -584,16 +597,42 @@ public  class Main {
 
                         switch (studentChoice) {
                             case 1:
-                                System.out.println("Displaying all students' details...");
+                                student.displayAllStudents();
                                 break;
                             case 2:
-                                System.out.println("Searching for a student...");
+                                System.out.print("enter id for search ");
+                                int id =scanner.nextInt();
+                                student.searchStudent(id);
                                 break;
                             case 3:
-                                System.out.println("Viewing student marks...");
+                                StudentNode temp;
+                                if (student.isEmpty()) {
+                                    System.out.println("Students not available");
+                                    break;
+                                }
+                                System.out.print("enter student Id :");
+                                int Id = scanner.nextInt();
+                                if (student.uploadMarks(Id) == null) {
+                                    System.out.println("Invalid Id");
+                                    break;
+                                }
+                                else {
+                                    temp = student.uploadMarks(Id);
+                                }
+                                if (!temp.marks.isEmpty())
+                                {
+                                    System.out.println("marks is not assigned to "+Id);
+                                    break;
+                                }
+                                else
+                                {
+                                    temp.marks.displayStudentMarks();
+                                }
                                 break;
                             case 4:
-                                System.out.println("Viewing student fee details...");
+                                System.out.println("Enter student Id");
+                                Id =scanner.nextInt();
+                                student.GenerateFeeStatusTable(Id);
                                 break;
                             case 5:
                                 System.out.println("Viewing student attendance...");
@@ -645,13 +684,88 @@ public  class Main {
 
                         switch (classChoice) {
                             case 1:
-                                System.out.println("Viewing courses of a class...");
+                                System.out.println("Enter Class:");
+                                int Class = scanner.nextInt();
+                                if(Class == 1 ){
+                                    if(Class1.size()>0)
+                                        Class1.print();
+                                    else{
+                                        System.out.println("Courses not assigned to "+Class);
+                                    }
+                                }
+                                else if(Class == 2 ){
+                                    if(Class2.size()>0)
+                                        Class2.print();
+                                    else{
+                                        System.out.println("Courses not assigned to "+Class);
+                                    }
+                                }
+                                else if(Class == 3 ){
+                                    if(Class3.size()>0)
+                                        Class3.print();
+                                    else{
+                                        System.out.println("Courses not assigned to "+Class);
+                                    }
+                                }
+                                else if(Class == 4 ){
+                                    if(Class4.size()>0)
+                                        Class4.print();
+                                    else{
+                                        System.out.println("Courses not assigned to "+Class);
+                                    }
+                                }
+                                else if(Class == 5 ){
+                                    if(Class5.size()>0)
+                                        Class5.print();
+                                    else{
+                                        System.out.println("Courses not assigned to "+Class);
+                                    }
+                                }
+                                else if(Class == 6 ){
+                                    if(Class6.size()>0)
+                                        Class6.print();
+                                    else{
+                                        System.out.println("Courses not assigned to "+Class);
+                                    }
+                                }
+                                else if(Class == 7 ){
+                                    if(Class7.size()>0)
+                                        Class7.print();
+                                    else{
+                                        System.out.println("Courses not assigned to "+Class);
+                                    }
+                                }
+                                else if(Class == 8 ){
+                                    if(Class8.size()>0)
+                                        Class8.print();
+                                    else{
+                                        System.out.println("Courses not assigned to "+Class);
+                                    }
+                                }
+                               else if(Class == 9){
+                                    if(Class9.size()>0)
+                                        Class9.print();
+                                    else{
+                                        System.out.println("Courses not assigned to "+Class);
+                                    }
+                                }
+                                if(Class == 10){
+                                    if(Class10.size()>0)
+                                        Class10.print();
+                                    else{
+                                        System.out.println("Courses not assigned to "+Class);
+                                    }
+                                }
                                 break;
                             case 2:
-                                System.out.println("Viewing students in a class...");
+                                System.out.println("Enter Class:");
+                                 Class = scanner.nextInt();
+                                student.Displaybyclass(Class);
                                 break;
                             case 3:
-                                System.out.println("Viewing teachers teaching a class...");
+                                System.out.print("enter class : ");
+                                int ClassNumber=scanner.nextInt();
+                                assignedCourses.displaySpecificClassById(ClassNumber);
                                 break;
                             case 4:
                                 System.out.println("Viewing last month's attendance of a class...");
