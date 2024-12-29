@@ -531,6 +531,30 @@ import java.util.Scanner;
          }
      }
 
+     public void markAttendanceOfClass (int Class)
+     {
+         boolean found=false;
+         StudentNode temp=head;
+         while (temp!=null)
+         {
+             if (temp.CurrentClass==Class)
+             {   found=true;
+                 System.out.println("Roll # "+temp.StudentId+" Name "+temp.Name);
+                 System.out.println("1 . present");
+                 System.out.println("2 . Absent");
+                 System.out.print("Mark Attendance : ");
+                 int choice =sc.nextInt();  // kamran yahan exception handling karni hai or yeh bi karna hai input 1 ya 2 hi hoo anything else na hoo
+                 if (choice==1)
+                 {
+                     temp.attendance.insert(true);
+                 } else if (choice==2) {
+                     temp.attendance.insert(true);
+                 }
+                 System.out.println();
+             }
+         }
+     }
+
 
      }
 

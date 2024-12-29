@@ -524,7 +524,6 @@ public  class Main {
                     {  System.out.print("enter id for search ");
                         int id =scanner.nextInt();
                         teacher.searchTeacher(id);
-                        teacher.saveToFile();
                         break;
                     }
                     break;
