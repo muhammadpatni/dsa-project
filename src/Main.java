@@ -21,7 +21,14 @@ public  class Main {
     static AssignedCoursesClass assignedCourses = new AssignedCoursesClass();
     static  StudentClass student=new StudentClass();
     public static void main(String[] args) {
-      student.retrieveFromFile();
+        System.out.println("\n");
+        System.out.println("                 ████████╗██╗  ██╗███████╗     ██████╗██╗████████╗ ██     ██╗   ███████╗ ██████╗██╗  ██╗ ██████╗  ██████╗ ██╗     ");
+        System.out.println("                 ╚══██╔══╝██║  ██║██╔════╝    ██╔════╝██║╚══██╔══╝ ╚██   ██╔╝   ██╔════╝██╔════╝██║  ██║██╔═══██╗██╔═══██╗██║     ");
+        System.out.println("                    ██║   ███████║█████╗      ██║     ██║   ██║     ╚██ ██╔╝    ███████╗██║     ███████║██║   ██║██║   ██║██║     ");
+        System.out.println("                    ██║   ██╔══██║██╔══╝      ██║     ██║   ██║      ╚███╔╝     ╚════██║██║     ██╔══██║██║   ██║██║   ██║██║     ");
+        System.out.println("                    ██║   ██║  ██║███████╗    ╚██████╗██║   ██║       ╚█╔╝      ███████║╚██████╗██║  ██║╚██████╔╝╚██████╔╝███████╗");
+        System.out.println("                    ╚═╝   ╚═╝  ╚═╝╚══════╝     ╚═════╝╚═╝   ╚═╝        ╚╝       ╚══════╝ ╚═════╝╚═╝  ╚═╝ ╚═════╝  ╚═════╝ ╚══════╝");
+        student.retrieveFromFile();
       staff.readFromFile();
       teacher.readFromFile();
       assignedCourses.readFromFile();
@@ -36,8 +43,7 @@ public  class Main {
         Scanner scanner = new Scanner(System.in);
 
         while (true) {
-            System.out.println("\nWelcome to the School Management System!");
-            System.out.println("Please select your role to login:");
+            System.out.println("PLEASE SELECT YOUR ROLE TO LOGIN:\n");
 
             String[][] users = {
                     {"admin", "admin123"},
@@ -50,21 +56,21 @@ public  class Main {
             };
 
             // Displaying the login options
-            System.out.println("1. Admin");
-            System.out.println("2. Principal");
-            System.out.println("3. Teacher");
-            System.out.println("4. Accountant");
-            System.out.println("5. Examination Department");
-            System.out.println("6. Coordinator");
-            System.out.println("7. Attendance"); // Added Attendance option
-            System.out.println("8. Exit");
+            System.out.println("1. ADMIN");
+            System.out.println("2. PRINCIPAL");
+            System.out.println("3. TEACHER");
+            System.out.println("4. ACCOUNTANT");
+            System.out.println("5. EXAMINATION DEPARTMENT");
+            System.out.println("6. COORDINATOR");
+            System.out.println("7. ATTENDANCE"); // Added Attendance option
+            System.out.println("8. EXIT");
 
             System.out.print("Enter the number corresponding to your role: ");
             int choice = scanner.nextInt();
             scanner.nextLine(); // Consume newline
 
             if (choice == 8) {
-                System.out.println("Exiting the application. Goodbye!");
+                System.out.println("\nExiting the application. Goodbye!");
                 break;
             }
 
@@ -81,7 +87,7 @@ public  class Main {
 
             // Generate a welcome message based on the selected role
             String role = getRoleName(choice);
-            System.out.println("\nWelcome, " + role + "! Please enter your credentials.");
+            System.out.println("\nWelcome, " + role + "! Please enter your credentials.\n");
 
             String username = users[choice - 1][0];
             String password = users[choice - 1][1];
@@ -96,7 +102,7 @@ public  class Main {
                 String inputPassword = scanner.nextLine();
 
                 if (inputUsername.equals(username) && inputPassword.equals(password)) {
-                    System.out.println("\nLogin successful! Welcome " + role + ".");
+                    StyledConsoleOutput.printStyled("\nLogin successful! Welcome " + role + ".",false,false,"blue");
                     loggedIn = true;
 
                     // Proceed to the respective menu
@@ -124,13 +130,14 @@ public  class Main {
                         }
                     }
                 } else {
-                    System.out.println("Invalid credentials. Please try again.");
-                    System.out.print("Would you like to try again or go back to the main menu? (try again/back): ");
+               StyledConsoleOutput.printStyled("\nInvalid credentials. Please try again.\n",false,false,"red");
+                    System.out.print("Would you like to try again or go back to the main menu? (y/n): ");
                     String action = scanner.nextLine();
-                    if (action.equalsIgnoreCase("back")) {
+                    if (action.equalsIgnoreCase("n")) {
                         break; // Back to the role selection menu
                     }
                 }
+                System.out.println();
             }
         }
 
@@ -170,7 +177,7 @@ public  class Main {
 
         // Attendance menu for the logged-in user
         while (!isLoggedIn) {
-            System.out.println("\nAttendance Menu:");
+            System.out.println("\nATTENDANCE MENU:\n");
             System.out.println("1. Mark Attendance");
             System.out.println("2. View Attendance");
             System.out.println("3. Logout");
@@ -245,7 +252,7 @@ public  class Main {
     }
     private static boolean adminMenu(Scanner scanner) {
         while (true) {
-            System.out.println("\nAdmin Menu:");
+            System.out.println("\nADMIN MENU:\n");
             System.out.println("1. Manage Teachers");
             System.out.println("2. Manage Students");
             System.out.println("3. Manage Staff");
@@ -274,7 +281,7 @@ public  class Main {
 
     private static void manageEntity(Scanner scanner, String entity) {
         while (true) {
-            System.out.println("\n" + entity + " Management:");
+            System.out.println("\n" + entity + " Management:\n");
             System.out.println("1. Add " + entity);
             System.out.println("2. Delete " + entity);
             System.out.println("3. Update " + entity);
@@ -530,6 +537,7 @@ public  class Main {
                   else if (entity.equals("Student"))
                     { System.out.print("enter id for update ");
                         int Id =scanner.nextInt();
+                        student.updateStudent(Id);
                         student.saveToFile();
                     }
                     break;
@@ -550,7 +558,7 @@ public  class Main {
                    else if (entity.equals("Student"))
                     {  System.out.print("Enter Id for search: ");
                         int id =scanner.nextInt();
-                        teacher.searchTeacher(id);
+                        student.searchStudent(id);
                         break;
                     }
                     break;
@@ -565,7 +573,7 @@ public  class Main {
 
     private static boolean principalMenu(Scanner scanner) {
         while (true) {
-            System.out.println("\nMain Menu:");
+            System.out.println("\nMAIN MENU:\n");
             System.out.println("1. Teacher");
             System.out.println("2. Student");
             System.out.println("3. Staff");
@@ -578,7 +586,7 @@ public  class Main {
             switch (choice) {
                 case 1:
                     while (true) {
-                        System.out.println("\nTeacher Menu:");
+                        System.out.println("\nTEACHER MENU\n");
                         System.out.println("1. View all teachers' details");
                         System.out.println("2. Search for a teacher's details");
                         System.out.println("3. View classes and subjects taught by a teacher");
@@ -619,7 +627,7 @@ public  class Main {
 
                 case 2:
                     while (true) {
-                        System.out.println("\nStudent Menu:");
+                        System.out.println("\nSTUDENT MENU:\n");
                         System.out.println("1. View all students' details");
                         System.out.println("2. Search for a student");
                         System.out.println("3. View student marks");
@@ -684,7 +692,7 @@ public  class Main {
 
                 case 3:
                     while (true) {
-                        System.out.println("\nStaff Menu:");
+                        System.out.println("\nSTAFF MENU:\n");
                         System.out.println("1. Search for a staff member's details");
                         System.out.println("2. View all staff members");
                         System.out.println("3. Back to Main Menu");
@@ -710,7 +718,7 @@ public  class Main {
 
                 case 4:
                     while (true) {
-                        System.out.println("\nClass Menu:");
+                        System.out.println("\nCLASS MENU:\n");
                         System.out.println("1. View courses of a class");
                         System.out.println("2. View students in a class");
                         System.out.println("3. View teachers teaching a class");
@@ -802,14 +810,14 @@ public  class Main {
                                 break;
                             case 3:
                                 System.out.print("enter class : ");
-                                int ClassNumber=scanner.nextInt();
-                                assignedCourses.displaySpecificClassById(ClassNumber);
+                                int Classnumber=scanner.nextInt();
+                                assignedCourses.displaySpecificClassById(Classnumber);
                                 break;
                             case 4:
-                                System.out.println("Viewing last 12 days attendance of a class...");
+                                System.out.println("Viewing last 15 days attendance of a class");
                                 System.out.print("enter class : ");
                                 int classNumber=scanner.nextInt();
-
+                                student.displayMonthAttendanceOfClass(classNumber);
                                 break;
                             case 5:
                                 return true;
@@ -829,7 +837,7 @@ public  class Main {
 
     private static boolean teacherMenu(Scanner scanner) {
         while (true) {
-            System.out.println("\nTeacher Menu:");
+            System.out.println("\nTEACHER MENU:\n");
             System.out.println("1. View Your Assign Course");
             System.out.println("2. View Students in Any Class");
             System.out.println("3. Back to Login");
@@ -871,11 +879,9 @@ public  class Main {
         }
     }
 
-
-
     private static boolean accountantMenu(Scanner scanner) {
         while (true) {
-            System.out.println("\nAccountant Menu:");
+            System.out.println("\nACCOUNTANT MENU:\n");
             System.out.println("1. Generate Fee Voucher");
             System.out.println("2. View Details of Students with Unpaid Fees");
             System.out.println("3. Check Individual Student Fee Status");
@@ -1056,7 +1062,7 @@ public  class Main {
          String Course;
          boolean isValid = false;
         while (true) {
-            System.out.println("\nCoordinator Menu:");
+            System.out.println("\nCOORDINATOR MENU:\n");
             System.out.println("1. Assign Course to Teacher");
             System.out.println("2. Unassign Course from Teacher");
             System.out.println("3. View Teachers Teaching Specific Classes");
@@ -1495,7 +1501,7 @@ public  class Main {
 
     private static boolean examinationMenu(Scanner scanner) {
         while (true) {
-            System.out.println("\nExamination Department Menu:");
+            System.out.println("\nEXAMINATION DEPARTMENT MENU:\n");
             System.out.println("1. Upload Marks");
             System.out.println("2. View Marks");
             System.out.println("3. Edit Marks");

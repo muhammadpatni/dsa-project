@@ -1,18 +1,18 @@
-					* * * * TEACHER DETAILS * * * *
+	 	 	 	 	 	 	 	 * * * * STAFF DETAILS * * * * 
 
-Teacher ID: 1
-Name: kamran 
-Gender: Male
-DOB: 12-12-2005
-Date of Joining: 2024-12-28
-Contact: 03132017598
-Address: b-75/4 malir extension colony karachi 
-Salary: 20000.0
-Skills: no
-Experience: no
-Highest Qualification: graduation
-Specialization: maths
-Certifications:
-No certifications available.
+Staff Id :1
+Name :muhammad
+Gender :Male
+Dob :12-12-2004
+Date of joining :2024-12-30
+Contact :03232682952
+Address :b-75/4 malir extension colony karachi
+Designation :headmaster
+Salary :5.0E7
+Skill :no skill
+Experience :12 years
+Certification:
+• digital marketing
+• e-commerce
 
 

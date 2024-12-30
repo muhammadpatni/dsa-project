@@ -65,7 +65,7 @@ import java.util.Scanner;
 
         public void updateStudent(int StudentId) {
             if (isEmpty()) {
-                System.out.println("no staff is found");
+              StyledConsoleOutput.printStyled("\nNo student available",false,false,"red");
                 return;
             }
             StudentNode temp = head;
@@ -75,7 +75,7 @@ import java.util.Scanner;
                 temp = temp.next;
             }
             if (temp == null) {
-                System.out.println("Invalid ID");
+                StyledConsoleOutput.printStyled("\nInvalid ID",false,false,"red");
                 return;
             }
             System.out.println("Current Details :");

@@ -255,7 +255,7 @@ public class TeacherList {
 
     public void searchTeacher(int TeacherID) {
         if (isEmpty()) {
-            System.out.println("no staff available ..");
+            System.out.println("no teacher available ..");
             return;
         }
         Teacher temp = head;
@@ -269,21 +269,21 @@ public class TeacherList {
             return;
         } else {
             System.out.println("                                                 * * * TEACHER DETAILS * * *                               \n");
-            System.out.println("\uF0D8\tPersonal details : ");
+            StyledConsoleOutput.printStyled("\uF0D8\tPersonal details : ",true,false,"green");
             System.out.println("|====================|============|===================|=============|================|=========================================|");
             System.out.println("|        NAME        |   GENDER   |       DOB         |   CONTACT   | MARITAL STATUS |                  EMAIL                  |");
             System.out.println("|====================|============|===================|=============|================|=========================================|");
             System.out.printf("|%-20s|%-12s|%-19s|%-13s|%-16s|%-41s|\n", temp.Name, temp.Gender, temp.DateOfBirth, temp.Contact, temp.MaritalStatus, temp.Email);
             System.out.println("|--------------------|------------|-------------------|-------------|----------------|-----------------------------------------|\n");
 
-            System.out.println("\uF0D8\tEmployment Details: ");
+            StyledConsoleOutput.printStyled("\uF0D8\tEmployment Details: ",true,false,"green");
             System.out.println("|====================|===================|===================|=============|");
             System.out.println("|    TEACHER ID      |  SPECIALIZATION   |  DATE OF JOINING  |    SALARY   |");
             System.out.println("|====================|===================|===================|=============|");
             System.out.printf("|%-20s|%-19s|%-19s|%-13s|\n", temp.TeacherID, temp.Specialization, temp.DateOfJoining, temp.Salary);
             System.out.println("|--------------------|-------------------|-------------------|-------------|\n");
 
-            System.out.println("\uF0D8\tSkills and Experience: ");
+            StyledConsoleOutput.printStyled("\uF0D8\tSkills and Experience: ",true,false,"green");
             System.out.println("|===================================|===================|================================|================================|");
             System.out.println("|              SKILLS               |    EXPERIENCE     |     HIGHEST QUALIFICATION      |           CERTIFICATION        |");
             System.out.println("|===================================|===================|================================|================================|");
@@ -296,7 +296,7 @@ public class TeacherList {
                     if (i==0)
                         System.out.printf("%-32s|\n",certificate);
                     else
-                        System.out.printf("|%-35s|%-19s|%-32s|\n","","",certificate);
+                        System.out.printf("|%-35s|%-19s|%-32s|%-32s|\n","","","",certificate);
                 }
             }
             System.out.println("|-----------------------------------|-------------------|--------------------------------|--------------------------------|\n");
@@ -322,10 +322,12 @@ public Teacher validTeacherId(int id)
                 writer.write("Teacher ID: " + temp.TeacherID + "\n");
                 writer.write("Name: " + temp.Name + "\n");
                 writer.write("Gender: " + temp.Gender + "\n");
+                writer.write("Marital Status: "+temp.MaritalStatus+"\n");
                 writer.write("DOB: " + temp.DateOfBirth + "\n");
                 writer.write("Date of Joining: " + temp.DateOfJoining + "\n");
                 writer.write("Contact: " + temp.Contact + "\n");
                 writer.write("Address: " + temp.Address + "\n");
+                writer.write("Email: "+temp.Email+"\n");
                 writer.write("Salary: " + temp.Salary + "\n");
                 writer.write("Skills: " + temp.Skills + "\n");
                 writer.write("Experience: " + temp.Experience + "\n");

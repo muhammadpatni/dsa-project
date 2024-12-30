@@ -76,9 +76,12 @@ public class Array {
         return -1;
     }
     public boolean search(String course)
-    {if (index==0)
-    {return false;}
-
+    {
+        if (index==0)
+           {
+               return false;
+           }
+     else {
         boolean find=false;
         for (String courses:array)
         {
@@ -90,4 +93,5 @@ public class Array {
         }
         return find;
     }
+}
 }
