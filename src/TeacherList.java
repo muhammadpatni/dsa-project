@@ -17,7 +17,7 @@ public class TeacherList {
         TotalNumberOfTeachers = 0;
     }
 
-    String Filename ="C:\\Users\\HP\\Desktop\\lab 1\\DSA project\\Teacher.txt";
+    String Filename ="C:\\Users\\HP\\Desktop\\lab 1\\DSA project\\teacher.txt";
 
     public boolean isEmpty() {
         return head == null;
@@ -273,7 +273,7 @@ public class TeacherList {
             System.out.println("|====================|============|===================|=============|================|=========================================|");
             System.out.println("|        NAME        |   GENDER   |       DOB         |   CONTACT   | MARITAL STATUS |                  EMAIL                  |");
             System.out.println("|====================|============|===================|=============|================|=========================================|");
-            System.out.printf("|%-20s|%-12s|%-19s|%-13s|%-13s|%-41s|\n", temp.Name, temp.Gender, temp.DateOfBirth, temp.Contact, temp.MaritalStatus, temp.Email);
+            System.out.printf("|%-20s|%-12s|%-19s|%-13s|%-16s|%-41s|\n", temp.Name, temp.Gender, temp.DateOfBirth, temp.Contact, temp.MaritalStatus, temp.Email);
             System.out.println("|--------------------|------------|-------------------|-------------|----------------|-----------------------------------------|\n");
 
             System.out.println("\uF0D8\tEmployment Details: ");
@@ -281,7 +281,7 @@ public class TeacherList {
             System.out.println("|    TEACHER ID      |  SPECIALIZATION   |  DATE OF JOINING  |    SALARY   |");
             System.out.println("|====================|===================|===================|=============|");
             System.out.printf("|%-20s|%-19s|%-19s|%-13s|\n", temp.TeacherID, temp.Specialization, temp.DateOfJoining, temp.Salary);
-            System.out.println("|--------------------|-------------------|-------------------|-------------|-------------------|\n");
+            System.out.println("|--------------------|-------------------|-------------------|-------------|\n");
 
             System.out.println("\uF0D8\tSkills and Experience: ");
             System.out.println("|===================================|===================|================================|================================|");
@@ -351,7 +351,7 @@ public Teacher validTeacherId(int id)
     }
 
 
-    public void readFromFile(String Filename) {
+    public void readFromFile() {
         try (BufferedReader reader = new BufferedReader(new FileReader(Filename))) {
             String line;
 

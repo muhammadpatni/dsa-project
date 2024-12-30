@@ -1,6 +1,4 @@
-import java.io.BufferedWriter;
-import java.io.FileWriter;
-import java.io.IOException;
+import java.io.*;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
@@ -23,7 +21,14 @@ public  class Main {
     static AssignedCoursesClass assignedCourses = new AssignedCoursesClass();
     static  StudentClass student=new StudentClass();
     public static void main(String[] args) {
+      student.retrieveFromFile();
+      staff.readFromFile();
+      teacher.readFromFile();
+      assignedCourses.readFromFile();
+      readFromFile();
+
         login();
+
 
     }
 
@@ -434,9 +439,6 @@ public  class Main {
 
                         System.out.println("Teacher added successfully.");
                     }
-
-
-
                     if(entity.equals("Student"))
                     { System.out.print("Enter Class For Admission: ");
                         int currentClass = scanner.nextInt();
@@ -450,8 +452,19 @@ public  class Main {
                         String name = scanner.nextLine();
                         System.out.print("Enter Father Name: ");
                         String fatherName = scanner.nextLine();
-                        System.out.print("Enter Gender: ");
-                        String gender = scanner.nextLine();
+
+                        System.out.println("Select Gender: ");
+                        System.out.println("1. Male");
+                        System.out.println("2. Female");
+                        String gender = "";
+                        int genderChoice = scanner.nextInt();
+                        scanner.nextLine(); // Consume the newline
+
+                        if (genderChoice == 1) {
+                            gender = "Male";
+                        } else if (genderChoice == 2) {
+                            gender = "Female";
+                        }
 
                         String dob = "";
                         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy");
@@ -475,7 +488,7 @@ public  class Main {
 
                         student.addStudent(currentClass, name, fatherName, gender, dob, contact, address);
                         System.out.println("Student added successfully.");
-//                        student.saveToFile();
+                      student.saveToFile();
 
                     }
                     break;
@@ -487,7 +500,7 @@ public  class Main {
                         staff.removeStaff(iD);
                         staff.saveToFile();
                     }
-                    if(entity.equals("Teacher")){
+                    else if(entity.equals("Teacher")){
                         System.out.println("Enter Id for Delete: ");
                         int iD =scanner.nextInt();
                         teacher.removeTeacher(iD);
@@ -495,33 +508,47 @@ public  class Main {
                         assignedCourses.deleteRecordOfAnyTeacher(iD);
                         assignedCourses.saveToFile();
                     }
+                    else if (entity.equals("Student"))
+                    {   System.out.println("Enter Id for Delete: ");
+                        int iD =scanner.nextInt();
+                        student.removeStudent(iD);
+                        student.saveToFile();
+                    }
                     break;
                 case 3:
                     System.out.println("Updating " + entity + " details...");
-                    if (entity.equals("Staff"))
+                   if (entity.equals("Staff"))
                     { System.out.print("enter id for update ");
                         int Id =scanner.nextInt();
                         staff.updateStudent(Id);
-                        staff.saveToFile();
                     }
-                    if (entity.equals("Teacher"))
+                  else if (entity.equals("Teacher"))
                     { System.out.print("enter id for update ");
                         int Id =scanner.nextInt();
                         teacher.updateTeacher(Id);
-                        teacher.saveToFile();
+                    }
+                  else if (entity.equals("Student"))
+                    { System.out.print("enter id for update ");
+                        int Id =scanner.nextInt();
+                        student.saveToFile();
                     }
                     break;
                 case 4:
                     System.out.println("Searching for a " + entity + "...");
                     if (entity.equals("Staff"))
-                    {  System.out.print("enter id for search ");
+                    {  System.out.print("Enter Id for search: ");
                         int id =scanner.nextInt();
                         staff.searchStaff(id);
-                        staff.saveToFile();
                         break;
                     }
-                    if (entity.equals("Teacher"))
-                    {  System.out.print("enter id for search ");
+                  else if (entity.equals("Teacher"))
+                    {  System.out.print("Enter Id for search: ");
+                        int id =scanner.nextInt();
+                        teacher.searchTeacher(id);
+                        break;
+                    }
+                   else if (entity.equals("Student"))
+                    {  System.out.print("Enter Id for search: ");
                         int id =scanner.nextInt();
                         teacher.searchTeacher(id);
                         break;
@@ -1726,6 +1753,77 @@ public  class Main {
         }
     }
 
+    public static void readFromFile() {
+        try (BufferedReader reader = new BufferedReader(new FileReader(Filename))) {
+            String line;
+            int currentClass = -1;
 
+            while ((line = reader.readLine()) != null) {
+                if (line.startsWith("class")) {
+                    currentClass = Integer.parseInt(line.split(" ")[1].trim());
+                }
+                if (currentClass==1)
+                {
+                    if (line.startsWith("\u2022 ")) { // Unicode for bullet point (•)
+                        Class1.insert(line.substring(2).trim());
+                    }
+                }
+                else if (currentClass==2)
+                {
+                    if (line.startsWith("\u2022 ")) { // Unicode for bullet point (•)
+                        Class2.insert(line.substring(2).trim());
+                    }
+                }
+                else if (currentClass==3)
+                {
+                    if (line.startsWith("\u2022 ")) { // Unicode for bullet point (•)
+                        Class3.insert(line.substring(2).trim());
+                    }
+                }
+                else if (currentClass==4)
+                {
+                    if (line.startsWith("\u2022 ")) { // Unicode for bullet point (•)
+                        Class4.insert(line.substring(2).trim());
+                    }
+                }
+                else if (currentClass==5)
+                {if (line.startsWith("\u2022 ")) { // Unicode for bullet point (•)
+                    Class5.insert(line.substring(2).trim());
+                }
+                }
+                else if (currentClass==6)
+                {if (line.startsWith("\u2022 ")) { // Unicode for bullet point (•)
+                    Class6.insert(line.substring(2).trim());
+                }
+                }
+                else if (currentClass==7)
+                {
+                    if (line.startsWith("\u2022 ")) { // Unicode for bullet point (•)
+                        Class7.insert(line.substring(2).trim());
+                    }
+                }
+                else if (currentClass==8)
+                {
+                    if (line.startsWith("\u2022 ")) { // Unicode for bullet point (•)
+                        Class8.insert(line.substring(2).trim());
+                    }
+                }
+                else if (currentClass==9)
+                {if (line.startsWith("\u2022 ")) { // Unicode for bullet point (•)
+                    Class9.insert(line.substring(2).trim());
+                }
+                }
+                else
+                {
+                    if (line.startsWith("\u2022 ")) { // Unicode for bullet point (•)
+                        Class10.insert(line.substring(2).trim());
+                    }
+                }
+
+            }
+        } catch (IOException e) {
+            System.out.println("Error reading from file: " + e.getMessage());
+        }
+    }
 
 }

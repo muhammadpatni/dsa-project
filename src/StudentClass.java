@@ -90,7 +90,7 @@ import java.util.Scanner;
                 System.out.println("3. Contact");
                 System.out.println("4. Dob");
                 System.out.println("5. Address");
-                System.out.println("0. Exit");
+                System.out.println("0. Save");
                 System.out.print("Select option which you want to update : ");
                 int choice = sc.nextInt();
                 switch (choice) {
@@ -131,6 +131,7 @@ import java.util.Scanner;
                         temp.Address = address;
                         break;
                     case 0:
+                        saveToFile();
                         return;
                     default:
                         System.out.println("Invalid choice , please choose correct again ");
@@ -585,7 +586,7 @@ import java.util.Scanner;
 
      public void displayMonthAttendanceOfClass(int Class)
      {
-         boolean found=false;
+         boolean found=true;
          System.out.println("                             Last 15 Days Attendance Of Class "+Class+"\n");
          System.out.println("|=======|======================|===|===|===|===|===|===|===|===|===|====|====|====|====|====|====|");
          System.out.println("| ROLL# |         Name         | 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 | 11 | 12 | 13 | 14 | 15 |");
@@ -594,7 +595,7 @@ import java.util.Scanner;
          while (temp!=null)
          {
              if (temp.CurrentClass==Class) {
-                 found = true;
+                 found = false;
                  System.out.printf("|%-7s|%-22s",temp.StudentId,temp.Name);
                  if (temp.attendance.size()<15)
                  {
@@ -631,15 +632,14 @@ import java.util.Scanner;
          }
          if (found)
          {
-             System.out.println("|=======|======================|===|===|===|===|===|===|===|===|===|====|====|====|====|====|====|");
+             System.out.println("| ----- | -------------------- | . | . | . | . | . | . | . | . | . | .. | .. | .. | .. | .. | .. |");
              System.out.println("|-------|----------------------|---|---|---|---|---|---|---|---|---|----|----|----|----|----|----|");
          }
 
      }
-        public void retrieveFromFile(String Filename) {
+        public void retrieveFromFile() {
             try (BufferedReader reader = new BufferedReader(new FileReader(Filename))) {
                 String line;
-                StudentNode tempStudent = null;
 
                 // Variables to store student details temporarily
                 int studentId = 0,currentClass=0;
@@ -653,7 +653,7 @@ import java.util.Scanner;
                 while ((line = reader.readLine()) != null) {
                     // Detect student details
                     if (line.startsWith("Student ID:")) {
-                        if (tempStudent != null) {
+                        if (studentId!= 0) {
                             // Add the previous student to the list
                             addStudentToList(studentId, name, gender, dob, contact, address, currentClass, section,
                                     previous, marksList, feeDetails, attendance);
@@ -728,6 +728,7 @@ import java.util.Scanner;
 
                 // Add the last student to the list if exists
                 if (studentId != 0) {
+                    totalNumberOfStudents =studentId;
                     addStudentToList(studentId, name, gender, dob, contact, address, currentClass, section,
                             previous, marksList, feeDetails, attendance);
                 }
@@ -765,9 +766,6 @@ import java.util.Scanner;
             }
             tail = newStudent;
         }
-
-
-
     }
 
 
