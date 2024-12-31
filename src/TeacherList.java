@@ -237,7 +237,6 @@ public class TeacherList {
         }
         if (temp==head)
         {   head=temp.next;
-            head.prev=null;
             saveToFile();
             return;
         }

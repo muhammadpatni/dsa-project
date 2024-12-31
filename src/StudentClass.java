@@ -266,7 +266,6 @@ import java.util.Scanner;
             }
             if (temp == head) {
                 head = temp.next;
-                head.prev = null;
                 return;
             }
             if (temp == tail) {

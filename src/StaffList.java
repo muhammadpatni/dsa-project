@@ -106,7 +106,6 @@ public  class StaffList{
         }
         if (temp==head)
         {   head=temp.next;
-            head.prev=null;
             saveToFile();
             return;
         }
