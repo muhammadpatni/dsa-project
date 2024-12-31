@@ -9,8 +9,8 @@ public  class StaffList{
     int StaffIds;
     Scanner sc= new Scanner(System.in);
     Staff head,tail;
-    String Filename="C:\\Users\\HP\\Desktop\\lab 1\\DSA project\\Staff.txt";
-//    String Filename="C:\\Users\\Admin\\Desktop\\dsa-project1\\Staff.txt";
+    //String Filename="C:\\Users\\HP\\Desktop\\lab 1\\DSA project\\Staff.txt";
+   String Filename="C:\\Users\\Admin\\Desktop\\dsa-project1\\Staff.txt";
     StaffList()
     {
         head = null;
@@ -381,5 +381,158 @@ public  class StaffList{
             System.out.println("An unexpected error occurred while reading staff details" +e);
         }
     }
+    public void radixSortById() {
+        int max = findMaxId(); // Find the maximum value to determine the number of digits
+        for (int exp = 1; max / exp > 0; exp *= 10) {
+            countingSortById(exp);
+        }
+    }
 
+    private int findMaxId() {
+        int max = Integer.MIN_VALUE;
+        Staff current = head;
+        while (current != null) {
+            if (current.StaffId > max) {
+                max = current.StaffId;
+            }
+            current = current.next;
+        }
+        return max;
+    }
+
+    private void countingSortById(int exp) {
+        if (head == null) return;
+
+        int size = getCount();
+        Staff[] output = new Staff[size];
+        int[] count = new int[10]; // Count array for digits 0-9
+
+        // Step 1: Count occurrences of digits
+        Staff current = head;
+        while (current != null) {
+            int index = (current.StaffId/ exp) % 10;
+            count[index]++;
+            current = current.next;
+        }
+
+        // Step 2: Update count array to store cumulative counts
+        for (int i = 1; i < 10; i++) {
+            count[i] += count[i - 1];
+        }
+
+        // Step 3: Build the output array
+        current = tail;
+        while (current != null) {
+            int index = (current.StaffId / exp) % 10;
+            output[count[index] - 1] = current;
+            count[index]--;
+            current = current.prev;
+        }
+
+        // Step 4: Reconstruct the doubly linked list
+        head = output[0];
+        head.prev = null;
+
+        for (int i = 1; i < size; i++) {
+            output[i - 1].next = output[i];
+            if (output[i] != null) {
+                output[i].prev = output[i - 1];
+            }
+        }
+
+        tail = output[size - 1];
+        if (tail != null) {
+            tail.next = null;
+        }
+    }
+    private int getCount() {
+        int count = 0;
+        Staff current = head;
+        while (current != null) {
+            count++;
+            current = current.next;
+        }
+        return count;
+    }
+    public void radixSortByName() {
+        int maxLength = findMaxLength(); // Find the maximum length of strings
+        for (int exp = maxLength - 1; exp >= 0; exp--) { // Sort by each character from right to left
+            countingSort(exp);
+        }
+    }
+
+    private int findMaxLength() {
+        int maxLength = 0;
+        Staff current = head;
+
+        while (current != null) {
+            int length = 0;
+
+            // Calculate the length of the string manually
+            for (char c : current.Name.toCharArray()) {
+                length++;
+            }
+
+            // Compare and update the maximum length manually
+            if (length > maxLength) {
+                maxLength = length;
+            }
+
+            current = current.next;
+        }
+
+        return maxLength;
+    }
+
+
+    private void countingSort(int charIndex) {
+        if (head == null) return;
+
+        int size = getCount();
+        Staff[] output = new Staff[size];
+        int[] count = new int[256]; // Count array for all ASCII characters
+
+        // Count occurrences of characters at the given index
+        Staff current = head;
+        while (current != null) {
+            char c = charAt(current.Name, charIndex);
+            count[c]++;
+            current = current.next;
+        }
+
+        // Update count array to store cumulative counts
+        for (int i = 1; i < 256; i++) {
+            count[i] += count[i - 1];
+        }
+
+        // Build the output array
+        current = tail;
+        while (current != null) {
+            char c = charAt(current.Name, charIndex);
+            output[count[c] - 1] = current;
+            count[c]--;
+            current = current.prev;
+        }
+
+        // Reconstruct the doubly linked list
+        head = output[0];
+        head.prev = null;
+
+        for (int i = 1; i < size; i++) {
+            output[i - 1].next = output[i];
+            if (output[i] != null) {
+                output[i].prev = output[i - 1];
+            }
+        }
+
+        tail = output[size - 1];
+        if (tail != null) {
+            tail.next = null;
+        }
+    }
+
+    private char charAt(String str, int index) {
+        if (index < 0 || index >= str.length()) return 0; // Null character for out-of-bound indices
+        return str.charAt(index);
+    }
 }

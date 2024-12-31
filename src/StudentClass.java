@@ -11,8 +11,8 @@ import java.util.Scanner;
         public StudentNode head, tail;
         int VoucherNo=0;
         Scanner sc = new Scanner(System.in);
-        String Filename = "C:\\Users\\HP\\Desktop\\lab 1\\DSA project\\student.txt";
-//        String Filename ="C:\\Users\\Admin\\Desktop\\dsa-project1\\student.txt";
+      //  String Filename = "C:\\Users\\HP\\Desktop\\lab 1\\DSA project\\student.txt";
+  String Filename ="C:\\Users\\Admin\\Desktop\\dsa-project1\\student.txt";
 
         public StudentClass() {
             head = null;

@@ -15,8 +15,8 @@ public  class Main {
     static Array Class8 = new Array();
     static Array Class9 = new Array();
     static Array Class10 = new Array();
-    static String Filename="C:\\Users\\HP\\Desktop\\lab 1\\DSA project\\class.txt";
-//    static String Filename="C:\\Users\\Admin\\Desktop\\dsa-project1\\class.txt";
+    //static String Filename="C:\\Users\\HP\\Desktop\\lab 1\\DSA project\\class.txt";
+  static String Filename="C:\\Users\\Admin\\Desktop\\dsa-project1\\class.txt";
      static TeacherList teacher=new TeacherList();
     static StaffList staff =new StaffList();
     static AssignedCoursesClass assignedCourses = new AssignedCoursesClass();
@@ -245,8 +245,7 @@ public  class Main {
                     break;
 
                 default:
-                    StyledConsoleOutput.printStyled("Invalid choice. Please try again.\n9" +
-                            "",false,false,"red");
+                    StyledConsoleOutput.printStyled("Invalid choice. Please try again.\n",false,false,"red");
                     break;
             }
         }
@@ -610,6 +609,32 @@ public  class Main {
                         switch (teacherChoice) {
                             case 1:
                                 teacher.displayAllTeachers();
+                                boolean check=true;
+                                while (check) {
+                                    System.out.println("1.Sort by ID");
+                                    System.out.println("2.Sort by Name");
+                                    System.out.println("3.Back");
+                                    System.out.print("Enter choice: ");
+                                    int Choice = scanner.nextInt();
+                                    switch (Choice) {
+                                        case 1:
+                                            teacher.radixSortById();
+                                           teacher.displayAllTeachers();
+                                            check=false;
+                                            break;
+                                        case 2:
+                                            teacher.radixSortByName();
+                                            teacher.displayAllTeachers();
+                                            check=false;
+                                            break;
+                                        case 3:
+                                            check=false;
+                                            break;
+                                        default:
+                                            System.out.println("Invalid choice !! , Enter correct option");
+                                            check=true;
+                                    }
+                                }
                                 break;
                             case 2:
                                 System.out.print("enter id for search ");
@@ -752,6 +777,32 @@ public  class Main {
                                 break;
                             case 2:
                                 staff.displayAllStaff();
+                                boolean check=true;
+                                while (check) {
+                                    System.out.println("1.Sort by ID");
+                                    System.out.println("2.Sort by Name");
+                                    System.out.println("3.Back");
+                                    System.out.print("Enter choice: ");
+                                    int Choice = scanner.nextInt();
+                                    switch (Choice) {
+                                        case 1:
+                                            staff.radixSortById();
+                                            staff.displayAllStaff();
+                                            check=false;
+                                            break;
+                                        case 2:
+                                            staff.radixSortByName();
+                                            staff.displayAllStaff();
+                                            check=false;
+                                            break;
+                                        case 3:
+                                            check=false;
+                                            break;
+                                        default:
+                                            System.out.println("Invalid choice !! , Enter correct option");
+                                            check=true;
+                                    }
+                                }
                                 break;
                             case 3:
                                 return true;
