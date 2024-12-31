@@ -2,58 +2,42 @@
 
 class 1
 
-. urdu
+• mathematics
 
-
-					* * * * COURSES DETAILS * * * *
 
 class 2
 
+• pst
 
-
-					* * * * COURSES DETAILS * * * *
 
 class 3
 
+• english
 
-
-					* * * * COURSES DETAILS * * * *
 
 class 4
 
 
 
-					* * * * COURSES DETAILS * * * *
-
 class 5
 
 
-
-					* * * * COURSES DETAILS * * * *
 
 class 6
 
 
 
-					* * * * COURSES DETAILS * * * *
-
 class 7
 
 
-
-					* * * * COURSES DETAILS * * * *
 
 class 8
 
 
 
-					* * * * COURSES DETAILS * * * *
-
 class 9
 
 
-
-					* * * * COURSES DETAILS * * * *
 
 class 10
 

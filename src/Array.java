@@ -81,11 +81,9 @@ public class Array {
            {
                return false;
            }
-     else {
         boolean find=false;
-        for (String courses:array)
-        {
-            if (courses.equals(course))
+        for (int i = 0; i <index ; i++) {
+            if (array[i].equals(course))
             {
                 find=true;
                 break;
@@ -93,5 +91,4 @@ public class Array {
         }
         return find;
     }
-}
 }

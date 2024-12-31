@@ -599,8 +599,12 @@ import java.util.Scanner;
                  System.out.printf("|%-7s|%-22s",temp.StudentId,temp.Name);
                  if (temp.attendance.size()<15)
                  {
-                     for (int i = 0; i < 15-temp.attendance.size(); i++) {
-                            System.out.print("| A ");
+                     for (int i = 0; i <15-temp.attendance.size(); i++) {
+                         if (i<11)
+                           System.out.print("| A ");
+                         else
+                             System.out.print("| A  ");
+
                      }
                      for (int i = 0; i < temp.attendance.size(); i++) {
                          if (temp.attendance.getAttendance(i))

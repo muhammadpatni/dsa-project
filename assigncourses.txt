@@ -1,2 +1,10 @@
 	 	 	 	 * * * * ASSIGNED COURSES DETAILS * * * * 
 
+Teacher ID: 1
+Teacher Name: kamran alam
+Class: 1
+Course: mathematics
+Teacher ID: 1
+Teacher Name: kamran alam
+Class: 2
+Course: pst

@@ -1097,6 +1097,7 @@ public  class Main {
                     System.out.print("enter class :");
                     int Class=scanner.nextInt();
                     System.out.print("enter course :");
+                    scanner.nextLine();
                     String course= scanner.nextLine();
                     if(Class==1)
                     {
@@ -1693,67 +1694,67 @@ public  class Main {
     public static void saveCoursesToFile()
     {
         try (BufferedWriter writer = new BufferedWriter(new FileWriter(Filename))) {
+            writer.write("\t\t\t\t\t* * * * COURSES DETAILS * * * *\n\n");
             for (int i = 1; i < 11; i++) {
-                writer.write("\t\t\t\t\t* * * * COURSES DETAILS * * * *\n\n");
                 writer.write("class "+i+"\n\n");
                 if (i==1)
                 {
                     for (int j = 0; j < Class1.size(); j++) {
-                        writer.write(". "+Class1.GetCertificate(j)+"\n");
+                        writer.write("• "+Class1.GetCertificate(j)+"\n");
                     }
                 }
              else if (i==2)
                 {
                     for (int j = 0; j < Class2.size(); j++) {
-                        writer.write(". "+Class2.GetCertificate(j)+"\n");
+                        writer.write("• "+Class2.GetCertificate(j)+"\n");
                     }
                 }
               else if (i==3)
                 {
                     for (int j = 0; j < Class3.size(); j++) {
-                        writer.write(". "+Class3.GetCertificate(j)+"\n");
+                        writer.write("• "+Class3.GetCertificate(j)+"\n");
                     }
                 }
                else if (i==4)
                 {
                     for (int j = 0; j < Class4.size(); j++) {
-                        writer.write(". "+Class4.GetCertificate(j)+"\n");
+                        writer.write("• "+Class4.GetCertificate(j)+"\n");
                     }
                 }
                else if (i==5)
                 {
                     for (int j = 0; j < Class5.size(); j++) {
-                        writer.write(". "+Class5.GetCertificate(j)+"\n");
+                        writer.write("• "+Class5.GetCertificate(j)+"\n");
                     }
                 }
               else if (i==6)
                 {
                     for (int j = 0; j < Class6.size(); j++) {
-                        writer.write(". "+Class6.GetCertificate(j)+"\n");
+                        writer.write("• "+Class6.GetCertificate(j)+"\n");
                     }
                 }
               else if (i==7)
                 {
                     for (int j = 0; j < Class7.size(); j++) {
-                        writer.write(". "+Class7.GetCertificate(j)+"\n");
+                        writer.write("• "+Class7.GetCertificate(j)+"\n");
                     }
                 }
              else if (i==8)
                 {
                     for (int j = 0; j < Class8.size(); j++) {
-                        writer.write(". "+Class8.GetCertificate(j)+"\n");
+                        writer.write("• "+Class8.GetCertificate(j)+"\n");
                     }
                 }
              else if (i==9)
                 {
                     for (int j = 0; j < Class9.size(); j++) {
-                        writer.write(". "+Class9.GetCertificate(j)+"\n");
+                        writer.write("• "+Class9.GetCertificate(j)+"\n");
                     }
                 }
                else
                 {
                     for (int j = 0; j < Class10.size(); j++) {
-                        writer.write(". "+Class10.GetCertificate(j)+"\n");
+                        writer.write("• "+Class10.GetCertificate(j)+"\n");
                     }
                 }
                 writer.write("\n\n");
