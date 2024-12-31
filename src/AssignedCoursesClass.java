@@ -13,7 +13,8 @@ public class AssignedCoursesClass {
         return head == null;
     }
 
-    String Filename ="C:\\Users\\HP\\Desktop\\lab 1\\DSA project\\assigncourses.txt";
+    //String Filename ="C:\\Users\\HP\\Desktop\\lab 1\\DSA project\\assigncourses.txt";
+    String Filename ="C:\\Users\\Admin\\Desktop\\dsa-project1\\assigncourses.txt";
 
     public void add(int teacherId, int classNumber, String course, String teacherName) {
         ClassNode newNode = new ClassNode();
@@ -114,7 +115,7 @@ public class AssignedCoursesClass {
     public void displaySpecificTeacherById(int TeacherId) {
         boolean found = false;
         ClassNode temp = head;
-        System.out.println("                             * * * SPECIFIC TEACHER DETAILS * * *                                 ");
+        StyledConsoleOutput.printStyled("                             * * * SPECIFIC TEACHER DETAILS * * *                                 ",true,false,"cyan");
         System.out.println("|====================|====================|=============|========================================|");
         System.out.println("|     TEACHER ID     |    TEACHER NAME    |    CLASS    |                  COURSE                |");
         System.out.println("|====================|====================|=============|========================================|");
@@ -142,7 +143,7 @@ public class AssignedCoursesClass {
     public void displaySpecificClassById(int ClassId) {
         boolean found = false;
         ClassNode temp = head;
-        System.out.println("                             * * * SPECIFIC CLASS DETAILS * * *                                 ");
+        StyledConsoleOutput.printStyled("                             * * * SPECIFIC CLASS DETAILS * * *                                 ",true,false,"cyan");
         System.out.println("|====================|====================|=============|========================================|");
         System.out.println("|     TEACHER ID     |    TEACHER NAME    |    CLASS    |                  COURSE                |");
         System.out.println("|====================|====================|=============|========================================|");

@@ -60,7 +60,7 @@ public class MarksListForStudent {
 
 
     public void displayStudentMarks() {
-        System.out.println("      * * * STUDENT MARKS DETAILS * * *       ");
+        StyledConsoleOutput.printStyled("      * * * STUDENT MARKS DETAILS * * *       ",true,false,"cyan");
         System.out.println("|==========|====================|==========|");
         System.out.println("|   SNO    |     SUBJECT        |  MARKS   |");
         System.out.println("|==========|====================|==========|");
@@ -85,7 +85,7 @@ public class MarksListForStudent {
     }
 
     public void displayMarkSheet() {
-        System.out.println("                                         ** MARK SHEET **                                        ");
+        StyledConsoleOutput.printStyled("                                         ** MARK SHEET **                                        ",true,false,"cyan");
         System.out.println("|--------|-----------------------|-------------------|-------------------|------------------|------------------|");
         System.out.println("| S.NO   |       SUBJECT         | MAXIMUM MARKS     | MINIMUM MARKS     | OBTAINED MARKS   |      GRADE       |");
         System.out.println("|--------|-----------------------|-------------------|-------------------|------------------|------------------|");

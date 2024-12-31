@@ -11,7 +11,8 @@ import java.util.Scanner;
         public StudentNode head, tail;
         int VoucherNo=0;
         Scanner sc = new Scanner(System.in);
-        String Filename = "C:\\Users\\HP\\Desktop\\lab 1\\DSA project\\student.txt";
+       // String Filename = "C:\\Users\\HP\\Desktop\\lab 1\\DSA project\\student.txt";
+        String Filename ="C:\\Users\\Admin\\Desktop\\dsa-project1\\student.txt";
 
         public StudentClass() {
             head = null;
@@ -156,15 +157,15 @@ import java.util.Scanner;
                 System.out.println("Invalid ID");
                 return;
             } else {
-                System.out.println("                                                 * * * Student DETAILS * * *                               \n");
-                System.out.println("\uF0D8\tPersonal details : ");
+                StyledConsoleOutput.printStyled("                                                 * * * Student DETAILS * * *                               \n",true, false, "cyan");
+                StyledConsoleOutput.printStyled("\uF0D8\tPersonal details : ",true,false,"green");
                 System.out.println("|====================|====================|============|===================|=============|=========================================|");
                 System.out.println("|        NAME        |    FATHER NAME     |   GENDER   |       DOB         |   CONTACT   |                  ADDRESS                |");
                 System.out.println("|====================|====================|============|===================|=============|=========================================|");
                 System.out.printf("|%-20s|%-20s|%-12S|%-19s|%-13s|%-41s|\n", temp.Name, temp.FatherName, temp.Gender, temp.DateOfBirth, temp.Contact, temp.Address);
                 System.out.println("|--------------------|--------------------|------------|-------------------|-------------|-----------------------------------------|\n");
 
-                System.out.println("\uF0D8\tAcademic Details:");
+                StyledConsoleOutput.printStyled("\uF0D8\tAcademic Details:",true,false,"green");
                 System.out.println("|====================|===================|=============|");
                 System.out.println("|    STUDENT ID      |   CURRENT CLASS   |   SECTION   |");
                 System.out.println("|====================|===================|=============|");
@@ -172,7 +173,7 @@ import java.util.Scanner;
                 System.out.println("|--------------------|-------------------|-------------|\n");
 
                 if (temp.Previous != null) {
-                    System.out.println("\uF0D8\tPrevious Academic Background: ");
+                    StyledConsoleOutput.printStyled("\uF0D8\tPrevious Academic Background: ",true,false,"green");
                     System.out.println("|===================================|===================|===================|");
                     System.out.println("|      PREVIOUS INSTITUTE NAME      |    CLASS NAME     |      GRADE        |");
                     System.out.println("|===================================|===================|===================|");
@@ -218,7 +219,7 @@ import java.util.Scanner;
             boolean found = false;
             StudentNode temp = head;
 
-            System.out.println("\nStudents in Class " + currentClass + ":");
+            StyledConsoleOutput.printStyled("\nStudents in Class " + currentClass + ":",true,false,"cyan");
             System.out.println("|====================|====================|===================|=============|");
             System.out.println("|    STUDENT ID      |        NAME        |   CURRENT CLASS   |   SECTION   |");
             System.out.println("|====================|====================|===================|=============|");
@@ -271,7 +272,7 @@ import java.util.Scanner;
         }
 
         public void displayAllStudents() {
-            System.out.println("                                                   * * * STUDENT DETAILS * * *                               ");
+            StyledConsoleOutput.printStyled("                                                   * * * STUDENT DETAILS * * *                               ",true,false,"cyan");
             System.out.println("|==========|====================|====================|==========|========|===================|===================|==========|========================================|");
             System.out.println("|    ID    |        NAME        |   FatherName       |  Gender  |  Age   |      CONTACT      |    CurrentClass   |  Section |                 ADDRESS                |");
             System.out.println("|==========|====================|====================|==========|========|===================|===================|==========|========================================|");
@@ -515,7 +516,7 @@ import java.util.Scanner;
                 System.out.println("Invalid Id");
                 return;
             }
-            System.out.println("                                    * * * STUDENT FEE DETAILS * * *                               ");
+            StyledConsoleOutput.printStyled("                                    * * * STUDENT FEE DETAILS * * *                               ",true,false,"cyan");
             System.out.println("|==========|====================|====================|===================|===================|===================|");
             System.out.println("|    ID    |        NAME        |       CLASS        |       MONTH       |     VOUCHER ID    |       STATUS      |");
             System.out.println("|==========|====================|====================|===================|===================|===================|");
@@ -615,7 +616,7 @@ import java.util.Scanner;
      public void displayMonthAttendanceOfClass(int Class)
      {
          boolean found=true;
-         System.out.println("                             Last 15 Days Attendance Of Class "+Class+"\n");
+         StyledConsoleOutput.printStyled("                             Last 15 Days Attendance Of Class "+Class+"\n",true,false,"cyam");
          System.out.println("|=======|======================|===|===|===|===|===|===|===|===|===|====|====|====|====|====|====|");
          System.out.println("| ROLL# |         Name         | 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 | 11 | 12 | 13 | 14 | 15 |");
          System.out.println("|=======|======================|===|===|===|===|===|===|===|===|===|====|====|====|====|====|====|");
