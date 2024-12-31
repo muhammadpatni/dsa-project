@@ -17,7 +17,8 @@ public class TeacherList {
         TotalNumberOfTeachers = 0;
     }
 
-    String Filename ="C:\\Users\\HP\\Desktop\\lab 1\\DSA project\\teacher.txt";
+    //String Filename ="C:\\Users\\HP\\Desktop\\lab 1\\DSA project\\teacher.txt";
+      String Filename ="C:\\Users\\Admin\\Desktop\\dsa-project1\\teacher.txt";
 
     public boolean isEmpty() {
         return head == null;
@@ -66,7 +67,7 @@ public class TeacherList {
     public void displayAllTeachers()
     {
         Teacher temp=head;
-        System.out.println("                                                 * * * TEACHER DETAILS * * *                               ");
+        StyledConsoleOutput.printStyled("                                                 * * * TEACHER DETAILS * * *                               ",true,false,"cyan");
         System.out.println("|==========|====================|===========|=============================|===================|=============|========|========================================|=============================|=============================|");
         System.out.println("|    ID    |        NAME        |   GENDER  |        EXPERIENCE           |      CONTACT      |    SALARY   |  Age   |                   EMAIL                |    HIGHEST QUALIFICATION    |      SPECIALIZATION         |");
         System.out.println("|==========|====================|===========|=============================|===================|=============|========|========================================|=============================|=============================|");
@@ -267,7 +268,7 @@ public class TeacherList {
             System.out.println("Invalid ID");
             return;
         } else {
-            System.out.println("                                                 * * * TEACHER DETAILS * * *                               \n");
+            StyledConsoleOutput.printStyled("                                                 * * * TEACHER DETAILS * * *                               \n",true, false, "cyan");
             StyledConsoleOutput.printStyled("\uF0D8\tPersonal details : ",true,false,"green");
             System.out.println("|====================|============|===================|=============|================|=========================================|");
             System.out.println("|        NAME        |   GENDER   |       DOB         |   CONTACT   | MARITAL STATUS |                  EMAIL                  |");

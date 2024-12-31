@@ -15,7 +15,8 @@ public  class Main {
     static Array Class8 = new Array();
     static Array Class9 = new Array();
     static Array Class10 = new Array();
-    static String Filename="C:\\Users\\HP\\Desktop\\lab 1\\DSA project\\class.txt";
+    //static String Filename="C:\\Users\\HP\\Desktop\\lab 1\\DSA project\\class.txt";
+    static String Filename="C:\\Users\\Admin\\Desktop\\dsa-project1\\class.txt";
      static TeacherList teacher=new TeacherList();
     static StaffList staff =new StaffList();
     static AssignedCoursesClass assignedCourses = new AssignedCoursesClass();
@@ -36,14 +37,13 @@ public  class Main {
 
         login();
 
-
     }
 
     public static void login() {
         Scanner scanner = new Scanner(System.in);
 
         while (true) {
-            System.out.println("PLEASE SELECT YOUR ROLE TO LOGIN:\n");
+           StyledConsoleOutput.printStyled("PLEASE SELECT YOUR ROLE TO LOGIN:\n",true,false,"cyan");
 
             String[][] users = {
                     {"admin", "admin123"},
@@ -65,7 +65,7 @@ public  class Main {
             System.out.println("7. ATTENDANCE"); // Added Attendance option
             System.out.println("8. EXIT");
 
-            System.out.print("Enter the number corresponding to your role: ");
+            StyledConsoleOutput.printStyled("Enter the number corresponding to your role: ",true,false,"cyan");
             int choice = scanner.nextInt();
             scanner.nextLine(); // Consume newline
 
@@ -75,7 +75,7 @@ public  class Main {
             }
 
             if (choice < 1 || choice > 7) {
-                System.out.println("Invalid choice. Please try again.");
+                StyledConsoleOutput.printStyled("Invalid choice. Please try again.",false,false,"red");
                 continue;
             }
 
@@ -87,7 +87,7 @@ public  class Main {
 
             // Generate a welcome message based on the selected role
             String role = getRoleName(choice);
-            System.out.println("\nWelcome, " + role + "! Please enter your credentials.\n");
+           StyledConsoleOutput.printStyled("\nWelcome, " + role + "! Please enter your credentials.\n",false,false,"blue");
 
             String username = users[choice - 1][0];
             String password = users[choice - 1][1];
@@ -177,7 +177,7 @@ public  class Main {
 
         // Attendance menu for the logged-in user
         while (!isLoggedIn) {
-            System.out.println("\nATTENDANCE MENU:\n");
+            StyledConsoleOutput.printStyled("\nATTENDANCE MENU:\n",true,false,"magenta");
             System.out.println("1. Mark Attendance");
             System.out.println("2. View Attendance");
             System.out.println("3. Logout");
@@ -220,7 +220,7 @@ public  class Main {
                         }
 
                         if (!validUser) {
-                            System.out.println("Invalid username, password, or class. Please try again.");
+                            StyledConsoleOutput.printStyled("Invalid username, password, or class. Please try again.",false,false,"red");
                         }
                     }
                     break;
@@ -245,14 +245,15 @@ public  class Main {
                     break;
 
                 default:
-                    System.out.println("Invalid choice. Please try again.");
+                    StyledConsoleOutput.printStyled("Invalid choice. Please try again.\n9" +
+                            "",false,false,"red");
                     break;
             }
         }
     }
     private static boolean adminMenu(Scanner scanner) {
         while (true) {
-            System.out.println("\nADMIN MENU:\n");
+            StyledConsoleOutput.printStyled("\nADMIN MENU:\n",true,false,"magenta");
             System.out.println("1. Manage Teachers");
             System.out.println("2. Manage Students");
             System.out.println("3. Manage Staff");
@@ -274,14 +275,14 @@ public  class Main {
                 case 4:
                     return false;
                 default:
-                    System.out.println("Invalid choice. Try again.");
+                    StyledConsoleOutput.printStyled("Invalid choice. Try again.",false,false,"red");
             }
         }
     }
 
     private static void manageEntity(Scanner scanner, String entity) {
         while (true) {
-            System.out.println("\n" + entity + " Management:\n");
+            StyledConsoleOutput.printStyled("\n" + entity + " Management:\n",true,false,"magenta");
             System.out.println("1. Add " + entity);
             System.out.println("2. Delete " + entity);
             System.out.println("3. Update " + entity);
@@ -326,7 +327,7 @@ public  class Main {
                                 dob = input;
                                 break; // Exit the loop
                             } catch (DateTimeParseException e) {
-                                System.out.println("Invalid date format. Please enter again in 'dd-MM-yyyy' format.");
+                               StyledConsoleOutput.printStyled("Invalid date format. Please enter again in 'dd-MM-yyyy' format.",false,false,"red");
                             }
                         }
                         System.out.print("Enter Contact Number: ");
@@ -355,7 +356,7 @@ public  class Main {
 
                         staff.addStaff(name, gender, dob, contact, address, designation, salary, skills, experience, certifications, LocalDate.now().toString());
                         staff.saveToFile();
-                        System.out.println("Staff added successfully.");
+                        StyledConsoleOutput.printStyled("Staff added successfully.",false,false,"blue");
                     }
 
                     if (entity.equals("Teacher")) {
@@ -386,7 +387,7 @@ public  class Main {
                                 dob = input;
                                 break;
                             } catch (DateTimeParseException e) {
-                                System.out.println("Invalid date format. Please enter again in 'dd-MM-yyyy' format.");
+                                StyledConsoleOutput.printStyled("Invalid date format. Please enter again in 'dd-MM-yyyy' format.",false,false,"red");
                             }
                         }
 
@@ -444,14 +445,14 @@ public  class Main {
                         teacher.addTeacher(name, gender, dob, maritalStatus, email, specialization, highestQualification, contact, address, salary,skills, experience, certifications,LocalDate.now().toString());
                         teacher.saveToFile();
 
-                        System.out.println("Teacher added successfully.");
+                        StyledConsoleOutput.printStyled("Teacher added successfully.",false,false,"blue");
                     }
                     if(entity.equals("Student"))
                     { System.out.print("Enter Class For Admission: ");
                         int currentClass = scanner.nextInt();
                         scanner.nextLine(); // Consume newline
                         if (student.countStudentsInClass(currentClass) >= 200) {
-                            System.out.println("Student capacity is full for this class.");
+                            StyledConsoleOutput.printStyled("Student capacity is full for this class.",false,false,"red");
                             break;
                         }
 
@@ -484,7 +485,7 @@ public  class Main {
                                 dob = input;
                                 break;
                             } catch (DateTimeParseException e) {
-                                System.out.println("Invalid date format. Please enter again in 'dd-MM-yyyy' format.");
+                                StyledConsoleOutput.printStyled("Invalid date format. Please enter again in 'dd-MM-yyyy' format.",false,false,"red");
                             }
                         }
 
@@ -494,7 +495,7 @@ public  class Main {
                         String address = scanner.nextLine();
 
                         student.addStudent(currentClass, name, fatherName, gender, dob, contact, address);
-                        System.out.println("Student added successfully.");
+                       StyledConsoleOutput.printStyled("Student added successfully.",false,false,"blue");
                       student.saveToFile();
 
                     }
@@ -505,6 +506,7 @@ public  class Main {
                     { System.out.print("enter id for delete: ");
                         int iD =scanner.nextInt();
                         staff.removeStaff(iD);
+                        StyledConsoleOutput.printStyled("Staff deleted successfully.",false,false,"blue");
                         staff.saveToFile();
                     }
                     else if(entity.equals("Teacher")){
@@ -513,12 +515,15 @@ public  class Main {
                         teacher.removeTeacher(iD);
                         teacher.saveToFile();
                         assignedCourses.deleteRecordOfAnyTeacher(iD);
+                        StyledConsoleOutput.printStyled("Teacher deleted successfully.",false,false,"blue");
                         assignedCourses.saveToFile();
+
                     }
                     else if (entity.equals("Student"))
                     {   System.out.println("Enter Id for Delete: ");
                         int iD =scanner.nextInt();
                         student.removeStudent(iD);
+                        StyledConsoleOutput.printStyled("Student deleted successfully.",false,false,"blue");
                         student.saveToFile();
                     }
                     break;
@@ -527,17 +532,24 @@ public  class Main {
                    if (entity.equals("Staff"))
                     { System.out.print("enter id for update ");
                         int Id =scanner.nextInt();
+
                         staff.updateStudent(Id);
+                        StyledConsoleOutput.printStyled("Staff updated successfully.",false,false,"blue");
+                        staff.saveToFile();
                     }
                   else if (entity.equals("Teacher"))
                     { System.out.print("enter id for update ");
                         int Id =scanner.nextInt();
+
                         teacher.updateTeacher(Id);
+                        StyledConsoleOutput.printStyled("Teacher updated successfully.",false,false,"blue");
+                        teacher.saveToFile();
                     }
                   else if (entity.equals("Student"))
                     { System.out.print("enter id for update ");
                         int Id =scanner.nextInt();
                         student.updateStudent(Id);
+                        StyledConsoleOutput.printStyled("Student updated successfully.",false,false,"blue");
                         student.saveToFile();
                     }
                     break;
@@ -565,7 +577,7 @@ public  class Main {
                 case 5:
                     return;
                 default:
-                    System.out.println("Invalid choice. Try again.");
+                    StyledConsoleOutput.printStyled("Invalid choice. Try again.",false,false,"red");
             }
         }
     }
@@ -573,7 +585,7 @@ public  class Main {
 
     private static boolean principalMenu(Scanner scanner) {
         while (true) {
-            System.out.println("\nMAIN MENU:\n");
+            StyledConsoleOutput.printStyled("\nPRINCIPLE MENU:\n",true,false,"magenta");
             System.out.println("1. Teacher");
             System.out.println("2. Student");
             System.out.println("3. Staff");
@@ -586,7 +598,7 @@ public  class Main {
             switch (choice) {
                 case 1:
                     while (true) {
-                        System.out.println("\nTEACHER MENU\n");
+                        StyledConsoleOutput.printStyled("\nTEACHER MENU\n",true,false,"magenta");
                         System.out.println("1. View all teachers' details");
                         System.out.println("2. Search for a teacher's details");
                         System.out.println("3. View classes and subjects taught by a teacher");
@@ -613,7 +625,7 @@ public  class Main {
                                 int teacherid =scanner.nextInt();
                                 if (teacher.validTeacherId(teacherid)==null)
                                 {
-                                    System.out.println("Invalid teacher Id");
+                                    StyledConsoleOutput.printStyled("Invalid teacher Id",false,false,"red");
                                     break;
                                 }
                                 assignedCourses.displaySpecificTeacherById(teacherid);
@@ -621,13 +633,13 @@ public  class Main {
                             case 4:
                                 return true;
                             default:
-                                System.out.println("Invalid choice. Try again.");
+                                StyledConsoleOutput.printStyled("Invalid choice. Try again.",false,false,"red");
                         }
                     }
 
                 case 2:
                     while (true) {
-                        System.out.println("\nSTUDENT MENU:\n");
+                        StyledConsoleOutput.printStyled("\nSTUDENT MENU:\n",true,false,"magenta");
                         System.out.println("1. View all students' details");
                         System.out.println("2. Search for a student");
                         System.out.println("3. View student marks");
@@ -688,7 +700,7 @@ public  class Main {
                                 System.out.print("Enter student Id :");
                                 int Id = scanner.nextInt();
                                 if (student.uploadMarks(Id) == null) {
-                                    System.out.println("Invalid Id");
+                                    StyledConsoleOutput.printStyled("Invalid Id",false,false,"red");
                                     break;
                                 }
                                 else {
@@ -718,13 +730,13 @@ public  class Main {
                             case 6:
                                 return true;
                             default:
-                                System.out.println("Invalid choice. Try again.");
+                                StyledConsoleOutput.printStyled("Invalid choice. Try again.",false,false,"red");
                         }
                     }
 
                 case 3:
                     while (true) {
-                        System.out.println("\nSTAFF MENU:\n");
+                        StyledConsoleOutput.printStyled("\nSTAFF MENU:\n",true,false,"magenta");
                         System.out.println("1. Search for a staff member's details");
                         System.out.println("2. View all staff members");
                         System.out.println("3. Back to Main Menu");
@@ -744,13 +756,13 @@ public  class Main {
                             case 3:
                                 return true;
                             default:
-                                System.out.println("Invalid choice. Try again.");
+                                StyledConsoleOutput.printStyled("Invalid choice. Try again.",false,false,"red");
                         }
                     }
 
                 case 4:
                     while (true) {
-                        System.out.println("\nCLASS MENU:\n");
+                        StyledConsoleOutput.printStyled("\nCLASS MENU:\n",true,false,"magenta");
                         System.out.println("1. View courses of a class");
                         System.out.println("2. View students in a class");
                         System.out.println("3. View teachers teaching a class");
@@ -854,14 +866,14 @@ public  class Main {
                             case 5:
                                 return true;
                             default:
-                                System.out.println("Invalid choice. Try again.");
+                                StyledConsoleOutput.printStyled("Invalid choice. Try again.",false,false,"red");
                         }
                     }
 
                 case 5:
                     return false; // Back to Login
                 default:
-                    System.out.println("Invalid choice. Try again.");
+                   StyledConsoleOutput.printStyled("Invalid choice. Try again.",false,false,"red");
             }
         }
     }
@@ -869,7 +881,7 @@ public  class Main {
 
     private static boolean teacherMenu(Scanner scanner) {
         while (true) {
-            System.out.println("\nTEACHER MENU:\n");
+            StyledConsoleOutput.printStyled("\nTEACHER MENU:\n",true,false,"magenta");
             System.out.println("1. View Your Assign Course");
             System.out.println("2. View Students in Any Class");
             System.out.println("3. Back to Login");
@@ -888,7 +900,7 @@ public  class Main {
                     int teacherid =scanner.nextInt();
                     if (teacher.validTeacherId(teacherid)==null)
                     {
-                        System.out.println("Invalid teacher Id");
+                       StyledConsoleOutput.printStyled("Invalid teacher Id",false,false,"red");
                         break;
                     }
                     assignedCourses.displaySpecificTeacherById(teacherid);
@@ -906,14 +918,14 @@ public  class Main {
                     return false;
 
                 default:
-                    System.out.println("Invalid choice. Try again.");
+                    StyledConsoleOutput.printStyled("Invalid choice. Try again.",false,false,"red");
             }
         }
     }
 
     private static boolean accountantMenu(Scanner scanner) {
         while (true) {
-            System.out.println("\nACCOUNTANT MENU:\n");
+            StyledConsoleOutput.printStyled("\nACCOUNTANT MENU:\n",true,false,"magenta");
             System.out.println("1. Generate Fee Voucher");
             System.out.println("2. View Details of Students with Unpaid Fees");
             System.out.println("3. Check Individual Student Fee Status");
@@ -993,7 +1005,7 @@ public  class Main {
 
                         student.generateFeeVouchers(MonthName,id);
                     } else {
-                        System.out.println("Invalid choice. Returning to the menu...");
+                       StyledConsoleOutput.printStyled("Invalid choice. Returning to the menu...",false,false,"red");
                     }
                     break;
                 case 2:
@@ -1078,13 +1090,13 @@ public  class Main {
                         }
                         student.PaidFee(id,VoucherNo,MonthName);
                     } else {
-                        System.out.println("Invalid choice. Returning to the menu...");
+                        StyledConsoleOutput.printStyled("Invalid choice. Returning to the menu...",false,false,"red");
                     }
                     break;
                 case 5:
                     return false;
                 default:
-                    System.out.println("Invalid choice. Try again.");
+                    StyledConsoleOutput.printStyled("Invalid choice. Try again.",false,false,"red");
             }
         }
     }
@@ -1094,7 +1106,7 @@ public  class Main {
          String Course;
          boolean isValid = false;
         while (true) {
-            System.out.println("\nCOORDINATOR MENU:\n");
+            StyledConsoleOutput.printStyled("\nCOORDINATOR MENU:\n",true,false,"magenta");
             System.out.println("1. Assign Course to Teacher");
             System.out.println("2. Unassign Course from Teacher");
             System.out.println("3. View Teachers for Specific Classes");
@@ -1120,7 +1132,7 @@ public  class Main {
                     int id = scanner.nextInt();
                     if (teacher.validTeacherId(id)==null)
                     {
-                        System.out.println("Invalid teacher Id");
+                        StyledConsoleOutput.printStyled("Invalid teacher Id",false,false,"red");
                         break;
                     }
                     else{
@@ -1322,7 +1334,7 @@ public  class Main {
                     int Id = scanner.nextInt();
                     if (teacher.validTeacherId(Id)==null)
                     {
-                        System.out.println("Invalid teacher Id");
+                        StyledConsoleOutput.printStyled("Invalid teacher Id",false,false,"red");
                         break;
                     }
                     System.out.print("enter class :");
@@ -1359,7 +1371,7 @@ public  class Main {
                     int teacherid =scanner.nextInt();
                     if (teacher.validTeacherId(teacherid)==null)
                     {
-                        System.out.println("Invalid teacher Id");
+                        StyledConsoleOutput.printStyled("Invalid teacher Id",false,false,"red");
                         break;
                     }
                     assignedCourses.displaySpecificTeacherById(teacherid);
@@ -1373,7 +1385,7 @@ public  class Main {
                         if (studentClass >= 1 && studentClass <= 10) {
                             isValid = true; // Exit the loop if valid
                         } else {
-                            System.out.println("Invalid Class! Please enter a value between 1 and 10.");
+                            StyledConsoleOutput.printStyled("Invalid Class! Please enter a value between 1 and 10.",false,false,"red");
                         }
                     }
                     System.out.println("Input Course Name: ");
@@ -1464,7 +1476,7 @@ public  class Main {
                         if (studentClass >= 1 && studentClass <= 10) {
                             isValid = true; // Exit the loop if valid
                         } else {
-                            System.out.println("Invalid Class! Please enter a value between 1 and 10.");
+                            StyledConsoleOutput.printStyled("Invalid Class! Please enter a value between 1 and 10.",false,false,"red");
                         }
                     }
                     System.out.println("Input Course Name: ");
@@ -1531,14 +1543,14 @@ public  class Main {
                 case 8:
                     return false;
                 default:
-                    System.out.println("Invalid choice. Try again.");
+                    StyledConsoleOutput.printStyled("Invalid choice. Try again.",false,false,"red");
             }
         }
     }
 
     private static boolean examinationMenu(Scanner scanner) {
         while (true) {
-            System.out.println("\nEXAMINATION DEPARTMENT MENU:\n");
+            StyledConsoleOutput.printStyled("\nEXAMINATION DEPARTMENT MENU:\n",true,false,"magenta");
             System.out.println("1. Upload Marks");
             System.out.println("2. View Marks");
             System.out.println("3. Edit Marks");
@@ -1559,7 +1571,7 @@ public  class Main {
                     System.out.print("enter student Id :");
                     int id = scanner.nextInt();
                     if (student.uploadMarks(id) == null) {
-                        System.out.println("Invalid Id");
+                        StyledConsoleOutput.printStyled("Invalid Id",false,false,"red");
                         break;
                     }
                     else {
@@ -1649,7 +1661,7 @@ public  class Main {
                     System.out.print("enter student Id :");
                     int Id = scanner.nextInt();
                     if (student.uploadMarks(Id) == null) {
-                        System.out.println("Invalid Id");
+                        StyledConsoleOutput.printStyled("Invalid Id",false,false,"red");
                         break;
                     }
                     else {
@@ -1674,7 +1686,7 @@ public  class Main {
                     System.out.print("enter student Id :");
                     int ID = scanner.nextInt();
                     if (student.uploadMarks(ID) == null) {
-                        System.out.println("Invalid Id");
+                       StyledConsoleOutput.printStyled("Invalid Id",false,false,"red");
                         break;
                     }
                     else {
@@ -1699,7 +1711,7 @@ public  class Main {
                     System.out.print("enter student Id :");
                     int iD = scanner.nextInt();
                     if (student.uploadMarks(iD) == null) {
-                        System.out.println("Invalid Id");
+                        StyledConsoleOutput.printStyled("Invalid Id",false,false,"red");
                         break;
                     }
                     else {
@@ -1718,7 +1730,7 @@ public  class Main {
                 case 5:
                     return false;
                 default:
-                    System.out.println("Invalid choice. Try again.");
+                    StyledConsoleOutput.printStyled("Invalid choice. Try again.",false,false,"red");
             }
         }
     }

@@ -9,7 +9,8 @@ public  class StaffList{
     int StaffIds;
     Scanner sc= new Scanner(System.in);
     Staff head,tail;
-    String Filename="C:\\Users\\HP\\Desktop\\lab 1\\DSA project\\Staff.txt";
+    //String Filename="C:\\Users\\HP\\Desktop\\lab 1\\DSA project\\Staff.txt";
+    String Filename="C:\\Users\\Admin\\Desktop\\dsa-project1\\Staff.txt";
     StaffList()
     {
         head = null;
@@ -136,21 +137,21 @@ public  class StaffList{
             return;
         } else {
             System.out.println("                                                 * * * STAFF DETAILS * * *                               \n");
-            System.out.println("\uF0D8\tPersonal details : ");
+            StyledConsoleOutput.printStyled("\uF0D8\tPersonal details : ",true,false,"green");
             System.out.println("|====================|============|===================|=============|=============|=========================================|");
             System.out.println("|        NAME        |   GENDER   |       DOB         |   CONTACT   |    SALARY   |                  ADDRESS                |");
             System.out.println("|====================|============|===================|=============|=============|=========================================|");
             System.out.printf("|%-20s|%-12s|%-19s|%-13s|%-13s|%-41s|\n", temp.Name, temp.Gender, temp.DateOfBirth, temp.Contact, temp.Salary, temp.Address);
             System.out.println("|--------------------|------------|-------------------|-------------|-------------|-----------------------------------------|\n");
 
-            System.out.println("\uF0D8\tEmployment Details:: ");
+            StyledConsoleOutput.printStyled("\uF0D8\tEmployment Details: ",true,false,"green");
             System.out.println("|====================|===================|===================|=============|");
             System.out.println("|      STAFF ID      |    DESIGNATION    |  DATE OF JOINING  |    SALARY   |");
             System.out.println("|====================|===================|===================|=============|");
             System.out.printf("|%-20s|%-19s|%-19s|%-13s|\n", temp.StaffId, temp.Designation, temp.DateOfJoining, temp.Salary);
             System.out.println("|--------------------|-------------------|-------------------|-------------|\n");
 
-            System.out.println("\uF0D8\tSkills and Experience: ");
+            StyledConsoleOutput.printStyled("\uF0D8\tSkills and Experience: ",true,false,"green");
             System.out.println("|===================================|===================|================================|");
             System.out.println("|              Skills               |    experience     |         Certifications         |");
             System.out.println("|===================================|===================|================================|");
@@ -291,7 +292,7 @@ public  class StaffList{
     public void displayAllStaff()
     {
         Staff temp=head;
-        System.out.println("                                                     * * * STAFF DETAILS * * *                               ");
+        StyledConsoleOutput.printStyled("                                                     * * * STAFF DETAILS * * *                               ",true,false,"cyan");
         System.out.println("|==========|====================|===========|=============================|===================|=============|========|========================================|");
         System.out.println("|    ID    |        NAME        |   GENDER  |        DESIGNATION          |      CONTACT      |    SALARY   |  Age   |                 ADDRESS                |");
         System.out.println("|==========|====================|===========|=============================|===================|=============|========|========================================|");
