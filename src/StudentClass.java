@@ -11,8 +11,8 @@ import java.util.Scanner;
         public StudentNode head, tail;
         int VoucherNo=0;
         Scanner sc = new Scanner(System.in);
-       // String Filename = "C:\\Users\\HP\\Desktop\\lab 1\\DSA project\\student.txt";
-        String Filename ="C:\\Users\\Admin\\Desktop\\dsa-project1\\student.txt";
+        String Filename = "C:\\Users\\HP\\Desktop\\lab 1\\DSA project\\student.txt";
+//        String Filename ="C:\\Users\\Admin\\Desktop\\dsa-project1\\student.txt";
 
         public StudentClass() {
             head = null;
@@ -384,6 +384,7 @@ import java.util.Scanner;
         }
 
         public void generateFeeVouchers(String month ,int id) {
+           VoucherNo++;
             StudentNode temp = head;
             while (temp != null) {
                 if (temp.StudentId==id)
@@ -419,32 +420,32 @@ import java.util.Scanner;
             }
 
             // Enhanced Fee Voucher Output
-            System.out.println("════════════════════════════════════════════════════════════════════════════════════════");
-            System.out.println("                           ABC SCHOOL OF EXCELLENCE                                     ");
-            System.out.println("════════════════════════════════════════════════════════════════════════════════════════");
+            System.out.println("══════════════════════════════════════════════════════════════════════════════════════");
+            StyledConsoleOutput.printStyled("                           THE CITY SCHOOL OF EXCELLENCE                                     \n",true,false,"white");
+            System.out.println("══════════════════════════════════════════════════════════════════════════════════════");
             System.out.println("                         OFFICIAL FEE PAYMENT VOUCHER                                   ");
-            System.out.println("════════════════════════════════════════════════════════════════════════════════════════");
+            System.out.println("══════════════════════════════════════════════════════════════════════════════════════");
             System.out.println(" ");
 
             // Student Info Section
             System.out.println("╔════════════════════════════════════════════════════════════════════════════════════╗");
             System.out.println("║                                STUDENT DETAILS                                     ║");
             System.out.println("╠════════════════════════════════════════════════════════════════════════════════════╣");
-            System.out.printf("║ Voucher ID            : %-35d ║\n", voucherId);
-            System.out.printf("║ Student ID            : %-35d ║\n", temp.StudentId);
-            System.out.printf("║ Student Name          : %-35s ║\n", studentName);
-            System.out.printf("║ Father's Name         : %-35s ║\n", fatherName);
-            System.out.printf("║ Class                 : %-35d ║\n", temp.CurrentClass);
+            System.out.printf("║ Voucher ID            : %-59d ║\n", voucherId);
+            System.out.printf("║ Student ID            : %-59d ║\n", temp.StudentId);
+            System.out.printf("║ Student Name          : %-59s ║\n", studentName);
+            System.out.printf("║ Father's Name         : %-59s ║\n", fatherName);
+            System.out.printf("║ Class                 : %-59d ║\n", temp.CurrentClass);
             System.out.println("╚════════════════════════════════════════════════════════════════════════════════════╝");
 
             // Fee Information Section
             System.out.println("╔════════════════════════════════════════════════════════════════════════════════════╗");
             System.out.println("║                               FEE INFORMATION                                      ║");
             System.out.println("╠════════════════════════════════════════════════════════════════════════════════════╣");
-            System.out.printf(" ║ Fee Amount            : Rs. %-28.2f ║\n", feeAmount);
-            System.out.printf(" ║ Issue Date            : %-35s ║\n", issueDate);
-            System.out.printf(" ║ Due Date              : %-35s ║\n", dueDate);
-            System.out.printf(" ║ Billing Month         : %-35s ║\n", month);
+            System.out.printf(" ║ Fee Amount            : Rs. %-248.2f ║\n", feeAmount);
+            System.out.printf(" ║ Issue Date            : %-57s ║\n", issueDate);
+            System.out.printf(" ║ Due Date              : %-57s ║\n", dueDate);
+            System.out.printf(" ║ Billing Month         : %-57s ║\n", month);
             System.out.println("╚════════════════════════════════════════════════════════════════════════════════════╝");
 
             // Important Notes
@@ -505,7 +506,6 @@ import java.util.Scanner;
                     System.out.println("|----------|--------------------|--------------------|-------------------|-------------------|-------------------|");
                 }
             }
-            System.out.println("|----------|--------------------|--------------------|-------------------|-------------------|-------------------|");
         }
 
         public String[] returnMonthsOfUnpaidFee(StudentNode current)
@@ -587,7 +587,7 @@ import java.util.Scanner;
 
      public void displayMonthAttendanceOfClass(int Class)
      {
-         boolean found=true;
+         boolean found=true,check=false;
          StyledConsoleOutput.printStyled("                             Last 15 Days Attendance Of Class "+Class+"\n",true,false,"cyam");
          System.out.println("|=======|======================|===|===|===|===|===|===|===|===|===|====|====|====|====|====|====|");
          System.out.println("| ROLL# |         Name         | 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 | 11 | 12 | 13 | 14 | 15 |");
@@ -601,10 +601,10 @@ import java.util.Scanner;
                  if (temp.attendance.size()<15)
                  {
                      for (int i = 0; i <15-temp.attendance.size(); i++) {
-                         if (i<11)
+                         if (i<10)
                            System.out.print("| A ");
                          else
-                             System.out.print("| A  ");
+                             System.out.print("|  A ");
 
                      }
                      for (int i = 0; i < temp.attendance.size(); i++) {
@@ -613,6 +613,7 @@ import java.util.Scanner;
                         else
                              System.out.print("| A ");
                      }
+                     check=true;
                  } 
                  else if(temp.attendance.size()==15)  {
                      for (int i = 0; i < temp.attendance.size(); i++) {
@@ -621,7 +622,7 @@ import java.util.Scanner;
                          else
                              System.out.print("| A ");
                      }
-                     
+                     check=true;
                  } else if (temp.attendance.size()>15) {
                      for (int i =temp.attendance.size()-15; i < temp.attendance.size(); i++) {
                          if (temp.attendance.getAttendance(i))
@@ -629,10 +630,12 @@ import java.util.Scanner;
                          else
                              System.out.print("| A ");
                      }
-                     
+                     check=true;
                  }
+                 if (check)
+                     System.out.print("|\n");
+                 System.out.println("|-------|----------------------|---|---|---|---|---|---|---|---|---|----|----|----|----|----|----|");
              }
-             System.out.print("|\n");
              temp=temp.next;
          }
          if (found)

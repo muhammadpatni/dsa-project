@@ -13,8 +13,8 @@ public class AssignedCoursesClass {
         return head == null;
     }
 
-    //String Filename ="C:\\Users\\HP\\Desktop\\lab 1\\DSA project\\assigncourses.txt";
-    String Filename ="C:\\Users\\Admin\\Desktop\\dsa-project1\\assigncourses.txt";
+    String Filename ="C:\\Users\\HP\\Desktop\\lab 1\\DSA project\\assigncourses.txt";
+//    String Filename ="C:\\Users\\Admin\\Desktop\\dsa-project1\\assigncourses.txt";
 
     public void add(int teacherId, int classNumber, String course, String teacherName) {
         ClassNode newNode = new ClassNode();

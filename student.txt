@@ -10,9 +10,9 @@ Father's Name: javed ismail
 Current Class: 2
 Section: A
 Previous Academic Background: 
-Previous Institute: green peace public high school
-Previous Class: 1
-Previous Grade: A
+Previous Institute: city school
+Previous Class: 9
+Previous Grade: D
 Marks List: 
 No marks available.
 Fee Details: 
@@ -31,9 +31,9 @@ Father's Name: shakoor
 Current Class: 1
 Section: A
 Previous Academic Background: 
-Previous Institute: green peace public high school
-Previous Class: 1
-Previous Grade: A
+Previous Institute: city school
+Previous Class: 9
+Previous Grade: D
 Marks List: 
 No marks available.
 Fee Details: 
@@ -55,6 +55,27 @@ Previous Academic Background:
 Previous Institute: city school
 Previous Class: 9
 Previous Grade: D
+Marks List: 
+No marks available.
+Fee Details: 
+No fee details available.
+Attendance: 
+No attendance records available.
+
+
+Student ID: 5
+Name: hareeba 
+Gender: Female
+DOB: 11-08-2004
+Contact: 03158494300
+Address: jinnah international airport
+Father's Name: qamar
+Current Class: 2
+Section: A
+Previous Academic Background: 
+Previous Institute: beacon askari school
+Previous Class: 1
+Previous Grade: A
 Marks List: 
 No marks available.
 Fee Details: 

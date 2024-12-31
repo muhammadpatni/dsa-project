@@ -15,8 +15,8 @@ public  class Main {
     static Array Class8 = new Array();
     static Array Class9 = new Array();
     static Array Class10 = new Array();
-    //static String Filename="C:\\Users\\HP\\Desktop\\lab 1\\DSA project\\class.txt";
-    static String Filename="C:\\Users\\Admin\\Desktop\\dsa-project1\\class.txt";
+    static String Filename="C:\\Users\\HP\\Desktop\\lab 1\\DSA project\\class.txt";
+//    static String Filename="C:\\Users\\Admin\\Desktop\\dsa-project1\\class.txt";
      static TeacherList teacher=new TeacherList();
     static StaffList staff =new StaffList();
     static AssignedCoursesClass assignedCourses = new AssignedCoursesClass();
