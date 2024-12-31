@@ -1,21 +1,18 @@
 					* * * * TEACHER DETAILS * * * *
 
 Teacher ID: 1
-Name: kamran alam
-Gender: Male
-Marital Status: Married
-DOB: 12-12-2004
-Date of Joining: 2024-12-30
-Contact: 031417147714
-Address: 
-Email: kamrankhan0360@gmail.com
-Salary: 20000.0
-Skills: no skills
-Experience: 10 years
-Highest Qualification: masters
-Specialization: math
+Name: HARAM
+Gender: Female
+DOB: 10-12-2007
+Date of Joining: 2024-12-29
+Contact: 03152958789
+Address: orangi town
+Salary: 230000.0
+Skills: nothing
+Experience: 0
+Highest Qualification: inter
+Specialization: Software Engineering
 Certifications:
-• cit
-• dit
+No certifications available.
 
 
