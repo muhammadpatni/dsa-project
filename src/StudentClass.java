@@ -7,8 +7,8 @@ import java.time.format.DateTimeParseException;
 import java.util.Scanner;
 
     public class StudentClass {
-        private int totalNumberOfStudents;
-        private StudentNode head, tail;
+        public int totalNumberOfStudents;
+        public StudentNode head, tail;
         int VoucherNo=0;
         Scanner sc = new Scanner(System.in);
         String Filename = "C:\\Users\\HP\\Desktop\\lab 1\\DSA project\\student.txt";
@@ -19,6 +19,13 @@ import java.util.Scanner;
             totalNumberOfStudents = 0;
         }
 
+        public void displayAllStudent()
+        {
+
+
+
+
+        }
         public boolean isEmpty() {
             return head == null;
         }
@@ -292,6 +299,35 @@ import java.util.Scanner;
 
                 temp = temp.next;
             }
+            System.out.println("1.Sort by ID");
+            System.out.println("2.Sort by Name");
+            System.out.println("3.Sort by Class");
+            System.out.println("4.Back");
+            System.out.print("Enter choice: ");
+           boolean check=true;
+            while (check) {
+                int choice = sc.nextInt();
+                switch (choice) {
+                    case 1:
+                        radixSortByStaffId();
+                        displayAllStudent();
+                        check=false;
+                    case 2:
+                        radixSortByName();
+                        displayAllStudent();
+                        check=false;
+                    case 3:
+                        radixSortByClass();
+                        displayAllStudent();
+                        check=false;
+                    case 4:
+                        return;
+                    default:
+                        System.out.println("Invalid choice !! , Enter correct option");
+                        check=true;
+                }
+            }
+
         }
 
         public void saveToFile() {
@@ -647,7 +683,7 @@ import java.util.Scanner;
 
                 // Variables to store student details temporarily
                 int studentId = 0,currentClass=0;
-                String name = "", gender = "", dob = "", contact = "", address = "";
+                String name = "", gender = "", dob = "",father="", contact = "", address = "";
               char section='\0';
                 PreviousAcademicBackground previous = null;
                 MarksListForStudent marksList = new MarksListForStudent();
@@ -659,7 +695,7 @@ import java.util.Scanner;
                     if (line.startsWith("Student ID:")) {
                         if (studentId!= 0) {
                             // Add the previous student to the list
-                            addStudentToList(studentId, name, gender, dob, contact, address, currentClass, section,
+                            addStudentToList(studentId,father, name, gender, dob, contact, address, currentClass, section,
                                     previous, marksList, feeDetails, attendance);
                         }
 
@@ -671,6 +707,9 @@ import java.util.Scanner;
                         attendance = new BooleanArray();         // Reset Attendance
                     } else if (line.startsWith("Name:")) {
                         name = line.split(":")[1].trim();
+                    }
+                    else if (line.startsWith("Father:")) {
+                            father = line.split(":")[1].trim();
                     } else if (line.startsWith("Gender:")) {
                         gender = line.split(":")[1].trim();
                     } else if (line.startsWith("DOB:")) {
@@ -733,7 +772,7 @@ import java.util.Scanner;
                 // Add the last student to the list if exists
                 if (studentId != 0) {
                     totalNumberOfStudents =studentId;
-                    addStudentToList(studentId, name, gender, dob, contact, address, currentClass, section,
+                    addStudentToList(studentId,father, name, gender, dob, contact, address, currentClass, section,
                             previous, marksList, feeDetails, attendance);
                 }
 
@@ -745,7 +784,7 @@ import java.util.Scanner;
         }
 
         // Helper function to add student node to the list
-        private void addStudentToList(int studentId, String name, String gender, String dob, String contact, String address,
+        private void addStudentToList(int studentId,String father, String name, String gender, String dob, String contact, String address,
                                       int currentClass, char section, PreviousAcademicBackground previous,
                                       MarksListForStudent marksList, FeeClass feeDetails, BooleanArray attendance) {
             StudentNode newStudent = new StudentNode();
@@ -753,6 +792,7 @@ import java.util.Scanner;
             newStudent.Name = name;
             newStudent.Gender = gender;
             newStudent.DateOfBirth = dob;
+            newStudent.FatherName=father;
             newStudent.Contact = contact;
             newStudent.Address = address;
             newStudent.CurrentClass = currentClass;
@@ -770,6 +810,181 @@ import java.util.Scanner;
             }
             tail = newStudent;
         }
+
+
+        public void radixSortByClass() {
+            if (isEmpty()) {
+                System.out.println("No student to sort.");
+                return;
+            }
+
+            // Find the maximum StaffId to determine the number of digits
+            int max = 10;
+
+            // Perform counting sort for each digit
+            for (int exp = 1; max / exp > 0; exp *= 10) {
+                countingSortByStaffId(exp);
+            }
+        }
+        public void radixSortByStaffId() {
+            if (isEmpty()) {
+                System.out.println("No student to sort.");
+                return;
+            }
+            int max = getMaxStaffId();
+
+            // Perform counting sort for each digit
+            for (int exp = 1; max / exp > 0; exp *= 10) {
+                countingSortByStaffId(exp);
+            }
+        }
+
+        // Helper to get the maximum StaffId
+        private int getMaxStaffId() {
+            int max = head.StudentId;
+            StudentNode temp = head;
+            while (temp != null) {
+                if (max<temp.StudentId)
+                      max =temp.StudentId;
+                temp = temp.next;
+            }
+            return max;
+        }
+
+        // Counting sort for a specific digit represented by exp
+        private void countingSortByStaffId(int exp) {
+            StudentNode[] output = new StudentNode[getSize()];
+            int[] count = new int[10];
+
+            // Count occurrences of each digit
+            StudentNode temp = head;
+            while (temp != null) {
+                int digit = (temp.StudentId / exp) % 10;
+                count[digit]++;
+                temp = temp.next;
+            }
+
+            // Update count array to hold actual positions
+            for (int i = 1; i < 10; i++) {
+                count[i] += count[i - 1];
+            }
+
+            // Build the output array
+            temp = tail; // Start from the end for stability
+            while (temp != null) {
+                int digit = (temp.StudentId / exp) % 10;
+                output[count[digit] - 1] = temp;
+                count[digit]--;
+                temp = temp.prev;
+            }
+
+            // Reconstruct the linked list
+            head = output[0];
+            StudentNode current = head;
+            for (int i = 1; i < output.length; i++) {
+                current.next = output[i];
+                output[i].prev = current;
+                current = output[i];
+            }
+            tail = current;
+            tail.next = null;
+        }
+
+        private int getSize() {
+            int size = 0;
+            StudentNode temp = head;
+            while (temp != null) {
+                size++;
+                temp = temp.next;
+            }
+            return size;
+        }
+
+        public void radixSortByName() {
+            if (isEmpty()) {
+                System.out.println("No student to sort.");
+                return;
+            }
+
+            // Find the maximum length of names using a custom function
+            int maxLength = findMaxNameLength();
+
+            // Perform counting sort for each character position from right to left
+            for (int pos = maxLength - 1; pos >= 0; pos--) {
+                countingSortByName(pos);
+            }
+        }
+
+        // Custom function to find the maximum length of names
+        private int findMaxNameLength() {
+            int maxLength = 0;
+            StudentNode temp = head;
+            while (temp != null) {
+                int length = getStringLength(temp.Name);
+                if (length > maxLength) {
+                    maxLength = length; // Custom comparison
+                }
+                temp = temp.next;
+            }
+            return maxLength;
+        }
+
+        // Custom function to get the length of a string
+        private int getStringLength(String str) {
+            int length = 0;
+            for (char c : str.toCharArray()) {
+                length++; // Count each character
+            }
+            return length;
+        }
+
+        // Counting sort for a specific character position
+        private void countingSortByName(int pos) {
+            StudentNode[] output = new StudentNode[getSize()];
+            int[] count = new int[256]; // For all ASCII characters
+
+            // Count occurrences of each character at position `pos`
+            StudentNode temp = head;
+            while (temp != null) {
+                char ch = getCharAt(temp.Name, pos);
+                count[ch]++;
+                temp = temp.next;
+            }
+
+            // Update count array to hold actual positions
+            for (int i = 1; i < 256; i++) {
+                count[i] += count[i - 1];
+            }
+
+            // Build the output array
+            temp = tail; // Start from the end for stability
+            while (temp != null) {
+                char ch = getCharAt(temp.Name, pos);
+                output[count[ch] - 1] = temp;
+                count[ch]--;
+                temp = temp.prev;
+            }
+
+            // Reconstruct the linked list
+            head = output[0];
+            StudentNode current = head;
+            for (int i = 1; i < output.length; i++) {
+                current.next = output[i];
+                output[i].prev = current;
+                current = output[i];
+            }
+            tail = current;
+            tail.next = null;
+        }
+
+        // Custom function to get the character at a specific position (returns 0 for out-of-bounds)
+        private char getCharAt(String str, int pos) {
+            if (pos < getStringLength(str)) {
+                return str.charAt(pos);
+            }
+            return 0; // Treat missing characters as 0 (null character)
+        }
+
     }
 
 

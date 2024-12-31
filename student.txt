@@ -6,13 +6,34 @@ Gender: Female
 DOB: 12-12-2007
 Contact: 0323232323
 Address: pagal khana
-Father's Name: shakor
+Father's Name: shakoor
 Current Class: 5
 Section: A
 Previous Academic Background: 
 Previous Institute: arqam public school
 Previous Class: 4
-Previous Grade: A
+Previous Grade: arqam public school
+Marks List: 
+No marks available.
+Fee Details: 
+No fee details available.
+Attendance: 
+No attendance records available.
+
+
+Student ID: 2
+Name: muhammad
+Gender: Male
+DOB: 08-07-2004
+Contact: 03162406968
+Address: b-75/4 malir extension colony karachi 
+Father's Name: javed ismail
+Current Class: 2
+Section: A
+Previous Academic Background: 
+Previous Institute: green peace public high school
+Previous Class: 1
+Previous Grade: green peace public high school
 Marks List: 
 No marks available.
 Fee Details: 

@@ -31,7 +31,8 @@ public class AssignedCoursesClass {
     }
 
     public void deleteRecordOfAnyTeacher(int id)
-    {
+    { if (isEmpty())
+          return;
         ClassNode temp =head;
       while (temp!=null)
       { if (temp.Teacher_ID==id)
