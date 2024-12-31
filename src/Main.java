@@ -1065,11 +1065,12 @@ public  class Main {
             System.out.println("\nCOORDINATOR MENU:\n");
             System.out.println("1. Assign Course to Teacher");
             System.out.println("2. Unassign Course from Teacher");
-            System.out.println("3. View Teachers Teaching Specific Classes");
-            System.out.println("4. View Which Teacher is Teaching Which Course in a Specific Class");
+            System.out.println("3. View Teachers for Specific Classes");
+            System.out.println("4. View Courses Taught by Teachers in a Class");
             System.out.println("5. Add Courses");
             System.out.println("6. Remove Courses");
-            System.out.println("7. Back to Login");
+            System.out.println("7. View Courses in any Class");
+            System.out.println("8. Back to Login");
             System.out.print("Enter your choice: ");
             int choice = scanner.nextInt();
             scanner.nextLine();
@@ -1492,6 +1493,9 @@ public  class Main {
                     assignedCourses.saveToFile();
                     break;
                 case 7:
+                    System.out.println("view courses in any class");
+                    break;
+                case 8:
                     return false;
                 default:
                     System.out.println("Invalid choice. Try again.");
