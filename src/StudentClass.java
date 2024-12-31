@@ -54,13 +54,13 @@ import java.util.Scanner;
                 newNode.Previous = null;
             }
 
-            if (isEmpty()) {
-                head = newNode;
+            if (head == null) {
+                head = tail = newNode;
             } else {
                 tail.next = newNode;
                 newNode.prev = tail;
+                tail = newNode ;
             }
-            tail = newNode;
         }
 
         public void updateStudent(int StudentId) {
@@ -290,34 +290,6 @@ import java.util.Scanner;
                 System.out.println("|----------|--------------------|--------------------|----------|--------|-------------------|-------------------|----------|----------------------------------------|");
 
                 temp = temp.next;
-            }
-            System.out.println("1.Sort by ID");
-            System.out.println("2.Sort by Name");
-            System.out.println("3.Sort by Class");
-            System.out.println("4.Back");
-            System.out.print("Enter choice: ");
-           boolean check=true;
-            while (check) {
-                int choice = sc.nextInt();
-                switch (choice) {
-                    case 1:
-                        radixSortByStaffId();
-                        displayAllStudents();
-                        check=false;
-                    case 2:
-                        radixSortByName();
-                        displayAllStudents();
-                        check=false;
-                    case 3:
-                        radixSortByClass();
-                        displayAllStudents();
-                        check=false;
-                    case 4:
-                        return;
-                    default:
-                        System.out.println("Invalid choice !! , Enter correct option");
-                        check=true;
-                }
             }
 
         }
@@ -793,227 +765,232 @@ import java.util.Scanner;
             newStudent.marks = marksList;
             newStudent.fee = feeDetails;
             newStudent.attendance = attendance;
-
-            // Add the student to the list
             if (head == null) {
-                head = newStudent;
+                head = tail = newStudent;
             } else {
                 tail.next = newStudent;
-            }
-            tail = newStudent;
-        }
-
-
-        public void radixSortByClass() {
-            if (isEmpty()) {
-                System.out.println("No student to sort.");
-                return;
-            }
-
-            // Find the maximum StaffId to determine the number of digits
-            int max = 10;
-
-            // Perform counting sort for each digit
-            for (int exp = 1; max / exp > 0; exp *= 10) {
-                countingSortByClass(exp);
+                newStudent.prev = tail;
+                tail = newStudent ;
             }
         }
-
         public void radixSortByName() {
-            if (isEmpty()) {
-                System.out.println("No student to sort.");
-                return;
-            }
-
-            // Find the maximum length of names using a custom function
-            int maxLength = findMaxNameLength();
-
-            // Perform counting sort for each character position from right to left
-            for (int pos = maxLength - 1; pos >= 0; pos--) {
-                countingSortByName(pos);
-            }
-        }
-        public void radixSortByStaffId() {
-            if (isEmpty()) {
-                System.out.println("No student to sort.");
-                return;
-            }
-            int max = getMaxStaffId();
-
-            // Perform counting sort for each digit
-            for (int exp = 1; max / exp > 0; exp *= 10) {
-                countingSortByStaffId(exp);
+            int maxLength = findMaxLength(); // Find the maximum length of strings
+            for (int exp = maxLength - 1; exp >= 0; exp--) { // Sort by each character from right to left
+                countingSort(exp);
             }
         }
 
-        // Helper to get the maximum StaffId
-        private int getMaxStaffId() {
-            int max = head.StudentId;
-            StudentNode temp = head;
-            while (temp != null) {
-                if (max<temp.StudentId)
-                      max =temp.StudentId;
-                temp = temp.next;
-            }
-            return max;
-        }
-        private void countingSortByStaffId(int exp) {
-            StudentNode[] output = new StudentNode[getSize()];
-            int[] count = new int[10];
-
-            // Count occurrences of each digit
-            StudentNode temp = head;
-            while (temp != null) {
-                int digit = (temp.StudentId / exp) % 10;
-                count[digit]++;
-                temp = temp.next;
-            }
-
-            // Update count array to hold actual positions
-            for (int i = 1; i < 10; i++) {
-                count[i] += count[i - 1];
-            }
-
-            // Build the output array
-            temp = tail; // Start from the end for stability
-            while (temp != null) {
-                int digit = (temp.StudentId / exp) % 10;
-                output[count[digit] - 1] = temp;
-                count[digit]--;
-                temp = temp.prev;
-            }
-
-            // Reconstruct the linked list
-            head = output[0];
-            StudentNode current = head;
-            for (int i = 1; i < output.length; i++) {
-                current.next = output[i];
-                output[i].prev = current;
-                current = output[i];
-            }
-            tail = current;
-            tail.next = null;
-        }
-        // Counting sort for a specific digit represented by exp
-        private void countingSortByClass(int exp) {
-            StudentNode[] output = new StudentNode[getSize()];
-            int[] count = new int[10];
-
-            // Count occurrences of each digit
-            StudentNode temp = head;
-            while (temp != null) {
-                int digit = (temp.CurrentClass / exp) % 10;
-                count[digit]++;
-                temp = temp.next;
-            }
-
-            // Update count array to hold actual positions
-            for (int i = 1; i < 10; i++) {
-                count[i] += count[i - 1];
-            }
-
-            // Build the output array
-            temp = tail; // Start from the end for stability
-            while (temp != null) {
-                int digit = (temp.CurrentClass / exp) % 10;
-                output[count[digit] - 1] = temp;
-                count[digit]--;
-                temp = temp.prev;
-            }
-
-            // Reconstruct the linked list
-            head = output[0];
-            StudentNode current = head;
-            for (int i = 1; i < output.length; i++) {
-              if (output[i]!=null)
-              { current.next = output[i];
-                output[i].prev = current;
-                current = output[i];}
-            }
-            tail = current;
-            tail.next = null;
-        }
-
-        private int getSize() {
-            int size = 0;
-            StudentNode temp = head;
-            while (temp != null) {
-                size++;
-                temp = temp.next;
-            }
-            return size;
-        }
-
-        // Custom function to find the maximum length of names
-        private int findMaxNameLength() {
+        private int findMaxLength() {
             int maxLength = 0;
-            StudentNode temp = head;
-            while (temp != null) {
-                int length = getStringLength(temp.Name);
-                if (length > maxLength) {
-                    maxLength = length; // Custom comparison
+            StudentNode current = head;
+
+            while (current != null) {
+                int length = 0;
+
+                // Calculate the length of the string manually
+                for (char c : current.Name.toCharArray()) {
+                    length++;
                 }
-                temp = temp.next;
+
+                // Compare and update the maximum length manually
+                if (length > maxLength) {
+                    maxLength = length;
+                }
+
+                current = current.next;
             }
+
             return maxLength;
         }
 
-        // Custom function to get the length of a string
-        private int getStringLength(String str) {
-            int length = 0;
-            for (char c : str.toCharArray()) {
-                length++; // Count each character
-            }
-            return length;
-        }
 
-        // Counting sort for a specific character position
-        private void countingSortByName(int pos) {
-            StudentNode[] output = new StudentNode[getSize()];
-            int[] count = new int[256]; // For all ASCII characters
+        private void countingSort(int charIndex) {
+            if (head == null) return;
 
-            // Count occurrences of each character at position `pos`
-            StudentNode temp = head;
-            while (temp != null) {
-                char ch = getCharAt(temp.Name, pos);
-                count[ch]++;
-                temp = temp.next;
+            int size = getCount();
+            StudentNode[] output = new StudentNode[size];
+            int[] count = new int[256]; // Count array for all ASCII characters
+
+            // Count occurrences of characters at the given index
+            StudentNode current = head;
+            while (current != null) {
+                char c = charAt(current.Name, charIndex);
+                count[c]++;
+                current = current.next;
             }
 
-            // Update count array to hold actual positions
+            // Update count array to store cumulative counts
             for (int i = 1; i < 256; i++) {
                 count[i] += count[i - 1];
             }
 
             // Build the output array
-            temp = tail; // Start from the end for stability
-            while (temp != null) {
-                char ch = getCharAt(temp.Name, pos);
-                output[count[ch] - 1] = temp;
-                count[ch]--;
-                temp = temp.prev;
+            current = tail;
+            while (current != null) {
+                char c = charAt(current.Name, charIndex);
+                output[count[c] - 1] = current;
+                count[c]--;
+                current = current.prev;
             }
 
-            // Reconstruct the linked list
+            // Reconstruct the doubly linked list
             head = output[0];
+            head.prev = null;
+
+            for (int i = 1; i < size; i++) {
+                output[i - 1].next = output[i];
+                if (output[i] != null) {
+                    output[i].prev = output[i - 1];
+                }
+            }
+
+            tail = output[size - 1];
+            if (tail != null) {
+                tail.next = null;
+            }
+        }
+
+        private char charAt(String str, int index) {
+            if (index < 0 || index >= str.length()) return 0; // Null character for out-of-bound indices
+            return str.charAt(index);
+        }
+        public void radixSortByClass() {
+            int max = findMax(); // Find the maximum value to determine the number of digits
+            for (int exp = 1; max / exp > 0; exp *= 10) {
+                countingSortByClass(exp);
+            }
+        }
+
+        private int findMax() {
+            int max = Integer.MIN_VALUE;
             StudentNode current = head;
-            for (int i = 1; i < output.length; i++) {
-                current.next = output[i];
-                output[i].prev = current;
-                current = output[i];
+            while (current != null) {
+                if (current.CurrentClass > max) {
+                    max = current.CurrentClass;
+                }
+                current = current.next;
             }
-            tail = current;
-            tail.next = null;
+            return max;
         }
 
-        // Custom function to get the character at a specific position (returns 0 for out-of-bounds)
-        private char getCharAt(String str, int pos) {
-            if (pos < getStringLength(str)) {
-                return str.charAt(pos);
+        private void countingSortByClass(int exp) {
+            if (head == null) return;
+
+            int size = getCount();
+            StudentNode[] output = new StudentNode[size];
+            int[] count = new int[10]; // Count array for digits 0-9
+
+            // Step 1: Count occurrences of digits
+            StudentNode current = head;
+            while (current != null) {
+                int index = (current.CurrentClass / exp) % 10;
+                count[index]++;
+                current = current.next;
             }
-            return 0; // Treat missing characters as 0 (null character)
+
+            // Step 2: Update count array to store cumulative counts
+            for (int i = 1; i < 10; i++) {
+                count[i] += count[i - 1];
+            }
+
+            // Step 3: Build the output array
+            current = tail;
+            while (current != null) {
+                int index = (current.CurrentClass / exp) % 10;
+                output[count[index] - 1] = current;
+                count[index]--;
+                current = current.prev;
+            }
+
+            // Step 4: Reconstruct the doubly linked list
+            head = output[0];
+            head.prev = null;
+
+            for (int i = 1; i < size; i++) {
+                output[i - 1].next = output[i];
+                if (output[i] != null) {
+                    output[i].prev = output[i - 1];
+                }
+            }
+
+            tail = output[size - 1];
+            if (tail != null) {
+                tail.next = null;
+            }
+        }
+        public void radixSortById() {
+            int max = findMaxId(); // Find the maximum value to determine the number of digits
+            for (int exp = 1; max / exp > 0; exp *= 10) {
+                countingSortById(exp);
+            }
         }
 
+        private int findMaxId() {
+            int max = Integer.MIN_VALUE;
+            StudentNode current = head;
+            while (current != null) {
+                if (current.StudentId > max) {
+                    max = current.StudentId;
+                }
+                current = current.next;
+            }
+            return max;
+        }
+
+        private void countingSortById(int exp) {
+            if (head == null) return;
+
+            int size = getCount();
+            StudentNode[] output = new StudentNode[size];
+            int[] count = new int[10]; // Count array for digits 0-9
+
+            // Step 1: Count occurrences of digits
+            StudentNode current = head;
+            while (current != null) {
+                int index = (current.StudentId / exp) % 10;
+                count[index]++;
+                current = current.next;
+            }
+
+            // Step 2: Update count array to store cumulative counts
+            for (int i = 1; i < 10; i++) {
+                count[i] += count[i - 1];
+            }
+
+            // Step 3: Build the output array
+            current = tail;
+            while (current != null) {
+                int index = (current.StudentId / exp) % 10;
+                output[count[index] - 1] = current;
+                count[index]--;
+                current = current.prev;
+            }
+
+            // Step 4: Reconstruct the doubly linked list
+            head = output[0];
+            head.prev = null;
+
+            for (int i = 1; i < size; i++) {
+                output[i - 1].next = output[i];
+                if (output[i] != null) {
+                    output[i].prev = output[i - 1];
+                }
+            }
+
+            tail = output[size - 1];
+            if (tail != null) {
+                tail.next = null;
+            }
+        }
+        private int getCount() {
+            int count = 0;
+            StudentNode current = head;
+            while (current != null) {
+                count++;
+                current = current.next;
+            }
+            return count;
+        }
     }
 
 

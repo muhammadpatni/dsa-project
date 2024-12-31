@@ -641,6 +641,38 @@ public  class Main {
                         switch (studentChoice) {
                             case 1:
                                 student.displayAllStudents();
+                                boolean check=true;
+                                while (check) {
+                                System.out.println("1.Sort by ID");
+                                System.out.println("2.Sort by Name");
+                                System.out.println("3.Sort by Class");
+                                System.out.println("4.Back");
+                                System.out.print("Enter choice: ");
+                                    int Choice = scanner.nextInt();
+                                    switch (Choice) {
+                                        case 1:
+                                            student.radixSortById();
+                                            student.displayAllStudents();
+                                            check=false;
+                                            break;
+                                        case 2:
+                                            student.radixSortByName();
+                                            student.displayAllStudents();
+                                            check=false;
+                                            break;
+                                        case 3:
+                                            student.radixSortByClass();
+                                            student.displayAllStudents();
+                                            check=false;
+                                            break;
+                                        case 4:
+                                            check=false;
+                                            break;
+                                        default:
+                                            System.out.println("Invalid choice !! , Enter correct option");
+                                            check=true;
+                                    }
+                                }
                                 break;
                             case 2:
                                 System.out.print("Enter id for search ");
