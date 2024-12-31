@@ -1,18 +1,18 @@
 					* * * * STUDENT DETAILS * * * *
 
-Student ID: 1
-Name: Haram Zainab
-Gender: Female
-DOB: 12-12-2007
-Contact: 0323232323
-Address: pagal khana
-Father's Name: shakoor
-Current Class: 5
+Student ID: 2
+Name: muhammad
+Gender: Male
+DOB: 08-07-2004
+Contact: 03162406968
+Address: b-75/4 malir extension colony karachi
+Father's Name: javed ismail
+Current Class: 2
 Section: A
 Previous Academic Background: 
-Previous Institute: arqam public school
-Previous Class: 4
-Previous Grade: arqam public school
+Previous Institute: green peace public high school
+Previous Class: 1
+Previous Grade: A
 Marks List: 
 No marks available.
 Fee Details: 
@@ -21,19 +21,40 @@ Attendance:
 No attendance records available.
 
 
-Student ID: 2
-Name: muhammad
+Student ID: 3
+Name: haram zainab
 Gender: Male
-DOB: 08-07-2004
-Contact: 03162406968
-Address: b-75/4 malir extension colony karachi 
-Father's Name: javed ismail
-Current Class: 2
+DOB: 12-12-2005
+Contact: 094566352625
+Address: pagal khana
+Father's Name: shakoor
+Current Class: 1
 Section: A
 Previous Academic Background: 
 Previous Institute: green peace public high school
 Previous Class: 1
-Previous Grade: green peace public high school
+Previous Grade: A
+Marks List: 
+No marks available.
+Fee Details: 
+No fee details available.
+Attendance: 
+No attendance records available.
+
+
+Student ID: 4
+Name: kamran alam
+Gender: Male
+DOB: 12-12-2003
+Contact: 03131313131
+Address: central jail
+Father's Name: alam sahib
+Current Class: 10
+Section: A
+Previous Academic Background: 
+Previous Institute: city school
+Previous Class: 9
+Previous Grade: D
 Marks List: 
 No marks available.
 Fee Details: 

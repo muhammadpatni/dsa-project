@@ -19,13 +19,6 @@ import java.util.Scanner;
             totalNumberOfStudents = 0;
         }
 
-        public void displayAllStudent()
-        {
-
-
-
-
-        }
         public boolean isEmpty() {
             return head == null;
         }
@@ -309,15 +302,15 @@ import java.util.Scanner;
                 switch (choice) {
                     case 1:
                         radixSortByStaffId();
-                        displayAllStudent();
+                        displayAllStudents();
                         check=false;
                     case 2:
                         radixSortByName();
-                        displayAllStudent();
+                        displayAllStudents();
                         check=false;
                     case 3:
                         radixSortByClass();
-                        displayAllStudent();
+                        displayAllStudents();
                         check=false;
                     case 4:
                         return;
@@ -348,7 +341,7 @@ import java.util.Scanner;
                     if (temp.Previous != null) {
                      writer.write("Previous Institute: "+temp.Previous.PreviousInstitute+"\n");
                      writer.write("Previous Class: "+temp.Previous.ClassName+"\n");
-                     writer.write("Previous Grade: "+temp.Previous.PreviousInstitute+"\n");
+                     writer.write("Previous Grade: "+temp.Previous.Grade+"\n");
                     } else {
                         writer.write("No previous academic background available.\n");
                     }
@@ -707,7 +700,7 @@ import java.util.Scanner;
                     } else if (line.startsWith("Name:")) {
                         name = line.split(":")[1].trim();
                     }
-                    else if (line.startsWith("Father:")) {
+                    else if (line.startsWith("Father's Name:")) {
                             father = line.split(":")[1].trim();
                     } else if (line.startsWith("Gender:")) {
                         gender = line.split(":")[1].trim();
@@ -822,7 +815,22 @@ import java.util.Scanner;
 
             // Perform counting sort for each digit
             for (int exp = 1; max / exp > 0; exp *= 10) {
-                countingSortByStaffId(exp);
+                countingSortByClass(exp);
+            }
+        }
+
+        public void radixSortByName() {
+            if (isEmpty()) {
+                System.out.println("No student to sort.");
+                return;
+            }
+
+            // Find the maximum length of names using a custom function
+            int maxLength = findMaxNameLength();
+
+            // Perform counting sort for each character position from right to left
+            for (int pos = maxLength - 1; pos >= 0; pos--) {
+                countingSortByName(pos);
             }
         }
         public void radixSortByStaffId() {
@@ -849,8 +857,6 @@ import java.util.Scanner;
             }
             return max;
         }
-
-        // Counting sort for a specific digit represented by exp
         private void countingSortByStaffId(int exp) {
             StudentNode[] output = new StudentNode[getSize()];
             int[] count = new int[10];
@@ -888,6 +894,45 @@ import java.util.Scanner;
             tail = current;
             tail.next = null;
         }
+        // Counting sort for a specific digit represented by exp
+        private void countingSortByClass(int exp) {
+            StudentNode[] output = new StudentNode[getSize()];
+            int[] count = new int[10];
+
+            // Count occurrences of each digit
+            StudentNode temp = head;
+            while (temp != null) {
+                int digit = (temp.CurrentClass / exp) % 10;
+                count[digit]++;
+                temp = temp.next;
+            }
+
+            // Update count array to hold actual positions
+            for (int i = 1; i < 10; i++) {
+                count[i] += count[i - 1];
+            }
+
+            // Build the output array
+            temp = tail; // Start from the end for stability
+            while (temp != null) {
+                int digit = (temp.CurrentClass / exp) % 10;
+                output[count[digit] - 1] = temp;
+                count[digit]--;
+                temp = temp.prev;
+            }
+
+            // Reconstruct the linked list
+            head = output[0];
+            StudentNode current = head;
+            for (int i = 1; i < output.length; i++) {
+              if (output[i]!=null)
+              { current.next = output[i];
+                output[i].prev = current;
+                current = output[i];}
+            }
+            tail = current;
+            tail.next = null;
+        }
 
         private int getSize() {
             int size = 0;
@@ -897,21 +942,6 @@ import java.util.Scanner;
                 temp = temp.next;
             }
             return size;
-        }
-
-        public void radixSortByName() {
-            if (isEmpty()) {
-                System.out.println("No student to sort.");
-                return;
-            }
-
-            // Find the maximum length of names using a custom function
-            int maxLength = findMaxNameLength();
-
-            // Perform counting sort for each character position from right to left
-            for (int pos = maxLength - 1; pos >= 0; pos--) {
-                countingSortByName(pos);
-            }
         }
 
         // Custom function to find the maximum length of names
