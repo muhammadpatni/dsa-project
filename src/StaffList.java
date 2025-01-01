@@ -65,7 +65,7 @@ public  class StaffList{
         Staff newNode = new Staff();
         newNode.Certifications= new Array();
         newNode.StaffId = StaffIds;
-        newNode.Name = Name;
+        newNode.Name = Name.toLowerCase();
         newNode.Gender = Gender;
         newNode.DateOfBirth = DateOfBirth;
         newNode.Contact = Contact;
