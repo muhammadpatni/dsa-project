@@ -40,8 +40,18 @@ public class MarksListForStudent {
             System.out.println("\nCurrent Details:");
            displayStudentMarks();
             System.out.println("\n:");
-            System.out.print("Select s.no for edit marks or press 0 to save");
-            int choice = sc.nextInt();
+            int choice = 0;
+            while (true) {
+                try {
+                    System.out.print("Select s.no for edit marks or press 0 to save: ");
+                    choice = sc.nextInt();
+                    break;
+                } catch (Exception e) {
+                    System.out.println("Invalid input. Please enter a valid number.");
+                    sc.nextLine(); // Clear the buffer
+                }
+            }
+
             if (choice==0)
             {   System.out.println("marks update successfully ");
                 return;}
@@ -53,8 +63,19 @@ public class MarksListForStudent {
                 System.out.println("Invalid selection !!!");
                 continue;
             }
-            System.out.println("enter new marks");
-            temp.mark= sc.nextDouble();
+            double mark = 0;
+            while (true) {
+                try {
+                    System.out.println("Enter new marks: ");
+                    mark = sc.nextDouble();
+                    temp.mark = mark;
+                    break;
+                } catch (Exception e) {
+                    System.out.println("Invalid input. Please enter valid marks.");
+                    sc.nextLine(); // Clear the buffer
+                }
+            }
+
         }
     }
 

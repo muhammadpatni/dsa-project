@@ -208,67 +208,107 @@ public  class StaffList{
             int choice = sc.nextInt();
             switch (choice) {
                 case 1:
-                    System.out.print("Enter new name: ");
-                    sc.nextLine();
-                    String name = sc.nextLine();
-                    temp.Name = name;
+                    while (true) {
+                        try {
+                            System.out.print("Enter new name: ");
+                            sc.nextLine();
+                            String name = sc.nextLine();
+                            temp.Name = name;
+                            break;
+                        } catch (Exception e) {
+                            System.out.println("Invalid input. Please enter a valid name.");
+                        }
+                    }
                     break;
 
                 case 2:
-                    System.out.println("Enter new gender:");
-                    System.out.println("1. Male");
-                    System.out.println("2. Female");
-                    System.out.println("3. Other");
-                    int gender = sc.nextInt();
-                    sc.nextLine();
-                    if (gender == 1)
-                        temp.Gender = "Male";
-                    else if (gender == 2)
-                        temp.Gender = "Female";
-                    else if (gender == 3)
-                        temp.Gender = "Other";
-                    else
-                        System.out.println("Invalid choice!");
+                    while (true) {
+                        try {
+                            System.out.println("Enter new gender:");
+                            System.out.println("1. Male");
+                            System.out.println("2. Female");
+                            System.out.println("3. Other");
+                            int gender = sc.nextInt();
+                            sc.nextLine();
+                            if (gender == 1)
+                                temp.Gender = "Male";
+                            else if (gender == 2)
+                                temp.Gender = "Female";
+                            else if (gender == 3)
+                                temp.Gender = "Other";
+                            else
+                                System.out.println("Invalid choice!");
+                            break;
+                        } catch (Exception e) {
+                            System.out.println("Invalid input. Please enter a valid gender choice.");
+                            sc.nextLine(); // Clear the buffer
+                        }
+                    }
                     break;
 
                 case 3:
-                    System.out.print("Enter new contact: ");
-                    sc.nextLine();
-                    String contact = sc.nextLine();
-                    temp.Contact = contact;
+                    while (true) {
+                        try {
+                            System.out.print("Enter new contact: ");
+                            sc.nextLine();
+                            String contact = sc.nextLine();
+                            temp.Contact = contact;
+                            break;
+                        } catch (Exception e) {
+                            System.out.println("Invalid input. Please enter a valid contact.");
+                        }
+                    }
                     break;
 
                 case 4:
-                    System.out.print("Enter new address: ");
-                    sc.nextLine();
-                    String address = sc.nextLine();
-                    temp.Address = address;
+                    while (true) {
+                        try {
+                            System.out.print("Enter new address: ");
+                            sc.nextLine();
+                            String address = sc.nextLine();
+                            temp.Address = address;
+                            break;
+                        } catch (Exception e) {
+                            System.out.println("Invalid input. Please enter a valid address.");
+                        }
+                    }
                     break;
 
                 case 5:
                     String dob = "";
                     DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy");
                     while (true) {
-                        System.out.print("Enter new DOB (dd-MM-yyyy): ");
-                        sc.nextLine();
-                        String input = sc.nextLine();
                         try {
+                            System.out.print("Enter new DOB (dd-MM-yyyy): ");
+                            sc.nextLine();
+                            String input = sc.nextLine();
                             LocalDate birthDate = LocalDate.parse(input, formatter);
                             dob = input;
+                            temp.DateOfBirth = dob;
                             break;
                         } catch (DateTimeParseException e) {
                             System.out.println("Invalid date format. Please enter again in 'dd-MM-yyyy' format.");
+                        } catch (Exception e) {
+                            System.out.println("Invalid input. Please enter a valid date.");
                         }
                     }
-                    temp.DateOfBirth = dob;
                     break;
 
                 case 6:
-                    System.out.print("Enter new salary: ");
-                    int salary = sc.nextInt();
-                    temp.Salary = salary;
-                    sc.nextLine();
+                    while (true) {
+                        try {
+                            System.out.print("Enter new salary: ");
+                            int salary = sc.nextInt();
+                            temp.Salary = salary;
+                            sc.nextLine(); // Clear the buffer
+                            break;
+                        } catch (Exception e) {
+                            System.out.println("Invalid input. Please enter a valid salary.");
+                            sc.nextLine(); // Clear the buffer
+                        }
+                    }
                     break;
+
 
                 case 7:
                     System.out.print("Enter new designation: ");
