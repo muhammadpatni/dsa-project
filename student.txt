@@ -1,5 +1,7 @@
 					* * * * STUDENT DETAILS * * * *
 
+Voucher Number: 4
+
 Student ID: 2
 Name: muhammad
 Gender: Male
@@ -10,15 +12,24 @@ Father's Name: javed ismail
 Current Class: 2
 Section: A
 Previous Academic Background: 
-Previous Institute: city school
-Previous Class: 9
-Previous Grade: D
+Previous Institute: beacon askari school
+Previous Class: 1
+Previous Grade: A
 Marks List: 
 No marks available.
 Fee Details: 
 No fee details available.
 Attendance: 
-No attendance records available.
+true
+true
+false
+false
+true
+true
+true
+true
+true
+true
 
 
 Student ID: 3
@@ -31,9 +42,9 @@ Father's Name: shakoor
 Current Class: 1
 Section: A
 Previous Academic Background: 
-Previous Institute: city school
-Previous Class: 9
-Previous Grade: D
+Previous Institute: beacon askari school
+Previous Class: 1
+Previous Grade: A
 Marks List: 
 No marks available.
 Fee Details: 
@@ -52,9 +63,9 @@ Father's Name: alam sahib
 Current Class: 10
 Section: A
 Previous Academic Background: 
-Previous Institute: city school
-Previous Class: 9
-Previous Grade: D
+Previous Institute: beacon askari school
+Previous Class: 1
+Previous Grade: A
 Marks List: 
 No marks available.
 Fee Details: 
@@ -64,7 +75,7 @@ No attendance records available.
 
 
 Student ID: 5
-Name: hareeba 
+Name: hareeba
 Gender: Female
 DOB: 11-08-2004
 Contact: 03158494300
@@ -81,6 +92,15 @@ No marks available.
 Fee Details: 
 No fee details available.
 Attendance: 
-No attendance records available.
+true
+true
+false
+false
+false
+true
+true
+true
+true
+true
 
 

@@ -1,3 +1,7 @@
+import java.io.BufferedWriter;
+import java.io.IOException;
+import java.io.Writer;
+import java.nio.Buffer;
 import java.time.LocalDate;
 
 public class FeeClass {
@@ -22,14 +26,13 @@ public class FeeClass {
         }
         return false;
     }
-    public void displayFee()
-    {
+    public void displayFee(BufferedWriter writer) throws IOException {
         FeeNode temp=head;
         while (temp!=null)
         {
-            System.out.println("Month: "+temp.Month);
-            System.out.println("Voucher Number: "+temp.VoucherNo);
-            System.out.println("Date: "+temp.date);
+            writer.write("Month: "+temp.Month+"\n");
+            writer.write("Voucher Number: "+temp.VoucherNo+"\n");
+            writer.write("Date: "+temp.date+"\n");
             temp=temp.next;
         }
     }
@@ -69,11 +72,11 @@ public class FeeClass {
         }
     }
 
-    public void addStudentFee(int Voucherid, String Month) {
+    public void addStudentFee(int Voucherid, String Month,String date) {
         FeeNode newNode = new FeeNode();
         newNode.VoucherNo = Voucherid;
         newNode.Month = Month;
-        newNode.date = LocalDate.now().toString();
+        newNode.date =date;
         if (isEmpty()) {
             head = newNode;
         } else {
