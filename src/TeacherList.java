@@ -31,7 +31,7 @@ public class TeacherList {
         Teacher newNode = new Teacher();
         newNode.Certifications = new Array();
         newNode.TeacherID = TotalNumberOfTeachers;
-        newNode.Name = Name;
+        newNode.Name = Name.toLowerCase();
         newNode.Gender = Gender;
         newNode.DateOfBirth = DateOfBirth;
         newNode.MaritalStatus = MaritalStatus;
