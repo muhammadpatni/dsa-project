@@ -1,3 +1,5 @@
+import java.io.BufferedWriter;
+import java.io.IOException;
 import java.util.Scanner;
 public class MarksListForStudent {
     MarksNode head,tail;
@@ -11,12 +13,11 @@ public class MarksListForStudent {
     {
         return head == null;
     }
-    public void displayAllMarks()
-    {
+    public void displayAllMarks(BufferedWriter writer) throws IOException {
         MarksNode temp=head;
         while (temp!=null)
         {
-            System.out.println("1. "+temp.mark+" : "+temp.mark);
+            writer.write(temp.subjects+" : "+temp.mark+"\n");
             temp=temp.next;
         }
     }

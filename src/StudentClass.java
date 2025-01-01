@@ -309,6 +309,7 @@ public class StudentClass {
         try (BufferedWriter writer = new BufferedWriter(new FileWriter(Filename))) {
             StudentNode temp = head; // Assuming "this" is the head of the StudentNode list
             writer.write("\t\t\t\t\t* * * * STUDENT DETAILS * * * *\n\n");
+            writer.write("Voucher Number: "+VoucherNo+"\n\n");
             while (temp != null) {
                 writer.write("Student ID: " + temp.StudentId + "\n");
                 writer.write("Name: " + temp.Name + "\n");
@@ -331,21 +332,23 @@ public class StudentClass {
 
                 writer.write("Marks List: \n");
                 if (!temp.marks.isEmpty() ) {
-                    temp.marks.displayAllMarks();
+                    temp.marks.displayAllMarks(writer);
                 } else {
                     writer.write("No marks available.\n");
                 }
 
                 writer.write("Fee Details: \n");
                 if (!temp.fee.isEmpty()) {
-                    temp.fee.displayFee();
+                    temp.fee.displayFee(writer);
                 } else {
                     writer.write("No fee details available.\n");
                 }
 
                 writer.write("Attendance: \n");
                 if (!temp.attendance.isEmpty()) {
-                    temp.attendance.print();
+                    for (int i = 0; i < temp.attendance.size(); i++) {
+                        writer.write(temp.attendance.getAttendance(i)+"\n");
+                    }
 
                 } else {
                     writer.write("No attendance records available.\n");
@@ -358,6 +361,7 @@ public class StudentClass {
             System.out.println("Error saving student details to file.");
         }
     }
+
 
     public StudentNode uploadMarks(int id) {
         StudentNode temp = head;
@@ -390,7 +394,7 @@ public class StudentClass {
             System.out.println("Fee for this month has already been recorded.");
             return;
         }
-        temp.fee.addStudentFee(voucherid,month);
+        temp.fee.addStudentFee(voucherid,month, LocalDate.now().toString());
     }
 
     public void generateFeeVouchers(String month ,int id) {
@@ -545,7 +549,7 @@ public class StudentClass {
             String[] month = returnMonthsOfUnpaidFee(temp);
             System.out.printf("|%-10s|%-20s|%-20s|",temp.StudentId, temp.Name, temp.CurrentClass);
             for (int i = 0; i <month.length; i++) {
-                if (FeeClass.getMonthNameFromDate(LocalDate.now())!=month[i]){
+                if (!FeeClass.getMonthNameFromDate(LocalDate.now()).equals(month[i])){
                     if (i==0)
                         System.out.printf("%-20s|\n",month[i]);
                     else
@@ -561,19 +565,19 @@ public class StudentClass {
                 }
 
             }
-            System.out.println("|-----------------------------------|-------------------|--------------------------------|\n");
+            System.out.println("|----------|--------------------|--------------------|--------------------|");
             temp=temp.next;
         }
     }
 
     public void markAttendanceOfClass (int Class)
     {
-        boolean found=false;
+        boolean found=true;
         StudentNode temp=head;
         while (temp!=null)
         {
             if (temp.CurrentClass==Class)
-            {   found=true;
+            {   found=false;
                 System.out.println("Roll # "+temp.StudentId+" Name "+temp.Name);
                 System.out.println("1 . present");
                 System.out.println("2 . Absent");
@@ -598,7 +602,7 @@ public class StudentClass {
     public void displayMonthAttendanceOfClass(int Class)
     {
         boolean found=true,check=false;
-        StyledConsoleOutput.printStyled("                             Last 15 Days Attendance Of Class "+Class+"\n",true,false,"cyam");
+        StyledConsoleOutput.printStyled("                             Last 15 Days Attendance Of Class "+Class+"\n",true,false,"cyan");
         System.out.println("|=======|======================|===|===|===|===|===|===|===|===|===|====|====|====|====|====|====|");
         System.out.println("| ROLL# |         Name         | 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 | 11 | 12 | 13 | 14 | 15 |");
         System.out.println("|=======|======================|===|===|===|===|===|===|===|===|===|====|====|====|====|====|====|");
@@ -609,41 +613,64 @@ public class StudentClass {
                 found = false;
                 System.out.printf("|%-7s|%-22s",temp.StudentId,temp.Name);
                 if (temp.attendance.size()<15)
-                {
+                {    int print=0;
                     for (int i = 0; i <15-temp.attendance.size(); i++) {
-                        if (i<10)
+                        if (print<10)
                             System.out.print("| A ");
                         else
-                            System.out.print("|  A ");
+                            System.out.print(" | A ");
+                        print++;
 
                     }
                     for (int i = 0; i < temp.attendance.size(); i++) {
                         if (temp.attendance.getAttendance(i))
-                            System.out.print("| p ");
+                            if (print>9)
+                                System.out.print(" | P ");
+                            else
+                                System.out.print("| P ");
+                        else
+                        if (print>9)
+                            System.out.print(" | A ");
                         else
                             System.out.print("| A ");
+                        print++;
+
                     }
                     check=true;
                 }
                 else if(temp.attendance.size()==15)  {
                     for (int i = 0; i < temp.attendance.size(); i++) {
                         if (temp.attendance.getAttendance(i))
-                            System.out.print("| p ");
+                            if (i<10)
+                                System.out.print("| P ");
+                            else
+                                System.out.print(" | P ");
                         else
+                        if (i<10)
                             System.out.print("| A ");
+                        else
+                            System.out.print(" | A ");
                     }
                     check=true;
                 } else if (temp.attendance.size()>15) {
+                    int print=0;
                     for (int i =temp.attendance.size()-15; i < temp.attendance.size(); i++) {
+                        print++;
                         if (temp.attendance.getAttendance(i))
-                            System.out.print("| p ");
+                            if (print<10)
+                                System.out.print("| P ");
+                            else
+                                System.out.println(" | P ");
                         else
+                        if (print<10)
                             System.out.print("| A ");
+                        else
+                            System.out.println(" | A ");
                     }
                     check=true;
                 }
                 if (check)
-                    System.out.print("|\n");
+                    System.out.print(" |\n");
                 System.out.println("|-------|----------------------|---|---|---|---|---|---|---|---|---|----|----|----|----|----|----|");
             }
             temp=temp.next;
@@ -670,6 +697,10 @@ public class StudentClass {
 
             while ((line = reader.readLine()) != null) {
                 // Detect student details
+                if (line.startsWith("Voucher Number:"))
+                {
+                    this.VoucherNo=Integer.parseInt(line.split(":")[1].trim());
+                }
                 if (line.startsWith("Student ID:")) {
                     if (studentId!= 0) {
                         // Add the previous student to the list
@@ -727,13 +758,19 @@ public class StudentClass {
                 } else if (line.startsWith("Fee Details:")) {
                     // Read fee details until Attendance
                     while ((line = reader.readLine()) != null && !line.startsWith("Attendance:")) {
+                        String month="",date="";
+                        int voucherNo=0;
                         if (line.trim().equals("No fee details available.")) {
                             break;
                         }
-                        String[] feeDetailsArray = line.split(":");
-                        int voucherNo = Integer.parseInt(feeDetailsArray[0].trim());
-                        String month = feeDetailsArray[1].trim();
-                        feeDetails.addStudentFee(voucherNo, month);
+                        if (line.startsWith("Month: "))
+                        {month=line.split(":")[1].trim();}
+                        else if (line.startsWith("Voucher Number: ")) {
+                            voucherNo=Integer.parseInt(line.split(":")[1].trim());
+                        } else if (line.startsWith("Date: ")) {
+                            date=line.split(":")[1].trim();
+                        }
+                        feeDetails.addStudentFee(voucherNo, month,date);
                     }
                 } else if (line.startsWith("Attendance:")) {
                     // Read attendance until the end of the student details
