@@ -359,18 +359,18 @@ public class TeacherList {
             System.out.println("|-----------------------------------|-------------------|--------------------------------|--------------------------------|\n");
         }
     }
-public Teacher validTeacherId(int id)
-{
-    Teacher temp = head;
-    while (temp != null) {
-        if (temp.TeacherID == id)
-        {break;}
-        temp = temp.next;
+    public Teacher validTeacherId(int id)
+    {
+        Teacher temp = head;
+        while (temp != null) {
+            if (temp.TeacherID == id)
+            {break;}
+            temp = temp.next;
+        }
+        if (temp==null)
+            return null;
+        return  temp;
     }
-    if (temp==null)
-        return null;
-    return  temp;
-}
     public void saveToFile() {
         try (BufferedWriter writer = new BufferedWriter(new FileWriter(Filename))) {
             Teacher temp = head;

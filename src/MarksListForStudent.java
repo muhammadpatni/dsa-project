@@ -1,6 +1,3 @@
-import java.io.BufferedReader;
-import java.io.BufferedWriter;
-import java.io.IOException;
 import java.util.Scanner;
 public class MarksListForStudent {
     MarksNode head,tail;
@@ -14,11 +11,12 @@ public class MarksListForStudent {
     {
         return head == null;
     }
-    public void displayAllMarks(BufferedWriter writer) throws IOException {
+    public void displayAllMarks()
+    {
         MarksNode temp=head;
         while (temp!=null)
         {
-            writer.write(temp.subjects+" : "+temp.mark+"\n");
+            System.out.println("1. "+temp.mark+" : "+temp.mark);
             temp=temp.next;
         }
     }
@@ -40,7 +38,7 @@ public class MarksListForStudent {
         MarksNode temp = head;
         while (true) {
             System.out.println("\nCurrent Details:");
-           displayStudentMarks();
+            displayStudentMarks();
             System.out.println("\n:");
             int choice = 0;
             while (true) {
@@ -108,14 +106,7 @@ public class MarksListForStudent {
     }
 
     public void displayMarkSheet() {
-        if (isEmpty())
-        {
-            StyledConsoleOutput.printStyled("\nMarks not uploaded !!!",false,false,"red");
-            return;
-        }
-
-
-        StyledConsoleOutput.printStyled("                                         ** MARK SHEET **                                        \n\n",true,false,"cyan");
+        StyledConsoleOutput.printStyled("                                         ** MARK SHEET **                                        ",true,false,"cyan");
         System.out.println("|--------|-----------------------|-------------------|-------------------|------------------|------------------|");
         System.out.println("| S.NO   |       SUBJECT         | MAXIMUM MARKS     | MINIMUM MARKS     | OBTAINED MARKS   |      GRADE       |");
         System.out.println("|--------|-----------------------|-------------------|-------------------|------------------|------------------|");
