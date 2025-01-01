@@ -66,8 +66,24 @@ public  class Main {
             System.out.println("8. EXIT");
 
             StyledConsoleOutput.printStyled("Enter the number corresponding to your role: ",true,false,"cyan");
-            int choice = scanner.nextInt();
-            scanner.nextLine(); // Consume newline
+            boolean valid = false;
+            int choice =0;
+
+            while (!valid) {
+                try {
+                    System.out.print("Enter your choice (1-6): ");
+                    choice = scanner.nextInt();
+                    if (choice < 1 || choice > 7) {
+                        throw new Exception("Invalid choice range!");
+                    }
+                    valid = true;
+                } catch (Exception e) {
+                    scanner.nextLine();
+                    System.out.println("Wrong input! Enter again from 1-6 options.");
+                }
+            }
+
+            System.out.println("You selected: " + choice);// Consume newline
 
             if (choice == 8) {
                 System.out.println("\nExiting the application. Goodbye!");
@@ -178,19 +194,49 @@ public  class Main {
         // Attendance menu for the logged-in user
         while (!isLoggedIn) {
             StyledConsoleOutput.printStyled("\nATTENDANCE MENU:\n",true,false,"magenta");
-            System.out.println("1. Mark Attendance");
-            System.out.println("2. View Attendance");
-            System.out.println("3. Back to Login");
-            System.out.print("Enter your choice: ");
-            int choice = scanner.nextInt();
-            scanner.nextLine(); // Consume newline
+            int choice = -1;
+            while (true) {
+                try {
+                    System.out.println("1. Mark Attendance");
+                    System.out.println("2. View Attendance");
+                    System.out.println("3. Back to Login");
+                    System.out.print("Enter your choice: ");
+
+                    choice = scanner.nextInt();
+                    scanner.nextLine(); // Clear newline character left after nextInt()
+
+                    if (choice < 1 || choice > 3) {
+                        System.out.println("Invalid choice. Please enter a number between 1 and 3.");
+                    } else {
+                        break; // Exit loop if input is valid
+                    }
+                } catch (Exception e) {
+                    System.out.println("Invalid input! Please enter a numeric value.");
+                    scanner.nextLine(); // Clear invalid input
+                }
+            }
+// Consume newline
 
             switch (choice) {
                 case 1:
                     String[] date={"","","","","","","","","",""};
-                    System.out.print("Enter Class Name: ");
-                    int className = scanner.nextInt();
-                    scanner.nextLine();
+                    int className = -1;
+                    while (true) {
+                        try {
+                            System.out.print("Enter Class Name: ");
+                            className = scanner.nextInt();
+                            scanner.nextLine(); // Clear newline character left after nextInt()
+
+                            if (className <= 0) {
+                                System.out.println("Class Name must be a positive number. Please try again.");
+                            } else {
+                                break; // Valid input, exit loop
+                            }
+                        } catch (Exception e) {
+                            System.out.println("Invalid input! Please enter a numeric value for Class Name.");
+                            scanner.nextLine(); // Clear invalid input
+                        }
+                    }
                     // Ask for credentials after class name
                     boolean validUser = false;
                     while (!validUser) {
@@ -226,8 +272,24 @@ public  class Main {
 
                 case 2:
                     // View Attendance
-                    System.out.print("Enter Class : ");
-                    int viewClassName = scanner.nextInt();
+                    int viewClassName = -1;
+                    while (true) {
+                        try {
+                            System.out.print("Enter Class: ");
+                            viewClassName = scanner.nextInt();
+                            scanner.nextLine(); // Clear newline character left after nextInt()
+
+                            if (viewClassName <= 0) {
+                                System.out.println("Class must be a positive number. Please try again.");
+                            } else {
+                                break; // Valid input, exit loop
+                            }
+                        } catch (Exception e) {
+                            System.out.println("Invalid input! Please enter a numeric value for Class.");
+                            scanner.nextLine(); // Clear invalid input
+                        }
+                    }
+
                     student.displayMonthAttendanceOfClass(viewClassName);
                     break;
 
@@ -277,8 +339,24 @@ public  class Main {
             System.out.println("4. Search " + entity);
             System.out.println("5. Back");
             System.out.print("Enter your choice: ");
-            int choice = scanner.nextInt();
-            scanner.nextLine();
+            int choice = 0;
+            boolean valid = false;
+
+            while (!valid) {
+                try {
+                    System.out.print("Enter your choice (1-5): ");
+                    choice = scanner.nextInt();
+                    if (choice < 1 || choice > 6) {
+                        throw new Exception("Invalid choice range!");
+                    }
+                    valid = true;
+                } catch (Exception e) {
+                    scanner.nextLine();
+                    System.out.println("Wrong input! Enter again from 1-5 options.");
+                }
+            }
+
+            System.out.println("You selected: " + choice);
 
             switch (choice) {
                 case 1:
@@ -293,47 +371,93 @@ public  class Main {
                         System.out.println("1. Male");
                         System.out.println("2. Female");
                         String gender = "";
-                        int GenderChoice= scanner.nextInt();
-                        if (GenderChoice==1)
-                        {
-                            gender="Male";
+                        boolean genderValid = false; // Reset the flag for gender choice
+
+                        while (!genderValid) {
+                            try {
+                                System.out.print("Enter your choice (1-2): ");
+                                int genderChoice = scanner.nextInt();
+                                if (genderChoice == 1) {
+                                    gender = "Male";
+                                    genderValid = true; // Valid choice, exit loop
+                                } else if (genderChoice == 2) {
+                                    gender = "Female";
+                                    genderValid = true; // Valid choice, exit loop
+                                } else {
+                                    throw new Exception("Invalid gender choice!"); // Throw for invalid range
+                                }
+                            } catch (Exception e) {
+                                scanner.nextLine(); // Clear the invalid input
+                                System.out.println("Wrong input! Please select 1 for Male or 2 for Female.");
+                            }
                         }
-                        else if(GenderChoice==2)
-                        {
-                            gender="Female";
-                        }
+
                         while (true) {
                             scanner.nextLine();
                             System.out.print("Enter your Date of Birth (dd-MM-yyyy): ");
-                            String input = scanner.nextLine();
+                            String input = scanner.nextLine(); // Read the date input directly
 
                             try {
-                                // Validate the input by parsing it into a LocalDate
-                                LocalDate birthDate = LocalDate.parse(input, formatter);
-
-                                // If parsing succeeds, store it in the dob variable
-                                dob = input;
+                                LocalDate birthDate = LocalDate.parse(input, formatter); // Parse the date
+                                dob = input; // Store the valid date
                                 break; // Exit the loop
                             } catch (DateTimeParseException e) {
-                               StyledConsoleOutput.printStyled("Invalid date format. Please enter again in 'dd-MM-yyyy' format.",false,false,"red");
+                                System.out.println("Invalid date format. Please enter again in 'dd-MM-yyyy' format.");
                             }
                         }
-                        System.out.print("Enter Contact Number: ");
-                        String contact = scanner.nextLine();
+
+                        String contact = "";
+                        while (true) {
+                            try {
+                                System.out.print("Enter Contact Number: ");
+                                contact = scanner.nextLine();
+                                if (!contact.matches("\\d{10}")) { // Assuming contact number is 10 digits
+                                    throw new Exception("Invalid contact number format!");
+                                }
+                                break;
+                            } catch (Exception e) {
+                                System.out.println("Invalid input! Contact number must be 10 digits.");
+                            }
+                        }
                         System.out.print("Enter Address: ");
                         String address = scanner.nextLine();
                         System.out.print("Enter Designation: ");
                         String designation = scanner.nextLine();
-                        System.out.print("Enter Salary: ");
-                        double salary = scanner.nextDouble();
-                        scanner.nextLine(); // Consume the newline
+                        double salary = 0;
+                        while (true) {
+                            try {
+                                System.out.print("Enter Salary: ");
+                                salary = scanner.nextDouble();
+                                if (salary < 0) {
+                                    System.out.println("Salary cannot be negative! Please enter a positive value.");
+                                } else {
+                                    break; // Exit loop if salary is valid
+                                }
+                            } catch (java.util.InputMismatchException e) {
+                                System.out.println("Invalid input! Salary must be a number.");
+                                scanner.nextLine(); // Clear invalid input
+                            }
+                        }
+                        scanner.nextLine();
                         System.out.print("Enter Skills: ");
                         String skills = scanner.nextLine();
                         System.out.print("Enter Experience : ");
                         String experience = scanner.nextLine();
-                        System.out.print("Enter number of Certifications: ");
-                        int certCount = scanner.nextInt();
-                        scanner.nextLine(); // Consume newline
+                        int certCount = 0;
+                        while (true) {
+                            try {
+                                System.out.print("Enter number of Certifications: ");
+                                certCount = scanner.nextInt();
+                                if (certCount < 0) {
+                                    throw new Exception("Number of certifications cannot be negative!");
+                                }
+                                break;
+                            } catch (Exception e) {
+                                scanner.nextLine(); // Clear invalid input
+                                System.out.println("Invalid input! Please enter a positive integer for certifications.");
+                            }
+                        }
+
 
                         // Array to store certifications
                         String[] certifications = new String[certCount];
@@ -358,8 +482,24 @@ public  class Main {
                         System.out.println("1. Male");
                         System.out.println("2. Female");
                         String gender = "";
-                        int genderChoice = scanner.nextInt();
-                        scanner.nextLine(); // Consume the newline
+                        int genderChoice = 0;
+
+                        while (true) {
+                            try {
+                                System.out.print("Enter your choice for gender: ");
+                                genderChoice = scanner.nextInt();
+                                scanner.nextLine();  // Clear the buffer
+
+                                if (genderChoice < 1 || genderChoice > 2) {
+                                    throw new Exception("Invalid choice! Please enter 1 for Male or 2 for Female.");
+                                }
+
+                                break;  // Exit loop if valid input
+                            } catch (Exception e) {
+                                System.out.println("Error: " + e.getMessage());
+                                scanner.nextLine();  // Clear invalid input
+                            }
+                        }
 
                         if (genderChoice == 1) {
                             gender = "Male";
@@ -384,8 +524,24 @@ public  class Main {
                         System.out.println("2. Unmarried");
                         System.out.println("3. Widow");
                         String maritalStatus = "";
-                        int maritalChoice = scanner.nextInt();
-                        scanner.nextLine(); // Consume the newline
+                        int maritalChoice = 0;
+
+                        while (true) {
+                            try {
+                                System.out.print("Enter your choice for marital status: ");
+                                maritalChoice = scanner.nextInt();
+                                scanner.nextLine(); // Consume the newline
+
+                                if (maritalChoice < 1 || maritalChoice > 3) {
+                                    throw new Exception("Invalid choice! Please enter 1 for Married, 2 for Unmarried, or 3 for Widow.");
+                                }
+
+                                break; // Exit loop if valid input
+                            } catch (Exception e) {
+                                System.out.println("Error: " + e.getMessage());
+                                scanner.nextLine(); // Clear invalid input
+                            }
+                        }
 
                         switch (maritalChoice) {
                             case 1:
@@ -399,29 +555,96 @@ public  class Main {
                                 break;
                         }
 
+
                         System.out.print("Enter Email: ");
                         String email = scanner.nextLine();
+                        while (true) {
+                            try {
+                                if (!email.contains("@")) {
+                                    throw new Exception("Invalid email format.");
+                                }
+                                break;
+                            } catch (Exception e) {
+                                System.out.println(e.getMessage());
+                                System.out.print("Enter valid Email: ");
+                                email = scanner.nextLine();
+                            }
+                        }
+
                         System.out.print("Enter Specialization: ");
                         String specialization = scanner.nextLine();
+
                         System.out.print("Enter Highest Qualification: ");
                         String highestQualification = scanner.nextLine();
+                        while (true) {
+                            try {
+                                if (highestQualification.isEmpty()) {
+                                    throw new Exception("Highest qualification cannot be empty.");
+                                }
+                                break;
+                            } catch (Exception e) {
+                                System.out.println(e.getMessage());
+                                System.out.print("Enter valid Highest Qualification: ");
+                                highestQualification = scanner.nextLine();
+                            }
+                        }
+
                         System.out.print("Enter Contact Number: ");
                         String contact = scanner.nextLine();
+                        while (true) {
+                            try {
+                                if (!contact.matches("\\d{10}")) {
+                                    throw new Exception("Invalid contact number. It must be 10 digits.");
+                                }
+                                break;
+                            } catch (Exception e) {
+                                System.out.println(e.getMessage());
+                                System.out.print("Enter valid Contact Number: ");
+                                contact = scanner.nextLine();
+                            }
+                        }
+
                         System.out.print("Enter Address: ");
                         String address = scanner.nextLine();
 
                         System.out.print("Enter Salary: ");
-                        double salary = scanner.nextDouble();
+                        double salary = 0;
+                        while (true) {
+                            try {
+                                salary = scanner.nextDouble();
+                                if (salary <= 0) {
+                                    throw new Exception("Salary must be a positive number.");
+                                }
+                                break;
+                            } catch (Exception e) {
+                                System.out.println(e.getMessage());
+                                scanner.nextLine(); // Clear invalid input
+                            }
+                        }
                         scanner.nextLine(); // Consume the newline
 
                         System.out.print("Enter Skills: ");
                         String skills = scanner.nextLine();
+
                         System.out.print("Enter Experience: ");
                         String experience = scanner.nextLine();
 
                         System.out.print("Enter number of Certifications: ");
-                        int certCount = scanner.nextInt();
-                        scanner.nextLine(); // Consume newline
+                        int certCount = 0;
+                        while (true) {
+                            try {
+                                certCount = scanner.nextInt();
+                                if (certCount < 0) {
+                                    throw new Exception("Number of certifications cannot be negative.");
+                                }
+                                break;
+                            } catch (Exception e) {
+                                System.out.println(e.getMessage());
+                                scanner.nextLine(); // Clear invalid input
+                            }
+                        }
+                        scanner.nextLine(); // Consume the newline
+// Consume newline
 
                         // Array to store certifications
                         String[] certifications = new String[certCount];
@@ -437,24 +660,72 @@ public  class Main {
                     }
                     if(entity.equals("Student"))
                     { System.out.print("Enter Class For Admission: ");
-                        int currentClass = scanner.nextInt();
-                        scanner.nextLine(); // Consume newline
+                        int currentClass = 0;
+                        while (true) {
+                            try {
+                                currentClass = scanner.nextInt();
+                                if (currentClass <= 0) {
+                                    throw new Exception("Class must be a positive number.");
+                                }
+                                break;
+                            } catch (Exception e) {
+                                System.out.println("Invalid input! Please enter a valid class number.");
+                                scanner.nextLine();
+                            }
+                        }
+
+
                         if (student.countStudentsInClass(currentClass) >= 200) {
                             StyledConsoleOutput.printStyled("Student capacity is full for this class.",false,false,"red");
                             break;
                         }
 
                         System.out.print("Enter Student Name: ");
-                        String name = scanner.nextLine();
+                        String name = "";
+                        while (true) {
+                            try {
+                                name = scanner.nextLine();
+                                if (name.trim().isEmpty()) {
+                                    throw new Exception("Name cannot be empty!");
+                                }
+                                break;
+                            } catch (Exception e) {
+                                System.out.println(e.getMessage());
+                            }
+                        }
+
                         System.out.print("Enter Father Name: ");
-                        String fatherName = scanner.nextLine();
+                        String fatherName = "";
+                        while (true) {
+                            try {
+                                fatherName = scanner.nextLine();
+                                if (fatherName.trim().isEmpty()) {
+                                    throw new Exception("Father's name cannot be empty!");
+                                }
+                                break;
+                            } catch (Exception e) {
+                                System.out.println(e.getMessage());
+                            }
+                        }
 
                         System.out.println("Select Gender: ");
                         System.out.println("1. Male");
                         System.out.println("2. Female");
                         String gender = "";
-                        int genderChoice = scanner.nextInt();
-                        scanner.nextLine(); // Consume the newline
+                        int genderChoice = 0;
+                        while (true) {
+                            try {
+                                genderChoice = scanner.nextInt();
+                                scanner.nextLine(); // Consume the newline
+                                if (genderChoice < 1 || genderChoice > 2) {
+                                    throw new Exception("Invalid choice! Please enter 1 for Male or 2 for Female.");
+                                }
+                                break;
+                            } catch (Exception e) {
+                                System.out.println(e.getMessage());
+                                scanner.nextLine(); // Clear invalid input
+                            }
+                        }
 
                         if (genderChoice == 1) {
                             gender = "Male";
@@ -478,9 +749,33 @@ public  class Main {
                         }
 
                         System.out.print("Enter Contact Number: ");
-                        String contact = scanner.nextLine();
+                        String contact = "";
+                        while (true) {
+                            try {
+                                contact = scanner.nextLine();
+                                if (contact.trim().isEmpty()) {
+                                    throw new Exception("Contact number cannot be empty!");
+                                }
+                                // Add additional validation for contact number format if necessary
+                                break;
+                            } catch (Exception e) {
+                                System.out.println(e.getMessage());
+                            }
+                        }
+
                         System.out.print("Enter Address: ");
-                        String address = scanner.nextLine();
+                        String address = "";
+                        while (true) {
+                            try {
+                                address = scanner.nextLine();
+                                if (address.trim().isEmpty()) {
+                                    throw new Exception("Address cannot be empty!");
+                                }
+                                break;
+                            } catch (Exception e) {
+                                System.out.println(e.getMessage());
+                            }
+                        }
 
                         student.addStudent(currentClass, name, fatherName, gender, dob, contact, address);
                        StyledConsoleOutput.printStyled("Student added successfully.",false,false,"blue");
@@ -491,15 +786,41 @@ public  class Main {
                 case 2:
                     System.out.println("Deleting a " + entity + "...");
                     if (entity.equals("Staff"))
-                    { System.out.print("enter id for delete: ");
-                        int iD =scanner.nextInt();
+                    { System.out.print("Enter ID for delete: ");
+                        int iD = 0;
+                        while (true) {
+                            try {
+                                iD = scanner.nextInt();
+                                if (iD <= 0) {
+                                    throw new Exception("ID must be a positive number.");
+                                }
+                                break;
+                            } catch (Exception e) {
+                                System.out.println(e.getMessage());
+                                scanner.nextLine();
+                            }
+                        }
+
                         staff.removeStaff(iD);
                         StyledConsoleOutput.printStyled("Staff deleted successfully.",false,false,"blue");
                         staff.saveToFile();
                     }
                     else if(entity.equals("Teacher")){
                         System.out.println("Enter Id for Delete: ");
-                        int iD =scanner.nextInt();
+                        int iD = 0;
+                        while (true) {
+                            try {
+                                iD = scanner.nextInt();
+                                if (iD <= 0) {
+                                    throw new Exception("ID must be a positive number.");
+                                }
+                                break;
+                            } catch (Exception e) {
+                                System.out.println(e.getMessage());
+                                scanner.nextLine(); // Clear the buffer
+                            }
+                        }
+
                         teacher.removeTeacher(iD);
                         teacher.saveToFile();
                         assignedCourses.deleteRecordOfAnyTeacher(iD);
@@ -509,7 +830,20 @@ public  class Main {
                     }
                     else if (entity.equals("Student"))
                     {   System.out.println("Enter Id for Delete: ");
-                        int iD =scanner.nextInt();
+                        int iD = 0;
+                        while (true) {
+                            try {
+                                iD = scanner.nextInt();
+                                if (iD <= 0) {
+                                    throw new Exception("ID must be a positive number.");
+                                }
+                                break;
+                            } catch (Exception e) {
+                                System.out.println("Invalid input! " + e.getMessage());
+                                scanner.nextLine(); // Clear the buffer
+                            }
+                        }
+
                         student.removeStudent(iD);
                         StyledConsoleOutput.printStyled("Student deleted successfully.",false,false,"blue");
                         student.saveToFile();
@@ -519,7 +853,20 @@ public  class Main {
                     System.out.println("Updating " + entity + " details...");
                    if (entity.equals("Staff"))
                     { System.out.print("enter id for update ");
-                        int Id =scanner.nextInt();
+                        int Id = 0;
+                        while (true) {
+                            try {
+                                Id = scanner.nextInt();
+                                if (Id <= 0) {
+                                    throw new Exception("ID must be a positive number.");
+                                }
+                                break;
+                            } catch (Exception e) {
+                                System.out.println("Invalid input! " + e.getMessage());
+                                scanner.nextLine(); // Clear the buffer
+                            }
+                        }
+
 
                         staff.updateStudent(Id);
                         StyledConsoleOutput.printStyled("Staff updated successfully.",false,false,"blue");
@@ -527,15 +874,41 @@ public  class Main {
                     }
                   else if (entity.equals("Teacher"))
                     { System.out.print("enter id for update ");
-                        int Id =scanner.nextInt();
+                        int Id = 0;
+                        while (true) {
+                            try {
+                                Id = scanner.nextInt();
+                                if (Id <= 0) {
+                                    throw new Exception("ID must be a positive number.");
+                                }
+                                break;
+                            } catch (Exception e) {
+                                System.out.println("Invalid input! " + e.getMessage());
+                                scanner.nextLine(); // Clear the buffer
+                            }
+                        }
+
 
                         teacher.updateTeacher(Id);
                         StyledConsoleOutput.printStyled("Teacher updated successfully.",false,false,"blue");
                         teacher.saveToFile();
                     }
                   else if (entity.equals("Student"))
-                    { System.out.print("enter id for update ");
-                        int Id =scanner.nextInt();
+                    {System.out.print("enter id for update ");
+                        int Id = 0;
+                        while (true) {
+                            try {
+                                Id = scanner.nextInt();
+                                if (Id <= 0) {
+                                    throw new Exception("ID must be a positive number.");
+                                }
+                                break;
+                            } catch (Exception e) {
+                                System.out.println("Invalid input! " + e.getMessage());
+                                scanner.nextLine(); // Clear the buffer
+                            }
+                        }
+
                         student.updateStudent(Id);
                         StyledConsoleOutput.printStyled("Student updated successfully.",false,false,"blue");
                         student.saveToFile();
@@ -545,19 +918,58 @@ public  class Main {
                     System.out.println("Searching for a " + entity + "...");
                     if (entity.equals("Staff"))
                     {  System.out.print("Enter Id for search: ");
-                        int id =scanner.nextInt();
+                        int id = 0;
+                        while (true) {
+                            try {
+                                id = scanner.nextInt();
+                                if (id <= 0) {
+                                    throw new Exception("ID must be a positive number.");
+                                }
+                                break;
+                            } catch (Exception e) {
+                                System.out.println("Invalid input! " + e.getMessage());
+                                scanner.nextLine(); // Clear the buffer
+                            }
+                        }
+
                         staff.searchStaff(id);
                         break;
                     }
                   else if (entity.equals("Teacher"))
                     {  System.out.print("Enter Id for search: ");
-                        int id =scanner.nextInt();
+                        int id = 0;
+                        while (true) {
+                            try {
+                                id = scanner.nextInt();
+                                if (id <= 0) {
+                                    throw new Exception("ID must be a positive number.");
+                                }
+                                break;
+                            } catch (Exception e) {
+                                System.out.println("Invalid input! " + e.getMessage());
+                                scanner.nextLine(); // Clear the buffer
+                            }
+                        }
+
                         teacher.searchTeacher(id);
                         break;
                     }
                    else if (entity.equals("Student"))
-                    {  System.out.print("Enter Id for search: ");
-                        int id =scanner.nextInt();
+                    { System.out.print("Enter Id for search: ");
+                        int id = 0;
+                        while (true) {
+                            try {
+                                id = scanner.nextInt();
+                                if (id <= 0) {
+                                    throw new Exception("ID must be a positive number.");
+                                }
+                                break;
+                            } catch (Exception e) {
+                                System.out.println("Invalid input! " + e.getMessage());
+                                scanner.nextLine(); // Clear the buffer
+                            }
+                        }
+
                         student.searchStudent(id);
                         break;
                     }
@@ -580,8 +992,21 @@ public  class Main {
             System.out.println("4. Class");
             System.out.println("5. Back to Login");
             System.out.print("Enter your choice: ");
-            int choice = scanner.nextInt();
-            scanner.nextLine();
+            int choice = 0;
+
+            while (true) {
+                try {
+                    choice = scanner.nextInt();
+                    if (choice < 1 || choice > 5) {
+                        throw new Exception("Invalid choice. Please enter a number between 1 and 5.");
+                    }
+                    break;
+                } catch (Exception e) {
+                    System.out.println("Invalid input! " + e.getMessage());
+                    scanner.nextLine(); // Clear the buffer
+                }
+            }
+
 
             switch (choice) {
                 case 1:
@@ -592,8 +1017,21 @@ public  class Main {
                         System.out.println("3. View classes and subjects taught by a teacher");
                         System.out.println("4. Back to Main Menu");
                         System.out.print("Enter your choice: ");
-                        int teacherChoice = scanner.nextInt();
-                        scanner.nextLine();
+                        int teacherChoice = 0;
+
+                        while (true) {
+                            try {
+                                teacherChoice = scanner.nextInt();
+                                if (teacherChoice < 1 || teacherChoice > 4) {
+                                    throw new Exception("Invalid choice. Please enter a number between 1 and 4.");
+                                }
+                                break;
+                            } catch (Exception e) {
+                                System.out.println("Invalid input! " + e.getMessage());
+                                scanner.nextLine(); // Clear the buffer
+                            }
+                        }
+
 
                         switch (teacherChoice) {
                             case 1:
@@ -604,7 +1042,21 @@ public  class Main {
                                     System.out.println("2.Sort by Name");
                                     System.out.println("3.Back");
                                     System.out.print("Enter choice: ");
-                                    int Choice = scanner.nextInt();
+                                    int Choice = 0;
+
+                                    while (true) {
+                                        try {
+                                            Choice = scanner.nextInt();
+                                            if (Choice < 1 || Choice > 3) {
+                                                throw new Exception("Invalid choice! Please enter a number between 1 and 3.");
+                                            }
+                                            break;
+                                        } catch (Exception e) {
+                                            System.out.println("Invalid input! " + e.getMessage());
+                                            scanner.nextLine(); // Clear the buffer
+                                        }
+                                    }
+
                                     switch (Choice) {
                                         case 1:
                                             teacher.radixSortById();
@@ -627,7 +1079,21 @@ public  class Main {
                                 break;
                             case 2:
                                 System.out.print("enter id for search ");
-                                int id =scanner.nextInt();
+                                int id = 0;
+
+                                while (true) {
+                                    try {
+                                        id = scanner.nextInt();
+                                        if (id <= 0) {
+                                            throw new Exception("ID must be a positive number.");
+                                        }
+                                        break;
+                                    } catch (Exception e) {
+                                        System.out.println("Invalid input! " + e.getMessage());
+                                        scanner.nextLine(); // Clear the buffer
+                                    }
+                                }
+
                                 teacher.searchTeacher(id);
                                 break;
                             case 3:
@@ -636,7 +1102,21 @@ public  class Main {
                                     System.out.println("Teacher not available");
                                 }
                                 System.out.print("enter teacher id : ");
-                                int teacherid =scanner.nextInt();
+                                int teacherid = 0;
+
+                                while (true) {
+                                    try {
+                                        teacherid = scanner.nextInt();
+                                        if (teacherid <= 0) {
+                                            throw new Exception("Teacher ID must be a positive number.");
+                                        }
+                                        break;
+                                    } catch (Exception e) {
+                                        System.out.println("Invalid input! " + e.getMessage());
+                                        scanner.nextLine(); // Clear the buffer
+                                    }
+                                }
+
                                 if (teacher.validTeacherId(teacherid)==null)
                                 {
                                     StyledConsoleOutput.printStyled("Invalid teacher Id",false,false,"red");
@@ -661,20 +1141,46 @@ public  class Main {
                         System.out.println("5. View student attendance of 15 days");
                         System.out.println("6. Back to Main Menu");
                         System.out.print("Enter your choice: ");
-                        int studentChoice = scanner.nextInt();
-                        scanner.nextLine();
+                        int studentChoice = 0;
+
+                        while (true) {
+                            try {
+                                studentChoice = scanner.nextInt();
+                                if (studentChoice < 1 || studentChoice > 6) {
+                                    throw new Exception("Invalid choice! Please enter a number between 1 and 6.");
+                                }
+                                break;
+                            } catch (Exception e) {
+                                System.out.println("Invalid input! " + e.getMessage());
+                                scanner.nextLine(); // Clear the buffer
+                            }
+                        }
 
                         switch (studentChoice) {
                             case 1:
                                 student.displayAllStudents();
                                 boolean check=true;
                                 while (check) {
-                                System.out.println("1.Sort by ID");
-                                System.out.println("2.Sort by Name");
-                                System.out.println("3.Sort by Class");
-                                System.out.println("4.Back");
-                                System.out.print("Enter choice: ");
-                                    int Choice = scanner.nextInt();
+                                    System.out.println("1.Sort by ID");
+                                    System.out.println("2.Sort by Name");
+                                    System.out.println("3.Sort by Class");
+                                    System.out.println("4.Back");
+                                    System.out.print("Enter choice: ");
+                                    int Choice = 0;
+
+                                    while (true) {
+                                        try {
+                                            Choice = scanner.nextInt();
+                                            if (Choice < 1 || Choice > 4) {
+                                                throw new Exception("Invalid choice! Please enter a number between 1 and 4.");
+                                            }
+                                            break;
+                                        } catch (Exception e) {
+                                            System.out.println("Invalid input! " + e.getMessage());
+                                            scanner.nextLine(); // Clear the buffer
+                                        }
+                                    }
+
                                     switch (Choice) {
                                         case 1:
                                             student.radixSortById();
@@ -702,7 +1208,21 @@ public  class Main {
                                 break;
                             case 2:
                                 System.out.print("Enter id for search ");
-                                int id =scanner.nextInt();
+                                int id = 0;
+
+                                while (true) {
+                                    try {
+                                        id = scanner.nextInt();
+                                        if (id <= 0) {
+                                            throw new Exception("ID must be a positive number.");
+                                        }
+                                        break;
+                                    } catch (Exception e) {
+                                        System.out.println("Invalid input! " + e.getMessage());
+                                        scanner.nextLine(); // Clear the buffer
+                                    }
+                                }
+
                                 student.searchStudent(id);
                                 break;
                             case 3:
@@ -712,7 +1232,21 @@ public  class Main {
                                     break;
                                 }
                                 System.out.print("Enter student Id :");
-                                int Id = scanner.nextInt();
+                                int Id = 0;
+
+                                while (true) {
+                                    try {
+                                        Id = scanner.nextInt();
+                                        if (Id <= 0) {
+                                            throw new Exception("Student ID must be a positive number.");
+                                        }
+                                        break;
+                                    } catch (Exception e) {
+                                        System.out.println("Invalid input! " + e.getMessage());
+                                        scanner.nextLine(); // Clear the buffer
+                                    }
+                                }
+
                                 if (student.uploadMarks(Id) == null) {
                                     StyledConsoleOutput.printStyled("Invalid Id",false,false,"red");
                                     break;
@@ -731,15 +1265,43 @@ public  class Main {
                                 }
                                 break;
                             case 4:
-                                System.out.print("Enter student Id");
-                                 int ID=scanner.nextInt();
+                                System.out.print("Enter student Id: ");
+                                int ID = 0;
+
+                                while (true) {
+                                    try {
+                                        ID = scanner.nextInt();
+                                        if (ID <= 0) {
+                                            throw new Exception("Student ID must be a positive number.");
+                                        }
+                                        break;
+                                    } catch (Exception e) {
+                                        System.out.println("Invalid input! " + e.getMessage());
+                                        scanner.nextLine(); // Clear the buffer
+                                    }
+                                }
+
                                 student.GenerateFeeStatusTable(ID);
                                 break;
                             case 5:
                                 System.out.println("Viewing student attendance...");
-                                System.out.print("Enter class : ");
-                                 int Class =scanner.nextInt();
-                                 student.displayMonthAttendanceOfClass(Class);
+                                System.out.print("Enter class: ");
+                                int Class = 0;
+
+                                while (true) {
+                                    try {
+                                        Class = scanner.nextInt();
+                                        if (Class <= 0) {
+                                            throw new Exception("Class number must be a positive number.");
+                                        }
+                                        break;
+                                    } catch (Exception e) {
+                                        System.out.println("Invalid input! " + e.getMessage());
+                                        scanner.nextLine(); // Clear the buffer
+                                    }
+                                }
+
+                                student.displayMonthAttendanceOfClass(Class);
                                 break;
                             case 6:
                                 return true;
@@ -755,8 +1317,21 @@ public  class Main {
                         System.out.println("2. View all staff members");
                         System.out.println("3. Back to Main Menu");
                         System.out.print("Enter your choice: ");
-                        int staffChoice = scanner.nextInt();
-                        scanner.nextLine();
+                        int staffChoice = 0;
+
+                        while (true) {
+                            try {
+                                staffChoice = scanner.nextInt();
+                                if (staffChoice < 1 || staffChoice > 3) {
+                                    throw new Exception("Invalid choice! Please select a number between 1 and 3.");
+                                }
+                                break;
+                            } catch (Exception e) {
+                                System.out.println("Invalid input! " + e.getMessage());
+                                scanner.nextLine(); // Clear the buffer
+                            }
+                        }
+
 
                         switch (staffChoice) {
                             case 1:
@@ -772,7 +1347,21 @@ public  class Main {
                                     System.out.println("2.Sort by Name");
                                     System.out.println("3.Back");
                                     System.out.print("Enter choice: ");
-                                    int Choice = scanner.nextInt();
+                                    int Choice = 0;
+
+                                    while (true) {
+                                        try {
+                                            Choice = scanner.nextInt();
+                                            if (Choice < 1 || Choice > 3) {
+                                                throw new Exception("Invalid choice! Please select a number between 1 and 3.");
+                                            }
+                                            break;
+                                        } catch (Exception e) {
+                                            System.out.println("Invalid input! " + e.getMessage());
+                                            scanner.nextLine(); // Clear the buffer
+                                        }
+                                    }
+
                                     switch (Choice) {
                                         case 1:
                                             staff.radixSortById();
@@ -809,13 +1398,40 @@ public  class Main {
                         System.out.println("4. View last 15 days attendance of a class");
                         System.out.println("5. Back to Main Menu");
                         System.out.print("Enter your choice: ");
-                        int classChoice = scanner.nextInt();
-                        scanner.nextLine();
+                        int classChoice = 0;
+
+                        while (true) {
+                            try {
+                                classChoice = scanner.nextInt();
+                                if (classChoice < 1 || classChoice > 5) {
+                                    throw new Exception("Invalid choice! Please select a number between 1 and 5.");
+                                }
+                                break;
+                            } catch (Exception e) {
+                                System.out.println("Invalid input! " + e.getMessage());
+                                scanner.nextLine(); // Clear the buffer
+                            }
+                        }
+
 
                         switch (classChoice) {
                             case 1:
                                 System.out.println("Enter Class:");
-                                int Class = scanner.nextInt();
+                                int Class = 0;
+
+                                while (true) {
+                                    try {
+                                        Class = scanner.nextInt();
+                                        if (Class <= 0) {
+                                            throw new Exception("Class number must be greater than 0.");
+                                        }
+                                        break;
+                                    } catch (Exception e) {
+                                        System.out.println("Invalid input! " + e.getMessage());
+                                        scanner.nextLine(); // Clear the buffer
+                                    }
+                                }
+
                                 if(Class == 1 ){
                                     if(Class1.size()>0)
                                         Class1.print();
@@ -889,20 +1505,46 @@ public  class Main {
                                 break;
                             case 2:
                                 System.out.println("Enter Class:");
-                                 Class = scanner.nextInt();
-                                student.Displaybyclass(Class);
+                                try {
+                                    Class = scanner.nextInt();
+                                    student.Displaybyclass(Class);
+                                } catch (Exception e) {
+                                    System.out.println("Invalid input! Please enter a valid integer for the class.");
+                                    scanner.nextLine(); // Clear the buffer
+                                }
                                 break;
+
                             case 3:
-                                System.out.print("enter class : ");
-                                int Classnumber=scanner.nextInt();
-                                assignedCourses.displaySpecificClassById(Classnumber);
+                                boolean validInputCase3 = false;
+                                while (!validInputCase3) {
+                                    System.out.print("Enter class: ");
+                                    if (scanner.hasNextInt()) {
+                                        int Classnumber = scanner.nextInt();
+                                        assignedCourses.displaySpecificClassById(Classnumber);
+                                        validInputCase3 = true;
+                                    } else {
+                                        System.out.println("Invalid input! Please enter a valid integer for the class.");
+                                        scanner.nextLine();
+                                    }
+                                }
                                 break;
+
                             case 4:
-                                System.out.println("Viewing last 15 days attendance of a class");
-                                System.out.print("enter class : ");
-                                int classNumber=scanner.nextInt();
-                                student.displayMonthAttendanceOfClass(classNumber);
+                                boolean validInputCase4 = false;
+                                while (!validInputCase4) {
+                                    System.out.println("Viewing last 15 days attendance of a class");
+                                    System.out.print("Enter class: ");
+                                    if (scanner.hasNextInt()) {
+                                        int classNumber = scanner.nextInt();
+                                        student.displayMonthAttendanceOfClass(classNumber);
+                                        validInputCase4 = true;
+                                    } else {
+                                        System.out.println("Invalid input! Please enter a valid integer for the class.");
+                                        scanner.nextLine();
+                                    }
+                                }
                                 break;
+
                             case 5:
                                 return true;
                             default:
@@ -926,30 +1568,61 @@ public  class Main {
             System.out.println("2. View Students in Any Class");
             System.out.println("3. Back to Login");
             System.out.print("Enter your choice: ");
-            int choice = scanner.nextInt();
-            scanner.nextLine();
+            int choice = 0;
+
+            while (true) {
+                try {
+                    choice = scanner.nextInt();
+                    if (choice < 1 || choice > 3) {
+                        throw new Exception("Invalid choice! Please enter a number between 1 and 3.");
+                    }
+                    break;
+                } catch (Exception e) {
+                    System.out.println("Invalid input! " + e.getMessage());
+                    scanner.nextLine(); // Clear the buffer
+                }
+            }
+
 
             switch (choice) {
                 case 1:
                     System.out.println("View Your Assign Course");
-                    if(teacher.isEmpty())
-                    {
+                    if(teacher.isEmpty()) {
                         System.out.println("Teacher not available");
                     }
                     System.out.print("enter teacher id : ");
-                    int teacherid =scanner.nextInt();
-                    if (teacher.validTeacherId(teacherid)==null)
-                    {
-                       StyledConsoleOutput.printStyled("Invalid teacher Id",false,false,"red");
-                        break;
+                    try {
+                        int teacherid = scanner.nextInt();
+                        if (teacher.validTeacherId(teacherid) == null) {
+                            StyledConsoleOutput.printStyled("Invalid teacher Id", false, false, "red");
+                            break;
+                        }
+                        assignedCourses.displaySpecificTeacherById(teacherid);
+                    } catch (Exception e) {
+                        System.out.println("Invalid input! Please enter a valid integer for teacher id.");
+                        scanner.nextLine(); // Clear the buffer
                     }
-                    assignedCourses.displaySpecificTeacherById(teacherid);
                     break;
+
 
                 case 2:
                     // View students in any class
                     System.out.print("Enter class number to view students: ");
-                    int Class = scanner.nextInt();
+                    int Class = 0;
+
+                    while (true) {
+                        try {
+                            Class = scanner.nextInt();
+                            if (Class <= 0) {
+                                throw new Exception("Class number must be a positive integer.");
+                            }
+                            break;
+                        } catch (Exception e) {
+                            System.out.println("Invalid input! " + e.getMessage());
+                            scanner.nextLine(); // Clear the buffer
+                        }
+                    }
+
                     student.Displaybyclass(Class);
                     break;
 
@@ -972,13 +1645,25 @@ public  class Main {
             System.out.println("4. Mark Student Fee as Paid");
             System.out.println("5. Back to Login");
             System.out.print("Enter your choice: ");
-            int choice = scanner.nextInt();
-            scanner.nextLine();
+            int choice = 0;
+
+            while (true) {
+                try {
+                    choice = scanner.nextInt();
+                    if (choice < 1 || choice > 5) {
+                        throw new Exception("Invalid choice! Please enter a number between 1 and 5.");
+                    }
+                    break;
+                } catch (Exception e) {
+                    System.out.println("Invalid input! " + e.getMessage());
+                    scanner.nextLine(); // Clear the buffer
+                }
+            }
+
 
             switch (choice) {
                 case 1:
-                    if (student.isEmpty())
-                    {
+                    if (student.isEmpty()) {
                         System.out.println("Student not available . .");
                         break;
                     }
@@ -987,19 +1672,43 @@ public  class Main {
                     System.out.println("1. Current Month");
                     System.out.println("2. Previous Month");
                     System.out.print("Enter your choice: ");
-                    int monthChoice = scanner.nextInt(); // kamran yahan just exceptional handling karna sara nhi karna ka input 1 2 hi hoo sahi hai
-                    scanner.nextLine();
+                    int monthChoice = 0;
+
+                    while (true) {
+                        try {
+                            monthChoice = scanner.nextInt();
+                            if (monthChoice != 1 && monthChoice != 2) {
+                                throw new Exception("Invalid choice! Please enter 1 for Current Month or 2 for Previous Month.");
+                            }
+                            break;
+                        } catch (Exception e) {
+                            System.out.println("Invalid input! " + e.getMessage());
+                            scanner.nextLine(); // Clear the buffer
+                        }
+                    }
 
                     if (monthChoice == 1) {
                         System.out.println("Generating voucher for the current month...");
                         System.out.print("Enter student Id: ");
-                        int id=scanner.nextInt();
-                        student.generateFeeVouchers(FeeClass.getMonthNameFromDate( LocalDate.now()),id);
+                        try {
+                            int id = scanner.nextInt();
+                            student.generateFeeVouchers(FeeClass.getMonthNameFromDate(LocalDate.now()), id);
+                        } catch (Exception e) {
+                            System.out.println("Invalid input! Please enter a valid integer for student Id.");
+                            scanner.nextLine(); // Clear the buffer
+                        }
                     } else if (monthChoice == 2) {
                         System.out.println("Generating voucher for the previous month...");
                         scanner.nextLine();
                         System.out.print("Enter student Id: ");
-                        int id=scanner.nextInt();
+                        int id = 0;
+                        try {
+                            id = scanner.nextInt();
+                        } catch (Exception e) {
+                            System.out.println("Invalid input! Please enter a valid integer for student Id.");
+                            scanner.nextLine(); // Clear the buffer
+                        }
+
                         System.out.println("1.January");
                         System.out.println("2.February");
                         System.out.println("3.March");
@@ -1013,41 +1722,60 @@ public  class Main {
                         System.out.println("11.November");
                         System.out.println("12.December");
                         System.out.print("Enter month no.: ");
-                        int month= scanner.nextInt();
-                        String MonthName="";
-                        switch (month)
-                        {
-                            case 1:
-                                MonthName= "January";
-                            case 2:
-                                MonthName="February";
-                            case 3:
-                                MonthName= "March";
-                            case 4:
-                                MonthName="April";
-                            case 5:
-                                MonthName= "May";
-                            case 6:
-                                MonthName= "June";
-                            case 7:
-                                MonthName= "July";
-                            case 8:
-                                MonthName= "August";
-                            case 9:
-                                MonthName= "September";
-                            case 10:
-                                MonthName= "October";
-                            case 11:
-                                MonthName= "November";
-                            case 12:
-                                MonthName= "December";
+                        int month = 0;
+                        try {
+                            month = scanner.nextInt();
+                        } catch (Exception e) {
+                            System.out.println("Invalid input! Please enter a valid month number.");
+                            scanner.nextLine(); // Clear the buffer
                         }
 
-                        student.generateFeeVouchers(MonthName,id);
+                        String MonthName = "";
+                        switch (month) {
+                            case 1:
+                                MonthName = "January";
+                                break;
+                            case 2:
+                                MonthName = "February";
+                                break;
+                            case 3:
+                                MonthName = "March";
+                                break;
+                            case 4:
+                                MonthName = "April";
+                                break;
+                            case 5:
+                                MonthName = "May";
+                                break;
+                            case 6:
+                                MonthName = "June";
+                                break;
+                            case 7:
+                                MonthName = "July";
+                                break;
+                            case 8:
+                                MonthName = "August";
+                                break;
+                            case 9:
+                                MonthName = "September";
+                                break;
+                            case 10:
+                                MonthName = "October";
+                                break;
+                            case 11:
+                                MonthName = "November";
+                                break;
+                            case 12:
+                                MonthName = "December";
+                                break;
+                        }
+
+                        student.generateFeeVouchers(MonthName, id);
                     } else {
-                       StyledConsoleOutput.printStyled("Invalid choice. Returning to the menu...",false,false,"red");
+                        StyledConsoleOutput.printStyled("Invalid choice. Returning to the menu...", false, false, "red");
                     }
                     break;
+
                 case 2:
                     System.out.println("Viewing details of students with unpaid fees...");
                     student.displayAllStudentWithUnpaidFee();
@@ -1070,37 +1798,104 @@ public  class Main {
                     System.out.println("1. Current Month");
                     System.out.println("2. Previous Month");
                     System.out.print("Enter your choice: ");
-                    int MonthChoice = scanner.nextInt(); // kamran yahan just exceptional handling karna sara nhi karna ka input 1 2 hi hoo sahi hai
+                    int MonthChoice = 0;
+
+                    while (true) {
+                        try {
+                            MonthChoice = scanner.nextInt();
+                            if (MonthChoice != 1 && MonthChoice != 2) {
+                                throw new Exception("Invalid choice! Please enter 1 for Current Month or 2 for Previous Month.");
+                            }
+                            break;
+                        } catch (Exception e) {
+                            System.out.println("Invalid input! " + e.getMessage());
+                            scanner.nextLine(); // Clear the buffer
+                        }
+                    }
                     scanner.nextLine();
+
                     if (MonthChoice == 1) {
                         System.out.println("Marking student fee for the current month...");
                         System.out.print("Enter student Id: ");
-                        int id=scanner.nextInt();
-                        System.out.println("Enter voucher number");
-                        int VoucherNo=scanner.nextInt();
+                        int id = 0;
+
+                        while (true) {
+                            try {
+                                id = scanner.nextInt();
+                                break;
+                            } catch (Exception e) {
+                                System.out.println("Invalid input! Please enter a valid integer for student Id.");
+                                scanner.nextLine(); // Clear the buffer
+                            }
+                        }
+
+                        System.out.print("Enter voucher number: ");
+                        int VoucherNo = 0;
+
+                        while (true) {
+                            try {
+                                VoucherNo = scanner.nextInt();
+                                break;
+                            } catch (Exception e) {
+                                System.out.println("Invalid input. Please enter a valid number.");
+                                scanner.nextLine(); // Clear the buffer
+                            }
+                        }
+
                         student.PaidFee(id,VoucherNo,FeeClass.getMonthNameFromDate(LocalDate.now()));
                     }
                     else if (MonthChoice == 2) {
                         System.out.println("Generating voucher for the previous month...");
                         scanner.nextLine();
-                        System.out.print("Enter student Id: ");
-                        int id=scanner.nextInt();
-                        System.out.println("Enter voucher number");
-                        int VoucherNo=scanner.nextInt();
-                        System.out.println("1.January");
-                        System.out.println("2.February");
-                        System.out.println("3.March");
-                        System.out.println("4.April");
-                        System.out.println("5.May");
-                        System.out.println("6.June");
-                        System.out.println("7.July");
-                        System.out.println("8.August");
-                        System.out.println("9.September");
-                        System.out.println("10.October");
-                        System.out.println("11.November");
-                        System.out.println("12.December");
-                        System.out.print("Enter month no.: ");
-                        int month= scanner.nextInt();
+
+                        int id = 0;
+                        while (true) {
+                            try {
+                                System.out.print("Enter student Id: ");
+                                id = scanner.nextInt();
+                                break;
+                            } catch (Exception e) {
+                                System.out.println("Invalid input. Please enter a valid student Id.");
+                                scanner.nextLine(); // Clear the buffer
+                            }
+                        }
+
+                        int VoucherNo = 0;
+                        while (true) {
+                            try {
+                                System.out.println("Enter voucher number");
+                                VoucherNo = scanner.nextInt();
+                                break;
+                            } catch (Exception e) {
+                                System.out.println("Invalid input. Please enter a valid voucher number.");
+                                scanner.nextLine(); // Clear the buffer
+                            }
+                        }
+
+                        int month = 0;
+                        while (true) {
+                            try {
+                                System.out.println("1.January");
+                                System.out.println("2.February");
+                                System.out.println("3.March");
+                                System.out.println("4.April");
+                                System.out.println("5.May");
+                                System.out.println("6.June");
+                                System.out.println("7.July");
+                                System.out.println("8.August");
+                                System.out.println("9.September");
+                                System.out.println("10.October");
+                                System.out.println("11.November");
+                                System.out.println("12.December");
+                                System.out.print("Enter month no.: ");
+                                month = scanner.nextInt();
+                                break;
+                            } catch (Exception e) {
+                                System.out.println("Invalid input. Please enter a valid month number.");
+                                scanner.nextLine(); // Clear the buffer
+                            }
+                        }
+
                         String MonthName="";
                         switch (month) {
                             case 1:
@@ -1147,17 +1942,27 @@ public  class Main {
          boolean isValid = false;
         while (true) {
             StyledConsoleOutput.printStyled("\nCOORDINATOR MENU:\n",true,false,"magenta");
-            System.out.println("1. Assign Course to Teacher");
-            System.out.println("2. Unassign Course from Teacher");
-            System.out.println("3. View Teachers for Specific Classes");
-            System.out.println("4. View Courses Taught by Teachers in a Class");
-            System.out.println("5. Add Courses");
-            System.out.println("6. Remove Courses");
-            System.out.println("7. View Courses in any Class");
-            System.out.println("8. Back to Login");
-            System.out.print("Enter your choice: ");
-            int choice = scanner.nextInt();
-            scanner.nextLine();
+            int choice = 0;
+            while (true) {
+                try {
+                    System.out.println("1. Assign Course to Teacher");
+                    System.out.println("2. Unassign Course from Teacher");
+                    System.out.println("3. View Teachers for Specific Classes");
+                    System.out.println("4. View Courses Taught by Teachers in a Class");
+                    System.out.println("5. Add Courses");
+                    System.out.println("6. Remove Courses");
+                    System.out.println("7. View Courses in any Class");
+                    System.out.println("8. Back to Login");
+                    System.out.print("Enter your choice: ");
+                    choice = scanner.nextInt();
+                    scanner.nextLine();
+                    break;
+                } catch (Exception e) {
+                    System.out.println("Invalid input. Please enter a valid choice.");
+                    scanner.nextLine(); // Clear the buffer
+                }
+            }
+
 
             switch (choice) {
                 case 1:
@@ -1168,8 +1973,18 @@ public  class Main {
                         System.out.println("No Teacher Available");
                         break;
                     }
-                    System.out.print("enter teacher id : ");
-                    int id = scanner.nextInt();
+                    int id = 0;
+                    while (true) {
+                        try {
+                            System.out.print("Enter teacher id: ");
+                            id = scanner.nextInt();
+                            break;
+                        } catch (Exception e) {
+                            System.out.println("Invalid input. Please enter a valid teacher id.");
+                            scanner.nextLine(); // Clear the buffer
+                        }
+                    }
+
                     if (teacher.validTeacherId(id)==null)
                     {
                         StyledConsoleOutput.printStyled("Invalid teacher Id",false,false,"red");
@@ -1178,11 +1993,22 @@ public  class Main {
                     else{
                          temp =teacher.validTeacherId(id);
                     }
-                    System.out.print("enter class :");
-                    int Class=scanner.nextInt();
-                    System.out.print("enter course :");
-                    scanner.nextLine();
-                    String course= scanner.nextLine();
+                    int Class = 0;
+                    String course = "";
+                    while (true) {
+                        try {
+                            System.out.print("Enter class: ");
+                            Class = scanner.nextInt();
+                            scanner.nextLine(); // Clear the buffer
+                            System.out.print("Enter course: ");
+                            course = scanner.nextLine();
+                            break;
+                        } catch (Exception e) {
+                            System.out.println("Invalid input. Please enter valid class and course.");
+                            scanner.nextLine(); // Clear the buffer
+                        }
+                    }
+
                     if(Class==1)
                     {
                         if (Class1.search(course.toLowerCase()))
@@ -1370,16 +2196,36 @@ public  class Main {
                         System.out.println("No Teacher Available");
                         break;
                     }
-                    System.out.print("enter teacher id : ");
-                    int Id = scanner.nextInt();
+                    int Id = 0;
+                    while (true) {
+                        try {
+                            System.out.print("Enter teacher id: ");
+                            Id = scanner.nextInt();
+                            break;
+                        } catch (Exception e) {
+                            System.out.println("Invalid input. Please enter a valid teacher id.");
+                            scanner.nextLine(); // Clear the buffer
+                        }
+                    }
+
                     if (teacher.validTeacherId(Id)==null)
                     {
                         StyledConsoleOutput.printStyled("Invalid teacher Id",false,false,"red");
                         break;
                     }
-                    System.out.print("enter class :");
-                    int ClassNumber=scanner.nextInt();
-                     if (assignedCourses.search(Id))
+                    int ClassNumber = 0;
+                    while (true) {
+                        try {
+                            System.out.print("Enter class: ");
+                            ClassNumber = scanner.nextInt();
+                            break;
+                        } catch (Exception e) {
+                            System.out.println("Invalid input. Please enter a valid class number.");
+                            scanner.nextLine(); // Clear the buffer
+                        }
+                    }
+
+                    if (assignedCourses.search(Id))
                      {
                          System.out.println("Courses assigned to "+Id+" in class  "+ClassNumber);
                          assignedCourses.printCoursesForTeacherInSpecificClass(Id,ClassNumber);
@@ -1389,15 +2235,34 @@ public  class Main {
                          System.out.println("No course assigned to "+Id+" in class  "+ClassNumber);
                          break;
                      }
-                    System.out.print("enter course to unassigned");
-                    String CourseName= scanner.nextLine();
+                    String CourseName = "";
+                    while (true) {
+                        try {
+                            System.out.print("Enter course to unassign: ");
+                            CourseName = scanner.nextLine();
+                            break;
+                        } catch (Exception e) {
+                            System.out.println("Invalid input. Please enter a valid course name.");
+                        }
+                    }
+
                     assignedCourses.delete(Id,CourseName.toLowerCase(),ClassNumber);
                     assignedCourses.saveToFile();
                     break;
                 case 3:
                     System.out.println("Viewing Teachers Teaching Specific Classes...");
-                    System.out.print("enter class : ");
-                    int classnumber=scanner.nextInt();
+                    int classnumber = 0;
+                    while (true) {
+                        try {
+                            System.out.print("Enter class: ");
+                            classnumber = scanner.nextInt();
+                            break;
+                        } catch (Exception e) {
+                            System.out.println("Invalid input. Please enter a valid class number.");
+                            scanner.nextLine(); // Clear the buffer
+                        }
+                    }
+
                     assignedCourses.displaySpecificClassById(classnumber);
                     assignedCourses.saveToFile();
                     break;
@@ -1407,8 +2272,18 @@ public  class Main {
                     {
                         System.out.println("Teacher not available");
                     }
-                    System.out.print("enter teacher id : ");
-                    int teacherid =scanner.nextInt();
+                    int teacherid = 0;
+                    while (true) {
+                        try {
+                            System.out.print("Enter teacher id: ");
+                            teacherid = scanner.nextInt();
+                            break;
+                        } catch (Exception e) {
+                            System.out.println("Invalid input. Please enter a valid teacher id.");
+                            scanner.nextLine(); // Clear the buffer
+                        }
+                    }
+
                     if (teacher.validTeacherId(teacherid)==null)
                     {
                         StyledConsoleOutput.printStyled("Invalid teacher Id",false,false,"red");
@@ -1419,8 +2294,18 @@ public  class Main {
                 case 5:
                     isValid = false; // Resetting the validation flag
                     while (!isValid) {
-                        System.out.println("Enter Class (1-10):");
-                        studentClass = scanner.nextInt();
+
+                        while (true) {
+                            try {
+                                System.out.println("Enter Class (1-10):");
+                                studentClass = scanner.nextInt();
+                                break;
+                            } catch (Exception e) {
+                                System.out.println("Invalid input. Please enter a valid class number (1-10).");
+                                scanner.nextLine(); // Clear the buffer
+                            }
+                        }
+
 
                         if (studentClass >= 1 && studentClass <= 10) {
                             isValid = true; // Exit the loop if valid
@@ -1428,9 +2313,18 @@ public  class Main {
                             StyledConsoleOutput.printStyled("Invalid Class! Please enter a value between 1 and 10.",false,false,"red");
                         }
                     }
-                    System.out.println("Input Course Name: ");
-                    scanner.nextLine(); // Clear the input buffer
-                    Course = scanner.nextLine();
+
+                    while (true) {
+                        try {
+                            System.out.println("Input Course Name: ");
+                            scanner.nextLine(); // Clear the input buffer
+                            Course = scanner.nextLine();
+                            break;
+                        } catch (Exception e) {
+                            System.out.println("Invalid input. Please enter a valid course name.");
+                        }
+                    }
+
 
                     // Process based on the class number
                     if (studentClass == 1) {
@@ -1510,8 +2404,18 @@ public  class Main {
                 case 6:
                     isValid = false; // Resetting the validation flag
                     while (!isValid) {
-                        System.out.println("Enter Class (1-10):");
-                        studentClass = scanner.nextInt();
+
+                        while (true) {
+                            try {
+                                System.out.println("Enter Class (1-10):");
+                                studentClass = scanner.nextInt();
+                                break;
+                            } catch (Exception e) {
+                                System.out.println("Invalid input. Please enter a valid class number (1-10).");
+                                scanner.nextLine(); // Clear the buffer
+                            }
+                        }
+
 
                         if (studentClass >= 1 && studentClass <= 10) {
                             isValid = true; // Exit the loop if valid
@@ -1519,9 +2423,18 @@ public  class Main {
                             StyledConsoleOutput.printStyled("Invalid Class! Please enter a value between 1 and 10.",false,false,"red");
                         }
                     }
-                    System.out.println("Input Course Name: ");
-                    scanner.nextLine(); // Clear the input buffer
-                    Course = scanner.nextLine();
+
+                    while (true) {
+                        try {
+                            System.out.println("Input Course Name: ");
+                            scanner.nextLine(); // Clear the input buffer
+                            Course = scanner.nextLine();
+                            break;
+                        } catch (Exception e) {
+                            System.out.println("Invalid input. Please enter a valid course name.");
+                        }
+                    }
+
 
                     // Process based on the class number
                     if (studentClass == 1) {
@@ -1591,14 +2504,24 @@ public  class Main {
     private static boolean examinationMenu(Scanner scanner) {
         while (true) {
             StyledConsoleOutput.printStyled("\nEXAMINATION DEPARTMENT MENU:\n",true,false,"magenta");
-            System.out.println("1. Upload Marks");
-            System.out.println("2. View Marks");
-            System.out.println("3. Edit Marks");
-            System.out.println("4. Generate mark sheet");
-            System.out.println("5. Back to Login");
-            System.out.print("Enter your choice: ");
-            int choice = scanner.nextInt();
-            scanner.nextLine();
+            int choice = 0;
+            while (true) {
+                try {
+                    System.out.println("1. Upload Marks");
+                    System.out.println("2. View Marks");
+                    System.out.println("3. Edit Marks");
+                    System.out.println("4. Generate mark sheet");
+                    System.out.println("5. Back to Login");
+                    System.out.print("Enter your choice: ");
+                    choice = scanner.nextInt();
+                    scanner.nextLine();
+                    break;
+                } catch (Exception e) {
+                    System.out.println("Invalid input. Please enter a valid choice.");
+                    scanner.nextLine(); // Clear the buffer
+                }
+            }
+
 
             switch (choice) {
                 case 1:
@@ -1698,8 +2621,18 @@ public  class Main {
                         System.out.println("Students not available");
                         break;
                     }
-                    System.out.print("enter student Id :");
-                    int Id = scanner.nextInt();
+                    int Id = 0;
+                    while (true) {
+                        try {
+                            System.out.print("Enter student Id: ");
+                            Id = scanner.nextInt();
+                            break;
+                        } catch (Exception e) {
+                            System.out.println("Invalid input. Please enter a valid student Id.");
+                            scanner.nextLine(); // Clear the buffer
+                        }
+                    }
+
                     if (student.uploadMarks(Id) == null) {
                         StyledConsoleOutput.printStyled("Invalid Id",false,false,"red");
                         break;

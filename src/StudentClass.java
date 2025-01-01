@@ -86,14 +86,24 @@ import java.util.Scanner;
             System.out.println("Dob : " + temp.DateOfBirth);
             System.out.println("Address : " + temp.Address + "\n\n");
             while (true) {
-                System.out.println("1. Name");
-                System.out.println("2. Father Name");
-                System.out.println("3. Contact");
-                System.out.println("4. Dob");
-                System.out.println("5. Address");
-                System.out.println("0. Save");
-                System.out.print("Select option which you want to update : ");
-                int choice = sc.nextInt();
+                int choice = 0;
+                while (true) {
+                    try {
+                        System.out.println("1. Name");
+                        System.out.println("2. Father Name");
+                        System.out.println("3. Contact");
+                        System.out.println("4. Dob");
+                        System.out.println("5. Address");
+                        System.out.println("0. Save");
+                        System.out.print("Select option which you want to update: ");
+                        choice = sc.nextInt();
+                        break;
+                    } catch (Exception e) {
+                        System.out.println("Invalid input. Please enter a valid choice.");
+                        sc.nextLine(); // Clear the buffer
+                    }
+                }
+
                 switch (choice) {
                     case 1:
                         System.out.print("Enter new name :");
