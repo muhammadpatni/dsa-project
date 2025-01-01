@@ -60,7 +60,6 @@ public class AssignedCoursesClass {
     {
         if (temp == head) {
             head = temp.next;
-            head.prev = null;
             return;
         }
         if (temp == tail) {

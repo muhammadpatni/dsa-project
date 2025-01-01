@@ -4,7 +4,7 @@ Staff Id :1
 Name :muhammad
 Gender :Male
 Dob :12-12-2004
-Date of joining :2024-12-30
+Date of joining :
 Contact :03232682952
 Address :b-75/4 malir extension colony karachi
 Designation :headmaster
@@ -14,5 +14,34 @@ Experience :12 years
 Certification:
 • digital marketing
 • e-commerce
+
+
+Staff Id :2
+Name :shahista
+Gender :Female
+Dob :02-02-2003
+Date of joining :2025-01-01
+Contact :033465773634
+Address :karachi
+Designation :admin
+Salary :30000.0
+Skill :no skills
+Experience :2 year
+Certification:
+
+
+Staff Id :3
+Name :abdullah
+Gender :Male
+Dob :23-08-2001
+Date of joining :2025-01-01
+Contact :03125434665
+Address :karachi
+Designation :accountant
+Salary :40000.0
+Skill :no skills
+Experience :5 years
+Certification:
+• acca
 
 

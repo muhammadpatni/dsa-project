@@ -15,8 +15,8 @@ public  class Main {
     static Array Class8 = new Array();
     static Array Class9 = new Array();
     static Array Class10 = new Array();
-    //static String Filename="C:\\Users\\HP\\Desktop\\lab 1\\DSA project\\class.txt";
-  static String Filename="C:\\Users\\Admin\\Desktop\\dsa-project1\\class.txt";
+    static String Filename="C:\\Users\\HP\\Desktop\\lab 1\\DSA project\\class.txt";
+//  static String Filename="C:\\Users\\Admin\\Desktop\\dsa-project1\\class.txt";
      static TeacherList teacher=new TeacherList();
     static StaffList staff =new StaffList();
     static AssignedCoursesClass assignedCourses = new AssignedCoursesClass();
@@ -180,8 +180,7 @@ public  class Main {
             StyledConsoleOutput.printStyled("\nATTENDANCE MENU:\n",true,false,"magenta");
             System.out.println("1. Mark Attendance");
             System.out.println("2. View Attendance");
-            System.out.println("3. Logout");
-            System.out.println("4. Back to Login");
+            System.out.println("3. Back to Login");
             System.out.print("Enter your choice: ");
             int choice = scanner.nextInt();
             scanner.nextLine(); // Consume newline
@@ -233,17 +232,7 @@ public  class Main {
                     break;
 
                 case 3:
-                    // Logout
-                    System.out.println("Logging out...");
-                    isLoggedIn = false;
-                    break;
-
-                case 4:
-                    // Back to Login
-                    System.out.println("Returning to login page...");
-                    isLoggedIn = false;
-                    break;
-
+                    return;
                 default:
                     StyledConsoleOutput.printStyled("Invalid choice. Please try again.\n",false,false,"red");
                     break;
