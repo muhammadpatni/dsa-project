@@ -587,7 +587,7 @@ public class StudentClass {
                 {
                     temp.attendance.insert(true);
                 } else if (choice==2) {
-                    temp.attendance.insert(true);
+                    temp.attendance.insert(false);
                 }
                 System.out.println();
             }

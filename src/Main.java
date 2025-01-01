@@ -1697,7 +1697,7 @@ public  class Main {
                             System.out.println("Invalid input! Please enter a valid integer for student Id.");
                             scanner.nextLine(); // Clear the buffer
                         }
-                    } else if (monthChoice == 2) {
+                    } else {
                         System.out.println("Generating voucher for the previous month...");
                         scanner.nextLine();
                         System.out.print("Enter student Id: ");
@@ -1771,8 +1771,6 @@ public  class Main {
                         }
 
                         student.generateFeeVouchers(MonthName, id);
-                    } else {
-                        StyledConsoleOutput.printStyled("Invalid choice. Returning to the menu...", false, false, "red");
                     }
                     break;
 
@@ -1844,7 +1842,7 @@ public  class Main {
 
                         student.PaidFee(id,VoucherNo,FeeClass.getMonthNameFromDate(LocalDate.now()));
                     }
-                    else if (MonthChoice == 2) {
+                    else {
                         System.out.println("Generating voucher for the previous month...");
                         scanner.nextLine();
 
@@ -1924,8 +1922,6 @@ public  class Main {
                                 MonthName = "December";
                         }
                         student.PaidFee(id,VoucherNo,MonthName);
-                    } else {
-                        StyledConsoleOutput.printStyled("Invalid choice. Returning to the menu...",false,false,"red");
                     }
                     break;
                 case 5:
