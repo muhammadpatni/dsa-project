@@ -51,7 +51,7 @@ public class Array {
     {
         if (Pos==-1)
         {
-            System.out.println("course not found");
+            StyledConsoleOutput.printStyled("course not found",false,false,"red");
             return;
         }
         for(int i = Pos-1; i<index; i++)

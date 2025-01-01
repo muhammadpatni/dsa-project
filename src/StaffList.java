@@ -50,7 +50,7 @@ public  class StaffList{
                 temp = temp.next;
             }
         } catch (IOException e) {
-            System.out.println("Error saving staff details");
+            StyledConsoleOutput.printStyled("Error saving staff details",false,false,"red");
         }
     }
     public int calculateAge(String dob) {
@@ -89,7 +89,7 @@ public  class StaffList{
     {
         if(isEmpty())
         {
-            System.out.println("no staff available ..");
+            StyledConsoleOutput.printStyled("no staff available ..",false,false,"red");
             return;
         }
         Staff temp=head;
@@ -102,7 +102,7 @@ public  class StaffList{
         }
         if (temp==null)
         {
-            System.out.println("Invalid ID");
+            StyledConsoleOutput.printStyled("Invalid ID",false,false,"red");
             return;
         }
         if (temp==head)
@@ -123,7 +123,7 @@ public  class StaffList{
     }
     public void searchStaff(int StaffId) {
         if (isEmpty()) {
-            System.out.println("no staff available ..");
+            StyledConsoleOutput.printStyled("no staff available ..",false,false,"red");
             return;
         }
         Staff temp = head;
@@ -133,7 +133,7 @@ public  class StaffList{
             temp = temp.next;
         }
         if (temp == null) {
-            System.out.println("Invalid ID");
+            StyledConsoleOutput.printStyled("Invalid ID",false,false,"red");
             return;
         } else {
             System.out.println("                                                 * * * STAFF DETAILS * * *                               \n");
@@ -173,7 +173,7 @@ public  class StaffList{
 
     public void updateStudent(int StaffId) {
         if (isEmpty()) {
-            System.out.println("no staff available ..");
+            StyledConsoleOutput.printStyled("no staff available ..",false,false,"red");
             return;
         }
         Staff temp = head;
@@ -183,7 +183,7 @@ public  class StaffList{
             temp = temp.next;
         }
         if (temp == null) {
-            System.out.println("Invalid ID");
+            StyledConsoleOutput.printStyled("Invalid ID",false,false,"red");
             return;
         }
         while (true) {
@@ -216,7 +216,7 @@ public  class StaffList{
                             temp.Name = name;
                             break;
                         } catch (Exception e) {
-                            System.out.println("Invalid input. Please enter a valid name.");
+                           StyledConsoleOutput.printStyled("Invalid input. Please enter a valid name.",false,false,"red");
                         }
                     }
                     break;
@@ -237,10 +237,10 @@ public  class StaffList{
                             else if (gender == 3)
                                 temp.Gender = "Other";
                             else
-                                System.out.println("Invalid choice!");
+                                StyledConsoleOutput.printStyled("Invalid choice!",false,false,"red");
                             break;
                         } catch (Exception e) {
-                            System.out.println("Invalid input. Please enter a valid gender choice.");
+                            StyledConsoleOutput.printStyled("Invalid input. Please enter a valid gender choice.",false,false,"red");
                             sc.nextLine(); // Clear the buffer
                         }
                     }
@@ -255,7 +255,7 @@ public  class StaffList{
                             temp.Contact = contact;
                             break;
                         } catch (Exception e) {
-                            System.out.println("Invalid input. Please enter a valid contact.");
+                           StyledConsoleOutput.printStyled("Invalid input. Please enter a valid contact.",false,false,"red");
                         }
                     }
                     break;
@@ -269,7 +269,7 @@ public  class StaffList{
                             temp.Address = address;
                             break;
                         } catch (Exception e) {
-                            System.out.println("Invalid input. Please enter a valid address.");
+                            StyledConsoleOutput.printStyled("Invalid input. Please enter a valid address.",false,false,"red");
                         }
                     }
                     break;
@@ -287,9 +287,9 @@ public  class StaffList{
                             temp.DateOfBirth = dob;
                             break;
                         } catch (DateTimeParseException e) {
-                            System.out.println("Invalid date format. Please enter again in 'dd-MM-yyyy' format.");
+                            StyledConsoleOutput.printStyled("Invalid date format. Please enter again in 'dd-MM-yyyy' format.",false,false,"red");
                         } catch (Exception e) {
-                            System.out.println("Invalid input. Please enter a valid date.");
+                            StyledConsoleOutput.printStyled("Invalid input. Please enter a valid date.",false,false,"red");
                         }
                     }
                     break;
@@ -303,7 +303,7 @@ public  class StaffList{
                             sc.nextLine(); // Clear the buffer
                             break;
                         } catch (Exception e) {
-                            System.out.println("Invalid input. Please enter a valid salary.");
+                            StyledConsoleOutput.printStyled("Invalid input. Please enter a valid salary.",false,false,"red");
                             sc.nextLine(); // Clear the buffer
                         }
                     }
@@ -318,12 +318,12 @@ public  class StaffList{
                     break;
 
                 case 0:
-                    System.out.println("Staff updated successfully . . . ");
+                    StyledConsoleOutput.printStyled("Staff updated successfully . . . ",false,false,"green");
                     saveToFile();
                     return;
 
                 default:
-                    System.out.println("Invalid choice, please choose again.");
+                    StyledConsoleOutput.printStyled("Invalid choice, please choose again.",false,false,"red");
             }
 
         }
@@ -416,9 +416,9 @@ public  class StaffList{
             }
 
         } catch (IOException e) {
-            System.out.println("Error reading staff details from file");
+            StyledConsoleOutput.printStyled("Error reading staff details from file",false,false,"red");
         } catch (Exception e) {
-            System.out.println("An unexpected error occurred while reading staff details" +e);
+            StyledConsoleOutput.printStyled("An unexpected error occurred while reading staff details" +e,false,false,"red");
         }
     }
     public void radixSortById() {

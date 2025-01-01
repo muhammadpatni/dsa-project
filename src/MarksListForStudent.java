@@ -44,24 +44,24 @@ public class MarksListForStudent {
             int choice = 0;
             while (true) {
                 try {
-                    System.out.print("Select s.no for edit marks or press 0 to save: ");
+                    StyledConsoleOutput.printStyled("Select s.no for edit marks or press 0 to save: ",false,false,"blue");
                     choice = sc.nextInt();
                     break;
                 } catch (Exception e) {
-                    System.out.println("Invalid input. Please enter a valid number.");
+                    StyledConsoleOutput.printStyled("Invalid input. Please enter a valid number.",false,false,"red");
                     sc.nextLine(); // Clear the buffer
                 }
             }
 
             if (choice==0)
-            {   System.out.println("marks update successfully ");
+            {   StyledConsoleOutput.printStyled("marks update successfully ",false,false,"green");
                 return;}
             for (int i = 0; i <choice&&temp!=null ; i++) {
                 temp=temp.next;
             }
             if (temp==null)
             {
-                System.out.println("Invalid selection !!!");
+                StyledConsoleOutput.printStyled("Invalid selection !!!",false,false,"red");
                 continue;
             }
             double mark = 0;
@@ -72,7 +72,7 @@ public class MarksListForStudent {
                     temp.mark = mark;
                     break;
                 } catch (Exception e) {
-                    System.out.println("Invalid input. Please enter valid marks.");
+                    StyledConsoleOutput.printStyled("Invalid input. Please enter valid marks.",false,false,"red");
                     sc.nextLine(); // Clear the buffer
                 }
             }
@@ -137,7 +137,7 @@ public class MarksListForStudent {
         System.out.println("                 Grand Total: " + totalMarks + "/" + (100 * (sno - 1)) + "            Grade: " + totalGrade + "              Percentage: " + String.format("%.2f", percentage) + "%");
 
         // Adding remarks based on the total grade
-        System.out.println("\nRemarks:");
+        StyledConsoleOutput.printStyled("\nRemarks:",true,false,"magenta");
         switch (totalGrade) {
             case "A":
                 System.out.println("Outstanding! Your dedication and hard work shine brightly.");
