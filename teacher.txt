@@ -1,7 +1,7 @@
 					* * * * TEACHER DETAILS * * * *
 
 Teacher ID: 1
-Name: Asim
+Name: asim
 Gender: Male
 Marital Status: Unmarried
 DOB: 03-03-2010
@@ -9,18 +9,18 @@ Date of Joining: 2025-01-01
 Contact: 03332567234
 Address: Karachi
 Email: asimazhar20@gmail.com
-Salary: 50000
+Salary: 50000.0
 Skills: Programmer
 Experience: 4 years
 Highest Qualification: Masters
 Specialization: Computer
 Certifications:
 • 6-month programming course
-• CIT
+• cit
 
 
 Teacher ID: 2
-Name: talha ahmed
+Name: talha anjum
 Gender: Male
 Marital Status: Married
 DOB: 12-05-2006
@@ -28,7 +28,7 @@ Date of Joining: 2025-01-01
 Contact: 03278747592
 Address: karachi
 Email: talhaahmed401@gmail.com
-Salary: 20000
+Salary: 20000.0
 Skills: no skils
 Experience: 2 years
 Highest Qualification: asters
@@ -38,7 +38,7 @@ No certifications available.
 
 
 Teacher ID: 3
-Name: Sarah Ali
+Name: sarah ali
 Gender: Female
 Marital Status: Married
 DOB: 15-05-1985
@@ -46,18 +46,18 @@ Date of Joining: 2020-08-15
 Contact: 03021234567
 Address: Lahore
 Email: sarahali78@gmail.com
-Salary: 70000
+Salary: 70000.0
 Skills: Communication, Writing
 Experience: 10 years
 Highest Qualification: M.A. English
 Specialization: Literature
 Certifications:
-• Advanced Communication Skills
-• Creative Writing Workshop
+• advanced communication skills
+• creative writing workshop
 
 
 Teacher ID: 4
-Name: Ahmed Raza
+Name: ahmed raza
 Gender: Male
 Marital Status: Married
 DOB: 20-11-1980
@@ -65,18 +65,18 @@ Date of Joining: 2018-03-10
 Contact: 03114567890
 Address: Islamabad
 Email: ahmed.raza90@gmail.com
-Salary: 80000
+Salary: 80000.0
 Skills: Research, Data Analysis
 Experience: 12 years
 Highest Qualification: PhD
 Specialization: Mathematics
 Certifications:
-• Applied Mathematics Seminar
-• Advanced Statistical Methods
+• applied mathematics seminar
+• advanced statistical methods
 
 
 Teacher ID: 5
-Name: Ayesha Khan
+Name: ayesha khan
 Gender: Female
 Marital Status: Unmarried
 DOB: 25-09-1990
@@ -84,18 +84,18 @@ Date of Joining: 2023-02-01
 Contact: 03336543210
 Address: Multan
 Email: ayeshakhan90@gmail.com
-Salary: 55000
+Salary: 55000.0
 Skills: Presentation, Teaching
 Experience: 5 years
 Highest Qualification: B.Ed.
 Specialization: Science Education
 Certifications:
-• Teacher Training Program
-• Science Education Workshop
+• teacher training program
+• science education workshop
 
 
 Teacher ID: 6
-Name: Bilal Ahmed
+Name: bilal ahmed
 Gender: Male
 Marital Status: Unmarried
 DOB: 10-01-1995
@@ -103,13 +103,13 @@ Date of Joining: 2021-07-01
 Contact: 03017894567
 Address: Peshawar
 Email: bilalahmed95@gmail.com
-Salary: 60000
+Salary: 60000.0
 Skills: Programming, Networking
 Experience: 3 years
 Highest Qualification: MS Computer Science
 Specialization: Networking
 Certifications:
-• Cisco Certified Network Associate (CCNA)
-• 1-year Software Development Course
+• cisco certified network associate (ccna)
+• 1-year software development course
 
 

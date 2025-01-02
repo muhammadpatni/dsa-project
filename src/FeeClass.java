@@ -88,7 +88,7 @@ public class FeeClass {
     public int ReturnVoucherNo(String month) {
         FeeNode temp = head;
         while (temp != null) {
-            if (month.equals(temp.Month)) {
+            if (temp.Month.equals(month)) {
                 return temp.VoucherNo;
             }
             temp = temp.next;

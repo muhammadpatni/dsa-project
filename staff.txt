@@ -20,11 +20,11 @@ Staff Id :2
 Name :shahista
 Gender :Female
 Dob :02-02-2003
-Date of joining :2025-01-01
+Date of joining :
 Contact :033465773634
 Address :karachi
 Designation :admin
-Salary :30000.0
+Salary :300000.0
 Skill :no skills
 Experience :2 year
 Certification:
@@ -34,7 +34,7 @@ Staff Id :3
 Name :abdullah
 Gender :Male
 Dob :23-08-2001
-Date of joining :2025-01-01
+Date of joining :
 Contact :03125434665
 Address :karachi
 Designation :accountant

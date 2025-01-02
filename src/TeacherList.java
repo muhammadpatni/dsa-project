@@ -224,6 +224,7 @@ public class TeacherList {
                     while (true) {
                         try {
                             System.out.print("Enter new Address: ");
+                           sc.nextLine();
                             String Address = sc.nextLine();
                             temp.Address = Address;
                             break;

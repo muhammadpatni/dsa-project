@@ -111,6 +111,7 @@ public  class Main {
             boolean loggedIn = false;
 
             while (!loggedIn) {
+                scanner.nextLine();
                 System.out.print("Enter your username: ");
                 String inputUsername = scanner.nextLine();
 
@@ -867,10 +868,7 @@ public  class Main {
                                 scanner.nextLine(); // Clear the buffer
                             }
                         }
-
-
                         staff.updateStudent(Id);
-                        StyledConsoleOutput.printStyled("Staff updated successfully.",false,false,"blue");
                         staff.saveToFile();
                     }
                     else if (entity.equals("Teacher"))
@@ -891,7 +889,6 @@ public  class Main {
 
 
                         teacher.updateTeacher(Id);
-                        StyledConsoleOutput.printStyled("Teacher updated successfully.",false,false,"blue");
                         teacher.saveToFile();
                     }
                     else if (entity.equals("Student"))
@@ -911,7 +908,6 @@ public  class Main {
                         }
 
                         student.updateStudent(Id);
-                        StyledConsoleOutput.printStyled("Student updated successfully.",false,false,"blue");
                         student.saveToFile();
                     }
                     break;
@@ -1694,6 +1690,7 @@ public  class Main {
                         try {
                             int id = scanner.nextInt();
                             student.generateFeeVouchers(FeeClass.getMonthNameFromDate(LocalDate.now()), id);
+                            student.saveToFile();
                         } catch (Exception e) {
                             StyledConsoleOutput.printStyled("Invalid input! Please enter a valid integer for student Id.",false,false,"red");
                             scanner.nextLine(); // Clear the buffer
@@ -1772,6 +1769,7 @@ public  class Main {
                         }
 
                         student.generateFeeVouchers(MonthName, id);
+                        student.saveToFile();
                     }
                     break;
 
@@ -1842,6 +1840,7 @@ public  class Main {
                         }
 
                         student.PaidFee(id,VoucherNo,FeeClass.getMonthNameFromDate(LocalDate.now()));
+                        student.saveToFile();
                     }
                     else {
                         System.out.println("Generating voucher for the previous month...");
@@ -1923,6 +1922,7 @@ public  class Main {
                                 MonthName = "December";
                         }
                         student.PaidFee(id,VoucherNo,MonthName);
+                        student.saveToFile();
                     }
                     break;
                 case 5:

@@ -79,15 +79,14 @@ public class StudentClass {
             StyledConsoleOutput.printStyled("\nInvalid ID",false,false,"red");
             return;
         }
+        while (true) {
         System.out.println("Current Details :");
         System.out.println("Name : " + temp.Name);
         System.out.println("Father Name : " + temp.FatherName);
         System.out.println("Contact : " + temp.Contact);
         System.out.println("Dob : " + temp.DateOfBirth);
         System.out.println("Address : " + temp.Address + "\n\n");
-        while (true) {
             int choice = 0;
-            while (true) {
                 try {
                     System.out.println("1. Name");
                     System.out.println("2. Father Name");
@@ -99,23 +98,25 @@ public class StudentClass {
                     choice = sc.nextInt();
                     break;
                 } catch (Exception e) {
-                    StyledConsoleOutput.printStyled("Invalid input. Please enter a valid choice.",false,false,"red");
+                    System.out.println("Invalid input. Please enter a valid choice.");
                     sc.nextLine(); // Clear the buffer
                 }
-            }
 
             switch (choice) {
                 case 1:
+                    sc.nextLine();
                     System.out.print("Enter new name :");
                     String name = sc.nextLine();
                     temp.Name = name;
                     break;
                 case 2:
+                    sc.nextLine();
                     System.out.print("Enter new Father Name :");
                     String fathername = sc.nextLine();
                     temp.FatherName = fathername;
                     break;
                 case 3:
+                    sc.nextLine();
                     System.out.print("Enter new contact :");
                     String contact = sc.nextLine();
                     temp.Contact = contact;
@@ -125,18 +126,20 @@ public class StudentClass {
                     DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy");
                     while (true) {
                         System.out.print("Enter new Dob (dd-MM-yyyy): ");
+                        sc.nextLine();
                         String input = sc.nextLine();
                         try {
                             LocalDate birthDate = LocalDate.parse(input, formatter);
                             dob = input;
                             break;
                         } catch (DateTimeParseException e) {
-                            StyledConsoleOutput.printStyled("Invalid date format. Please enter again in 'dd-MM-yyyy' format.",false,false,"red");
+                            System.out.println("Invalid date format. Please enter again in 'dd-MM-yyyy' format.");
                         }
                     }
                     temp.DateOfBirth = dob;
                     break;
                 case 5:
+                    sc.nextLine();
                     System.out.print("Enter new address :");
                     String address = sc.nextLine();
                     temp.Address = address;
@@ -145,16 +148,17 @@ public class StudentClass {
                     saveToFile();
                     return;
                 default:
-                    StyledConsoleOutput.printStyled("Invalid choice , please choose correct again ",false,false,"red");
+                    System.out.println("Invalid choice , please choose correct again ");
 
             }
+
         }
 
     }
 
     public void searchStudent(int StudentId) {
         if (isEmpty()) {
-            StyledConsoleOutput.printStyled("No Student is found",false,false,"red");
+            System.out.println("No Student is found");
             return;
         }
         StudentNode temp = head;
@@ -164,7 +168,7 @@ public class StudentClass {
             temp = temp.next;
         }
         if (temp == null) {
-            StyledConsoleOutput.printStyled("Invalid ID",false,false,"red");
+            System.out.println("Invalid ID");
             return;
         } else {
             StyledConsoleOutput.printStyled("                                                 * * * Student DETAILS * * *                               \n",true, false, "cyan");
@@ -222,7 +226,7 @@ public class StudentClass {
 
     public void Displaybyclass(int currentClass) {
         if (isEmpty()) {
-            StyledConsoleOutput.printStyled("No students found.",false,false,"red");
+            System.out.println("No students found.");
             return;
         }
 
@@ -247,14 +251,14 @@ public class StudentClass {
         if (!found) {
             System.out.println("|      ------        |        ----        |       -----       |     ---     |");
             System.out.println("|--------------------|--------------------|-------------------|-------------|");
-            StyledConsoleOutput.printStyled("No students found in class " + currentClass + ".",false,false,"red");
+            System.out.println("No students found in class " + currentClass + ".");
         }
     }
 
 
     public void removeStudent(int StudentId) {
         if (isEmpty()) {
-            StyledConsoleOutput.printStyled("No Student is found",false,false,"red");
+            System.out.println("No Student is found");
             return;
         }
         StudentNode temp = head;
@@ -265,7 +269,7 @@ public class StudentClass {
             temp = temp.next;
         }
         if (temp == null) {
-            StyledConsoleOutput.printStyled("Invalid found",false,false,"red");
+            System.out.println("Invalid found");
             return;
         }
         if (temp == head) {
@@ -358,7 +362,7 @@ public class StudentClass {
                 temp = temp.next;
             }
         } catch (IOException e) {
-            StyledConsoleOutput.printStyled("Error saving student details to file.",false,false,"red");
+            System.out.println("Error saving student details to file.");
         }
     }
 
@@ -387,11 +391,11 @@ public class StudentClass {
         }
 
         if (temp == null) {
-            StyledConsoleOutput.printStyled("Invalid ID",false,false,"red");
+            System.out.println("Invalid ID");
             return;
         }
         if (temp.fee.searchMonth(month)) {
-            StyledConsoleOutput.printStyled("Fee for this month has already been recorded.",false,false,"green");
+            System.out.println("Fee for this month has already been recorded.");
             return;
         }
         temp.fee.addStudentFee(voucherid,month, LocalDate.now().toString());
@@ -407,12 +411,12 @@ public class StudentClass {
         }
         if (temp==null)
         {
-            StyledConsoleOutput.printStyled("Invalid Id",false,false,"red");
+            System.out.println("Invalid Id");
             return;
         }
         if (temp.fee.searchMonth(month))
         {
-            StyledConsoleOutput.printStyled("Fees is already paid for month "+month,false,false,"green");
+            System.out.println("Fees is already paid for month "+month);
             return;
         }
         int voucherId = VoucherNo;
@@ -430,7 +434,7 @@ public class StudentClass {
         } else if (temp.CurrentClass >= 8 && temp.CurrentClass <= 10) {
             feeAmount = 14000.0;
         } else {
-            StyledConsoleOutput.printStyled("Class not recognized for Student ID: " + temp.StudentId,false,false,"red");
+            System.out.println("Class not recognized for Student ID: " + temp.StudentId);
         }
 
         // Enhanced Fee Voucher Output
@@ -500,7 +504,7 @@ public class StudentClass {
             temp = temp.next;
         }
         if (temp == null) {
-            StyledConsoleOutput.printStyled("Invalid Id",false,false,"red");
+            System.out.println("Invalid Id");
             return;
         }
         StyledConsoleOutput.printStyled("                                    * * * STUDENT FEE DETAILS * * *                               ",true,false,"cyan");
@@ -521,14 +525,38 @@ public class StudentClass {
             }
         }
     }
+    public static int getMonthNumber(String monthName) {
+        if (monthName == null || monthName.isEmpty()) {
+            return -1; // Invalid input
+        }
+
+        switch (monthName.toLowerCase()) {
+            case "january": return 1;
+            case "february": return 2;
+            case "march": return 3;
+            case "april": return 4;
+            case "may": return 5;
+            case "june": return 6;
+            case "july": return 7;
+            case "august": return 8;
+            case "september": return 9;
+            case "october": return 10;
+            case "november": return 11;
+            case "december": return 12;
+            default: return -1; // Invalid month name
+        }
+    }
 
     public String[] returnMonthsOfUnpaidFee(StudentNode current)
     { String[] temp=new String[12];
         String[] months={"January","February","March","April","May","June","July","August","September","October","November","December"};
-        for (int i = 0; i <months.length; i++) {
-            if (!current.fee.searchMonth(months[i]))
-            {
-                temp[i]=months[i];
+        for (int i = 0,j=0; i <months.length; i++) {
+            if (current.fee.searchMonth(months[i]))
+                continue;
+            else {
+                if (getMonthNumber(months[i])>getMonthNumber(FeeClass.getMonthNameFromDate(LocalDate.now())))
+                         break;
+                temp[j++] = months[i];
             }
         }
         return temp;
@@ -537,7 +565,7 @@ public class StudentClass {
     {
         if (isEmpty())
         {
-            StyledConsoleOutput.printStyled("Students not available",false,false,"red");
+            System.out.println("Students not available");
             return;
         }
         System.out.println("|==========|====================|====================|====================|");
@@ -547,25 +575,16 @@ public class StudentClass {
         while (temp!=null)
         {
             String[] month = returnMonthsOfUnpaidFee(temp);
+           if (month[0]!=null)
+           {
             System.out.printf("|%-10s|%-20s|%-20s|",temp.StudentId, temp.Name, temp.CurrentClass);
-            for (int i = 0; i <month.length; i++) {
-                if (!FeeClass.getMonthNameFromDate(LocalDate.now()).equals(month[i])){
+            for (int i = 0; i <month.length&&month[i]!=null; i++) {
                     if (i==0)
                         System.out.printf("%-20s|\n",month[i]);
                     else
                         System.out.printf("|%-10s|%-20s|%-20s|%-20s|\n","","","",month[i]);
-                }
-                else
-                {
-                    if (i==0)
-                        System.out.printf("%-20s|\n",month[i]);
-                    else
-                        System.out.printf("|%-10s|%-20s|%-20s|%-20s|\n","","","",month[i]);
-                    break;
-                }
-
             }
-            System.out.println("|----------|--------------------|--------------------|--------------------|");
+            System.out.println("|----------|--------------------|--------------------|--------------------|");}
             temp=temp.next;
         }
     }
@@ -595,7 +614,7 @@ public class StudentClass {
         }
         if (found)
         {
-            StyledConsoleOutput.printStyled("no student in class "+Class,false,false,"red");
+            System.out.println("no student in class "+Class);
         }
     }
 
@@ -638,7 +657,7 @@ public class StudentClass {
                     }
                     check=true;
                 }
-                else if(temp.attendance.size()==15)  {
+                else if(temp.attendance.size()==16)  {
                     for (int i = 0; i < temp.attendance.size(); i++) {
                         if (temp.attendance.getAttendance(i))
                             if (i<10)
@@ -690,6 +709,8 @@ public class StudentClass {
             int studentId = 0,currentClass=0;
             String name = "", gender = "", dob = "",father="", contact = "", address = "";
             char section='\0';
+            String month="",date="";
+            int voucherNumber=0;
             PreviousAcademicBackground previous = null;
             MarksListForStudent marksList = new MarksListForStudent();
             FeeClass feeDetails = new FeeClass();
@@ -709,8 +730,10 @@ public class StudentClass {
                     }
 
                     // Reset all variables for the new student
+                    previous=null;
                     studentId = Integer.parseInt(line.split(":")[1].trim());
-                    name = gender = dob = contact = address ="";
+                    name = gender = dob = contact = address=month=date ="";
+                    voucherNumber=0;
                     marksList = new MarksListForStudent();  // Reset the Marks list
                     feeDetails = new FeeClass();          // Reset Fee details
                     attendance = new BooleanArray();         // Reset Attendance
@@ -731,20 +754,30 @@ public class StudentClass {
                     currentClass =Integer.parseInt(line.split(":")[1].trim()) ;
                 } else if (line.startsWith("Section:")) {
                     section = line.split(":")[1].trim().charAt(0);
-                } else if (line.startsWith("Previous Institute:")) {
-                    if (previous == null) {
-                        previous = new PreviousAcademicBackground();
+                } else if (line.startsWith("Previous Academic Background:")) {
+
+                    while ((line = reader.readLine()) != null && !line.startsWith("Marks List:")) {
+                        if (line.trim().equals("No previous academic background available.")) {
+                          previous=null;
+                            break;
+                        }
+                        if (line.startsWith("Previous Institute:")) {
+                            if (previous == null) {
+                                previous = new PreviousAcademicBackground();
+                            }
+                            previous.PreviousInstitute = line.split(":")[1].trim();
+                        } else if (line.startsWith("Previous Class:")) {
+                            if (previous != null) {
+                                previous.ClassName =Integer.parseInt(line.split(":")[1].trim());
+                            }
+                        } else if (line.startsWith("Previous Grade:")) {
+                            if (previous != null) {
+                                previous.Grade = line.split(":")[1].trim().charAt(0);
+                            }
+                        }
                     }
-                    previous.PreviousInstitute = line.split(":")[1].trim();
-                } else if (line.startsWith("Previous Class:")) {
-                    if (previous != null) {
-                        previous.ClassName =Integer.parseInt(line.split(":")[1].trim());
-                    }
-                } else if (line.startsWith("Previous Grade:")) {
-                    if (previous != null) {
-                        previous.Grade = line.split(":")[1].trim().charAt(0);
-                    }
-                } else if (line.startsWith("Marks List:")) {
+                }
+              else if (line.startsWith("Marks List:")) {
                     // Read marks until Fee Details
                     while ((line = reader.readLine()) != null && !line.startsWith("Fee Details:")) {
                         if (line.trim().equals("No marks available.")) {
@@ -758,23 +791,22 @@ public class StudentClass {
                 } else if (line.startsWith("Fee Details:")) {
                     // Read fee details until Attendance
                     while ((line = reader.readLine()) != null && !line.startsWith("Attendance:")) {
-                        String month="",date="";
-                        int voucherNo=0;
                         if (line.trim().equals("No fee details available.")) {
                             break;
                         }
                         if (line.startsWith("Month: "))
                         {month=line.split(":")[1].trim();}
                         else if (line.startsWith("Voucher Number: ")) {
-                            voucherNo=Integer.parseInt(line.split(":")[1].trim());
+                            voucherNumber=Integer.parseInt(line.split(":")[1].trim());
                         } else if (line.startsWith("Date: ")) {
                             date=line.split(":")[1].trim();
                         }
-                        feeDetails.addStudentFee(voucherNo, month,date);
                     }
+                    if(voucherNumber!=0)
+                    {feeDetails.addStudentFee(voucherNumber, month,date);}
                 } else if (line.startsWith("Attendance:")) {
                     // Read attendance until the end of the student details
-                    while ((line = reader.readLine()) != null && !line.trim().equals("")) {
+                    while ((line = reader.readLine()) != null && !line.trim().isEmpty()) {
                         if (line.trim().equals("No attendance records available.")) {
                             break;
                         }
@@ -792,9 +824,9 @@ public class StudentClass {
             }
 
         } catch (IOException e) {
-           StyledConsoleOutput.printStyled("Error reading student details from file: " + e.getMessage(),false,false,"red");
+            System.out.println("Error reading student details from file: " + e.getMessage());
         } catch (Exception e) {
-            StyledConsoleOutput.printStyled("An unexpected error occurred while reading student details: " + e.getMessage(),false,false,"red");
+            System.out.println("An unexpected error occurred while reading student details: " + e.getMessage());
         }
     }
 
