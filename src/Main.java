@@ -79,14 +79,14 @@ public  class Main {
                     valid = true;
                 } catch (Exception e) {
                     scanner.nextLine();
-                    System.out.println("Wrong input! Enter again from 1-6 options.");
+                    StyledConsoleOutput.printStyled("Wrong input! Enter again from 1-6 options.",false,false,"red");
                 }
             }
 
             System.out.println("You selected: " + choice);// Consume newline
 
             if (choice == 8) {
-                System.out.println("\nExiting the application. Goodbye!");
+                StyledConsoleOutput.printStyled("\nExiting the application. Goodbye!",true,false,"cyan");
                 break;
             }
 
@@ -147,7 +147,7 @@ public  class Main {
                     }
                 } else {
                     StyledConsoleOutput.printStyled("\nInvalid credentials. Please try again.\n",false,false,"red");
-                    System.out.print("Would you like to try again or go back to the main menu? (y/n): ");
+                    StyledConsoleOutput.printStyled("Would you like to try again or go back to the main menu? (y/n): ",false,false ,"blue");
                     String action = scanner.nextLine();
                     if (action.equalsIgnoreCase("n")) {
                         break; // Back to the role selection menu
@@ -206,12 +206,12 @@ public  class Main {
                     scanner.nextLine(); // Clear newline character left after nextInt()
 
                     if (choice < 1 || choice > 3) {
-                        System.out.println("Invalid choice. Please enter a number between 1 and 3.");
+                        StyledConsoleOutput.printStyled("Invalid choice. Please enter a number between 1 and 3.",false,false,"red");
                     } else {
                         break; // Exit loop if input is valid
                     }
                 } catch (Exception e) {
-                    System.out.println("Invalid input! Please enter a numeric value.");
+                   StyledConsoleOutput.printStyled("Invalid input! Please enter a numeric value.",false,false,"red");
                     scanner.nextLine(); // Clear invalid input
                 }
             }
@@ -228,12 +228,12 @@ public  class Main {
                             scanner.nextLine(); // Clear newline character left after nextInt()
 
                             if (className <= 0) {
-                                System.out.println("Class Name must be a positive number. Please try again.");
+                                StyledConsoleOutput.printStyled("Class Name must be a positive number. Please try again.",false,false,"red");
                             } else {
                                 break; // Valid input, exit loop
                             }
                         } catch (Exception e) {
-                            System.out.println("Invalid input! Please enter a numeric value for Class Name.");
+                            StyledConsoleOutput.printStyled("Invalid input! Please enter a numeric value for Class Name.",false,false,"red");
                             scanner.nextLine(); // Clear invalid input
                         }
                     }
@@ -251,14 +251,14 @@ public  class Main {
                                 validUser = true;
                                 if (date[className].equals(LocalDate.now().toString()))
                                 {
-                                    System.out.println("Today's attendance is already marked for class "+className);
+                                    StyledConsoleOutput.printStyled("Today's attendance is already marked for class "+className,false,false,"green");
                                     break;
                                 }
                                 else
                                 {
                                     date[className]=LocalDate.now().toString();
                                     student.markAttendanceOfClass(className);
-                                    System.out.println("Attendance marked for Class " + className + " by " + username);
+                                    StyledConsoleOutput.printStyled("Attendance marked for Class " + className + " by " + username,false,false,"blue");
                                     break;
                                 }
                             }
@@ -280,12 +280,12 @@ public  class Main {
                             scanner.nextLine(); // Clear newline character left after nextInt()
 
                             if (viewClassName <= 0) {
-                                System.out.println("Class must be a positive number. Please try again.");
+                                StyledConsoleOutput.printStyled("Class must be a positive number. Please try again.",false,false,"red");
                             } else {
                                 break; // Valid input, exit loop
                             }
                         } catch (Exception e) {
-                            System.out.println("Invalid input! Please enter a numeric value for Class.");
+                            StyledConsoleOutput.printStyled("Invalid input! Please enter a numeric value for Class.",false,false,"red");
                             scanner.nextLine(); // Clear invalid input
                         }
                     }
@@ -352,7 +352,7 @@ public  class Main {
                     valid = true;
                 } catch (Exception e) {
                     scanner.nextLine();
-                    System.out.println("Wrong input! Enter again from 1-5 options.");
+                    StyledConsoleOutput.printStyled("Wrong input! Enter again from 1-5 options.",false,false,"red");
                 }
             }
 
@@ -388,7 +388,7 @@ public  class Main {
                                 }
                             } catch (Exception e) {
                                 scanner.nextLine(); // Clear the invalid input
-                                System.out.println("Wrong input! Please select 1 for Male or 2 for Female.");
+                                StyledConsoleOutput.printStyled("Wrong input! Please select 1 for Male or 2 for Female.",false,false,"red");
                             }
                         }
 
@@ -402,7 +402,7 @@ public  class Main {
                                 dob = input; // Store the valid date
                                 break; // Exit the loop
                             } catch (DateTimeParseException e) {
-                                System.out.println("Invalid date format. Please enter again in 'dd-MM-yyyy' format.");
+                               StyledConsoleOutput.printStyled("Invalid date format. Please enter again in 'dd-MM-yyyy' format.",false,false,"red");
                             }
                         }
 
@@ -416,7 +416,7 @@ public  class Main {
                                 }
                                 break;
                             } catch (Exception e) {
-                                System.out.println("Invalid input! Contact number must be 10 digits.");
+                                StyledConsoleOutput.printStyled("Invalid input! Contact number must be 10 digits.",false,false,"red");
                             }
                         }
                         System.out.print("Enter Address: ");
@@ -429,12 +429,12 @@ public  class Main {
                                 System.out.print("Enter Salary: ");
                                 salary = scanner.nextDouble();
                                 if (salary < 0) {
-                                    System.out.println("Salary cannot be negative! Please enter a positive value.");
+                                    StyledConsoleOutput.printStyled("Salary cannot be negative! Please enter a positive value.",false,false,"red");
                                 } else {
                                     break; // Exit loop if salary is valid
                                 }
                             } catch (java.util.InputMismatchException e) {
-                                System.out.println("Invalid input! Salary must be a number.");
+                                StyledConsoleOutput.printStyled("Invalid input! Salary must be a number.",false,false,"red");
                                 scanner.nextLine(); // Clear invalid input
                             }
                         }
@@ -454,7 +454,7 @@ public  class Main {
                                 break;
                             } catch (Exception e) {
                                 scanner.nextLine(); // Clear invalid input
-                                System.out.println("Invalid input! Please enter a positive integer for certifications.");
+                                StyledConsoleOutput.printStyled("Invalid input! Please enter a positive integer for certifications.",false,false,"red");
                             }
                         }
 
@@ -496,7 +496,7 @@ public  class Main {
 
                                 break;  // Exit loop if valid input
                             } catch (Exception e) {
-                                System.out.println("Error: " + e.getMessage());
+                                StyledConsoleOutput.printStyled("Error: " + e.getMessage(),false,false,"red");
                                 scanner.nextLine();  // Clear invalid input
                             }
                         }
@@ -538,7 +538,7 @@ public  class Main {
 
                                 break; // Exit loop if valid input
                             } catch (Exception e) {
-                                System.out.println("Error: " + e.getMessage());
+                                StyledConsoleOutput.printStyled("Error: " + e.getMessage(),false,false,"red");
                                 scanner.nextLine(); // Clear invalid input
                             }
                         }
@@ -566,7 +566,7 @@ public  class Main {
                                 break;
                             } catch (Exception e) {
                                 System.out.println(e.getMessage());
-                                System.out.print("Enter valid Email: ");
+                                StyledConsoleOutput.printStyled("Enter valid Email: ",false,false,"red");
                                 email = scanner.nextLine();
                             }
                         }
@@ -584,7 +584,7 @@ public  class Main {
                                 break;
                             } catch (Exception e) {
                                 System.out.println(e.getMessage());
-                                System.out.print("Enter valid Highest Qualification: ");
+                                StyledConsoleOutput.printStyled("Enter valid Highest Qualification: ",false,false,"red");
                                 highestQualification = scanner.nextLine();
                             }
                         }
@@ -599,7 +599,7 @@ public  class Main {
                                 break;
                             } catch (Exception e) {
                                 System.out.println(e.getMessage());
-                                System.out.print("Enter valid Contact Number: ");
+                                StyledConsoleOutput.printStyled("Enter valid Contact Number: ",false,false,"red");
                                 contact = scanner.nextLine();
                             }
                         }
@@ -617,7 +617,7 @@ public  class Main {
                                 }
                                 break;
                             } catch (Exception e) {
-                                System.out.println(e.getMessage());
+                                StyledConsoleOutput.printStyled(e.getMessage(),false,false,"red");
                                 scanner.nextLine(); // Clear invalid input
                             }
                         }
@@ -639,7 +639,7 @@ public  class Main {
                                 }
                                 break;
                             } catch (Exception e) {
-                                System.out.println(e.getMessage());
+                                StyledConsoleOutput.printStyled(e.getMessage(),false,false,"green");
                                 scanner.nextLine(); // Clear invalid input
                             }
                         }
@@ -669,7 +669,7 @@ public  class Main {
                                 }
                                 break;
                             } catch (Exception e) {
-                                System.out.println("Invalid input! Please enter a valid class number.");
+                                StyledConsoleOutput.printStyled("Invalid input! Please enter a valid class number.",false,false,"red");
                                 scanner.nextLine();
                             }
                         }
@@ -690,7 +690,7 @@ public  class Main {
                                 }
                                 break;
                             } catch (Exception e) {
-                                System.out.println(e.getMessage());
+                                StyledConsoleOutput.printStyled(e.getMessage(),false,false,"red");
                             }
                         }
 
@@ -704,7 +704,8 @@ public  class Main {
                                 }
                                 break;
                             } catch (Exception e) {
-                                System.out.println(e.getMessage());
+                                StyledConsoleOutput.printStyled(e.getMessage(),false,false,"red");
+
                             }
                         }
 
@@ -722,7 +723,7 @@ public  class Main {
                                 }
                                 break;
                             } catch (Exception e) {
-                                System.out.println(e.getMessage());
+                                StyledConsoleOutput.printStyled(e.getMessage(),false,false,"red");
                                 scanner.nextLine(); // Clear invalid input
                             }
                         }
@@ -759,7 +760,7 @@ public  class Main {
                                 // Add additional validation for contact number format if necessary
                                 break;
                             } catch (Exception e) {
-                                System.out.println(e.getMessage());
+                                StyledConsoleOutput.printStyled(e.getMessage(),false,false,"red");
                             }
                         }
 
@@ -773,7 +774,7 @@ public  class Main {
                                 }
                                 break;
                             } catch (Exception e) {
-                                System.out.println(e.getMessage());
+                                StyledConsoleOutput.printStyled(e.getMessage(),false,false,"red");
                             }
                         }
 
@@ -796,7 +797,7 @@ public  class Main {
                                 }
                                 break;
                             } catch (Exception e) {
-                                System.out.println(e.getMessage());
+                                StyledConsoleOutput.printStyled(e.getMessage(),false,false,"red");
                                 scanner.nextLine();
                             }
                         }
@@ -816,7 +817,7 @@ public  class Main {
                                 }
                                 break;
                             } catch (Exception e) {
-                                System.out.println(e.getMessage());
+                                StyledConsoleOutput.printStyled(e.getMessage(),false,false,"red");
                                 scanner.nextLine(); // Clear the buffer
                             }
                         }
@@ -839,7 +840,7 @@ public  class Main {
                                 }
                                 break;
                             } catch (Exception e) {
-                                System.out.println("Invalid input! " + e.getMessage());
+                                StyledConsoleOutput.printStyled("Invalid input! " + e.getMessage(),false,false,"red");
                                 scanner.nextLine(); // Clear the buffer
                             }
                         }
@@ -862,7 +863,7 @@ public  class Main {
                                 }
                                 break;
                             } catch (Exception e) {
-                                System.out.println("Invalid input! " + e.getMessage());
+                                StyledConsoleOutput.printStyled("Invalid input! " + e.getMessage(),false,false,"red");
                                 scanner.nextLine(); // Clear the buffer
                             }
                         }
@@ -883,7 +884,7 @@ public  class Main {
                                 }
                                 break;
                             } catch (Exception e) {
-                                System.out.println("Invalid input! " + e.getMessage());
+                               StyledConsoleOutput.printStyled("Invalid input! " + e.getMessage(),false,false,"red");
                                 scanner.nextLine(); // Clear the buffer
                             }
                         }
@@ -904,7 +905,7 @@ public  class Main {
                                 }
                                 break;
                             } catch (Exception e) {
-                                System.out.println("Invalid input! " + e.getMessage());
+                                StyledConsoleOutput.printStyled("Invalid input! " + e.getMessage(),false,false,"red");
                                 scanner.nextLine(); // Clear the buffer
                             }
                         }
@@ -927,7 +928,7 @@ public  class Main {
                                 }
                                 break;
                             } catch (Exception e) {
-                                System.out.println("Invalid input! " + e.getMessage());
+                                StyledConsoleOutput.printStyled("Invalid input! " + e.getMessage(),false,false,"red");
                                 scanner.nextLine(); // Clear the buffer
                             }
                         }
@@ -946,7 +947,7 @@ public  class Main {
                                 }
                                 break;
                             } catch (Exception e) {
-                                System.out.println("Invalid input! " + e.getMessage());
+                                StyledConsoleOutput.printStyled("Invalid input! " + e.getMessage(),false,false,"red");
                                 scanner.nextLine(); // Clear the buffer
                             }
                         }
@@ -965,7 +966,7 @@ public  class Main {
                                 }
                                 break;
                             } catch (Exception e) {
-                                System.out.println("Invalid input! " + e.getMessage());
+                                StyledConsoleOutput.printStyled("Invalid input! " + e.getMessage(),false,false,"red");
                                 scanner.nextLine(); // Clear the buffer
                             }
                         }
@@ -1002,7 +1003,7 @@ public  class Main {
                     }
                     break;
                 } catch (Exception e) {
-                    System.out.println("Invalid input! " + e.getMessage());
+                    StyledConsoleOutput.printStyled("Invalid input! " + e.getMessage(),false,false,"red");
                     scanner.nextLine(); // Clear the buffer
                 }
             }
@@ -1027,7 +1028,7 @@ public  class Main {
                                 }
                                 break;
                             } catch (Exception e) {
-                                System.out.println("Invalid input! " + e.getMessage());
+                                StyledConsoleOutput.printStyled("Invalid input! " + e.getMessage(),false,false,"red");
                                 scanner.nextLine(); // Clear the buffer
                             }
                         }
@@ -1052,7 +1053,7 @@ public  class Main {
                                             }
                                             break;
                                         } catch (Exception e) {
-                                            System.out.println("Invalid input! " + e.getMessage());
+                                            StyledConsoleOutput.printStyled("Invalid input! " + e.getMessage(),false,false,"red");
                                             scanner.nextLine(); // Clear the buffer
                                         }
                                     }
@@ -1072,7 +1073,7 @@ public  class Main {
                                             check=false;
                                             break;
                                         default:
-                                            System.out.println("Invalid choice !! , Enter correct option");
+                                            StyledConsoleOutput.printStyled("Invalid choice !! , Enter correct option",false,false,"red");
                                             check=true;
                                     }
                                 }
@@ -1089,7 +1090,7 @@ public  class Main {
                                         }
                                         break;
                                     } catch (Exception e) {
-                                        System.out.println("Invalid input! " + e.getMessage());
+                                        StyledConsoleOutput.printStyled("Invalid input! " + e.getMessage(),false,false,"red");
                                         scanner.nextLine(); // Clear the buffer
                                     }
                                 }
@@ -1099,7 +1100,7 @@ public  class Main {
                             case 3:
                                 if(teacher.isEmpty())
                                 {
-                                    System.out.println("Teacher not available");
+                                    StyledConsoleOutput.printStyled("Teacher not available",false,false,"red");
                                 }
                                 System.out.print("enter teacher id : ");
                                 int teacherid = 0;
@@ -1112,7 +1113,7 @@ public  class Main {
                                         }
                                         break;
                                     } catch (Exception e) {
-                                        System.out.println("Invalid input! " + e.getMessage());
+                                        StyledConsoleOutput.printStyled("Invalid input! " + e.getMessage(),false,false,"red");
                                         scanner.nextLine(); // Clear the buffer
                                     }
                                 }
@@ -1151,7 +1152,7 @@ public  class Main {
                                 }
                                 break;
                             } catch (Exception e) {
-                                System.out.println("Invalid input! " + e.getMessage());
+                                StyledConsoleOutput.printStyled("Invalid input! " + e.getMessage(),false,false,"red");
                                 scanner.nextLine(); // Clear the buffer
                             }
                         }
@@ -1176,7 +1177,7 @@ public  class Main {
                                             }
                                             break;
                                         } catch (Exception e) {
-                                            System.out.println("Invalid input! " + e.getMessage());
+                                            StyledConsoleOutput.printStyled("Invalid input! " + e.getMessage(),false,false,"red");
                                             scanner.nextLine(); // Clear the buffer
                                         }
                                     }
@@ -1201,7 +1202,7 @@ public  class Main {
                                             check=false;
                                             break;
                                         default:
-                                            System.out.println("Invalid choice !! , Enter correct option");
+                                            StyledConsoleOutput.printStyled("Invalid choice !! , Enter correct option",false,false,"red");
                                             check=true;
                                     }
                                 }
@@ -1218,7 +1219,7 @@ public  class Main {
                                         }
                                         break;
                                     } catch (Exception e) {
-                                        System.out.println("Invalid input! " + e.getMessage());
+                                        StyledConsoleOutput.printStyled("Invalid input! " + e.getMessage(),false,false,"red");
                                         scanner.nextLine(); // Clear the buffer
                                     }
                                 }
@@ -1228,7 +1229,7 @@ public  class Main {
                             case 3:
                                 StudentNode temp;
                                 if (student.isEmpty()) {
-                                    System.out.println("Students not available");
+                                    StyledConsoleOutput.printStyled("Students not available",false,false,"red");
                                     break;
                                 }
                                 System.out.print("Enter student Id :");
@@ -1242,7 +1243,7 @@ public  class Main {
                                         }
                                         break;
                                     } catch (Exception e) {
-                                        System.out.println("Invalid input! " + e.getMessage());
+                                        StyledConsoleOutput.printStyled("Invalid input! " + e.getMessage(),false,false,"red");
                                         scanner.nextLine(); // Clear the buffer
                                     }
                                 }
@@ -1256,7 +1257,7 @@ public  class Main {
                                 }
                                 if (!temp.marks.isEmpty())
                                 {
-                                    System.out.println("marks is not assigned to "+Id);
+                                    StyledConsoleOutput.printStyled("marks is not assigned to "+Id,false,false,"red");
                                     break;
                                 }
                                 else
@@ -1276,7 +1277,7 @@ public  class Main {
                                         }
                                         break;
                                     } catch (Exception e) {
-                                        System.out.println("Invalid input! " + e.getMessage());
+                                        StyledConsoleOutput.printStyled("Invalid input! " + e.getMessage(),false,false,"red");
                                         scanner.nextLine(); // Clear the buffer
                                     }
                                 }
@@ -1296,7 +1297,7 @@ public  class Main {
                                         }
                                         break;
                                     } catch (Exception e) {
-                                        System.out.println("Invalid input! " + e.getMessage());
+                                        StyledConsoleOutput.printStyled("Invalid input! " + e.getMessage(),false,false,"red");
                                         scanner.nextLine(); // Clear the buffer
                                     }
                                 }
@@ -1327,7 +1328,7 @@ public  class Main {
                                 }
                                 break;
                             } catch (Exception e) {
-                                System.out.println("Invalid input! " + e.getMessage());
+                                StyledConsoleOutput.printStyled("Invalid input! " + e.getMessage(),false,false,"red");
                                 scanner.nextLine(); // Clear the buffer
                             }
                         }
@@ -1357,7 +1358,7 @@ public  class Main {
                                             }
                                             break;
                                         } catch (Exception e) {
-                                            System.out.println("Invalid input! " + e.getMessage());
+                                            StyledConsoleOutput.printStyled("Invalid input! " + e.getMessage(),false,false,"red");
                                             scanner.nextLine(); // Clear the buffer
                                         }
                                     }
@@ -1377,7 +1378,7 @@ public  class Main {
                                             check=false;
                                             break;
                                         default:
-                                            System.out.println("Invalid choice !! , Enter correct option");
+                                            StyledConsoleOutput.printStyled("Invalid choice !! , Enter correct option",false,false,"red");
                                             check=true;
                                     }
                                 }
@@ -1408,7 +1409,7 @@ public  class Main {
                                 }
                                 break;
                             } catch (Exception e) {
-                                System.out.println("Invalid input! " + e.getMessage());
+                                StyledConsoleOutput.printStyled("Invalid input! " + e.getMessage(),false,false,"red");
                                 scanner.nextLine(); // Clear the buffer
                             }
                         }
@@ -1427,7 +1428,7 @@ public  class Main {
                                         }
                                         break;
                                     } catch (Exception e) {
-                                        System.out.println("Invalid input! " + e.getMessage());
+                                        StyledConsoleOutput.printStyled("Invalid input! " + e.getMessage(),false,false,"red");
                                         scanner.nextLine(); // Clear the buffer
                                     }
                                 }
@@ -1436,70 +1437,70 @@ public  class Main {
                                     if(Class1.size()>0)
                                         Class1.print();
                                     else{
-                                        System.out.println("Courses not assigned to "+Class);
+                                        StyledConsoleOutput.printStyled("Courses not assigned to "+Class,false,false,"red");
                                     }
                                 }
                                 else if(Class == 2 ){
                                     if(Class2.size()>0)
                                         Class2.print();
                                     else{
-                                        System.out.println("Courses not assigned to "+Class);
+                                        StyledConsoleOutput.printStyled("Courses not assigned to "+Class,false,false,"red");
                                     }
                                 }
                                 else if(Class == 3 ){
                                     if(Class3.size()>0)
                                         Class3.print();
                                     else{
-                                        System.out.println("Courses not assigned to "+Class);
+                                        StyledConsoleOutput.printStyled("Courses not assigned to "+Class,false,false,"red");
                                     }
                                 }
                                 else if(Class == 4 ){
                                     if(Class4.size()>0)
                                         Class4.print();
                                     else{
-                                        System.out.println("Courses not assigned to "+Class);
+                                        StyledConsoleOutput.printStyled("Courses not assigned to "+Class,false,false,"red");
                                     }
                                 }
                                 else if(Class == 5 ){
                                     if(Class5.size()>0)
                                         Class5.print();
                                     else{
-                                        System.out.println("Courses not assigned to "+Class);
+                                        StyledConsoleOutput.printStyled("Courses not assigned to "+Class,false,false,"red");
                                     }
                                 }
                                 else if(Class == 6 ){
                                     if(Class6.size()>0)
                                         Class6.print();
                                     else{
-                                        System.out.println("Courses not assigned to "+Class);
+                                        StyledConsoleOutput.printStyled("Courses not assigned to "+Class,false,false,"red");
                                     }
                                 }
                                 else if(Class == 7 ){
                                     if(Class7.size()>0)
                                         Class7.print();
                                     else{
-                                        System.out.println("Courses not assigned to "+Class);
+                                        StyledConsoleOutput.printStyled("Courses not assigned to "+Class,false,false,"red");
                                     }
                                 }
                                 else if(Class == 8 ){
                                     if(Class8.size()>0)
                                         Class8.print();
                                     else{
-                                        System.out.println("Courses not assigned to "+Class);
+                                        StyledConsoleOutput.printStyled("Courses not assigned to "+Class,false,false,"red");
                                     }
                                 }
                                 else if(Class == 9){
                                     if(Class9.size()>0)
                                         Class9.print();
                                     else{
-                                        System.out.println("Courses not assigned to "+Class);
+                                        StyledConsoleOutput.printStyled("Courses not assigned to "+Class,false,false,"red");
                                     }
                                 }
                                 if(Class == 10){
                                     if(Class10.size()>0)
                                         Class10.print();
                                     else{
-                                        System.out.println("Courses not assigned to "+Class);
+                                        StyledConsoleOutput.printStyled("Courses not assigned to "+Class,false,false,"red");
                                     }
                                 }
                                 break;
@@ -1509,7 +1510,7 @@ public  class Main {
                                     Class = scanner.nextInt();
                                     student.Displaybyclass(Class);
                                 } catch (Exception e) {
-                                    System.out.println("Invalid input! Please enter a valid integer for the class.");
+                                    StyledConsoleOutput.printStyled("Invalid input! Please enter a valid integer for the class.",false,false,"red");
                                     scanner.nextLine(); // Clear the buffer
                                 }
                                 break;
@@ -1523,7 +1524,7 @@ public  class Main {
                                         assignedCourses.displaySpecificClassById(Classnumber);
                                         validInputCase3 = true;
                                     } else {
-                                        System.out.println("Invalid input! Please enter a valid integer for the class.");
+                                        StyledConsoleOutput.printStyled("Invalid input! Please enter a valid integer for the class.",false,false,"red");
                                         scanner.nextLine();
                                     }
                                 }
@@ -1539,7 +1540,7 @@ public  class Main {
                                         student.displayMonthAttendanceOfClass(classNumber);
                                         validInputCase4 = true;
                                     } else {
-                                        System.out.println("Invalid input! Please enter a valid integer for the class.");
+                                        StyledConsoleOutput.printStyled("Invalid input! Please enter a valid integer for the class.",false,false,"red");
                                         scanner.nextLine();
                                     }
                                 }
@@ -1578,7 +1579,7 @@ public  class Main {
                     }
                     break;
                 } catch (Exception e) {
-                    System.out.println("Invalid input! " + e.getMessage());
+                   StyledConsoleOutput.printStyled("Invalid input! " + e.getMessage(),false,false,"red");
                     scanner.nextLine(); // Clear the buffer
                 }
             }
@@ -1588,7 +1589,7 @@ public  class Main {
                 case 1:
                     System.out.println("View Your Assign Course");
                     if(teacher.isEmpty()) {
-                        System.out.println("Teacher not available");
+                        StyledConsoleOutput.printStyled("Teacher not available",false,false,"red");
                     }
                     System.out.print("enter teacher id : ");
                     try {
@@ -1599,7 +1600,7 @@ public  class Main {
                         }
                         assignedCourses.displaySpecificTeacherById(teacherid);
                     } catch (Exception e) {
-                        System.out.println("Invalid input! Please enter a valid integer for teacher id.");
+                        StyledConsoleOutput.printStyled("Invalid input! Please enter a valid integer for teacher id.",false,false,"red");
                         scanner.nextLine(); // Clear the buffer
                     }
                     break;
@@ -1618,7 +1619,7 @@ public  class Main {
                             }
                             break;
                         } catch (Exception e) {
-                            System.out.println("Invalid input! " + e.getMessage());
+                            StyledConsoleOutput.printStyled("Invalid input! " + e.getMessage(),false,false,"red");
                             scanner.nextLine(); // Clear the buffer
                         }
                     }
@@ -1655,7 +1656,7 @@ public  class Main {
                     }
                     break;
                 } catch (Exception e) {
-                    System.out.println("Invalid input! " + e.getMessage());
+                    StyledConsoleOutput.printStyled("Invalid input! " + e.getMessage(),false,false,"red");
                     scanner.nextLine(); // Clear the buffer
                 }
             }
@@ -1664,7 +1665,7 @@ public  class Main {
             switch (choice) {
                 case 1:
                     if (student.isEmpty()) {
-                        System.out.println("Student not available . .");
+                        StyledConsoleOutput.printStyled("Student not available . .",false,false,"red");
                         break;
                     }
                     System.out.println("Generating Fee Voucher...");
@@ -1682,7 +1683,7 @@ public  class Main {
                             }
                             break;
                         } catch (Exception e) {
-                            System.out.println("Invalid input! " + e.getMessage());
+                            StyledConsoleOutput.printStyled("Invalid input! " + e.getMessage(),false,false,"red");
                             scanner.nextLine(); // Clear the buffer
                         }
                     }
@@ -1694,7 +1695,7 @@ public  class Main {
                             int id = scanner.nextInt();
                             student.generateFeeVouchers(FeeClass.getMonthNameFromDate(LocalDate.now()), id);
                         } catch (Exception e) {
-                            System.out.println("Invalid input! Please enter a valid integer for student Id.");
+                            StyledConsoleOutput.printStyled("Invalid input! Please enter a valid integer for student Id.",false,false,"red");
                             scanner.nextLine(); // Clear the buffer
                         }
                     } else {
@@ -1705,7 +1706,7 @@ public  class Main {
                         try {
                             id = scanner.nextInt();
                         } catch (Exception e) {
-                            System.out.println("Invalid input! Please enter a valid integer for student Id.");
+                            StyledConsoleOutput.printStyled("Invalid input! Please enter a valid integer for student Id.",false,false,"red");
                             scanner.nextLine(); // Clear the buffer
                         }
 
@@ -1726,7 +1727,7 @@ public  class Main {
                         try {
                             month = scanner.nextInt();
                         } catch (Exception e) {
-                            System.out.println("Invalid input! Please enter a valid month number.");
+                            StyledConsoleOutput.printStyled("Invalid input! Please enter a valid month number.",false,false,"red");
                             scanner.nextLine(); // Clear the buffer
                         }
 
@@ -1787,7 +1788,7 @@ public  class Main {
                 case 4:
                     if (student.isEmpty())
                     {
-                        System.out.println("Student not available . .");
+                        StyledConsoleOutput.printStyled("Student not available . .",false,false,"red");
                         break;
                     }
                     System.out.println("Marking student fee as paid...");
@@ -1806,7 +1807,7 @@ public  class Main {
                             }
                             break;
                         } catch (Exception e) {
-                            System.out.println("Invalid input! " + e.getMessage());
+                            StyledConsoleOutput.printStyled("Invalid input! " + e.getMessage(),false,false,"red");
                             scanner.nextLine(); // Clear the buffer
                         }
                     }
@@ -1822,7 +1823,7 @@ public  class Main {
                                 id = scanner.nextInt();
                                 break;
                             } catch (Exception e) {
-                                System.out.println("Invalid input! Please enter a valid integer for student Id.");
+                                StyledConsoleOutput.printStyled("Invalid input! Please enter a valid integer for student Id.",false,false,"red");
                                 scanner.nextLine(); // Clear the buffer
                             }
                         }
@@ -1835,7 +1836,7 @@ public  class Main {
                                 VoucherNo = scanner.nextInt();
                                 break;
                             } catch (Exception e) {
-                                System.out.println("Invalid input. Please enter a valid number.");
+                               StyledConsoleOutput.printStyled("Invalid input. Please enter a valid number.",false,false,"red");
                                 scanner.nextLine(); // Clear the buffer
                             }
                         }
@@ -1853,7 +1854,7 @@ public  class Main {
                                 id = scanner.nextInt();
                                 break;
                             } catch (Exception e) {
-                                System.out.println("Invalid input. Please enter a valid student Id.");
+                               StyledConsoleOutput.printStyled("Invalid input. Please enter a valid student Id.",false,false,"red");
                                 scanner.nextLine(); // Clear the buffer
                             }
                         }
@@ -1865,7 +1866,7 @@ public  class Main {
                                 VoucherNo = scanner.nextInt();
                                 break;
                             } catch (Exception e) {
-                                System.out.println("Invalid input. Please enter a valid voucher number.");
+                                StyledConsoleOutput.printStyled("Invalid input. Please enter a valid voucher number.",false,false,"red");
                                 scanner.nextLine(); // Clear the buffer
                             }
                         }
@@ -1889,7 +1890,7 @@ public  class Main {
                                 month = scanner.nextInt();
                                 break;
                             } catch (Exception e) {
-                                System.out.println("Invalid input. Please enter a valid month number.");
+                                StyledConsoleOutput.printStyled("Invalid input. Please enter a valid month number.",false,false,"red");
                                 scanner.nextLine(); // Clear the buffer
                             }
                         }
@@ -1954,7 +1955,7 @@ public  class Main {
                     scanner.nextLine();
                     break;
                 } catch (Exception e) {
-                    System.out.println("Invalid input. Please enter a valid choice.");
+                    StyledConsoleOutput.printStyled("Invalid input. Please enter a valid choice.",false,false,"red");
                     scanner.nextLine(); // Clear the buffer
                 }
             }
@@ -1966,7 +1967,7 @@ public  class Main {
                     Teacher temp;
                     if(teacher.isEmpty())
                     {
-                        System.out.println("No Teacher Available");
+                        StyledConsoleOutput.printStyled("No Teacher Available",false,false,"red");
                         break;
                     }
                     int id = 0;
@@ -1976,7 +1977,7 @@ public  class Main {
                             id = scanner.nextInt();
                             break;
                         } catch (Exception e) {
-                            System.out.println("Invalid input. Please enter a valid teacher id.");
+                            StyledConsoleOutput.printStyled("Invalid input. Please enter a valid teacher id.",false,false,"red");
                             scanner.nextLine(); // Clear the buffer
                         }
                     }
@@ -2000,7 +2001,7 @@ public  class Main {
                             course = scanner.nextLine();
                             break;
                         } catch (Exception e) {
-                            System.out.println("Invalid input. Please enter valid class and course.");
+                            StyledConsoleOutput.printStyled("Invalid input. Please enter valid class and course.",false,false,"red");
                             scanner.nextLine(); // Clear the buffer
                         }
                     }
@@ -2015,12 +2016,12 @@ public  class Main {
                                 assignedCourses.saveToFile();
                             }
                             else {
-                                System.out.println(course+" is already assigned !!! ");
+                                StyledConsoleOutput.printStyled(course+" is already assigned !!! ",false,false,"green");
                                 break;
                             }
                         }
                         else{
-                            System.out.println(course+" is not available in class "+Class);
+                            StyledConsoleOutput.printStyled(course+" is not available in class "+Class,false,false,"red");
                             break;
                         }
                     }
@@ -2034,12 +2035,12 @@ public  class Main {
                                 assignedCourses.saveToFile();
                             }
                             else {
-                                System.out.println(course+" is already assigned !!! ");
+                                StyledConsoleOutput.printStyled(course+" is already assigned !!! ",false,false,"green");
                                 break;
                             }
                         }
                         else{
-                            System.out.println(course+" is not available in class "+Class);
+                            StyledConsoleOutput.printStyled(course+" is not available in class "+Class,false,false,"red");
                             break;
                         }
                     }
@@ -2052,12 +2053,12 @@ public  class Main {
                             assignedCourses.saveToFile();
                         }
                         else {
-                            System.out.println(course+" is already assigned !!! ");
+                            StyledConsoleOutput.printStyled(course+" is already assigned !!! ",false,false,"green");
                             break;
                         }
                     }
                     else{
-                        System.out.println(course+" is not available in class "+Class);
+                        StyledConsoleOutput.printStyled(course+" is not available in class "+Class,false,false,"red");
                         break;
                     }}
                     else if(Class==4)
@@ -2069,12 +2070,12 @@ public  class Main {
                             assignedCourses.saveToFile();
                         }
                         else {
-                            System.out.println(course+" is already assigned !!! ");
+                            StyledConsoleOutput.printStyled(course+" is already assigned !!! ",false,false,"green");
                             break;
                         }
                     }
                     else{
-                        System.out.println(course+" is not available in class "+Class);
+                        StyledConsoleOutput.printStyled(course+" is not available in class "+Class,false,false,"red");
                         break;
                     }}
                     else if(Class==5)
@@ -2086,12 +2087,12 @@ public  class Main {
                             assignedCourses.saveToFile();
                         }
                         else {
-                            System.out.println(course+" is already assigned !!! ");
+                            StyledConsoleOutput.printStyled(course+" is already assigned !!! ",false,false,"green");
                             break;
                         }
                     }
                     else{
-                        System.out.println(course+" is not available in class "+Class);
+                        StyledConsoleOutput.printStyled(course+" is not available in class "+Class,false,false,"red");
                         break;
                     }}
                     else if(Class==6)
@@ -2103,12 +2104,12 @@ public  class Main {
                             assignedCourses.saveToFile();
                         }
                         else {
-                            System.out.println(course+" is already assigned !!! ");
+                            StyledConsoleOutput.printStyled(course+" is already assigned !!! ",false,false,"green");
                             break;
                         }
                     }
                     else{
-                        System.out.println(course+" is not available in class "+Class);
+                        StyledConsoleOutput.printStyled(course+" is not available in class "+Class,false,false,"red");
                         break;
                     }}
                     else if(Class==7)
@@ -2120,12 +2121,12 @@ public  class Main {
                             assignedCourses.saveToFile();
                         }
                         else {
-                            System.out.println(course+" is already assigned !!! ");
+                            StyledConsoleOutput.printStyled(course+" is already assigned !!! ",false,false,"green");
                             break;
                         }
                     }
                     else{
-                        System.out.println(course+" is not available in class "+Class);
+                        StyledConsoleOutput.printStyled(course+" is not available in class "+Class,false,false,"red");
                         break;
                     }}
                     else if(Class==8)
@@ -2138,12 +2139,12 @@ public  class Main {
                                 assignedCourses.saveToFile();
                             }
                             else {
-                                System.out.println(course+" is already assigned !!! ");
+                                StyledConsoleOutput.printStyled(course+" is already assigned !!! ",false,false,"green");
                                 break;
                             }
                         }
                         else{
-                            System.out.println(course+" is not available in class "+Class);
+                            StyledConsoleOutput.printStyled(course+" is not available in class "+Class,false,false,"red");
                             break;
                         }}
                     else if(Class==9)
@@ -2156,12 +2157,12 @@ public  class Main {
                                 assignedCourses.saveToFile();
                             }
                             else {
-                                System.out.println(course+" is already assigned !!! ");
+                                StyledConsoleOutput.printStyled(course+" is already assigned !!! ",false,false,"green");
                                 break;
                             }
                         }
                         else{
-                            System.out.println(course+" is not available in class "+Class);
+                            StyledConsoleOutput.printStyled(course+" is not available in class "+Class,false,false,"red");
                             break;
                         }}
                     else
@@ -2174,12 +2175,12 @@ public  class Main {
                                 assignedCourses.saveToFile();
                             }
                             else {
-                                System.out.println(course+" is already assigned !!! ");
+                                StyledConsoleOutput.printStyled(course+" is already assigned !!! ",false,false,"green");
                                 break;
                             }
                         }
                         else{
-                            System.out.println(course+" is not available in class "+Class);
+                            StyledConsoleOutput.printStyled(course+" is not available in class "+Class,false,false,"red");
                             break;
                         }}
                     assignedCourses.saveToFile();
@@ -2189,7 +2190,7 @@ public  class Main {
                     System.out.println("Unassigning Course from Teacher...");
                     if(assignedCourses.isEmpty())
                     {
-                        System.out.println("No Teacher Available");
+                        StyledConsoleOutput.printStyled("No Teacher Available",false,false,"red");
                         break;
                     }
                     int Id = 0;
@@ -2199,7 +2200,7 @@ public  class Main {
                             Id = scanner.nextInt();
                             break;
                         } catch (Exception e) {
-                            System.out.println("Invalid input. Please enter a valid teacher id.");
+                            StyledConsoleOutput.printStyled("Invalid input. Please enter a valid teacher id.",false,false,"red");
                             scanner.nextLine(); // Clear the buffer
                         }
                     }
@@ -2216,19 +2217,19 @@ public  class Main {
                             ClassNumber = scanner.nextInt();
                             break;
                         } catch (Exception e) {
-                            System.out.println("Invalid input. Please enter a valid class number.");
+                            StyledConsoleOutput.printStyled("Invalid input. Please enter a valid class number.",false,false,"red");
                             scanner.nextLine(); // Clear the buffer
                         }
                     }
 
                     if (assignedCourses.search(Id))
                     {
-                        System.out.println("Courses assigned to "+Id+" in class  "+ClassNumber);
+                        StyledConsoleOutput.printStyled("Courses assigned to "+Id+" in class  "+ClassNumber,false,false,"gree");
                         assignedCourses.printCoursesForTeacherInSpecificClass(Id,ClassNumber);
                     }
                     else
                     {
-                        System.out.println("No course assigned to "+Id+" in class  "+ClassNumber);
+                        StyledConsoleOutput.printStyled("No course assigned to "+Id+" in class  "+ClassNumber,false,false,"red");
                         break;
                     }
                     String CourseName = "";
@@ -2238,7 +2239,7 @@ public  class Main {
                             CourseName = scanner.nextLine();
                             break;
                         } catch (Exception e) {
-                            System.out.println("Invalid input. Please enter a valid course name.");
+                           StyledConsoleOutput.printStyled("Invalid input. Please enter a valid course name.",false,false,"red");
                         }
                     }
 
@@ -2254,7 +2255,7 @@ public  class Main {
                             classnumber = scanner.nextInt();
                             break;
                         } catch (Exception e) {
-                            System.out.println("Invalid input. Please enter a valid class number.");
+                            StyledConsoleOutput.printStyled("Invalid input. Please enter a valid class number.",false,false,"red");
                             scanner.nextLine(); // Clear the buffer
                         }
                     }
@@ -2266,7 +2267,7 @@ public  class Main {
                     System.out.println("Viewing Which Teacher is Teaching Which Course in a Specific Class...");
                     if(teacher.isEmpty())
                     {
-                        System.out.println("Teacher not available");
+                        StyledConsoleOutput.printStyled("Teacher not available",false,false,"red");
                     }
                     int teacherid = 0;
                     while (true) {
@@ -2275,7 +2276,7 @@ public  class Main {
                             teacherid = scanner.nextInt();
                             break;
                         } catch (Exception e) {
-                            System.out.println("Invalid input. Please enter a valid teacher id.");
+                           StyledConsoleOutput.printStyled("Invalid input. Please enter a valid teacher id.",false,false,"red");
                             scanner.nextLine(); // Clear the buffer
                         }
                     }
@@ -2297,7 +2298,7 @@ public  class Main {
                                 studentClass = scanner.nextInt();
                                 break;
                             } catch (Exception e) {
-                                System.out.println("Invalid input. Please enter a valid class number (1-10).");
+                                StyledConsoleOutput.printStyled("Invalid input. Please enter a valid class number (1-10).",false,false,"red");
                                 scanner.nextLine(); // Clear the buffer
                             }
                         }
@@ -2317,7 +2318,7 @@ public  class Main {
                             Course = scanner.nextLine();
                             break;
                         } catch (Exception e) {
-                            System.out.println("Invalid input. Please enter a valid course name.");
+                           StyledConsoleOutput.printStyled("Invalid input. Please enter a valid course name.",false,false,"red");
                         }
                     }
 
@@ -2325,70 +2326,70 @@ public  class Main {
                     // Process based on the class number
                     if (studentClass == 1) {
                         if (Class1.search(Course)) {
-                            System.out.println(Course + " course is already added in class " + studentClass);
+                            StyledConsoleOutput.printStyled(Course + " course is already added in class " + studentClass,false,false,"green");
                         } else {
                             Class1.insert(Course);
                             saveCoursesToFile();
                         }
                     } else if (studentClass == 2) {
                         if (Class2.search(Course)) {
-                            System.out.println(Course + " course is already added in class " + studentClass);
+                            StyledConsoleOutput.printStyled(Course + " course is already added in class " + studentClass,false,false,"green");
                         } else {
                             Class2.insert(Course);
                             saveCoursesToFile();
                         }
                     } else if (studentClass == 3) {
                         if (Class3.search(Course)) {
-                            System.out.println(Course + " course is already added in class " + studentClass);
+                            StyledConsoleOutput.printStyled(Course + " course is already added in class " + studentClass,false,false,"green");
                         } else {
                             Class3.insert(Course);
                             saveCoursesToFile();
                         }
                     } else if (studentClass == 4) {
                         if (Class4.search(Course)) {
-                            System.out.println(Course + " course is already added in class " + studentClass);
+                            StyledConsoleOutput.printStyled(Course + " course is already added in class " + studentClass,false,false,"green");
                         } else {
                             Class4.insert(Course);
                             saveCoursesToFile();
                         }
                     } else if (studentClass == 5) {
                         if (Class5.search(Course)) {
-                            System.out.println(Course + " course is already added in class " + studentClass);
+                            StyledConsoleOutput.printStyled(Course + " course is already added in class " + studentClass,false,false,"green");
                         } else {
                             Class5.insert(Course);
                             saveCoursesToFile();
                         }
                     } else if (studentClass == 6) {
                         if (Class6.search(Course)) {
-                            System.out.println(Course + " course is already added in class " + studentClass);
+                            StyledConsoleOutput.printStyled(Course + " course is already added in class " + studentClass,false,false,"green");
                         } else {
                             Class6.insert(Course);
                             saveCoursesToFile();
                         }
                     } else if (studentClass == 7) {
                         if (Class7.search(Course)) {
-                            System.out.println(Course + " course is already added in class " + studentClass);
+                            StyledConsoleOutput.printStyled(Course + " course is already added in class " + studentClass,false,false,"green");
                         } else {
                             Class7.insert(Course);
                             saveCoursesToFile();
                         }
                     } else if (studentClass == 8) {
                         if (Class8.search(Course)) {
-                            System.out.println(Course + " course is already added in class " + studentClass);
+                            StyledConsoleOutput.printStyled(Course + " course is already added in class " + studentClass,false,false,"green");
                         } else {
                             Class8.insert(Course);
                             saveCoursesToFile();
                         }
                     } else if (studentClass == 9) {
                         if (Class9.search(Course)) {
-                            System.out.println(Course + " course is already added in class " + studentClass);
+                            StyledConsoleOutput.printStyled(Course + " course is already added in class " + studentClass,false,false,"green");
                         } else {
                             Class9.insert(Course);
                             saveCoursesToFile();
                         }
                     } else {
                         if (Class10.search(Course)) {
-                            System.out.println(Course + " course is already added in class " + studentClass);
+                            StyledConsoleOutput.printStyled(Course + " course is already added in class " + studentClass,false,false,"green");
                         } else {
                             Class10.insert(Course);
                             saveCoursesToFile();
@@ -2407,7 +2408,7 @@ public  class Main {
                                 studentClass = scanner.nextInt();
                                 break;
                             } catch (Exception e) {
-                                System.out.println("Invalid input. Please enter a valid class number (1-10).");
+                                StyledConsoleOutput.printStyled("Invalid input. Please enter a valid class number (1-10).",false,false,"red");
                                 scanner.nextLine(); // Clear the buffer
                             }
                         }
@@ -2427,7 +2428,7 @@ public  class Main {
                             Course = scanner.nextLine();
                             break;
                         } catch (Exception e) {
-                            System.out.println("Invalid input. Please enter a valid course name.");
+                            StyledConsoleOutput.printStyled("Invalid input. Please enter a valid course name.",false,false,"red");
                         }
                     }
 
@@ -2513,7 +2514,7 @@ public  class Main {
                     scanner.nextLine();
                     break;
                 } catch (Exception e) {
-                    System.out.println("Invalid input. Please enter a valid choice.");
+                    StyledConsoleOutput.printStyled("Invalid input. Please enter a valid choice.",false,false,"red");
                     scanner.nextLine(); // Clear the buffer
                 }
             }
@@ -2524,7 +2525,7 @@ public  class Main {
                     System.out.println("Uploading Marks...");
                     StudentNode temp;
                     if (student.isEmpty()) {
-                        System.out.println("Students not available");
+                        StyledConsoleOutput.printStyled("Students not available",false,false,"red");
                         break;
                     }
                     System.out.print("enter student Id :");
@@ -2538,7 +2539,7 @@ public  class Main {
                     }
                     if (!temp.marks.isEmpty())
                     {
-                        System.out.println("marks already assigned to "+id);
+                        StyledConsoleOutput.printStyled("marks already assigned to "+id,false,false,"green");
                         break;
                     }
                     if (temp.CurrentClass == 1) {
@@ -2614,7 +2615,7 @@ public  class Main {
                 case 2:
                     System.out.println("Viewing Marks...");
                     if (student.isEmpty()) {
-                        System.out.println("Students not available");
+                        StyledConsoleOutput.printStyled("Students not available",false,false,"red");
                         break;
                     }
                     int Id = 0;
@@ -2624,7 +2625,7 @@ public  class Main {
                             Id = scanner.nextInt();
                             break;
                         } catch (Exception e) {
-                            System.out.println("Invalid input. Please enter a valid student Id.");
+                            StyledConsoleOutput.printStyled("Invalid input. Please enter a valid student Id.",false,false,"green");
                             scanner.nextLine(); // Clear the buffer
                         }
                     }
@@ -2638,7 +2639,7 @@ public  class Main {
                     }
                     if (!temp.marks.isEmpty())
                     {
-                        System.out.println("marks is not uploaded for "+Id);
+                        StyledConsoleOutput.printStyled("marks is not uploaded for "+Id,false,false,"red");
                         break;
                     }
                     else
@@ -2649,7 +2650,7 @@ public  class Main {
                 case 3:
                     System.out.println("Editing Marks...");
                     if (student.isEmpty()) {
-                        System.out.println("Students not available");
+                        StyledConsoleOutput.printStyled("Students not available",false,false,"red");
                         break;
                     }
                     System.out.print("enter student Id :");
@@ -2663,7 +2664,7 @@ public  class Main {
                     }
                     if (!temp.marks.isEmpty())
                     {
-                        System.out.println("marks is not assigned to "+ID);
+                        StyledConsoleOutput.printStyled("marks is not assigned to "+ID,false,false,"red");
                         break;
                     }
                     else
@@ -2674,7 +2675,7 @@ public  class Main {
                 case 4:
                     System.out.println("Generating mark sheet...");
                     if (student.isEmpty()) {
-                        System.out.println("Students not available");
+                       StyledConsoleOutput.printStyled("Students not available",false,false,"red");
                         break;
                     }
                     System.out.print("enter student Id :");
@@ -2688,7 +2689,7 @@ public  class Main {
                     }
                     if (!temp.marks.isEmpty())
                     {
-                        System.out.println("marks is not assigned to "+iD);
+                        StyledConsoleOutput.printStyled("marks is not assigned to "+iD,false,false,"red");
                         break;
                     }
                     else
@@ -2773,7 +2774,7 @@ public  class Main {
                 writer.write("\n\n");
             }
         } catch (IOException e) {
-            System.out.println("Error saving teacher details to file.");
+          StyledConsoleOutput.printStyled("Error saving teacher details to file.",false,false,"red");
         }
     }
 
@@ -2846,7 +2847,7 @@ public  class Main {
 
             }
         } catch (IOException e) {
-            System.out.println("Error reading from file: " + e.getMessage());
+           StyledConsoleOutput.printStyled("Error reading from file: " + e.getMessage(),false,false,"red");
         }
     }
 

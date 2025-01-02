@@ -99,7 +99,7 @@ public class StudentClass {
                     choice = sc.nextInt();
                     break;
                 } catch (Exception e) {
-                    System.out.println("Invalid input. Please enter a valid choice.");
+                    StyledConsoleOutput.printStyled("Invalid input. Please enter a valid choice.",false,false,"red");
                     sc.nextLine(); // Clear the buffer
                 }
             }
@@ -131,7 +131,7 @@ public class StudentClass {
                             dob = input;
                             break;
                         } catch (DateTimeParseException e) {
-                            System.out.println("Invalid date format. Please enter again in 'dd-MM-yyyy' format.");
+                            StyledConsoleOutput.printStyled("Invalid date format. Please enter again in 'dd-MM-yyyy' format.",false,false,"red");
                         }
                     }
                     temp.DateOfBirth = dob;
@@ -145,7 +145,7 @@ public class StudentClass {
                     saveToFile();
                     return;
                 default:
-                    System.out.println("Invalid choice , please choose correct again ");
+                    StyledConsoleOutput.printStyled("Invalid choice , please choose correct again ",false,false,"red");
 
             }
         }
@@ -154,7 +154,7 @@ public class StudentClass {
 
     public void searchStudent(int StudentId) {
         if (isEmpty()) {
-            System.out.println("No Student is found");
+            StyledConsoleOutput.printStyled("No Student is found",false,false,"red");
             return;
         }
         StudentNode temp = head;
@@ -164,7 +164,7 @@ public class StudentClass {
             temp = temp.next;
         }
         if (temp == null) {
-            System.out.println("Invalid ID");
+            StyledConsoleOutput.printStyled("Invalid ID",false,false,"red");
             return;
         } else {
             StyledConsoleOutput.printStyled("                                                 * * * Student DETAILS * * *                               \n",true, false, "cyan");
@@ -222,7 +222,7 @@ public class StudentClass {
 
     public void Displaybyclass(int currentClass) {
         if (isEmpty()) {
-            System.out.println("No students found.");
+            StyledConsoleOutput.printStyled("No students found.",false,false,"red");
             return;
         }
 
@@ -247,14 +247,14 @@ public class StudentClass {
         if (!found) {
             System.out.println("|      ------        |        ----        |       -----       |     ---     |");
             System.out.println("|--------------------|--------------------|-------------------|-------------|");
-            System.out.println("No students found in class " + currentClass + ".");
+            StyledConsoleOutput.printStyled("No students found in class " + currentClass + ".",false,false,"red");
         }
     }
 
 
     public void removeStudent(int StudentId) {
         if (isEmpty()) {
-            System.out.println("No Student is found");
+            StyledConsoleOutput.printStyled("No Student is found",false,false,"red");
             return;
         }
         StudentNode temp = head;
@@ -265,7 +265,7 @@ public class StudentClass {
             temp = temp.next;
         }
         if (temp == null) {
-            System.out.println("Invalid found");
+            StyledConsoleOutput.printStyled("Invalid found",false,false,"red");
             return;
         }
         if (temp == head) {
@@ -358,7 +358,7 @@ public class StudentClass {
                 temp = temp.next;
             }
         } catch (IOException e) {
-            System.out.println("Error saving student details to file.");
+            StyledConsoleOutput.printStyled("Error saving student details to file.",false,false,"red");
         }
     }
 
@@ -387,11 +387,11 @@ public class StudentClass {
         }
 
         if (temp == null) {
-            System.out.println("Invalid ID");
+            StyledConsoleOutput.printStyled("Invalid ID",false,false,"red");
             return;
         }
         if (temp.fee.searchMonth(month)) {
-            System.out.println("Fee for this month has already been recorded.");
+            StyledConsoleOutput.printStyled("Fee for this month has already been recorded.",false,false,"green");
             return;
         }
         temp.fee.addStudentFee(voucherid,month, LocalDate.now().toString());
@@ -407,12 +407,12 @@ public class StudentClass {
         }
         if (temp==null)
         {
-            System.out.println("Invalid Id");
+            StyledConsoleOutput.printStyled("Invalid Id",false,false,"red");
             return;
         }
         if (temp.fee.searchMonth(month))
         {
-            System.out.println("Fees is already paid for month "+month);
+            StyledConsoleOutput.printStyled("Fees is already paid for month "+month,false,false,"green");
             return;
         }
         int voucherId = VoucherNo;
@@ -430,7 +430,7 @@ public class StudentClass {
         } else if (temp.CurrentClass >= 8 && temp.CurrentClass <= 10) {
             feeAmount = 14000.0;
         } else {
-            System.out.println("Class not recognized for Student ID: " + temp.StudentId);
+            StyledConsoleOutput.printStyled("Class not recognized for Student ID: " + temp.StudentId,false,false,"red");
         }
 
         // Enhanced Fee Voucher Output
@@ -500,7 +500,7 @@ public class StudentClass {
             temp = temp.next;
         }
         if (temp == null) {
-            System.out.println("Invalid Id");
+            StyledConsoleOutput.printStyled("Invalid Id",false,false,"red");
             return;
         }
         StyledConsoleOutput.printStyled("                                    * * * STUDENT FEE DETAILS * * *                               ",true,false,"cyan");
@@ -537,7 +537,7 @@ public class StudentClass {
     {
         if (isEmpty())
         {
-            System.out.println("Students not available");
+            StyledConsoleOutput.printStyled("Students not available",false,false,"red");
             return;
         }
         System.out.println("|==========|====================|====================|====================|");
@@ -595,7 +595,7 @@ public class StudentClass {
         }
         if (found)
         {
-            System.out.println("no student in class "+Class);
+            StyledConsoleOutput.printStyled("no student in class "+Class,false,false,"red");
         }
     }
 
@@ -792,9 +792,9 @@ public class StudentClass {
             }
 
         } catch (IOException e) {
-            System.out.println("Error reading student details from file: " + e.getMessage());
+           StyledConsoleOutput.printStyled("Error reading student details from file: " + e.getMessage(),false,false,"red");
         } catch (Exception e) {
-            System.out.println("An unexpected error occurred while reading student details: " + e.getMessage());
+            StyledConsoleOutput.printStyled("An unexpected error occurred while reading student details: " + e.getMessage(),false,false,"red");
         }
     }
 

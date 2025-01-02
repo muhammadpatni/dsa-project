@@ -88,7 +88,7 @@ public class TeacherList {
 
     public void updateTeacher(int TeacherID) {
         if (isEmpty()) {
-            System.out.println("no Teacher available ..");
+            StyledConsoleOutput.printStyled("no Teacher available ..",false,false,"red");
             return;
         }
         Teacher temp = head;
@@ -98,7 +98,7 @@ public class TeacherList {
             temp = temp.next;
         }
         if (temp == null) {
-            System.out.println("Invalid ID");
+            StyledConsoleOutput.printStyled("Invalid ID",true,true,"red");
             return;
         }
         //dob name marital status email contact address
@@ -127,7 +127,7 @@ public class TeacherList {
                     choice = sc.nextInt();
                     break;
                 } catch (Exception e) {
-                    System.out.println("Invalid input. Please enter a valid choice.");
+                    StyledConsoleOutput.printStyled("Invalid input. Please enter a valid choice.",false,false,"red");
                     sc.nextLine(); // Clear the buffer
                 }
             }
@@ -142,7 +142,7 @@ public class TeacherList {
                             temp.Name = name;
                             break;
                         } catch (Exception e) {
-                            System.out.println("Invalid input. Please enter a valid name.");
+                            StyledConsoleOutput.printStyled("Invalid input. Please enter a valid name.",false,false,"red");
                         }
                     }
                     break;
@@ -163,10 +163,10 @@ public class TeacherList {
                             else if (gender == 3)
                                 temp.Gender = "Other";
                             else
-                                System.out.println("Invalid choice!");
+                                StyledConsoleOutput.printStyled("Invalid choice!",false,false,"red");
                             break;
                         } catch (Exception e) {
-                            System.out.println("Invalid input. Please enter a valid gender choice.");
+                            StyledConsoleOutput.printStyled("Invalid input. Please enter a valid gender choice.",false,false,"red");
                             sc.nextLine(); // Clear the buffer
                         }
                     }
@@ -181,7 +181,7 @@ public class TeacherList {
                             temp.Contact = contact;
                             break;
                         } catch (Exception e) {
-                            System.out.println("Invalid input. Please enter a valid contact.");
+                            StyledConsoleOutput.printStyled("Invalid input. Please enter a valid contact.",false,false,"red");
                         }
                     }
                     break;
@@ -195,7 +195,7 @@ public class TeacherList {
                             temp.Email = email;
                             break;
                         } catch (Exception e) {
-                            System.out.println("Invalid input. Please enter a valid email.");
+                            StyledConsoleOutput.printStyled("Invalid input. Please enter a valid email.",false,false,"red");
                         }
                     }
                     break;
@@ -213,9 +213,9 @@ public class TeacherList {
                             temp.DateOfBirth = dob;
                             break;
                         } catch (DateTimeParseException e) {
-                            System.out.println("Invalid date format. Please enter again in 'dd-MM-yyyy' format.");
+                            StyledConsoleOutput.printStyled("Invalid date format. Please enter again in 'dd-MM-yyyy' format.",false,false,"red");
                         } catch (Exception e) {
-                            System.out.println("Invalid input. Please enter a valid date.");
+                            StyledConsoleOutput.printStyled("Invalid input. Please enter a valid date.",false,false,"red");
                         }
                     }
                     break;
@@ -228,7 +228,7 @@ public class TeacherList {
                             temp.Address = Address;
                             break;
                         } catch (Exception e) {
-                            System.out.println("Invalid input. Please enter a valid address.");
+                            StyledConsoleOutput.printStyled("Invalid input. Please enter a valid address.",false,false,"red");
                         }
                     }
                     break;
@@ -253,7 +253,7 @@ public class TeacherList {
                                 System.out.println("Invalid choice!");
                             break;
                         } catch (Exception e) {
-                            System.out.println("Invalid input. Please enter a valid marital status.");
+                            StyledConsoleOutput.printStyled("Invalid input. Please enter a valid marital status.",false,false,"red");
                             sc.nextLine(); // Clear the buffer
                         }
                     }
@@ -261,12 +261,12 @@ public class TeacherList {
 
 
                 case 0:
-                    System.out.println("Teacher updated successfully . . . ");
+                    StyledConsoleOutput.printStyled("Teacher updated successfully . . . ",false,false,"green");
                     saveToFile();
                     return;
 
                 default:
-                    System.out.println("Invalid choice, please choose again.");
+                    StyledConsoleOutput.printStyled("Invalid choice, please choose again.",false,false,"red");
             }
 
         }
@@ -277,7 +277,7 @@ public class TeacherList {
     {
         if(isEmpty())
         {
-            System.out.println("no Teacher available ..");
+            StyledConsoleOutput.printStyled("no Teacher available ..",false,false,"red");
             return;
         }
         Teacher temp=head;
@@ -290,7 +290,7 @@ public class TeacherList {
         }
         if (temp==null)
         {
-            System.out.println("Invalid ID");
+            StyledConsoleOutput.printStyled("Invalid ID",false,false,"red");
             return;
         }
         if (temp==head)
@@ -312,7 +312,7 @@ public class TeacherList {
 
     public void searchTeacher(int TeacherID) {
         if (isEmpty()) {
-            System.out.println("no teacher available ..");
+            StyledConsoleOutput.printStyled("no teacher available ..",false,false,"red");
             return;
         }
         Teacher temp = head;
@@ -322,7 +322,7 @@ public class TeacherList {
             temp = temp.next;
         }
         if (temp == null) {
-            System.out.println("Invalid ID");
+            StyledConsoleOutput.printStyled("Invalid ID",false,false,"red");
             return;
         } else {
             StyledConsoleOutput.printStyled("                                                 * * * TEACHER DETAILS * * *                               \n",true, false, "cyan");
@@ -405,7 +405,7 @@ public class TeacherList {
                 temp = temp.next;
             }
         } catch (IOException e) {
-            System.out.println("Error saving teacher details to file.");
+            StyledConsoleOutput.printStyled("Error saving teacher details to file.",false,false,"red");
         }
     }
 
@@ -492,9 +492,9 @@ public class TeacherList {
             }
 
         } catch (IOException e) {
-            System.out.println("Error reading teacher details from file: " + e.getMessage());
+            StyledConsoleOutput.printStyled("Error reading teacher details from file: " + e.getMessage(),false,false,"red");
         } catch (Exception e) {
-            System.out.println("An unexpected error occurred while reading teacher details: " + e.getMessage());
+            StyledConsoleOutput.printStyled("An unexpected error occurred while reading teacher details: " + e.getMessage(),false,false,"red");
         }
     }
     public void radixSortByName() {

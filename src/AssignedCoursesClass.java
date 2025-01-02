@@ -81,7 +81,7 @@ public class AssignedCoursesClass {
         }
         if (temp==null)
         {
-            System.out.println("Invalid course name");
+            StyledConsoleOutput.printStyled("Invalid course name",false,false,"red");
             return;
         }
         if (temp == head) {
@@ -242,11 +242,11 @@ public class AssignedCoursesClass {
             }
 
         } catch (IOException e) {
-            System.out.println("Error reading assigned courses from file: " + e.getMessage());
+           StyledConsoleOutput.printStyled("Error reading assigned courses from file: " + e.getMessage(),false,false,"red");
         } catch (NumberFormatException e) {
-            System.out.println("Error parsing number in file: " + e.getMessage());
+            StyledConsoleOutput.printStyled("Error parsing number in file: " + e.getMessage(),false,false,"red");
         } catch (Exception e) {
-            System.out.println("An unexpected error occurred while reading assigned courses: " + e.getMessage());
+            StyledConsoleOutput.printStyled("An unexpected error occurred while reading assigned courses: " + e.getMessage(),false,false,"red");
         }
     }
 
