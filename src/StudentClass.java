@@ -657,7 +657,7 @@ public class StudentClass {
                     }
                     check=true;
                 }
-                else if(temp.attendance.size()==16)  {
+                else if(temp.attendance.size()==15)  {
                     for (int i = 0; i < temp.attendance.size(); i++) {
                         if (temp.attendance.getAttendance(i))
                             if (i<10)
@@ -777,7 +777,7 @@ public class StudentClass {
                         }
                     }
                 }
-              else if (line.startsWith("Marks List:")) {
+               if (line.startsWith("Marks List:")) {
                     // Read marks until Fee Details
                     while ((line = reader.readLine()) != null && !line.startsWith("Fee Details:")) {
                         if (line.trim().equals("No marks available.")) {
@@ -788,7 +788,7 @@ public class StudentClass {
                         double marks = Double.parseDouble(markDetails[1].trim());
                         marksList.addMarks(subject, marks);
                     }
-                } else if (line.startsWith("Fee Details:")) {
+                }  if (line.startsWith("Fee Details:")) {
                     // Read fee details until Attendance
                     while ((line = reader.readLine()) != null && !line.startsWith("Attendance:")) {
                         if (line.trim().equals("No fee details available.")) {
@@ -804,14 +804,13 @@ public class StudentClass {
                     }
                     if(voucherNumber!=0)
                     {feeDetails.addStudentFee(voucherNumber, month,date);}
-                } else if (line.startsWith("Attendance:")) {
+                }  if (line.startsWith("Attendance:")) {
                     // Read attendance until the end of the student details
-                    while ((line = reader.readLine()) != null && !line.trim().isEmpty()) {
+                    while ((line = reader.readLine()) != null && !line.trim().equals("")) {
                         if (line.trim().equals("No attendance records available.")) {
                             break;
                         }
-                        boolean isPresent = Boolean.parseBoolean(line.trim());
-                        attendance.insert(isPresent);
+                        attendance.insert(Boolean.parseBoolean(line.trim()));
                     }
                 }
             }

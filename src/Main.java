@@ -148,7 +148,7 @@ public  class Main {
                     }
                 } else {
                     StyledConsoleOutput.printStyled("\nInvalid credentials. Please try again.\n",false,false,"red");
-                    StyledConsoleOutput.printStyled("Would you like to try again or go back to the main menu? (y/n): ",false,false ,"blue");
+                    StyledConsoleOutput.printStyled("Would you like to try again or go back to the main menu? (y/n): ",false,false ,"white");
                     String action = scanner.nextLine();
                     if (action.equalsIgnoreCase("n")) {
                         break; // Back to the role selection menu
@@ -1251,7 +1251,7 @@ public  class Main {
                                 else {
                                     temp = student.uploadMarks(Id);
                                 }
-                                if (!temp.marks.isEmpty())
+                                if (temp.marks.isEmpty())
                                 {
                                     StyledConsoleOutput.printStyled("marks is not assigned to "+Id,false,false,"red");
                                     break;
@@ -2489,6 +2489,92 @@ public  class Main {
                     break;
                 case 7:
                     System.out.println("view courses in any class");
+                    System.out.println("Enter Class:");
+                    int ClasS = 0;
+
+                    while (true) {
+                        try {
+                            Class = scanner.nextInt();
+                            if (Class <= 0) {
+                                throw new Exception("Class number must be greater than 0.");
+                            }
+                            break;
+                        } catch (Exception e) {
+                            StyledConsoleOutput.printStyled("Invalid input! " + e.getMessage(),false,false,"red");
+                            scanner.nextLine(); // Clear the buffer
+                        }
+                    }
+
+                    if(Class == 1 ){
+                        if(Class1.size()>0)
+                            Class1.print();
+                        else{
+                            StyledConsoleOutput.printStyled("Courses not assigned to "+Class,false,false,"red");
+                        }
+                    }
+                    else if(Class == 2 ){
+                        if(Class2.size()>0)
+                            Class2.print();
+                        else{
+                            StyledConsoleOutput.printStyled("Courses not assigned to "+Class,false,false,"red");
+                        }
+                    }
+                    else if(Class == 3 ){
+                        if(Class3.size()>0)
+                            Class3.print();
+                        else{
+                            StyledConsoleOutput.printStyled("Courses not assigned to "+Class,false,false,"red");
+                        }
+                    }
+                    else if(Class == 4 ){
+                        if(Class4.size()>0)
+                            Class4.print();
+                        else{
+                            StyledConsoleOutput.printStyled("Courses not assigned to "+Class,false,false,"red");
+                        }
+                    }
+                    else if(Class == 5 ){
+                        if(Class5.size()>0)
+                            Class5.print();
+                        else{
+                            StyledConsoleOutput.printStyled("Courses not assigned to "+Class,false,false,"red");
+                        }
+                    }
+                    else if(Class == 6 ){
+                        if(Class6.size()>0)
+                            Class6.print();
+                        else{
+                            StyledConsoleOutput.printStyled("Courses not assigned to "+Class,false,false,"red");
+                        }
+                    }
+                    else if(Class == 7 ){
+                        if(Class7.size()>0)
+                            Class7.print();
+                        else{
+                            StyledConsoleOutput.printStyled("Courses not assigned to "+Class,false,false,"red");
+                        }
+                    }
+                    else if(Class == 8 ){
+                        if(Class8.size()>0)
+                            Class8.print();
+                        else{
+                            StyledConsoleOutput.printStyled("Courses not assigned to "+Class,false,false,"red");
+                        }
+                    }
+                    else if(Class == 9){
+                        if(Class9.size()>0)
+                            Class9.print();
+                        else{
+                            StyledConsoleOutput.printStyled("Courses not assigned to "+Class,false,false,"red");
+                        }
+                    }
+                    if(Class == 10){
+                        if(Class10.size()>0)
+                            Class10.print();
+                        else{
+                            StyledConsoleOutput.printStyled("Courses not assigned to "+Class,false,false,"red");
+                        }
+                    }
                     break;
                 case 8:
                     return false;
@@ -2547,18 +2633,21 @@ public  class Main {
                             System.out.print("Enter marks of " + Class1.GetCertificate(i) + ":");
                             double marks = scanner.nextDouble();
                             temp.marks.addMarks(Class1.GetCertificate(i), marks);
+                            student.saveToFile();
                         }
                     } else if (temp.CurrentClass == 2) {
                         for (int i = 0; i < Class2.size(); i++) {
                             System.out.print("Enter marks of " + Class2.GetCertificate(i) + ":");
                             double marks = scanner.nextDouble();
                             temp.marks.addMarks(Class2.GetCertificate(i), marks);
+                            student.saveToFile();
                         }
                     } else if (temp.CurrentClass == 3) {
                         for (int i = 0; i < Class3.size(); i++) {
                             System.out.print("Enter marks of " + Class3.GetCertificate(i) + ":");
                             double marks = scanner.nextDouble();
                             temp.marks.addMarks(Class3.GetCertificate(i), marks);
+                            student.saveToFile();
                         }
                     }
                     else if (temp.CurrentClass==4) {
@@ -2566,6 +2655,7 @@ public  class Main {
                             System.out.print("Enter marks of "+Class4.GetCertificate(i)+":");
                             double marks = scanner.nextDouble();
                             temp.marks.addMarks(Class4.GetCertificate(i),marks);
+                            student.saveToFile();
                         }
                     }
                     else if (temp.CurrentClass==5) {
@@ -2573,6 +2663,7 @@ public  class Main {
                             System.out.print("Enter marks of "+Class5.GetCertificate(i)+":");
                             double marks = scanner.nextDouble();
                             temp.marks.addMarks(Class5.GetCertificate(i),marks);
+                            student.saveToFile();
                         }
                     }
                     else if (temp.CurrentClass==6) {
@@ -2580,6 +2671,7 @@ public  class Main {
                             System.out.print("Enter marks of "+Class6.GetCertificate(i)+":");
                             double marks = scanner.nextDouble();
                             temp.marks.addMarks(Class6.GetCertificate(i),marks);
+                            student.saveToFile();
                         }
                     }
                     else if (temp.CurrentClass==7) {
@@ -2587,6 +2679,7 @@ public  class Main {
                             System.out.print("Enter marks of "+Class7.GetCertificate(i)+":");
                             double marks = scanner.nextDouble();
                             temp.marks.addMarks(Class7.GetCertificate(i),marks);
+                            student.saveToFile();
                         }
                     }
                     else if (temp.CurrentClass==8) {
@@ -2594,6 +2687,7 @@ public  class Main {
                             System.out.print("Enter marks of "+Class8.GetCertificate(i)+":");
                             double marks = scanner.nextDouble();
                             temp.marks.addMarks(Class8.GetCertificate(i),marks);
+                            student.saveToFile();
                         }
                     }
                     else if (temp.CurrentClass==9) {
@@ -2601,6 +2695,7 @@ public  class Main {
                             System.out.print("Enter marks of "+Class9.GetCertificate(i)+":");
                             double marks = scanner.nextDouble();
                             temp.marks.addMarks(Class9.GetCertificate(i),marks);
+                            student.saveToFile();
                         }
                     }
                     else
@@ -2609,6 +2704,7 @@ public  class Main {
                             System.out.print("Enter marks of "+Class10.GetCertificate(i)+":");
                             double marks = scanner.nextDouble();
                             temp.marks.addMarks(Class10.GetCertificate(i),marks);
+                            student.saveToFile();
                         }
                     }
                     break;
@@ -2637,7 +2733,7 @@ public  class Main {
                     else {
                         temp = student.uploadMarks(Id);
                     }
-                    if (!temp.marks.isEmpty())
+                    if (temp.marks.isEmpty())
                     {
                         StyledConsoleOutput.printStyled("marks is not uploaded for "+Id,false,false,"red");
                         break;
@@ -2662,7 +2758,7 @@ public  class Main {
                     else {
                         temp = student.uploadMarks(ID);
                     }
-                    if (!temp.marks.isEmpty())
+                    if (temp.marks.isEmpty())
                     {
                         StyledConsoleOutput.printStyled("marks is not assigned to "+ID,false,false,"red");
                         break;
@@ -2687,7 +2783,7 @@ public  class Main {
                     else {
                         temp = student.uploadMarks(iD);
                     }
-                    if (!temp.marks.isEmpty())
+                    if (temp.marks.isEmpty())
                     {
                         StyledConsoleOutput.printStyled("marks is not assigned to "+iD,false,false,"red");
                         break;

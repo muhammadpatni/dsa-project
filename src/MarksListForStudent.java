@@ -56,7 +56,7 @@ public class MarksListForStudent {
             if (choice==0)
             {   StyledConsoleOutput.printStyled("marks update successfully ",false,false,"green");
                 return;}
-            for (int i = 0; i <choice&&temp!=null ; i++) {
+            for (int i = 0; i <choice-1&&temp!=null ; i++) {
                 temp=temp.next;
             }
             if (temp==null)

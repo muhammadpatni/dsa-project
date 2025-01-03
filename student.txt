@@ -16,13 +16,30 @@ Previous Institute: beacon askari school
 Previous Class: 1
 Previous Grade: A
 Marks List: 
-No marks available.
+urdu : 25.0
+english : 67.0
+math : 98.0
+islamiat : 67.0
 Fee Details: 
 Month: January
 Voucher Number: 8
 Date: 2025-01-02
 Attendance: 
-No attendance records available.
+true
+true
+false
+false
+false
+true
+true
+true
+true
+true
+true
+false
+true
+true
+true
 
 
 Student ID: 3
@@ -42,22 +59,9 @@ Fee Details:
 Month: January
 Voucher Number: 11
 Date: 2025-01-02
-Attendance:
-true
-true
-false
-false
-false
-true
-true
-true
-true
-true
-true
-false
-true
-true
-true
+Attendance: 
+No attendance records available.
+
 
 Student ID: 4
 Name: kamran alam

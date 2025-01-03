@@ -1,0 +1,51 @@
+					* * * * COURSES DETAILS * * * *
+
+class 1
+
+• math
+• urdu
+• english
+• islamiat
+
+
+class 2
+
+• urdu
+• english
+• math
+• islamiat
+
+
+class 3
+
+• math
+
+
+class 4
+
+
+
+class 5
+
+
+
+class 6
+
+
+
+class 7
+
+
+
+class 8
+
+
+
+class 9
+
+
+
+class 10
+
+
+

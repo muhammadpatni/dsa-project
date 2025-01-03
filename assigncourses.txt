@@ -1,0 +1,10 @@
+	 	 	 	 * * * * ASSIGNED COURSES DETAILS * * * * 
+
+Teacher ID: 1
+Teacher Name: asim
+Class: 1
+Course: math
+Teacher ID: 1
+Teacher Name: asim
+Class: 2
+Course: english
