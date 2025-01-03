@@ -2789,6 +2789,12 @@ public  class Main {
                     }
                     else
                     {
+                        StyledConsoleOutput.printStyled("\n                                         ** MARK SHEET **                                        ",true,false,"cyan");
+                        System.out.println(" Roll # :        "+temp.StudentId);
+                        System.out.println(" Name :          "+temp.Name);
+                        System.out.println(" Father Name # : "+temp.FatherName);
+                        System.out.println(" Class :         "+temp.CurrentClass);
+                        System.out.println();
                         temp.marks.displayMarkSheet();
                     }
                     break;

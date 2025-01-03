@@ -16,7 +16,7 @@ Previous Institute: beacon askari school
 Previous Class: 1
 Previous Grade: A
 Marks List: 
-urdu : 25.0
+urdu : 75.0
 english : 67.0
 math : 98.0
 islamiat : 67.0
@@ -28,11 +28,6 @@ Attendance:
 true
 true
 false
-false
-false
-true
-true
-true
 true
 true
 true
@@ -47,7 +42,7 @@ Name: haram zainab
 Gender: Male
 DOB: 12-12-2005
 Contact: 094566352625
-Address: pagal khana
+Address: karachi
 Father's Name: dil khurram shehzada
 Current Class: 1
 Section: A
@@ -68,7 +63,7 @@ Name: kamran alam
 Gender: Male
 DOB: 12-12-2003
 Contact: 03131313131
-Address: central jail
+Address: dawood chorangi
 Father's Name: alam sahib
 Current Class: 10
 Section: A

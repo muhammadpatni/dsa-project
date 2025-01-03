@@ -40,7 +40,7 @@ public class MarksListForStudent {
         while (true) {
             System.out.println("\nCurrent Details:");
             displayStudentMarks();
-            System.out.println("\n:");
+            System.out.println("\n");
             int choice = 0;
             while (true) {
                 try {
@@ -107,7 +107,6 @@ public class MarksListForStudent {
     }
 
     public void displayMarkSheet() {
-        StyledConsoleOutput.printStyled("                                         ** MARK SHEET **                                        ",true,false,"cyan");
         System.out.println("|--------|-----------------------|-------------------|-------------------|------------------|------------------|");
         System.out.println("| S.NO   |       SUBJECT         | MAXIMUM MARKS     | MINIMUM MARKS     | OBTAINED MARKS   |      GRADE       |");
         System.out.println("|--------|-----------------------|-------------------|-------------------|------------------|------------------|");
@@ -169,19 +168,19 @@ public class MarksListForStudent {
     }
 
     private String calculateGrade(double marks) {
-        if (marks > 89.9) {
-            return "A";
-        } else if (marks > 79.9) {
-            return "B";
-        } else if (marks > 69.9) {
-            return "C";
-        } else if (marks > 59.9) {
-            return "D";
-        } else if (marks > 49.9) {
-            return "E";
-        } else {
-            return "F";
-        }
+       if (marks>=80)
+           return "A+";
+       else if (marks>=70){
+           return "A";
+       } else if (marks>=60) {
+           return "B";
+       } else if (marks>=50) {
+           return "C";
+       }
+       else if (marks>=40) {
+           return "D";
+       }else
+           return "F";
     }
 
 
