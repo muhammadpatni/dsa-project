@@ -199,6 +199,7 @@ public class AssignedCoursesClass {
                 writer.write("Teacher Name: " + temp.Teacher_Name + "\n");
                 writer.write("Class: " + temp.CLASS + "\n");
                 writer.write("Course: " + temp.Course + "\n");
+                writer.write("-----------------------------\n");
                 temp = temp.next;
             }
         } catch (IOException e) {
@@ -217,6 +218,14 @@ public class AssignedCoursesClass {
 
             while ((line = reader.readLine()) != null) {
                 if (line.startsWith("Teacher ID:")) {
+                    if (teacherId!=0)
+                    {
+                        add(teacherId, classNumber, course, teacherName);
+                        teacherId = 0;
+                        classNumber = 0;
+                        course = "";
+                        teacherName = "";
+                    }
                     teacherId = Integer.parseInt(line.split(":")[1].trim());
                 } else if (line.startsWith("Teacher Name:")) {
                     teacherName = line.split(":")[1].trim();
@@ -224,15 +233,6 @@ public class AssignedCoursesClass {
                     classNumber = Integer.parseInt(line.split(":")[1].trim());
                 } else if (line.startsWith("Course:")) {
                     course = line.split(":")[1].trim();
-                } else if (line.startsWith("----------------------------------------------------")) {
-                    // Add a new node for the current teacher-course assignment
-                    add(teacherId, classNumber, course, teacherName);
-
-                    // Reset variables for the next record
-                    teacherId = 0;
-                    classNumber = 0;
-                    course = "";
-                    teacherName = "";
                 }
             }
 

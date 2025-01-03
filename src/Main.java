@@ -71,15 +71,15 @@ public  class Main {
 
             while (!valid) {
                 try {
-                    System.out.print("Enter your choice (1-6): ");
+                    System.out.print("Enter your choice (1-8): ");
                     choice = scanner.nextInt();
-                    if (choice < 1 || choice > 7) {
+                    if (choice < 1 || choice > 8) {
                         throw new Exception("Invalid choice range!");
                     }
                     valid = true;
                 } catch (Exception e) {
                     scanner.nextLine();
-                    StyledConsoleOutput.printStyled("Wrong input! Enter again from 1-6 options.",false,false,"red");
+                    StyledConsoleOutput.printStyled("Wrong input! Enter again from 1-8 options.",false,false,"red");
                 }
             }
 
@@ -90,7 +90,7 @@ public  class Main {
                 break;
             }
 
-            if (choice < 1 || choice > 7) {
+            if (choice < 1 || choice > 9) {
                 StyledConsoleOutput.printStyled("Invalid choice. Please try again.",false,false,"red");
                 continue;
             }
@@ -2261,7 +2261,6 @@ public  class Main {
                     }
 
                     assignedCourses.displaySpecificClassById(classnumber);
-                    assignedCourses.saveToFile();
                     break;
                 case 4:
                     System.out.println("Viewing Which Teacher is Teaching Which Course in a Specific Class...");
@@ -2395,7 +2394,6 @@ public  class Main {
                             saveCoursesToFile();
                         }
                     }
-                    assignedCourses.saveToFile();
                     break;
 
                 case 6:
@@ -2766,6 +2764,7 @@ public  class Main {
                     else
                     {
                         temp.marks.updateStudentMarks();
+                        student.saveToFile();
                     }
                     break;
                 case 4:
