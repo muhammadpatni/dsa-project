@@ -81,7 +81,7 @@ public class TeacherList {
         while(temp!=null){
             int Age=calculateAge(temp.DateOfBirth);
             System.out.printf("|%-10s|%-20s|%-11s|%-29s|%-19s|%-13s|%-8s|%-40s|%-29s|%-29s|\n",temp.TeacherID,temp.Name,temp.Gender,temp.Experience,temp.Contact,temp.Salary,Age,temp.Email,temp.HigestQualification, temp.Specialization);
-            System.out.println("|----------|--------------------|-----------|-----------------------------|-------------------|-------------|--------|----------------------------------------|-----------------------------|----------------------------|");
+            System.out.println("|----------|--------------------|-----------|-----------------------------|-------------------|-------------|--------|----------------------------------------|-----------------------------|-----------------------------|");
             temp=temp.next;
         }
     }

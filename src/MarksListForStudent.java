@@ -126,6 +126,7 @@ public class MarksListForStudent {
                     centerAlign(String.valueOf(temp.mark), 16),
                     centerAlign(grade, 16));
             temp = temp.next;
+
             sno++;
         }
         System.out.println("|--------|-----------------------|-------------------|-------------------|------------------|------------------|\n");

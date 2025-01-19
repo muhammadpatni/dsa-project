@@ -113,3 +113,22 @@ Certifications:
 • 1-year software development course
 
 
+Teacher ID: 7
+Name: julia
+Gender: Female
+Marital Status: Widow
+DOB: 05-03-2000
+Date of Joining: 2025-01-04
+Contact: 1234567890
+Address: smiu
+Email: patni123@gmail.com
+Salary: 1.0
+Skills: no
+Experience: 22
+Highest Qualification: phd
+Specialization: mathematic
+Certifications:
+• dit
+• cit
+
+

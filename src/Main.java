@@ -475,7 +475,7 @@ public  class Main {
                     if (entity.equals("Teacher")) {
                         String dob = "";
                         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy");
-
+                        scanner.nextLine();
                         System.out.print("Enter Teacher Name: ");
                         String name = scanner.nextLine();
 
@@ -962,7 +962,9 @@ public  class Main {
                                 }
                                 break;
                             } catch (Exception e) {
-                                StyledConsoleOutput.printStyled("Invalid input! " + e.getMessage(),false,false,"red");
+                                if (e!=null)
+                                {  StyledConsoleOutput.printStyled("Invalid input! " + e.getMessage(),false,false,"red");}
+                                System.out.print("Invalid input !! , Enter again : ");
                                 scanner.nextLine(); // Clear the buffer
                             }
                         }
